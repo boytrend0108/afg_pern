@@ -1,0 +1,8 @@
+@mixin onHover($_property, $_toValue) {
+  transition: #{$_property} $transition-duration;
+  cursor: pointer;
+
+  &:hover {
+    #{$_property}: $_toValue;
+  }
+}
