@@ -1,0 +1,21 @@
+@import '../../../../shared/style/utils.scss';
+
+.Navbar {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $color-font-light;
+  text-transform: uppercase;
+
+  line-height: 18.75px;
+  text-align: left;
+
+  &__link {
+    padding-inline: 20px;
+    height: 100%;
+    line-height: 90px;
+
+    @include onHover(background-color, $color-primary-hover);
+  }
+}

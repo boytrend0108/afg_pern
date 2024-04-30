@@ -1,0 +1,27 @@
+@import '../../../shared/style/utils.scss';
+
+.Header {
+  padding-block: 10px;
+  height: 110px;
+  background-color: $color-primary;
+
+  &__container {
+    @extend %container;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    cursor: pointer;
+    width: 124px;
+    height: 90px;
+  }
+}
