@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useAppSelector } from '../../../shared/hooks/reduxHooks';
 import './SelectCountry.scss';
 import { MyFlags } from '../../../shared/ui';
+import { useHideDrop } from '../../../shared/hooks';
 
 export const SelectCountry = () => {
   const { country } = useAppSelector((state) => state.country);
@@ -12,19 +13,7 @@ export const SelectCountry = () => {
     setShowCountry(!showCountry);
   };
 
-  useEffect(() => {
-    const closeSelect = (e: any) => {
-      if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
-        setShowCountry(false);
-      }
-    };
-
-    document.body.addEventListener('mousedown', closeSelect);
-
-    return () => {
-      document.body.removeEventListener('mousedown', closeSelect);
-    };
-  }, []);
+  useHideDrop(selectRef, setShowCountry);
 
   return (
     <button className="SelectCountry" onClick={toogleCountry} ref={selectRef}>
@@ -32,7 +21,11 @@ export const SelectCountry = () => {
         <li className={`flag ${country} SelectCountry__flag`} />
       </ul>
 
-      <img src="/icons/arrow-down.png" alt="arrow down" />
+      <img
+        src="/icons/arrow-down.png"
+        alt="arrow down"
+        className="SelectCountry__icon--arrow"
+      />
 
       <div
         className="SelectCountry__drop SelectCountry__drop--flags"

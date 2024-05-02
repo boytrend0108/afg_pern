@@ -1,0 +1,19 @@
+@import '../../../shared/style/utils.scss';
+
+.MyButton {
+  height: 68px;
+  width: 212px;
+  border: none;
+  background-color: $color-secondary;
+
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: left;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include onHover(background-color, $color-secondary-hover);
+}

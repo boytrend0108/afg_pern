@@ -1,19 +1,19 @@
 import './Control.scss';
 import { SelectCurrency } from '../../../../features/SelectCurrency';
 import { SelectCountry } from '../../../../features/SelectCountry';
+import { Search } from '../../../../features/Search';
+import { AccountTab } from '../../AccountTab/AccountTab';
 
 export const Control = () => {
   return (
     <div className="Control">
-      <button className="Control__btn">
-        <img src="/icons/search.png" alt="search" />
-      </button>
+      <Search />
 
       <SelectCurrency />
 
       <SelectCountry />
 
-      <button className="Control__btn">4</button>
+      <AccountTab />
     </div>
   );
 };

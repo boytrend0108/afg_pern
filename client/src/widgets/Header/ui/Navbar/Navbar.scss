@@ -11,6 +11,10 @@
   line-height: 18.75px;
   text-align: left;
 
+  @include on-tablet-s {
+    display: none;
+  }
+
   &__link {
     padding-inline: 20px;
     height: 100%;

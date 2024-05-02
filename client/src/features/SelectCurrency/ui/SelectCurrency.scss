@@ -13,10 +13,15 @@
   outline: none;
   border-left: 1px solid $color-border;
 
+  @include on-tablet-s {
+    min-width: 65px;
+  }
+
   @include onHover(background-color, $color-primary-hover);
 
   &__drop {
     position: absolute;
+    z-index: 10;
     overflow: hidden;
 
     width: 179px;
@@ -24,9 +29,8 @@
     top: 100px;
     left: 0;
 
-    &--flags {
-      width: 332px;
-      left: -100px;
+    @include on-tablet-s {
+      top: 74px;
     }
   }
 
@@ -57,5 +61,11 @@
 
     padding: 10px 28px;
     @include onHover(background-color, $color-primary-hover);
+  }
+
+  &__icon--arrow {
+    @include on-tablet-s {
+      display: none;
+    }
   }
 }

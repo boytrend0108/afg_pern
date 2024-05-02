@@ -11,7 +11,7 @@ export const Header = () => {
       <div className="Header__container">
         <div className="Header__content">
           <Link to="/" className="Header__logo">
-            <img src="/logo.png" alt="logo" />
+            <img src="/logo.png" alt="logo" className="Header__logo-img" />
           </Link>
 
           <Navbar />

@@ -1,2 +1,16 @@
+@import '../../../../shared/style/utils.scss';
+
 .HomePage {
+  max-width: $max-app-width;
+  margin: 0 auto;
+
+  &__social {
+    position: fixed;
+    top: 280px;
+    right: 0;
+
+    @include on-tablet-s {
+      top: 164px;
+    }
+  }
 }

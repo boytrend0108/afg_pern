@@ -2,4 +2,9 @@
   width: 100%;
   max-width: 1920px;
   padding-inline: 50px;
+  margin: 0 auto;
+
+  @include on-tablet-s {
+    padding-inline: 30px;
+  }
 }

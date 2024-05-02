@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import cn from 'classnames';
 
 import {
@@ -8,6 +8,7 @@ import {
 import './SelectCurrency.scss';
 import { Currency } from '../../../shared/types/currency';
 import { setCurrency } from '../../../app/store/currencyReducer';
+import { useHideDrop } from '../../../shared/hooks';
 
 export const SelectCurrency = () => {
   const dispatch = useAppDispatch();
@@ -24,24 +25,16 @@ export const SelectCurrency = () => {
     setShowCurrency(!showCurrency);
   };
 
-  useEffect(() => {
-    const closeSelect = (e: MouseEvent) => {
-      if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
-        setShowCurrency(false);
-      }
-    };
-
-    document.body.addEventListener('mousedown', closeSelect);
-
-    return () => {
-      document.body.removeEventListener('mousedown', closeSelect);
-    };
-  }, []);
+  useHideDrop(selectRef, setShowCurrency);
 
   return (
     <button className="SelectCurrency" onClick={toogleCurrency} ref={selectRef}>
       <img src={`/icons/currenсies/${currency}.png`} alt={currency} />
-      <img src="/icons/arrow-down.png" alt="arrow down" />
+      <img
+        src="/icons/arrow-down.png"
+        alt="arrow down"
+        className="SelectCurrency__icon--arrow"
+      />
 
       <div
         className="SelectCurrency__drop"
