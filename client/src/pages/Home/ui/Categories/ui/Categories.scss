@@ -1,0 +1,195 @@
+@import '../../../../../shared/style/utils.scss';
+
+.Categories {
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    @extend %container;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+
+    @include on-tablet-s {
+      gap: 20px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 236px;
+    height: 80px;
+    background-color: $color-primary;
+    margin-bottom: 46px;
+
+    @include on-desktop-s {
+      padding-inline: 116px;
+    }
+
+    @include on-tablet {
+      flex-direction: column;
+      height: 200px;
+      justify-content: center;
+      gap: 20px;
+      padding-inline: 0;
+      margin-bottom: 25px;
+    }
+
+    @include on-tablet-s {
+      height: 150px;
+    }
+  }
+
+  &__phone {
+    position: relative;
+    color: $color-font-light;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: left;
+
+    &::before {
+      content: url(/icons/phone.png);
+      position: absolute;
+      top: -10px;
+      left: -51px;
+      height: 40px;
+      width: 40px;
+    }
+
+    @include on-desktop-s {
+      font-size: 26px;
+      line-height: 26px;
+    }
+
+    @include on-tablet-s {
+      transform: translateX(11px);
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    @include on-mobile-m {
+      transform: translateX(22px);
+    }
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 32.81px;
+    text-align: center;
+
+    @include on-tablet {
+      flex-direction: column;
+      gap: 10px;
+      font-size: 24px;
+    }
+  }
+
+  &__input {
+    display: flex;
+    height: 60px;
+
+    @include on-tablet-s {
+      height: 40px;
+    }
+
+    &-field {
+      width: 468px;
+      border: 1px solid $color-border;
+      border-right: none;
+      outline: none;
+      padding: 16px 18px;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 21.09px;
+      text-align: left;
+
+      &:focus {
+        border: 1px solid $color-secondary;
+      }
+
+      @include on-tablet-s {
+        width: 310px;
+        font-size: 14px;
+        line-height: 14px;
+      }
+
+      @include on-mobile-m {
+        width: 230px;
+      }
+    }
+
+    &-btn {
+      position: relative;
+      height: 100%;
+      width: 60px;
+      border: none;
+      background-color: $color-secondary;
+
+      @include onHover(background-color, $color-secondary-hover);
+
+      &::after {
+        position: absolute;
+        top: 16px;
+        left: 12px;
+        height: 36px;
+        width: 36px;
+        content: url(/icons/search.png);
+
+        @include on-tablet-s {
+          top: 7px;
+          left: 3px;
+        }
+      }
+
+      @include on-tablet-s {
+        width: 40px;
+      }
+    }
+  }
+
+  &__btn {
+    gap: 10px;
+    width: 360px;
+    height: 80px;
+    border: 1px solid $color-secondary;
+    background-color: transparent;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 26px;
+    text-align: left;
+    margin: 0 auto;
+    display: none;
+
+    @include on-tablet {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @include onHover(background-color, $color-secondary);
+
+    @include on-tablet-s {
+      height: 60px;
+    }
+
+    @include on-mobile-m {
+      width: 280px;
+    }
+  }
+
+  &__arrow {
+    transform: translateY(4px);
+
+    &--active {
+      transform: rotate(180deg);
+    }
+  }
+}

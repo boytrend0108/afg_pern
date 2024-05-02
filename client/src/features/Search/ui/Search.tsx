@@ -35,9 +35,9 @@ export const Search = () => {
             placeholder="Machines, type, setting..."
           />
 
-          <button className="Search__btn">
+          <div className="Search__btn">
             <img src="/icons/search.png" alt="search" />
-          </button>
+          </div>
         </div>
       </div>
     </button>

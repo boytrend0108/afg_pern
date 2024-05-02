@@ -17,4 +17,18 @@
       top: 133px;
     }
   }
+
+  &__whatsup {
+    position: fixed;
+    top: 630px;
+    right: 0;
+    cursor: pointer;
+
+    @include onHover(transform, scale(1.05));
+
+    @include on-tablet-s {
+      height: 40px;
+      width: 40px;
+    }
+  }
 }
