@@ -13,7 +13,7 @@
   border-left: 1px solid $color-border;
   position: relative;
 
-  @include on-tablet-s {
+  @include on-tablet {
     display: none;
   }
 

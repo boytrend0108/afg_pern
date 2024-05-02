@@ -7,4 +7,8 @@
   @include on-tablet-s {
     padding-inline: 30px;
   }
+
+  @include on-mobile-m {
+    padding-inline: 20px;
+  }
 }

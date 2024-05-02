@@ -43,7 +43,9 @@ export const Slider: React.FC = () => {
           style={{ width: currentWidth }}
         >
           <h1 className="Slider__title">New Mini Excalarors</h1>
-          <MyButton>View catalog</MyButton>
+          <MyButton style={{ height: '48px', fontSize: '16px' }}>
+            View catalog
+          </MyButton>
         </div>
 
         <div
@@ -51,7 +53,9 @@ export const Slider: React.FC = () => {
           style={{ width: currentWidth }}
         >
           <h1 className="Slider__title">Used machinery</h1>
-          <MyButton>View catalog</MyButton>
+          <MyButton style={{ height: '48px', fontSize: '16px' }}>
+            View catalog
+          </MyButton>
         </div>
 
         <div
@@ -59,7 +63,9 @@ export const Slider: React.FC = () => {
           style={{ width: currentWidth }}
         >
           <h1 className="Slider__title">New machinery</h1>
-          <MyButton>View catalog</MyButton>
+          <MyButton style={{ height: '48px', fontSize: '16px' }}>
+            View catalog
+          </MyButton>
         </div>
       </div>
 

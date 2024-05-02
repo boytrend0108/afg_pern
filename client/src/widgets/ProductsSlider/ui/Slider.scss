@@ -1,23 +1,64 @@
 @import '../../../shared/style/utils.scss';
 
+@mixin slider-item {
+  padding: 40px;
+  height: 100%;
+  width: 768px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  @include on-tablet-s {
+    padding: 30px;
+  }
+
+  @include on-mobile-m {
+    padding: 20px;
+  }
+}
+
 .Slider {
   width: 100%;
-  height: 360px;
+  height: 480px;
   position: relative;
   display: none;
   overflow: hidden;
 
-  @include on-tablet-s {
+  @include on-tablet {
     display: block;
   }
 
+  @include on-tablet-s {
+    height: 360px;
+  }
+
+  @include on-mobile-m {
+    height: 300px;
+  }
+
   &__title {
-    font-size: 64px;
+    font-size: 86px;
     font-weight: 500;
-    line-height: 64px;
+    line-height: 86px;
     text-align: left;
     color: $color-font-light;
-    max-width: 300px;
+    max-width: 404px;
+
+    @include on-tablet {
+      margin-bottom: 20px;
+    }
+
+    @include on-tablet-s {
+      font-size: 63px;
+      line-height: 63px;
+      max-width: 300px;
+    }
+
+    @include on-mobile-m {
+      font-size: 40px;
+      line-height: 40px;
+      max-width: 188px;
+    }
   }
 
   &__box {
@@ -29,13 +70,6 @@
   }
 
   &__item {
-    padding: 30px;
-    height: 100%;
-    width: 768px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-
     &--1 {
       background: linear-gradient(
           90deg,
@@ -43,7 +77,7 @@
           rgba(29, 29, 27, 0) 100%
         ),
         url(/home-page/tablet/slide-1.webp);
-      background-position: center;
+      @include slider-item;
     }
 
     &--2 {
@@ -53,7 +87,7 @@
           rgba(29, 29, 27, 0) 100%
         ),
         url(/home-page/tablet/slide-2.webp);
-      background-position: center;
+      @include slider-item;
     }
 
     &--3 {
@@ -63,7 +97,7 @@
           rgba(29, 29, 27, 0) 100%
         ),
         url(/home-page/tablet/slide-3.webp);
-      background-position: center;
+      @include slider-item;
     }
   }
 
@@ -73,6 +107,10 @@
     right: 44%;
     display: flex;
     gap: 20px;
+
+    @include on-mobile-m {
+      right: 40%;
+    }
 
     &-el {
       height: 10px;

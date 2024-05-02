@@ -37,9 +37,17 @@
       width: 332px;
       left: -100px;
 
+      @include on-tablet {
+        left: -133px;
+      }
+
       @include on-tablet-s {
-        left: -202px;
+        left: -193px;
         top: 74px;
+      }
+
+      @include on-mobile-m {
+        width: 300px;
       }
     }
   }

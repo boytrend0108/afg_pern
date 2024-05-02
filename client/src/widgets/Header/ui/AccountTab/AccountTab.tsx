@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import cn from 'classnames';
 
 import './AccountTab.scss';
-import { useHideDrop } from '../../../shared/hooks';
+import { useHideDrop } from '../../../../shared/hooks';
 
 export const AccountTab = () => {
   const [showDrop, setShowDrop] = useState(false);

@@ -3,6 +3,7 @@ import './MyButton.scss';
 
 type Props = {
   children: React.ReactNode;
+  style?: { height?: string; fontSize?: string };
 };
 
 export const MyButton: React.FC<Props> = ({ children, ...props }) => {

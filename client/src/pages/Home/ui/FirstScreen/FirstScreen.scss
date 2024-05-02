@@ -31,7 +31,13 @@
   display: flex;
   gap: 25px;
 
-  @include on-tablet-s {
+  @include on-desktop-s {
+    padding-block: 20px;
+    height: 334px;
+    gap: 20px;
+  }
+
+  @include on-tablet {
     display: none;
   }
 
@@ -45,12 +51,26 @@
     text-align: left;
     color: $color-font-light;
 
+    @include on-desktop {
+      font-size: 64px;
+      line-height: 64px;
+      margin-bottom: 15px;
+    }
+
     &--mini {
       position: relative;
       z-index: 1;
       font-size: 36px;
       line-height: 36px;
       color: $color-font-light;
+
+      @include on-desktop {
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 28px;
+        text-align: left;
+        max-width: 190px;
+      }
     }
   }
 
@@ -60,6 +80,14 @@
     width: 100%;
     flex-shrink: 1;
     @include hover('/home-page/main-photo.webp', '800px');
+
+    @include on-desktop {
+      padding: 20px;
+    }
+
+    @include on-desktop-s {
+      max-width: 780px;
+    }
   }
 
   &__side {
@@ -70,6 +98,10 @@
     max-width: 645px;
     width: 100%;
     flex-shrink: 2;
+
+    @include on-desktop {
+      max-width: 404px;
+    }
   }
 
   &__top {
@@ -88,6 +120,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include on-desktop {
+      padding: 15px;
+    }
   }
 
   &__button {
@@ -103,6 +139,10 @@
     line-height: 20px;
     text-align: left;
     color: $color-secondary;
+
+    @include on-desktop {
+      font-size: 16px;
+    }
 
     @include onHover(color, $color-secondary-hover);
   }

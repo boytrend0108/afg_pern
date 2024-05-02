@@ -12,5 +12,9 @@
     @include on-tablet-s {
       top: 164px;
     }
+
+    @include on-mobile-m {
+      top: 133px;
+    }
   }
 }

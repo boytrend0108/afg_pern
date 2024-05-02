@@ -5,6 +5,11 @@
   height: 110px;
   background-color: $color-primary;
 
+  @include on-desktop-s {
+    padding-block: 0;
+    height: 100px;
+  }
+
   @include on-tablet-s {
     height: 75px;
   }
@@ -31,6 +36,11 @@
 
     &-img {
       height: 100%;
+    }
+
+    @include on-desktop-s {
+      width: 100px;
+      height: 73px;
     }
 
     @include on-tablet-s {
