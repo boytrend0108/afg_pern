@@ -1,0 +1,140 @@
+@import '../../../shared/style/utils.scss';
+
+.ProductItem {
+  max-width: 420px;
+  height: 470px;
+  border: 1px solid $color-border;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__image {
+    overflow: hidden;
+    position: relative;
+    flex-grow: 1;
+
+    &-box {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+
+      @include onHover(transform, scale(1.05));
+    }
+
+    &-lable {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background-color: $color-secondary;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 28.13px;
+
+      transform: rotate(45deg) translateY(-67%);
+
+      &--white {
+        @extend .ProductItem__image-lable;
+        background-color: $color-font-light;
+        color: $color-primary;
+      }
+
+      &--black {
+        @extend .ProductItem__image-lable;
+        background-color: $color-primary;
+        color: $color-font-light;
+      }
+    }
+  }
+
+  &__subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  &__title {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+  &__breadcrumbs {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  &__desc {
+    padding: 15px;
+
+    &-top {
+      border-bottom: 1px solid $color-border;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      padding-bottom: 15px;
+    }
+
+    &-bottom {
+      padding-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &-r,
+      &-l {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        font-size: 16px;
+        line-height: 16px;
+      }
+    }
+  }
+
+  &__price {
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+
+  &__article {
+    color: $color-secondary;
+    padding-inline: 25px;
+    border: 1px solid $color-secondary;
+    border-radius: 15px;
+  }
+
+  &__year,
+  &__time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    &::before {
+      content: url(/icons/calendar.png);
+    }
+  }
+
+  &__year {
+    &::before {
+      content: url(/icons/calendar.png);
+    }
+  }
+
+  &__time {
+    &::before {
+      content: url(/icons/time.png);
+    }
+  }
+}

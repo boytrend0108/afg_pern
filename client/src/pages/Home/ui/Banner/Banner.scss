@@ -1,0 +1,130 @@
+@import '../../../../shared/style/utils.scss';
+
+.Banner {
+  background-color: #010001;
+  height: 256px;
+  overflow: hidden;
+
+  @include on-tablet-s {
+    height: 220px;
+  }
+
+  @include on-mobile {
+    height: 195px;
+  }
+
+  &__title {
+    font-size: 90px;
+    font-weight: 700;
+    line-height: 105.47px;
+    letter-spacing: -0.03em;
+    text-align: center;
+    color: $color-font-light;
+    text-transform: uppercase;
+    margin: 0;
+
+    @include on-desktop-s {
+      font-size: 70px;
+      line-height: 70px;
+    }
+
+    @include on-tablet {
+      font-size: 50px;
+      line-height: 50px;
+    }
+
+    @include on-tablet-s {
+      font-size: 48px;
+      line-height: 56.25px;
+    }
+
+    @include on-mobile {
+      position: absolute;
+      top: 20px;
+      left: -9px;
+      font-size: 40px;
+      line-height: 40px;
+      width: 250px;
+    }
+  }
+
+  &__desc {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.09px;
+    letter-spacing: -0.03em;
+    text-align: center;
+    color: $color-font-light;
+
+    @include on-mobile {
+      font-size: 14px;
+      width: 240px;
+    }
+    @include on-mobile-s {
+      width: 170px;
+    }
+  }
+
+  &__container {
+    @extend %container;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include on-desktop-s {
+      padding-inline: 0;
+    }
+
+    @include on-mobile {
+      padding-left: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &__main {
+    height: 256px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    @include on-tablet-s {
+      height: 220px;
+    }
+
+    @include on-mobile {
+      position: relative;
+      height: 175px;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  }
+
+  &__img {
+    &--left {
+      @include on-mobile {
+        display: none;
+      }
+    }
+    @include on-tablet {
+      width: 322px;
+    }
+
+    @include on-tablet-s {
+      width: 214px;
+    }
+  }
+
+  &__btn {
+    @include on-tablet-s {
+      height: 50px;
+    }
+
+    @include on-mobile {
+      width: 134px;
+      font-size: 16px;
+      height: 40px;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import '../../../../shared/style/utils.scss';
+
+.ContactUs {
+  height: 470px;
+  max-width: 420px;
+  width: 100%;
+  border: $color-border;
+  display: flex;
+  flex-direction: column;
+
+  &__top {
+    flex-grow: 1;
+    background-image: url(/home-page/water-mark.png), url(/home-page/men.png);
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, right;
+    padding: 40px 15px;
+  }
+
+  &__title {
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 58.59px;
+  }
+
+  &__subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28.13px;
+    width: 230px;
+  }
+
+  &__contacts {
+    height: 132px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-secondary;
+  }
+
+  &__contact {
+    font-size: 22px;
+    line-height: 25.78px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    &--phone::before {
+      content: url(/icons/phone-black.png);
+    }
+    &--mail::before {
+      content: url(/icons/email.png);
+    }
+    &--whatsapp::before {
+      content: url(/icons/whats-app-black.png);
+    }
+  }
+}

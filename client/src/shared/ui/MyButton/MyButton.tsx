@@ -3,7 +3,9 @@ import './MyButton.scss';
 
 type Props = {
   children: React.ReactNode;
-  style?: { height?: string; fontSize?: string };
+  style?: { width?: string; height?: string; fontSize?: string };
+  className?: string;
+  onClick?: () => void;
 };
 
 export const MyButton: React.FC<Props> = ({ children, ...props }) => {
