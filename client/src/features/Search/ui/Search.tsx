@@ -14,7 +14,7 @@ export const Search = () => {
   return (
     <button
       className="Search"
-      onClick={(e) => {
+      onClick={() => {
         setShowSearch(!showSearch);
       }}
       ref={searchRef}
