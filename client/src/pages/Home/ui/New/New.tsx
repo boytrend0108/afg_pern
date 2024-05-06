@@ -1,35 +1,38 @@
 import { useEffect, useState } from 'react';
 import { ProductItem } from '../../../../entities/ProductItem';
 import { MyButton } from '../../../../shared/ui';
-// import { ContactUs } from '../ContactUs/ContactUs';
+import { ContactUs } from '../ContactUs/ContactUs';
 import './New.scss';
-import { getPreparedCards } from './helpers/getPreparedCards';
+import { useGetWidth } from '../../../../shared/hooks';
+import { BREAKPOING } from '../../../../shared/consts/breakPoints';
 
-const products = [1, 2, 3, 4, 5, 6];
+const products = [1, 2, 3];
 
 export const New = () => {
   const [showAll, setShowAll] = useState(false);
-  // eslint-disable-next-line prefer-const
-  let [slicedProducts, setSlicedProducts] = useState<number[]>([]);
+  const [width, setWidth] = useState(0);
+  const [currentProd, setCurrentProd] = useState(products);
 
-  slicedProducts = showAll ? products : slicedProducts;
-  console.log(slicedProducts.length);
+  useGetWidth(width, setWidth);
 
   useEffect(() => {
-    const sliceList = () => {
-      const p = getPreparedCards(products, window.innerWidth);
+    if (width === 0) {
+      return;
+    }
 
-      setSlicedProducts(p);
-    };
+    switch (true) {
+      case width <= BREAKPOING.TABLET:
+        setCurrentProd(products);
+        break;
 
-    sliceList();
+      case width <= BREAKPOING.DESKTOP:
+        setCurrentProd(products.slice(1));
+        break;
 
-    window.addEventListener('resize', sliceList);
-
-    return () => {
-      window.removeEventListener('resize', sliceList);
-    };
-  }, []);
+      default:
+        setCurrentProd(products);
+    }
+  }, [width]);
 
   return (
     <div className="New">
@@ -37,11 +40,11 @@ export const New = () => {
         <h2 className="New__title">New</h2>
 
         <div className="New__row">
-          {slicedProducts.map((item) => (
+          {currentProd.map((item) => (
             <ProductItem key={item} />
           ))}
 
-          {/* <ContactUs /> */}
+          <ContactUs />
         </div>
       </div>
 

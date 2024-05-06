@@ -14,6 +14,10 @@
     background-repeat: no-repeat, no-repeat;
     background-position: center, right;
     padding: 40px 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   &__title {
@@ -30,7 +34,6 @@
   }
 
   &__contacts {
-    height: 132px;
     padding: 15px;
     display: flex;
     flex-direction: column;

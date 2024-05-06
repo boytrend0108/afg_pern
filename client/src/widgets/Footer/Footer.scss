@@ -49,6 +49,12 @@
         display: none;
       }
     }
+
+    &--logo {
+      @include on-tablet-s {
+        display: none;
+      }
+    }
   }
 
   &__text {

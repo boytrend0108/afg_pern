@@ -18,7 +18,7 @@ export const Footer = () => {
       <div className="Footer__container">
         <div className="Footer__item">
           <h3 className="Footer__item-title">Contact</h3>
-          <p className="Footer__text">Boss Machinery</p>
+          <p className="Footer__text">AFG-Machinery</p>
           <p className="Footer__text">Eindhovensebaan 3</p>
           <a
             href="tel:+31 40 253 22 45"
@@ -113,7 +113,7 @@ export const Footer = () => {
           </Link>
         </div>
 
-        <Link to="/" className="Footer__item">
+        <Link to="/" className="Footer__item Footer__item--logo">
           <img src="logo.svg" alt="logo" className="Footer__logo" />
         </Link>
       </div>

@@ -20,11 +20,12 @@
 
   @include on-tablet {
     column-gap: 20px;
-    --cell-size: 160px;
   }
 
   @include on-mobile {
     column-gap: 0;
+  }
+  @include on-mobile-s {
     --cell-size: 130px;
   }
 }
