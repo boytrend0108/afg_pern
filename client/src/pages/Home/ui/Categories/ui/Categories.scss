@@ -50,7 +50,7 @@
     text-align: left;
 
     &::before {
-      content: url(/icons/phone.png);
+      content: url(/my-icons/phone.png);
       position: absolute;
       top: -10px;
       left: -51px;
@@ -141,7 +141,7 @@
         left: 12px;
         height: 36px;
         width: 36px;
-        content: url(/icons/search.png);
+        content: url(/my-icons/search.png);
 
         @include on-tablet-s {
           top: 7px;

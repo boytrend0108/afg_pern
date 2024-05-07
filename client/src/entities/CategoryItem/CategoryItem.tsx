@@ -35,12 +35,12 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
 
       {onHover ? (
         <img
-          src={`/icons/categories/onHover/${image}-hover.png`}
+          src={`/my-icons/categories/onHover/${image}-hover.png`}
           className="CategoryItem__img"
         />
       ) : (
         <img
-          src={`/icons/categories/${image}.png`}
+          src={`/my-icons/categories/${image}.png`}
           className="CategoryItem__img"
         />
       )}

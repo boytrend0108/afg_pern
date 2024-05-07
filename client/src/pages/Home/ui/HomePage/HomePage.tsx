@@ -26,7 +26,7 @@ export const HomePage = () => {
       </div>
 
       <img
-        src="/icons/whatsup.png"
+        src="/my-icons/whatsup.png"
         alt="whatsup"
         className="HomePage__whatsapp"
       />

@@ -65,7 +65,7 @@ export const Categories = () => {
           {showAll ? 'Hide all categories' : 'View all categories'}
 
           <img
-            src="/icons/arrow-down.png"
+            src="/my-icons/arrow-down.png"
             alt="view all"
             className={cn('Categories__arrow', {
               'Categories__arrow--active': showAll,

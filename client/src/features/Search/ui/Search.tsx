@@ -19,7 +19,7 @@ export const Search = () => {
       }}
       ref={searchRef}
     >
-      <img src="/icons/search.png" alt="search" />
+      <img src="/my-icons/search.png" alt="search" />
 
       <div className="Search__drop" onClick={(e) => e.stopPropagation()}>
         <div
@@ -36,7 +36,7 @@ export const Search = () => {
           />
 
           <div className="Search__btn">
-            <img src="/icons/search.png" alt="search" />
+            <img src="/my-icons/search.png" alt="search" />
           </div>
         </div>
       </div>

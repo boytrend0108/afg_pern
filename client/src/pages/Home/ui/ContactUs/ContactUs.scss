@@ -48,13 +48,13 @@
     align-items: center;
 
     &--phone::before {
-      content: url(/icons/phone-black.png);
+      content: url(/my-icons/phone-black.png);
     }
     &--mail::before {
-      content: url(/icons/email.png);
+      content: url(/my-icons/email.png);
     }
     &--whatsapp::before {
-      content: url(/icons/whats-app-black.png);
+      content: url(/my-icons/whats-app-black.png);
     }
   }
 }

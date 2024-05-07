@@ -19,9 +19,9 @@ export const AccountTab = () => {
       ref={dropRef}
     >
       <div className="AccountTab__account">
-        <img src="/icons/user.png" alt="user icon" />
+        <img src="/my-icons/user.png" alt="user icon" />
         <p className="AccountTab__user">Account</p>
-        <img src="/icons/arrow-down.png" alt="arrow down" />
+        <img src="/my-icons/arrow-down.png" alt="arrow down" />
       </div>
 
       <div className="AccountTab__drop">

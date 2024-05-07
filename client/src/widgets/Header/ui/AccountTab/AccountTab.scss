@@ -106,11 +106,11 @@
     }
 
     &--search::before {
-      content: url(/icons/search-2.png);
+      content: url(/my-icons/search-2.png);
     }
 
     &--favorite::before {
-      content: url(/icons/star.png);
+      content: url(/my-icons/star.png);
     }
 
     @include onHover(background-color, $color-primary-hover);
@@ -119,7 +119,7 @@
   &__menu {
     width: 40px;
     height: 40px;
-    background-image: url(/icons/burger.png);
+    background-image: url(/my-icons/burger.png);
     background-repeat: no-repeat;
     background-size: cover;
     display: none;
@@ -128,6 +128,6 @@
       display: block;
     }
 
-    @include onHover(background-image, url(/icons/burger-hover.png));
+    @include onHover(background-image, url(/my-icons/burger-hover.png));
   }
 }

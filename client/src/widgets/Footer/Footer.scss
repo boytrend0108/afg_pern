@@ -88,7 +88,7 @@
 
   @each $icon in $icons {
     &__social--#{$icon}::before {
-      content: url(/icons/social/#{$icon}.svg);
+      content: url(/my-icons/social/#{$icon}.svg);
       height: 30px;
       width: 30px;
       display: flex;

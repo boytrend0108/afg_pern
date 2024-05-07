@@ -124,19 +124,19 @@
     gap: 8px;
 
     &::before {
-      content: url(/icons/calendar.png);
+      content: url(/my-icons/calendar.png);
     }
   }
 
   &__year {
     &::before {
-      content: url(/icons/calendar.png);
+      content: url(/my-icons/calendar.png);
     }
   }
 
   &__time {
     &::before {
-      content: url(/icons/time.png);
+      content: url(/my-icons/time.png);
     }
   }
 }

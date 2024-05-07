@@ -22,7 +22,7 @@ export const SelectCountry = () => {
       </ul>
 
       <img
-        src="/icons/arrow-down.png"
+        src="/my-icons/arrow-down.png"
         alt="arrow down"
         className="SelectCountry__icon--arrow"
       />

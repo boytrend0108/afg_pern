@@ -29,9 +29,9 @@ export const SelectCurrency = () => {
 
   return (
     <button className="SelectCurrency" onClick={toogleCurrency} ref={selectRef}>
-      <img src={`/icons/currenсies/${currency}.png`} alt={currency} />
+      <img src={`/my-icons/currenсies/${currency}.png`} alt={currency} />
       <img
-        src="/icons/arrow-down.png"
+        src="/my-icons/arrow-down.png"
         alt="arrow down"
         className="SelectCurrency__icon--arrow"
       />
@@ -50,7 +50,7 @@ export const SelectCurrency = () => {
             onClick={() => changeCurrency(Currency.euro)}
           >
             <img
-              src={`/icons/currenсies/euro.png`}
+              src={`/my-icons/currenсies/euro.png`}
               alt={Currency.euro}
               width={25}
               height={25}
@@ -63,7 +63,7 @@ export const SelectCurrency = () => {
             onClick={() => changeCurrency(Currency.dollar)}
           >
             <img
-              src={`/icons/currenсies/dollar.png`}
+              src={`/my-icons/currenсies/dollar.png`}
               alt="dollar"
               width={25}
               height={25}
@@ -76,7 +76,7 @@ export const SelectCurrency = () => {
             onClick={() => changeCurrency(Currency.pound)}
           >
             <img
-              src={`/icons/currenсies/pound.png`}
+              src={`/my-icons/currenсies/pound.png`}
               alt={Currency.pound}
               width={25}
               height={25}
