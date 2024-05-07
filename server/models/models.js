@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db/db.js';
 
-const User = sequelize.define('user', {
+export const User = sequelize.define('user', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -18,7 +18,7 @@ const User = sequelize.define('user', {
   },
 });
 
-const Role = sequelize.define('role', {
+export const Role = sequelize.define('role', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -35,7 +35,7 @@ const Role = sequelize.define('role', {
   },
 });
 
-const UserRole = sequelize.define('user_role', {
+export const UserRole = sequelize.define('user_role', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
