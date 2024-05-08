@@ -10,11 +10,11 @@ class ApiError extends Error {
     return new ApiError(400, message, errors);
   }
 
-  static unauthorized() {
+  static UNAUTHORIZED() {
     return new ApiError(401, 'User is not authorized');
   }
 
-  static notFound() {
+  static NOT_FOUND() {
     return new ApiError(404, 'Not found');
   }
 }

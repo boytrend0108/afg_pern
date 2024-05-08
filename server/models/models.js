@@ -7,6 +7,10 @@ export const User = sequelize.define('user', {
     primaryKey: true,
     autoIncrement: true,
   },
+  login: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   email: {
     type: DataTypes.STRING,
     unique: true,
@@ -40,6 +44,18 @@ export const UserRole = sequelize.define('user_role', {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
+  },
+});
+
+export const Refrefh = sequelize.define('refresh', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  refresh: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
@@ -193,6 +209,9 @@ UserRole.belongsTo(User);
 UserRole.hasMany(Role);
 Role.belongsTo(UserRole);
 
+User.hasOne(Refrefh);
+Refrefh.belongsTo(User);
+
 User.hasMany(Order);
 Order.belongsTo(User);
 
@@ -230,6 +249,7 @@ export default {
   User,
   Role,
   UserRole,
+  Refrefh,
   Basket,
   BasketProduct,
   Product,
