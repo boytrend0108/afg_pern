@@ -25,7 +25,7 @@ export const New = () => {
         setCurrentProd(products);
         break;
 
-      case width <= BREAKPOING.DESKTOP:
+      case width <= BREAKPOING.DESKTOP_S:
         setCurrentProd(products.slice(1));
         break;
 

@@ -1,9 +1,9 @@
 @import '../../../shared/style/utils.scss';
 
 .ProductItem {
-  max-width: 420px;
+  max-width: 376px;
+  max-height: 416px;
   width: 100%;
-  max-height: 470px;
   height: 100%;
   border: 1px solid $color-border;
   display: flex;
@@ -56,13 +56,13 @@
   }
 
   &__subtitle {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 18px;
   }
 
   &__title {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 500;
     line-height: 24px;
   }

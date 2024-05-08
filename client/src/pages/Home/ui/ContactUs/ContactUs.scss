@@ -1,8 +1,8 @@
 @import '../../../../shared/style/utils.scss';
 
 .ContactUs {
-  height: 470px;
-  max-width: 420px;
+  max-width: 376px;
+  max-height: 416px;
   width: 100%;
   border: $color-border;
   display: flex;
@@ -13,7 +13,7 @@
     background-image: url(/home-page/water-mark.png), url(/home-page/men.png);
     background-repeat: no-repeat, no-repeat;
     background-position: center, right;
-    padding: 40px 15px;
+    padding: 15px;
 
     display: flex;
     flex-direction: column;
