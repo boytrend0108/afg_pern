@@ -32,9 +32,10 @@ export const Role = sequelize.define('role', {
   role: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
 
-  desctiption: {
+  description: {
     type: DataTypes.STRING,
   },
 });
@@ -59,7 +60,7 @@ export const Refrefh = sequelize.define('refresh', {
   },
 });
 
-const Basket = sequelize.define('basket', {
+export const Basket = sequelize.define('basket', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -67,7 +68,7 @@ const Basket = sequelize.define('basket', {
   },
 });
 
-const BasketProduct = sequelize.define('basket_product', {
+export const BasketProduct = sequelize.define('basket_product', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -79,7 +80,7 @@ const BasketProduct = sequelize.define('basket_product', {
   },
 });
 
-const Product = sequelize.define('product', {
+export const Product = sequelize.define('product', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -113,7 +114,7 @@ const Product = sequelize.define('product', {
   },
 });
 
-const ProductInfo = sequelize.define('product_info', {
+export const ProductInfo = sequelize.define('product_info', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -131,7 +132,7 @@ const ProductInfo = sequelize.define('product_info', {
   },
 });
 
-const Favorite = sequelize.define('favorite', {
+export const Favorite = sequelize.define('favorite', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -139,21 +140,7 @@ const Favorite = sequelize.define('favorite', {
   },
 });
 
-const Brand = sequelize.define('brand', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-
-  name: {
-    type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
-  },
-});
-
-const Category = sequelize.define('category', {
+export const Brand = sequelize.define('brand', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -167,7 +154,21 @@ const Category = sequelize.define('category', {
   },
 });
 
-const BrandCategory = sequelize.define('brand_category', {
+export const Category = sequelize.define('category', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+
+  name: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+  },
+});
+
+export const BrandCategory = sequelize.define('brand_category', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -175,7 +176,7 @@ const BrandCategory = sequelize.define('brand_category', {
   },
 });
 
-const Order = sequelize.define('order', {
+export const Order = sequelize.define('order', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -187,7 +188,7 @@ const Order = sequelize.define('order', {
   },
 });
 
-const Reserve = sequelize.define('order', {
+export const Reserve = sequelize.define('order', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

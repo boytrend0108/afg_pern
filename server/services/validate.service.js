@@ -22,6 +22,12 @@ class Validate {
           : 'Password should contain at least 4 characters',
     };
   }
+
+  singleField({ field }) {
+    return {
+      [field]: [field].length ? false : 'Name is required',
+    };
+  }
 }
 
 export default new Validate();
