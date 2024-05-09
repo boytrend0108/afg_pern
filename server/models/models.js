@@ -204,11 +204,8 @@ export const Reserve = sequelize.define('order', {
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
-User.hasOne(UserRole);
-UserRole.belongsTo(User);
-
-UserRole.hasMany(Role);
-Role.belongsTo(UserRole);
+User.belongsToMany(Role, { through: UserRole, foreignKey: 'userId' });
+Role.belongsToMany(User, { through: UserRole, foreignKey: 'roleId' });
 
 User.hasOne(Refrefh);
 Refrefh.belongsTo(User);

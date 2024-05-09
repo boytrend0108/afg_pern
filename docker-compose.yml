@@ -1,0 +1,36 @@
+version: '3'
+
+networks:
+  db-data-net:
+    driver: bridge
+
+services:
+  server:
+    image: afg-server:2.0
+    build:
+      context: ./server
+      dockerfile: Dockerfile.server
+    container_name: afg-server
+    ports:
+      - 5000:5000
+    volumes:
+      - afg-volume:/var/lib/docker/volumes/afg-volume/_data
+
+  client:
+    image: afg-multi
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: afg-client
+    ports:
+      - 5173:5173
+    volumes:
+      - afg-volume:/var/lib/docker/volumes/afg-volume/_data
+    networks:
+      - db-data-net
+    depends_on:
+      - server
+    restart: unless-stopped
+
+volumes:
+  afg-volume:

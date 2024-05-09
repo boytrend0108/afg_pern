@@ -148,6 +148,138 @@
         }
       }
     },
+    "/api/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get all users",
+        "responses": {
+          "200": {
+            "description": "Users sent",
+            "schema": {
+              "type": "array",
+              "items": {
+                "user": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/user/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged out",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/user/add-role": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Add role for user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User id",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role added",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/user/delete-role": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "Delete role from user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "DTO for deletion",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/api/brand/create": {
       "post": {
         "tags": [
@@ -284,7 +416,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Brand has deleted",
+            "description": "Brand deleted",
             "schema": {
               "type": "string"
             }

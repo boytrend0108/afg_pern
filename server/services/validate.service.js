@@ -23,6 +23,16 @@ class Validate {
     };
   }
 
+  productDTO({ title, price, year, hours, image }) {
+    return {
+      title: title ? false : 'Title is required',
+      price: price > 0 ? false : 'Price can not be 0',
+      hours: hours !== undefined || hours < 0 ? false : 'Hours is required',
+      image: image ? false : 'Image is required',
+      year: year ? false : 'Year is required',
+    };
+  }
+
   singleField({ field }) {
     return {
       [field]: [field].length ? false : 'Name is required',

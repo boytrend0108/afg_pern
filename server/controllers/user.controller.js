@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import 'dotenv/config';
 import jwtService from '../services/jwt.service.js';
 import { normalizeFields } from '../services/normalizeField.service.js';
+import { Basket, Role } from '../models/models.js';
 
 class UserController {
   async register(req, res) {
@@ -23,6 +24,10 @@ class UserController {
 
     const hash = await bcrypt.hash(password, 5);
     const user = await userService.create({ login, email, password: hash });
+
+    // Add more roles to the user if needed
+    // await user.addRole(anotherRole);
+
     const accessToken = jwtService.signAccess(user);
     const refreshToken = jwtService.signRefresh(user);
 
@@ -76,6 +81,39 @@ class UserController {
 
     await jwtService.remove(user.id);
     res.sendStatus(204);
+  }
+
+  async getAll(req, res) {
+    const users = await userService.getAll();
+
+    res.send(users);
+  }
+
+  async getById(req, res) {
+    const { id } = req.params;
+    const user = await userService.findById(id);
+
+    if (!user) {
+      throw ApiError.NOT_FOUND('User not found');
+    }
+
+    res.send(user);
+  }
+
+  async addRole(req, res) {
+    const { userId, role } = req.body;
+
+    const result = await userService.addRole(userId, role);
+
+    res.send(result);
+  }
+
+  async deleteRole(req, res) {
+    const { userId, role } = req.body;
+
+    const result = await userService.deleteRole(userId, role);
+
+    res.send(result);
   }
 }
 
