@@ -7,8 +7,38 @@ class ProductService {
     return newProduct;
   }
 
-  async getAll() {
-    return Product.findAll();
+  async getAll({ brandId, categoryId, limit, offset }) {
+    let products;
+
+    if (!brandId && !categoryId) {
+      products = await Product.findAndCountAll({ limit, offset });
+    }
+
+    if (brandId && !categoryId) {
+      products = await Product.findAndCountAll({
+        where: { brandId },
+        limit,
+        offset,
+      });
+    }
+
+    if (!brandId && categoryId) {
+      products = await Product.findAndCountAll({
+        where: { categoryId },
+        limit,
+        offset,
+      });
+    }
+
+    if (brandId && categoryId) {
+      products = await Product.findAndCountAll({
+        where: { categoryId, brandId },
+        limit,
+        offset,
+      });
+    }
+
+    return products;
   }
 
   async getOne(id) {

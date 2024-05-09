@@ -1,11 +1,30 @@
 import ApiError from '../exeptions/apiError.js';
+import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
+
 import { normalizeFields } from '../services/normalizeField.service.js';
 import productService from '../services/product.service.js';
 import validate from '../services/validate.service.js';
 
 class ProductController {
   async create(req, res) {
-    let product = normalizeFields(req.body);
+    let { title, price, year, hours, brandId, categoryId } = normalizeFields(
+      req.body
+    );
+
+    const { image } = req.files;
+    let fileName = uuidv4() + '.webp';
+    image.mv('../server/static/' + fileName);
+
+    const product = {
+      title,
+      price,
+      year,
+      hours,
+      brandId,
+      categoryId,
+      image: fileName,
+    };
 
     const errors = validate.productDTO(product);
 
@@ -26,7 +45,17 @@ class ProductController {
   }
 
   async getAll(req, res) {
-    const products = await productService.getAll();
+    let { brandId, categoryId, page, limit } = req.query;
+    limit = limit || 8;
+    page = page || 1;
+    let offset = page * limit - limit;
+
+    const products = await productService.getAll({
+      brandId,
+      categoryId,
+      limit,
+      offset,
+    });
 
     res.send(products);
   }

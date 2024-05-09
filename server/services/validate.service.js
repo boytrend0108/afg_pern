@@ -23,13 +23,15 @@ class Validate {
     };
   }
 
-  productDTO({ title, price, year, hours, image }) {
+  productDTO({ title, price, year, hours, image, brandId, categoryId }) {
     return {
       title: title ? false : 'Title is required',
       price: price > 0 ? false : 'Price can not be 0',
       hours: hours !== undefined || hours < 0 ? false : 'Hours is required',
       image: image ? false : 'Image is required',
       year: year ? false : 'Year is required',
+      brandId: brandId ? false : 'Brand is required',
+      categoryId: categoryId ? false : 'Category is required',
     };
   }
 

@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",
@@ -23,6 +24,7 @@
     "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.1",
     "validator": "^13.11.0"
   },
   "devDependencies": {
