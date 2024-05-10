@@ -166,6 +166,11 @@ export const Category = sequelize.define('category', {
     unique: true,
     allowNull: false,
   },
+
+  image: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 export const BrandCategory = sequelize.define('brand_category', {

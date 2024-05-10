@@ -1,10 +1,10 @@
 import { Category } from '../models/models.js';
 
 class CategoryService {
-  async create({ name }) {
-    const brand = await Category.create({ name });
+  async create({ name, image }) {
+    const category = await Category.create({ name, image });
 
-    return brand;
+    return category;
   }
 
   async getAll() {

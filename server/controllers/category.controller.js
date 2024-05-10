@@ -2,18 +2,27 @@ import ApiError from '../exeptions/apiError.js';
 import CategoryService from '../services/category.service.js';
 import { normalizeFields } from '../services/normalizeField.service.js';
 import validate from '../services/validate.service.js';
+import { v4 as uuidv4 } from 'uuid';
 
 class CategoryController {
   async create(req, res) {
     let { name } = normalizeFields(req.body);
-
     const errors = validate.singleField({ name });
 
     if (errors.name) {
       throw ApiError.BAD_REQUEST('Name is required');
     }
 
-    const category = await CategoryService.create({ name });
+    const { image } = req.files;
+
+    if (!image) {
+      throw ApiError.BAD_REQUEST('Image is required');
+    }
+
+    let fileName = uuidv4() + '.webp';
+    image.mv('../server/static/categories/' + fileName);
+
+    const category = await CategoryService.create({ name, image: fileName });
 
     res.status(201);
     res.send(category);

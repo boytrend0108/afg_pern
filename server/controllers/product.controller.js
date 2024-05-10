@@ -1,6 +1,5 @@
 import ApiError from '../exeptions/apiError.js';
 import { v4 as uuidv4 } from 'uuid';
-import path from 'path';
 
 import { normalizeFields } from '../services/normalizeField.service.js';
 import productService from '../services/product.service.js';
@@ -14,7 +13,7 @@ class ProductController {
 
     const { image } = req.files;
     let fileName = uuidv4() + '.webp';
-    image.mv('../server/static/' + fileName);
+    image.mv('../server/static/products/' + fileName);
 
     const product = {
       title,
