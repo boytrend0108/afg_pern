@@ -1,10 +1,11 @@
 import ApiError from '../exeptions/apiError.js';
 import { Basket, Role, User } from '../models/models.js';
+import basketService from './basket.service.js';
 
 class userService {
   async create({ login, email, password }) {
     const user = await User.create({ login, email, password });
-    const basket = await Basket.create({ userId: user.id });
+    await basketService.create(user.id);
 
     const defaultRole = await Role.findByPk(1); // default value USER
     if (defaultRole) {
@@ -12,8 +13,6 @@ class userService {
     } else {
       throw new Error('Default role not found');
     }
-    // Add more roles to the user if needed
-    // await user.addRole(anotherRole);
 
     return this.normalize(user);
   }

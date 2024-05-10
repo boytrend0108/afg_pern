@@ -12,7 +12,7 @@ router.post(
   checkRoleMiddleware(ROLE.MANAGER),
   catchError(BrandController.create)
 );
-router.get('/', catchError(BrandController.getAll));
+router.get('/', authMiddleware, catchError(BrandController.getAll));
 router.get('/:id', catchError(BrandController.getOne));
 router.delete(
   '/delete',

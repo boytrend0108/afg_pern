@@ -10,6 +10,19 @@
   "schemes": [
     "http"
   ],
+  "securityDefinitions": {
+    "JWTAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Enter your JWT token with the 'Bearer' keyword"
+    }
+  },
+  "security": [
+    {
+      "JWTAuth": []
+    }
+  ],
   "paths": {
     "/api/user/registration": {
       "post": {
@@ -936,6 +949,268 @@
           },
           "404": {
             "description": "Product not found."
+          }
+        }
+      }
+    },
+    "/api/favorite/add": {
+      "post": {
+        "tags": [
+          "Favorite"
+        ],
+        "description": "Add product to favorite",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add product to favorite",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "number"
+                },
+                "userId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product added to favorites",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/favorite/{id}": {
+      "get": {
+        "tags": [
+          "Favorite"
+        ],
+        "description": "Get add favorite product by user ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/favorite/delete": {
+      "delete": {
+        "tags": [
+          "Favorite"
+        ],
+        "description": "Remove product from favorites",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "ID of the product to delete",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "productId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted from favorites",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
+    "/api/basket": {
+      "post": {
+        "tags": [
+          "Basket"
+        ],
+        "description": "Add product to basket",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add product to basket",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "number"
+                },
+                "userId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product added to basket",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/basket/{id}": {
+      "get": {
+        "tags": [
+          "Basket"
+        ],
+        "description": "Get add favorite product by user ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/basket/delete": {
+      "delete": {
+        "tags": [
+          "Basket"
+        ],
+        "description": "Remove product from favorites",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "ID of the product to delete",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "productId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted from favorites",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found."
           }
         }
       }

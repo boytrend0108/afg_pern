@@ -55,7 +55,7 @@ export const Refrefh = sequelize.define('refresh', {
     autoIncrement: true,
   },
   refresh: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
 });
@@ -218,11 +218,11 @@ Refrefh.belongsTo(User);
 User.hasMany(Order);
 Order.belongsTo(User);
 
-User.hasMany(Favorite);
-Favorite.belongsTo(User);
+User.belongsToMany(Product, { through: Favorite });
+Product.belongsToMany(User, { through: Favorite });
 
-Basket.hasMany(BasketProduct);
-BasketProduct.belongsTo(Basket);
+Basket.belongsToMany(Product, { through: BasketProduct });
+Product.belongsToMany(Basket, { through: BasketProduct });
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
@@ -232,9 +232,6 @@ Product.belongsTo(Brand);
 
 Product.hasMany(ProductInfo);
 ProductInfo.belongsTo(Product);
-
-Product.hasMany(BasketProduct);
-BasketProduct.belongsTo(Product);
 
 Product.hasMany(Reserve);
 Reserve.belongsTo(Product);

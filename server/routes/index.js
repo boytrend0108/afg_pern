@@ -1,5 +1,6 @@
 import Router from 'express';
 import brandRouter from './brand.router.js';
+import basketRouter from './basket.router.js';
 import categoryRouter from './category.router.js';
 import favoriteRouter from './favorite.router.js';
 import orderRouter from './order.router.js';
@@ -11,6 +12,7 @@ import userRouter from './user.router.js';
 const router = new Router();
 
 router.use('/brand', brandRouter);
+router.use('/basket', basketRouter);
 router.use('/category', categoryRouter);
 router.use('/favorite', favoriteRouter);
 router.use('/order', orderRouter);
