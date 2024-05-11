@@ -10,8 +10,8 @@ class FavoriteService {
       throw ApiError.NOT_FOUND('User or product not found');
     }
 
-    await user.addProduct(product);
-    return { result: true, message: 'Product added to favorites ' };
+    await Favorite.create({ productId, userId });
+    return { result: true, message: 'Product added to favorites' };
   }
 
   async getByUserId(userId) {

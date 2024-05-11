@@ -7,7 +7,7 @@ class userService {
     const user = await User.create({ login, email, password });
     await basketService.create(user.id);
 
-    const defaultRole = await Role.findByPk(1); // default value USER
+    const defaultRole = await Role.findOne({ where: { role: 'USER' } });
     if (defaultRole) {
       await user.addRole(defaultRole);
     } else {

@@ -1346,6 +1346,137 @@
         }
       }
     },
+    "/api/reserve": {
+      "post": {
+        "tags": [
+          "Reserve"
+        ],
+        "description": "Reserve a product",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add product to reserve",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "number"
+                },
+                "userId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product added to reserve",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reserve/{userId}": {
+      "get": {
+        "tags": [
+          "Reserve"
+        ],
+        "description": "Get all users reserve",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/reserve/delete": {
+      "delete": {
+        "tags": [
+          "Reserve"
+        ],
+        "description": "Remove product from reserve",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "DTO to delete from reserve",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "productId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted from reserved",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
     "definitions": {
       "Product": {
         "type": "object",

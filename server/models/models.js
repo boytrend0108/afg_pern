@@ -200,9 +200,21 @@ export const Reserve = sequelize.define('reserve', {
     primaryKey: true,
   },
 
+  quantity: {
+    type: DataTypes.INTEGER,
+    defaultValue: 1,
+  },
+
   expireAt: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATE,
     primaryKey: true,
+    defaultValue: () => {
+      const currentDate = new Date();
+      const oneMonthLater = new Date(
+        currentDate.setMonth(currentDate.getMonth() + 1)
+      );
+      return oneMonthLater;
+    },
   },
 });
 
@@ -218,9 +230,6 @@ Refrefh.belongsTo(User);
 User.belongsToMany(Product, { through: 'order' });
 Product.belongsToMany(User, { through: 'order' });
 
-User.belongsToMany(Product, { through: 'favorite' });
-Product.belongsToMany(User, { through: 'favorite' });
-
 Basket.belongsToMany(Product, { through: 'basket_product' });
 Product.belongsToMany(Basket, { through: 'basket_product' });
 
@@ -233,14 +242,14 @@ Product.belongsTo(Brand);
 Product.hasMany(ProductInfo);
 ProductInfo.belongsTo(Product);
 
-Product.hasMany(Reserve);
+User.hasMany(Reserve);
 Reserve.belongsTo(Product);
 
-Product.hasMany(Order);
+User.hasMany(Order);
 Order.belongsTo(Product);
 
-Favorite.hasMany(Product);
-Product.belongsTo(Favorite);
+User.hasMany(Favorite);
+Favorite.belongsTo(Product);
 
 Brand.belongsToMany(Category, { through: 'brand_category' });
 Category.belongsToMany(Brand, { through: 'brand_category' });
