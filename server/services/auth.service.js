@@ -10,7 +10,7 @@ class authService {
     const autorization = req.headers.authorization || '';
     const token = autorization.split(' ')[1];
     const user = jwtService.verifyAccess(token);
-    console.log('>>>', req.headers.authorization);
+
     if (!autorization || !token || !user) {
       throw ApiError.UNAUTHORIZED();
     }

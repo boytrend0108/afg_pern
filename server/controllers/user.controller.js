@@ -1,11 +1,10 @@
 import userService from '../services/user.service.js';
 import ApiError from '../exeptions/apiError.js';
 import validate from '../services/validate.service.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import 'dotenv/config';
 import jwtService from '../services/jwt.service.js';
 import { normalizeFields } from '../services/normalizeField.service.js';
-import { Basket, Role } from '../models/models.js';
 
 class UserController {
   async register(req, res) {
@@ -24,9 +23,6 @@ class UserController {
 
     const hash = await bcrypt.hash(password, 5);
     const user = await userService.create({ login, email, password: hash });
-
-    // Add more roles to the user if needed
-    // await user.addRole(anotherRole);
 
     const accessToken = jwtService.signAccess(user);
     const refreshToken = jwtService.signRefresh(user);

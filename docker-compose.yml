@@ -1,20 +1,22 @@
 version: '3'
 
-networks:
-  db-data-net:
-    driver: bridge
-
 services:
   server:
     image: afg-server:2.0
     build:
       context: ./server
       dockerfile: Dockerfile.server
+    environment:
+      - DB_NAME=afg
+      - DB_USER=postgres
+      - DB_PASSWORD=0105
+      - DB_HOST=db
+      - DB_PORT=5432
     container_name: afg-server
     ports:
       - 5000:5000
-    volumes:
-      - afg-volume:/var/lib/docker/volumes/afg-volume/_data
+    depends_on:
+      - db
 
   client:
     image: afg-multi
@@ -24,13 +26,16 @@ services:
     container_name: afg-client
     ports:
       - 5173:5173
-    volumes:
-      - afg-volume:/var/lib/docker/volumes/afg-volume/_data
-    networks:
-      - db-data-net
-    depends_on:
       - server
     restart: unless-stopped
 
-volumes:
-  afg-volume:
+  db:
+    image: postgres
+    container_name: AFG_DB
+    ports:
+      - "5432:5432"
+    env_file: .env
+
+networks:
+  net:
+    driver: bridge

@@ -4,12 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { normalizeFields } from '../services/normalizeField.service.js';
 import productService from '../services/product.service.js';
 import validate from '../services/validate.service.js';
+import { ProductInfo } from '../models/models.js';
 
 class ProductController {
   async create(req, res) {
-    let { title, price, year, hours, brandId, categoryId } = normalizeFields(
-      req.body
-    );
+    let { title, price, year, hours, brandId, categoryId, info } =
+      normalizeFields(req.body);
 
     const { image } = req.files;
     let fileName = uuidv4() + '.webp';
@@ -38,6 +38,17 @@ class ProductController {
     }
 
     const newProduct = await productService.create(product);
+
+    if (info) {
+      info = JSON.parse(info);
+      info.forEach((i) => {
+        ProductInfo.create({
+          productId: newProduct.id,
+          title: i.title,
+          description: i.description,
+        });
+      });
+    }
 
     res.status(201);
     res.send(newProduct);

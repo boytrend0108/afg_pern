@@ -126,7 +126,7 @@ export const ProductInfo = sequelize.define('product_info', {
     allowNull: false,
   },
 
-  desctiption: {
+  description: {
     type: DataTypes.STRING,
     allowNull: false,
   },
