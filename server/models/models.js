@@ -187,13 +187,13 @@ export const Order = sequelize.define('order', {
     autoIncrement: true,
     primaryKey: true,
   },
-  amount: {
+  quantity: {
     type: DataTypes.INTEGER,
     defaultValue: 1,
   },
 });
 
-export const Reserve = sequelize.define('order', {
+export const Reserve = sequelize.define('reserve', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -209,20 +209,20 @@ export const Reserve = sequelize.define('order', {
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
-User.belongsToMany(Role, { through: UserRole, foreignKey: 'userId' });
-Role.belongsToMany(User, { through: UserRole, foreignKey: 'roleId' });
+User.belongsToMany(Role, { through: 'user_role', foreignKey: 'userId' });
+Role.belongsToMany(User, { through: 'user_role', foreignKey: 'roleId' });
 
 User.hasOne(Refrefh);
 Refrefh.belongsTo(User);
 
-User.hasMany(Order);
-Order.belongsTo(User);
+User.belongsToMany(Product, { through: 'order' });
+Product.belongsToMany(User, { through: 'order' });
 
-User.belongsToMany(Product, { through: Favorite });
-Product.belongsToMany(User, { through: Favorite });
+User.belongsToMany(Product, { through: 'favorite' });
+Product.belongsToMany(User, { through: 'favorite' });
 
-Basket.belongsToMany(Product, { through: BasketProduct });
-Product.belongsToMany(Basket, { through: BasketProduct });
+Basket.belongsToMany(Product, { through: 'basket_product' });
+Product.belongsToMany(Basket, { through: 'basket_product' });
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
@@ -242,8 +242,8 @@ Order.belongsTo(Product);
 Favorite.hasMany(Product);
 Product.belongsTo(Favorite);
 
-Brand.belongsToMany(Category, { through: BrandCategory });
-Category.belongsToMany(Brand, { through: BrandCategory });
+Brand.belongsToMany(Category, { through: 'brand_category' });
+Category.belongsToMany(Brand, { through: 'brand_category' });
 
 export default {
   User,

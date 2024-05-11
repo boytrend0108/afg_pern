@@ -1215,6 +1215,137 @@
         }
       }
     },
+    "/api/order": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Order a product",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add product to orders",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "number"
+                },
+                "userId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product added to basket",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/order/{userId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Get all users orders",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/order/delete": {
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Remove product from basket",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "ID of the product to delete",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "productId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted from favorites",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
     "definitions": {
       "Product": {
         "type": "object",
