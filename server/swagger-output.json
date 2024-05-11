@@ -1141,15 +1141,15 @@
         }
       }
     },
-    "/api/basket/{id}": {
+    "/api/basket/{userId}": {
       "get": {
         "tags": [
           "Basket"
         ],
-        "description": "Get add favorite product by user ID.",
+        "description": "Get user basket.",
         "parameters": [
           {
-            "name": "id",
+            "name": "userId",
             "in": "path",
             "description": "User id",
             "required": true,
@@ -1174,7 +1174,7 @@
         "tags": [
           "Basket"
         ],
-        "description": "Remove product from favorites",
+        "description": "Remove product from basket",
         "parameters": [
           {
             "name": "body",
