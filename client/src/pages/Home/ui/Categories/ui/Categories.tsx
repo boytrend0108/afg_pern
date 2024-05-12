@@ -7,6 +7,7 @@ import { CategoryList } from '../../../../../widgets/CategoryList';
 import { CATEGORIES } from '../constants';
 import { CategoryType } from '../../../../../shared/types/category';
 import { getPreparedCategories } from '../helpers/getPreparedCategories';
+import { leaveRequest } from '../../../api/homePageApi';
 
 export const Categories = () => {
   const [query, setQuery] = useState('');
@@ -29,11 +30,18 @@ export const Categories = () => {
     };
   }, []);
 
+  const sendRequest = async () => {
+    await leaveRequest();
+  };
+
   return (
     <div className="Categories">
       <div className="Categories__header">
         <div className="Categories__phone">Call us +31 40 253 22 45</div>
-        <MyButton style={{ height: '40px', fontSize: '20px' }}>
+        <MyButton
+          style={{ height: '40px', fontSize: '20px' }}
+          onClick={sendRequest}
+        >
           Leave a request
         </MyButton>
       </div>
