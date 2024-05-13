@@ -42,7 +42,7 @@ export const Categories = () => {
           style={{ height: '40px', fontSize: '20px' }}
           onClick={sendRequest}
         >
-          Leave a request
+          Leave a request++
         </MyButton>
       </div>
 
