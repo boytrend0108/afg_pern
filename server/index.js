@@ -27,6 +27,9 @@ app.use(fileUpload({}));
 app.use(cookieParser());
 app.use('/api', router);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.get('/', (req, res) => {
+  res.send('Hello!!!');
+});
 
 app.use(errorMiddleware);
 

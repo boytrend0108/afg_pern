@@ -5,7 +5,7 @@
     "description": "AFG-Machinary api",
     "version": "1.0.0"
   },
-  "host": "31.131.27.23:5000",
+  "host": "hqnl0323379.online-vm.com:5000",
   "basePath": "/",
   "schemes": [
     "https"
