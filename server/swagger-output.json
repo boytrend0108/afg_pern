@@ -5,11 +5,10 @@
     "description": "AFG-Machinary api",
     "version": "1.0.0"
   },
-  "host": "localhost:5000",
+  "host": "31.131.27.23:5000",
   "basePath": "/",
   "schemes": [
-    "https",
-    "http"
+    "https"
   ],
   "securityDefinitions": {
     "JWTAuth": {
