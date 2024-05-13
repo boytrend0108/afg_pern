@@ -18,19 +18,6 @@ services:
       - db
     restart: always
 
-  client:
-    image: afg-client
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    container_name: afg-client-docker
-    volumes:
-      - ./client:/app
-      - /app/node_modules
-    ports:
-      - 5173:5173
-    restart: always
-
   db:
     image: postgres
     restart: always
