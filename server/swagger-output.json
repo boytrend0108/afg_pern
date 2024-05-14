@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "title": "AFG API",
-    "description": "AFG-Machinary api",
+    "description": "AFG-Machinery api",
     "version": "1.0.0"
   },
-  "host": "hqnl0323379.online-vm.com:5000",
+  "host": "https://afg-machinery:5000",
   "basePath": "/",
   "schemes": [
     "https"
