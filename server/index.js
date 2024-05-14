@@ -42,15 +42,15 @@ const start = async () => {
     // await sequelize.sync({ force: true });
     await sequelize.sync();
 
-    // const httpsServer = https.createServer(
-    //   {
-    //     key: fs.readFileSync(path.join(__dirname, 'sert', 'key.pem')),
-    //     cert: fs.readFileSync(path.join(__dirname, 'sert', 'sert.pem')),
-    //   },
-    //   app
-    // );
+    const httpsServer = https.createServer(
+      {
+        key: fs.readFileSync(path.join(__dirname, 'sert', 'key.pem')),
+        cert: fs.readFileSync(path.join(__dirname, 'sert', 'sert.pem')),
+      },
+      app
+    );
 
-    app.listen(PORT, () => {
+    httpsServer.listen(PORT, () => {
       console.log(`Server run on port: ${PORT}`);
     });
   } catch (e) {
