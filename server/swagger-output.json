@@ -5,7 +5,7 @@
     "description": "AFG-Machinery api",
     "version": "1.0.0"
   },
-  "host": "afg-machinery:5000",
+  "host": "afg-machinery.com:5000",
   "basePath": "/",
   "schemes": [
     "https"
