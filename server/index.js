@@ -20,7 +20,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(
   cors({
-    origin: process.env.CLIENT_HOST,
+    origin: [process.env.CLIENT_HOST, 'https://31.131.27.23:5000'],
     credentials: true,
   })
 );
