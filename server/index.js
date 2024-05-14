@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import https from 'https';
 import cors from 'cors';
 import models from './models/models.js'; // don't delete!!!
 import router from './routes/index.js';
@@ -10,6 +11,7 @@ import swaggerDocument from './swagger-output.json' assert { type: 'json' };
 import { sequelize } from './db/db.js';
 import errorMiddleware from './middlewares/errorMiddleware.js';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const PORT = process.env.PORT || 5000;
@@ -39,7 +41,15 @@ const start = async () => {
     // await sequelize.sync({ force: true });
     await sequelize.sync();
 
-    app.listen(PORT, () => {
+    const httpsServer = https.createServer(
+      {
+        key: fs.readFileSync(path.join(__dirname, 'sert', 'key.pem')),
+        cert: fs.readFileSync(path.join(__dirname, 'sert', 'sert.pem')),
+      },
+      app
+    );
+
+    httpsServer.listen(PORT, () => {
       console.log(`Server run on port: ${PORT}`);
     });
   } catch (e) {
