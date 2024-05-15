@@ -10,8 +10,12 @@
 
   &__social {
     position: fixed;
-    top: 280px;
+    top: 224px;
     right: 0;
+
+    @include on-desktop-s {
+      top: 172px;
+    }
 
     @include on-tablet-s {
       top: 164px;
@@ -26,14 +30,14 @@
     height: 80px;
     width: 80px;
     position: fixed;
-    top: 630px;
+    top: 530px;
     right: 0;
     cursor: pointer;
 
     @include onHover(transform, scale(1.05));
 
     @include on-desktop-s {
-      top: 560px;
+      top: 436px;
     }
 
     @include on-tablet-s {

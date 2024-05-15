@@ -3,8 +3,8 @@ import { Basket, Role, User } from '../models/models.js';
 import basketService from './basket.service.js';
 
 class userService {
-  async create({ login, email, password }) {
-    const user = await User.create({ login, email, password });
+  async create(userDto) {
+    const user = await User.create(userDto);
     await basketService.create(user.id);
 
     const defaultRole = await Role.findOne({ where: { role: 'USER' } });

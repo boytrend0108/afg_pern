@@ -1,4 +1,4 @@
-import { CategoryItem } from '../../../entities';
+import { CategoryItem } from '../../../entities/CategoryItem';
 
 import './CategoryList.scss';
 import { CategoryType } from '../../../shared/types/category';

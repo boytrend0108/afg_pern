@@ -8,10 +8,20 @@ import { normalizeFields } from '../services/normalizeField.service.js';
 
 class UserController {
   async register(req, res) {
-    let { login, email, password } = normalizeFields(req.body);
-    const errors = validate.registrationTDO({ login, email, password });
+    let { name, email, password, phone, country, city, address, company } =
+      normalizeFields(req.body);
+    const errors = validate.registrationTDO({
+      name,
+      email,
+      password,
+      phone,
+      country,
+      city,
+      address,
+      company,
+    });
 
-    if (errors.login || errors.password || errors.email) {
+    if (errors.name || errors.password || errors.email || errors.phone) {
       throw ApiError.BAD_REQUEST('Bad request', errors);
     }
 
@@ -22,7 +32,16 @@ class UserController {
     }
 
     const hash = await bcrypt.hash(password, 5);
-    const user = await userService.create({ login, email, password: hash });
+    const user = await userService.create({
+      name,
+      email,
+      password: hash,
+      phone,
+      country,
+      city,
+      address,
+      company,
+    });
 
     const accessToken = jwtService.signAccess(user);
     const refreshToken = jwtService.signRefresh(user);

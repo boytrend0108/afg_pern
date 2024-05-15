@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Header />
 
-      <main>
+      <main className="App__main">
         <Outlet />
       </main>
 

@@ -4,7 +4,11 @@ import './MySocial.scss';
 export const MySocial = () => {
   return (
     <div className="MySocial">
-      <a href="http://facebook.com" target="blank" className="MySocial__icon">
+      <a
+        href="https://www.facebook.com/profile.php?id=61558223835584"
+        target="blank"
+        className="MySocial__icon"
+      >
         <svg
           width="40"
           height="40"
@@ -21,7 +25,11 @@ export const MySocial = () => {
         </svg>
       </a>
 
-      <a href="http://instagram.com" target="blank" className="MySocial__icon">
+      <a
+        href="https://www.instagram.com/afg.machinery/#"
+        target="blank"
+        className="MySocial__icon"
+      >
         <svg
           width="40"
           height="40"
@@ -53,7 +61,11 @@ export const MySocial = () => {
         </svg>
       </a>
 
-      <a href="http://twitter.com" target="blank" className="MySocial__icon">
+      <a
+        href="https://twitter.com/AFGmachinery"
+        target="blank"
+        className="MySocial__icon"
+      >
         <svg
           width="40"
           height="40"

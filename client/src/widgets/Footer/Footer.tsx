@@ -35,8 +35,9 @@ export const Footer = () => {
         <div className="Footer__item Footer__item--social">
           <h3 className="Footer__item-title">Social networks</h3>
           <a
-            href="http://facebook.com"
+            href="https://www.facebook.com/profile.php?id=61558223835584"
             className="Footer__social Footer__social--fb"
+            target="blank"
           >
             Facebook
           </a>
@@ -44,13 +45,15 @@ export const Footer = () => {
           <a
             href="http://youtube.com"
             className="Footer__social Footer__social--youtube"
+            target="blank"
           >
             Youtube
           </a>
 
           <a
-            href="http://instagram.com"
+            href="https://www.instagram.com/afg.machinery"
             className="Footer__social Footer__social--insta"
+            target="blank"
           >
             Instagram
           </a>
@@ -58,13 +61,15 @@ export const Footer = () => {
           <a
             href="http://linkedin.com"
             className="Footer__social Footer__social--link"
+            target="blank"
           >
             Linkedin
           </a>
 
           <a
-            href="http://twitter.com"
+            href="https://twitter.com/AFGmachinery"
             className="Footer__social Footer__social--x"
+            target="blank"
           >
             Twitter
           </a>

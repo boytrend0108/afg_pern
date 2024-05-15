@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CategoryType } from '../../shared/types/category';
+import { CategoryType } from '../../../shared/types/category';
 import './CategoryItem.scss';
 
 type Props = {

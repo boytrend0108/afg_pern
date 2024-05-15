@@ -3,10 +3,10 @@
 @mixin slider-item {
   padding: 40px;
   height: 100%;
-  width: 768px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 
   @include on-tablet-s {
     padding: 30px;

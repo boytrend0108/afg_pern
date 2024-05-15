@@ -1,15 +1,16 @@
 import validator from 'validator';
 
 class Validate {
-  registrationTDO({ email, password, login }) {
+  registrationTDO({ email, password, name, phone }) {
     return {
       email: validator.isEmail(email) ? false : 'Email is invalid',
       password:
         password.length > 3
           ? false
           : 'Password should contain at least 4 characters',
-      login:
-        login.length > 3 ? false : 'Login should contain at least 4 characters',
+      name:
+        name.length > 3 ? false : 'Login should contain at least 4 characters',
+      phone: phone.toString().length > 7 ? false : 'Check your phone number',
     };
   }
 

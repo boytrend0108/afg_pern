@@ -19,7 +19,12 @@ export const Slider: React.FC = () => {
   }, [slide]);
 
   return (
-    <section className="Slider">
+    <section
+      className="Slider"
+      style={{
+        width: currentWidth,
+      }}
+    >
       <div className="Slider__box">
         <div
           className="Slider__item Slider__item--1"
