@@ -1,17 +1,11 @@
 /* eslint-disable no-shadow */
-import { DtoRegistration } from '../types/DtoRegistration';
+import { DtoLogin } from '../types/DtoLogin';
 
-export const validate = (dto: DtoRegistration) => {
-  const { name, email, password, phone } = dto;
+export const validate = (dto: DtoLogin) => {
+  const { email, password } = dto;
 
   return {
-    name: !!name,
     email: !!email,
     password: !!password,
-    phone: !!phone,
-    country: true,
-    city: true,
-    company: true,
-    address: true,
   };
 };

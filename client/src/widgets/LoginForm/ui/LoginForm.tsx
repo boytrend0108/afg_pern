@@ -5,7 +5,7 @@ import './LoginForm.scss';
 import { MyButton, MyInput } from '../../../shared/ui';
 import { validate } from '../helpers/validation';
 import { DtoValidationLogin } from '../types/DtoValidationLogin';
-import { DtoLogin } from '../types/DtoRegistration';
+import { DtoLogin } from '../types/DtoLogin';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
