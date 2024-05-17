@@ -36,7 +36,11 @@ export const Search = () => {
           />
 
           <div className="Search__btn">
-            <img src="/my-icons/search.png" alt="search" />
+            <img
+              src="/my-icons/search.png"
+              alt="search"
+              className="Search__icon"
+            />
           </div>
         </div>
       </div>

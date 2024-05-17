@@ -61,5 +61,13 @@
     height: 60px;
     background-color: $color-secondary;
     border: 1px solid $color-border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
   }
 }

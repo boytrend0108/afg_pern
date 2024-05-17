@@ -8,7 +8,7 @@ export const FirstScreen = () => {
       <div className="FirstScreen__main">
         <h1 className="FirstScreen__title">New Mini Excalarors</h1>
 
-        <Link to="category" className="FirstScreen__button">
+        <Link to="catalog?type=new" className="FirstScreen__button">
           <MyButton>View catalog</MyButton>
         </Link>
       </div>

@@ -16,7 +16,7 @@ export const About = () => {
           located in Veldhoven, the Netherlands, we have over 400 new and used
           machines in stock sourced from our international network. The
           machinery available covers a wide range of types, configurations,
-          operational hours and prices. Therefore, Boss Machinery can always
+          operational hours and prices. Therefore, AFG Machinery can always
           provide you with the most suitable machines to get the job done! Our
           heavy machinery and construction equipment is delivered worldwide and
           we are happy to help you with documents and transport.

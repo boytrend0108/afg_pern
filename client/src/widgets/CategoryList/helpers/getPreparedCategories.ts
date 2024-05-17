@@ -1,4 +1,4 @@
-import { CategoryType } from '../../../../../shared/types/category';
+import { CategoryType } from '../../../shared/types/category';
 
 export const getPreparedCategories = (
   categories: CategoryType[],
