@@ -4,8 +4,12 @@
   padding-inline: 50px;
   margin: 0 auto;
 
-  @include on-tablet-s {
+  @include on-tablet {
     padding-inline: 30px;
+  }
+
+  @include on-tablet-s {
+    padding-inline: 20px;
   }
 
   @include on-mobile-m {

@@ -2,14 +2,9 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import cn from 'classnames';
 
 import './CatalogFilter.scss';
-
-const RANGE_WIDTH = 130;
-const SHIFT_SETS = {
-  Price: 0,
-  Mileage: 0,
-  Hours: 25,
-  Year: 21660,
-};
+import { useSearchParams } from 'react-router-dom';
+import { RANGE_WIDTH, SHIFT_SETS } from './consts';
+import { setQueryParams } from './helpers';
 
 type Props = {
   minValue: string;
@@ -31,12 +26,13 @@ export const CatalogFilter: React.FC<Props> = ({
   const [shiftLeft, setShiftLeft] = useState(0);
   const [shiftRight, setShiftRight] = useState(0);
   const [show, setShow] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSetMin = (e: ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
 
-    if (+value > +max / 2) {
-      value = `${+max / 2}`;
+    if (+value > +middleValue) {
+      value = middleValue;
     }
 
     if (!value) {
@@ -44,6 +40,14 @@ export const CatalogFilter: React.FC<Props> = ({
     }
 
     setMin(value);
+    setQueryParams(`${id}-min`, value, searchParams, setSearchParams);
+  };
+
+  const handleSetMax = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    setMax(value);
+    setQueryParams(`${id}-max`, value, searchParams, setSearchParams);
   };
 
   useEffect(() => {
@@ -58,13 +62,13 @@ export const CatalogFilter: React.FC<Props> = ({
       +max / ((+middleValue - +minValue) / RANGE_WIDTH) - 2 * RANGE_WIDTH - 5;
 
     switch (id) {
-      case 'Price':
+      case 'price':
         setShiftRight(-value);
         break;
-      case 'Hours':
+      case 'hours':
         setShiftRight((-value + 55) * 0.8);
         break;
-      case 'Year':
+      case 'year':
         setShiftRight(-value + 21660);
         break;
       default:
@@ -111,7 +115,7 @@ export const CatalogFilter: React.FC<Props> = ({
                   type="number"
                   className="CatalogFilter__input"
                   value={+middleValue + +maxValue - +max}
-                  onChange={(e) => setMax(e.target.value)}
+                  onChange={handleSetMax}
                 />
               </div>
 
@@ -125,7 +129,7 @@ export const CatalogFilter: React.FC<Props> = ({
                   min={minValue}
                   max={middleValue}
                   value={min}
-                  onChange={(e) => setMin(e.target.value)}
+                  onChange={handleSetMin}
                   className="CatalogFilter__range-item"
                 />
               </div>
@@ -136,7 +140,7 @@ export const CatalogFilter: React.FC<Props> = ({
                   min={middleValue}
                   max={maxValue}
                   value={max}
-                  onChange={(e) => setMax(e.target.value)}
+                  onChange={handleSetMax}
                   className="CatalogFilter__range-item--right"
                 />
               </div>

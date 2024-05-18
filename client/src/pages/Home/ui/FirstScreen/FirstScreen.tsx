@@ -8,7 +8,7 @@ export const FirstScreen = () => {
       <div className="FirstScreen__main">
         <h1 className="FirstScreen__title">New Mini Excalarors</h1>
 
-        <Link to="catalog?type=new" className="FirstScreen__button">
+        <Link to="catalog?show=new" className="FirstScreen__button">
           <MyButton>View catalog</MyButton>
         </Link>
       </div>
@@ -17,7 +17,7 @@ export const FirstScreen = () => {
         <div className="FirstScreen__top">
           <h2 className="FirstScreen__title--mini">New machinery</h2>
 
-          <Link to="category" className="FirstScreen__link">
+          <Link to="catalog?show=new" className="FirstScreen__link">
             See all
           </Link>
         </div>
@@ -25,7 +25,7 @@ export const FirstScreen = () => {
         <div className="FirstScreen__bottom">
           <h2 className="FirstScreen__title--mini">Used machinery</h2>
 
-          <Link to="category" className="FirstScreen__link">
+          <Link to="catalog?show=used" className="FirstScreen__link">
             See all
           </Link>
         </div>
