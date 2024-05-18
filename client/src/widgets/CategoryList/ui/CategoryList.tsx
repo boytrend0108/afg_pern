@@ -2,46 +2,34 @@ import { CategoryItem } from '../../../entities/CategoryItem';
 import cn from 'classnames';
 
 import './CategoryList.scss';
-import { CategoryType } from '../../../shared/types/category';
-import React, { Fragment, useEffect, useState } from 'react';
-import { CATEGORIES } from '../../../shared/consts/categjries';
-import { getPreparedCategories } from '../helpers/getPreparedCategories';
+import { Fragment, useRef, useState } from 'react';
+import { CATEGORIES } from '../../../shared/consts/categories';
+import { useSetHeight } from '../hooks/useSetHeight';
 
-type Props = {
-  categories: CategoryType[];
-};
-
-export const CategoryList: React.FC<Props> = ({ categories }) => {
+export const CategoryList = () => {
   const [showAll, setShowAll] = useState(false);
-  const [slicedCategories, setSlicedCategories] = useState<CategoryType[]>([]);
+  const [listHeight, setListHeight] = useState(160);
+  const list = useRef(null);
 
-  useEffect(() => {
-    const sliceList = () => {
-      const c = getPreparedCategories(CATEGORIES, window.innerWidth);
-
-      setSlicedCategories(c);
-    };
-
-    sliceList();
-
-    window.addEventListener('resize', sliceList);
-
-    return () => {
-      window.removeEventListener('resize', sliceList);
-    };
-  }, []);
+  useSetHeight(list, setListHeight);
 
   return (
     <div className="CategoryList">
-      {categories.map((c) => (
-        <Fragment key={c.id}>
-          <CategoryItem category={c} />
-        </Fragment>
-      ))}
+      <div
+        ref={list}
+        className="CategoryList__list"
+        style={{ height: showAll ? `${listHeight}px` : '146px' }}
+      >
+        {CATEGORIES.map((c) => (
+          <Fragment key={c.id}>
+            <CategoryItem category={c} />
+          </Fragment>
+        ))}
+      </div>
 
       <button
-        className={cn('Categories__btn', {
-          'Categories__btn---active': showAll,
+        className={cn('CategoryList__btn', {
+          'CategoryList__btn---active': showAll,
         })}
         onClick={() => setShowAll(!showAll)}
       >
@@ -50,8 +38,8 @@ export const CategoryList: React.FC<Props> = ({ categories }) => {
         <img
           src="/my-icons/arrow-down.png"
           alt="view all"
-          className={cn('Categories__arrow', {
-            'Categories__arrow--active': showAll,
+          className={cn('CategoryList__arrow', {
+            'CategoryList__arrow--active': showAll,
           })}
         />
       </button>

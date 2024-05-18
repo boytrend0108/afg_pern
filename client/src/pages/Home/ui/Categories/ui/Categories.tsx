@@ -3,7 +3,6 @@ import { MyButton, MySearch } from '../../../../../shared/ui';
 import { CategoryList } from '../../../../../widgets/CategoryList';
 
 import { leaveRequest } from '../../../api/homePageApi';
-import { CATEGORIES } from '../../../../../shared/consts/categjries';
 
 export const Categories = () => {
   const sendRequest = async () => {
@@ -24,7 +23,7 @@ export const Categories = () => {
 
       <MySearch style={{ marginBottom: '50px' }} />
 
-      <CategoryList categories={CATEGORIES} />
+      <CategoryList />
     </div>
   );
 };

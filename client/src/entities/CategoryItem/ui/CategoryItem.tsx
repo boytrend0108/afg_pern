@@ -40,7 +40,7 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
         />
       ) : (
         <img
-          src={`/my-icons/categories/${image}.png`}
+          src={`/my-icons/categories/${image}.svg`}
           className="CategoryItem__img"
         />
       )}

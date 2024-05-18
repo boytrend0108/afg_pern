@@ -4,6 +4,8 @@
   background-color: #010001;
   height: 256px;
   overflow: hidden;
+  width: 100vw;
+  max-width: $max-app-width;
 
   @include on-tablet-s {
     height: 220px;
@@ -14,66 +16,26 @@
   }
 
   &__title {
-    font-size: 90px;
+    font-size: clamp(1rem, 0.075rem + 4.625vw, 5.625rem);
     font-weight: 700;
-    line-height: 105.47px;
     letter-spacing: -0.03em;
     text-align: center;
     color: $color-font-light;
     text-transform: uppercase;
     margin: 0;
-
-    @include on-desktop {
-      font-size: 70px;
-      line-height: 70px;
-    }
-
-    @include on-desktop-s {
-      font-size: 70px;
-      line-height: 70px;
-    }
-
-    @include on-tablet {
-      font-size: 50px;
-      line-height: 50px;
-    }
-
-    @include on-tablet-s {
-      font-size: 48px;
-      line-height: 56.25px;
-    }
-
-    @include on-mobile {
-      position: absolute;
-      top: 20px;
-      left: -9px;
-      font-size: 20px;
-      line-height: 40px;
-      width: 250px;
-    }
-
-    @include on-mobile-m {
-      top: 0px;
-    }
   }
 
   &__desc {
-    font-size: 18px;
+    font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1.125rem);
     font-weight: 400;
-    line-height: 21.09px;
     letter-spacing: -0.03em;
     text-align: center;
     color: $color-font-light;
-
-    @include on-mobile {
-      font-size: 14px;
-      width: 215px;
-    }
   }
 
   &__container {
     @extend %container;
-
+    height: inherit;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -108,17 +70,13 @@
   }
 
   &__img {
+    height: 100%;
+    aspect-ratio: 1/1;
+
     &--left {
       @include on-mobile {
         display: none;
       }
-    }
-    @include on-tablet {
-      width: 322px;
-    }
-
-    @include on-tablet-s {
-      width: 200px;
     }
   }
 

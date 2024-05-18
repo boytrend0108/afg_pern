@@ -1,41 +1,55 @@
-import { useState } from 'react';
-import cn from 'classnames';
-
+import { ProductItem } from '../../../../entities/ProductItem';
 import { MySearch } from '../../../../shared/ui';
 import { CategoryList } from '../../../../widgets/CategoryList';
-import { CATEGORIES } from '../../../../shared/consts/categjries';
+import { CatalogFilter } from '../CatalogFilter/CatalogFilter';
 import './CatalogPage.scss';
 
-export const CatalogPage = () => {
-  const [showAll, setShowAll] = useState(false);
-  const slicedCategories = CATEGORIES.slice(0, 8);
+const machines = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+export const CatalogPage = () => {
   return (
     <section className="CatalogPage container">
       <header className="CatalogPage__header">
         <MySearch style={{ marginBottom: '50px' }} />
-        <CategoryList categories={showAll ? CATEGORIES : slicedCategories} />
-
-        <button
-          className={cn('Categories__btn', {
-            'Categories__btn---active': showAll,
-          })}
-          onClick={() => setShowAll(!showAll)}
-        >
-          {showAll ? 'Hide all categories' : 'View all categories'}
-
-          <img
-            src="/my-icons/arrow-down.png"
-            alt="view all"
-            className={cn('Categories__arrow', {
-              'Categories__arrow--active': showAll,
-            })}
-          />
-        </button>
+        <CategoryList />
       </header>
+
       <main className="CatalogPage__main">
-        <aside className="CatalogPage__filters"></aside>
-        <div className="CatalogPage__list"></div>
+        <aside className="CatalogPage__filters">
+          <CatalogFilter
+            minValue="500"
+            middleValue="10000"
+            maxValue="20000"
+            title="Price"
+            id="Price"
+          />
+          <CatalogFilter
+            minValue="500"
+            middleValue="10000"
+            maxValue="20000"
+            title="Mileage"
+            id="Mileage"
+          />
+          <CatalogFilter
+            minValue="100"
+            middleValue="500"
+            maxValue="1000"
+            title="Hours"
+            id="Hours"
+          />
+          <CatalogFilter
+            minValue="2000"
+            middleValue="2012"
+            maxValue="2024"
+            title="Construction year"
+            id="Year"
+          />
+        </aside>
+        <div className="CatalogPage__list">
+          {machines.map((m) => {
+            return <ProductItem key={m} />;
+          })}
+        </div>
       </main>
     </section>
   );
