@@ -1,14 +1,11 @@
 /* eslint-disable max-len */
 import './MySocial.scss';
+import { SOCIAL_LINKS } from '../../consts/socialLink';
 
 export const MySocial = () => {
   return (
     <div className="MySocial">
-      <a
-        href="https://www.facebook.com/profile.php?id=61558223835584"
-        target="blank"
-        className="MySocial__icon"
-      >
+      <a href={SOCIAL_LINKS.FB} target="blank" className="MySocial__icon">
         <svg
           width="40"
           height="40"
@@ -25,11 +22,7 @@ export const MySocial = () => {
         </svg>
       </a>
 
-      <a
-        href="https://www.instagram.com/afg.machinery/#"
-        target="blank"
-        className="MySocial__icon"
-      >
+      <a href={SOCIAL_LINKS.INST} target="blank" className="MySocial__icon">
         <svg
           width="40"
           height="40"
@@ -45,7 +38,7 @@ export const MySocial = () => {
         </svg>
       </a>
 
-      <a href="http://youtube.com" target="blank" className="MySocial__icon">
+      <a href={SOCIAL_LINKS.YOUTUBE} target="blank" className="MySocial__icon">
         <svg
           width="40"
           height="40"
@@ -61,11 +54,7 @@ export const MySocial = () => {
         </svg>
       </a>
 
-      <a
-        href="https://twitter.com/AFGmachinery"
-        target="blank"
-        className="MySocial__icon"
-      >
+      <a href={SOCIAL_LINKS.X} target="blank" className="MySocial__icon">
         <svg
           width="40"
           height="40"

@@ -1,0 +1,54 @@
+@import '../../../shared/style/utils.scss';
+
+.ProductPage {
+  &__header {
+    margin: 50px auto 30px;
+
+    @include on-tablet-s {
+      display: none;
+    }
+  }
+
+  &__main {
+    margin-bottom: 50px;
+    &-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+
+      @include on-tablet-s {
+        margin-top: 20px;
+      }
+    }
+
+    &-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__breadcrumb {
+    font-size: 18px;
+    color: $color-border;
+
+    @include on-mobile {
+      display: none;
+    }
+  }
+
+  &__images {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  &__footer {
+    margin-bottom: 50px;
+  }
+}

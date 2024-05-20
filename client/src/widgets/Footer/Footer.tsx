@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import './Footer.scss';
 import { Link } from 'react-router-dom';
 import { MyButton } from '../../shared/ui';
+import { SOCIAL_LINKS } from '../../shared/consts/socialLink';
 
 export const Footer = () => {
   const [email, setEmail] = useState('');
@@ -35,7 +36,7 @@ export const Footer = () => {
         <div className="Footer__item Footer__item--social">
           <h3 className="Footer__item-title">Social networks</h3>
           <a
-            href="https://www.facebook.com/profile.php?id=61558223835584"
+            href={SOCIAL_LINKS.FB}
             className="Footer__social Footer__social--fb"
             target="blank"
           >
@@ -43,7 +44,7 @@ export const Footer = () => {
           </a>
 
           <a
-            href="http://youtube.com"
+            href={SOCIAL_LINKS.YOUTUBE}
             className="Footer__social Footer__social--youtube"
             target="blank"
           >
@@ -51,7 +52,7 @@ export const Footer = () => {
           </a>
 
           <a
-            href="https://www.instagram.com/afg.machinery"
+            href={SOCIAL_LINKS.INST}
             className="Footer__social Footer__social--insta"
             target="blank"
           >
@@ -59,7 +60,7 @@ export const Footer = () => {
           </a>
 
           <a
-            href="http://linkedin.com"
+            href={SOCIAL_LINKS.IN}
             className="Footer__social Footer__social--link"
             target="blank"
           >
@@ -67,7 +68,7 @@ export const Footer = () => {
           </a>
 
           <a
-            href="https://twitter.com/AFGmachinery"
+            href={SOCIAL_LINKS.X}
             className="Footer__social Footer__social--x"
             target="blank"
           >
@@ -119,7 +120,7 @@ export const Footer = () => {
         </div>
 
         <Link to="/" className="Footer__item Footer__item--logo">
-          <img src="logo.svg" alt="logo" className="Footer__logo" />
+          <img src="/logo.svg" alt="logo" className="Footer__logo" />
         </Link>
       </div>
     </div>

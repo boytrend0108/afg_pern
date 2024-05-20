@@ -6,6 +6,7 @@ import { MyButton } from '../../../shared/ui';
 import { changeSlide } from '../helpers/changeSlide';
 import { useObserver } from '../hooks/useObserver';
 import { useGetWidth } from '../../../shared/hooks/useGetWidth';
+import { Link } from 'react-router-dom';
 
 export const Slider: React.FC = () => {
   const [slide, setSlide] = useState('1');
@@ -34,9 +35,11 @@ export const Slider: React.FC = () => {
           data-slidenum="1"
         >
           <h1 className="Slider__title">New Mini Excalarors</h1>
-          <MyButton style={{ height: '48px', fontSize: '16px' }}>
-            View catalog
-          </MyButton>
+          <Link to="catalog?show=new">
+            <MyButton style={{ height: '48px', fontSize: '16px' }}>
+              View catalog
+            </MyButton>
+          </Link>
         </div>
 
         <div
@@ -45,9 +48,11 @@ export const Slider: React.FC = () => {
           data-slidenum="2"
         >
           <h1 className="Slider__title">Used machinery</h1>
-          <MyButton style={{ height: '48px', fontSize: '16px' }}>
-            View catalog
-          </MyButton>
+          <Link to="catalog?show=used">
+            <MyButton style={{ height: '48px', fontSize: '16px' }}>
+              View catalog
+            </MyButton>
+          </Link>
         </div>
 
         <div
@@ -56,9 +61,11 @@ export const Slider: React.FC = () => {
           data-slidenum="3"
         >
           <h1 className="Slider__title">New machinery</h1>
-          <MyButton style={{ height: '48px', fontSize: '16px' }}>
-            View catalog
-          </MyButton>
+          <Link to="catalog?show=new">
+            <MyButton style={{ height: '48px', fontSize: '16px' }}>
+              View catalog
+            </MyButton>
+          </Link>
         </div>
 
         <nav

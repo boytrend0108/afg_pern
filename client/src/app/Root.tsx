@@ -8,6 +8,7 @@ import { RequestPage } from '../pages/Request';
 import { LoginPage } from '../pages/Login';
 import { RegistrationPage } from '../pages/Registration';
 import { CatalogPage } from '../pages/Catalog';
+import { ProductPage } from '../pages/ProductPage';
 
 export const Root = () => {
   return (
@@ -18,6 +19,7 @@ export const Root = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="registration" element={<RegistrationPage />} />
           <Route path="category" element={<CategoryPage />} />
+          <Route path="product/:id" element={<ProductPage />} />
           <Route path="catalog" element={<CatalogPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="news" element={<NewsPage />} />

@@ -1,3 +1,3 @@
-import { Slider } from './ui/Slider';
+import { ProductsSlider } from './ui/ProductsSlider';
 
-export { Slider };
+export { ProductsSlider };

@@ -1,5 +1,5 @@
 import { MySocial } from '../../../../shared/ui';
-import { Slider } from '../../../../widgets/ProductsSlider';
+import { Slider } from '../../../../widgets/HomeSlider';
 import { About } from '../About/About';
 import { Banner } from '../Banner/Banner';
 import { Categories } from '../Categories/ui/Categories';

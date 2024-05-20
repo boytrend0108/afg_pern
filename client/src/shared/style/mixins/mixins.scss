@@ -69,3 +69,19 @@
     border-radius: 5px;
   }
 }
+
+@mixin image-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background-color: #d8c372;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: clamp(1.125rem, 1.05rem + 0.375vw, 1.5rem);
+  font-weight: 700;
+  line-height: 28.13px;
+  transform: rotate(45deg) translateY(-67%);
+}
