@@ -1,0 +1,5 @@
+@import '../../../shared/style/utils.scss';
+
+.MyButtonWhite {
+  @extend %btn-white;
+}

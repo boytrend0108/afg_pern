@@ -1,45 +1,54 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import cn from 'classnames';
 
 import './MiniSlider.scss';
+import { useGetSliderWidth } from '../hooks/useGetSliderWidth';
+import { useGetSliderHeight } from '../hooks/useGetSliderHeight';
+import { PREVIEW_WIDTH } from '../consts';
 
 type Props = {
   images: string[];
+  title: string;
+  isShow?: boolean;
 };
 
-const RATIO = 0.9;
-
-export const MiniSlider: React.FC<Props> = ({ images }) => {
+export const MiniSlider: React.FC<Props> = ({
+  images,
+  title,
+  isShow = false,
+}) => {
   const [image, setImage] = useState(0);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(isShow);
+  const [sliderWidth, setSliderWidth] = useState(600);
   const main = useRef<HTMLDivElement>(null);
   const drop = useRef<HTMLDivElement>(null);
+  const slider = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (main.current) {
-      if (!show) {
-        setTimeout(() => {
-          if (main.current) {
-            main.current.style.height = '0px';
-          }
-        }, 0);
-      } else {
-        if (!drop.current) {
-          return;
-        }
+  useGetSliderWidth(setSliderWidth);
+  useGetSliderHeight({ main, drop, show });
 
-        const width = drop.current.clientWidth;
-
-        main.current.style.height = width * RATIO + 'px';
-      }
+  const slide = (dir: 'left' | 'right') => {
+    if (!slider.current) {
+      return;
     }
-  }, [show]);
+
+    if (dir === 'left') {
+      slider.current.scrollLeft += PREVIEW_WIDTH;
+    } else {
+      slider.current.scrollLeft -= PREVIEW_WIDTH;
+    }
+  };
 
   return (
     <div className="MiniSlider">
       <header className="MiniSlider__header" onClick={() => setShow(!show)}>
-        <p className="MiniSlider__title">General view</p>
-        <img src="/my-icons/arrow-up.svg" />
+        <p className="MiniSlider__title">{title}</p>
+        <img
+          src="/my-icons/arrow-up.svg"
+          className={cn('MiniSlider__arrow', {
+            'MiniSlider__arrow--closed': !show,
+          })}
+        />
       </header>
 
       <main className="MiniSlider__main" ref={main}>
@@ -57,15 +66,29 @@ export const MiniSlider: React.FC<Props> = ({ images }) => {
             />
           </div>
 
-          <div className="MiniSlider__slider">
-            {images.map((img, i) => (
-              <img
-                onClick={() => setImage(i)}
-                key={img}
-                src={`/product/${img}.png`}
-                className="MiniSlider__preview"
+          <div className="MiniSlider__slider-wr">
+            <div
+              ref={slider}
+              className="MiniSlider__slider"
+              style={{ width: sliderWidth + 'px' }}
+            >
+              <button
+                className="MiniSlider__btn MiniSlider__btn--left"
+                onClick={() => slide('left')}
               />
-            ))}
+              {images.map((img, i) => (
+                <img
+                  onClick={() => setImage(i)}
+                  key={img}
+                  src={`/product/${img}.png`}
+                  className="MiniSlider__preview"
+                />
+              ))}
+              <button
+                className="MiniSlider__btn MiniSlider__btn--right"
+                onClick={() => slide('right')}
+              />
+            </div>
           </div>
         </div>
       </main>

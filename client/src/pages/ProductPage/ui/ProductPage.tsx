@@ -1,8 +1,15 @@
-import { MyBreadcrumb, MySearch, MySocialBlack } from '../../../shared/ui';
+import {
+  MyBreadcrumb,
+  MyButtonWhite,
+  MySearch,
+  MySocialBlack,
+} from '../../../shared/ui';
 import { CategoryList } from '../../../widgets/CategoryList';
-import { MiniSlider } from '../../../widgets/MiniSlider';
 import { ProductsSlider } from '../../../widgets/ProductsSlider';
+import { OptionGroup } from './OptionGroup/OptionGroup';
 import './ProductPage.scss';
+import { ProductView } from './ProductView/ProductView';
+import { ProductViewMobile } from './ProductViewMobile/ProductViewMobile';
 
 const product = {
   id: 1,
@@ -34,39 +41,72 @@ export const ProductPage = () => {
         </div>
 
         <div className="ProductPage__main-box">
-          <div className="ProductPage__images">
-            <MiniSlider
-              images={[
-                'excavator-1',
-                'excavator-2',
-                'excavator-3',
-                'excavator-4',
-                'excavator-5',
-                'excavator-6',
-              ]}
-            />
-            <MiniSlider
-              images={[
-                'excavator-1',
-                'excavator-2',
-                'excavator-3',
-                'excavator-4',
-                'excavator-5',
-                'excavator-6',
-              ]}
-            />
-            <MiniSlider
-              images={[
-                'excavator-1',
-                'excavator-2',
-                'excavator-3',
-                'excavator-4',
-                'excavator-5',
-                'excavator-6',
-              ]}
-            />
+          <ProductView />
+          <ProductViewMobile />
+
+          <div className="ProductPage__options">
+            <div className="ProductPage__price-box">
+              <div className="ProductPage__titles">
+                <p className="ProductPage__brand">Liebherr</p>
+                <p className="ProductPage__model">Liebherr R934C</p>
+                <p className="ProductPage__subtitle">
+                  Dutch Machine / Quick Coupler
+                </p>
+              </div>
+
+              <p className="ProductPage__price">
+                € 32.500 <span className="ProductPage__price-span">excl</span>
+              </p>
+            </div>
+
+            <div className="ProductPage__info">
+              <div className="ProductPage__info-item">
+                <p className="ProductPage__info-title">Year</p>
+                <p className="ProductPage__info-value">2008</p>
+              </div>
+              <div className="ProductPage__info-item">
+                <p className="ProductPage__info-title">Hours</p>
+                <p className="ProductPage__info-value">12.191</p>
+              </div>
+              <div className="ProductPage__info-item">
+                <p className="ProductPage__info-title">Reference numbe</p>
+                <p className="ProductPage__info-value">BM005801</p>
+              </div>
+            </div>
+
+            <div className="ProductPage__btn-box">
+              <MyButtonWhite className="ProductPage__btn--white">
+                Book
+              </MyButtonWhite>
+
+              <MyButtonWhite className="ProductPage__btn--white">
+                Сompare
+              </MyButtonWhite>
+
+              <MyButtonWhite className="ProductPage__btn--white">
+                <p className="ProductPage__btn-title">Get in touch</p>
+              </MyButtonWhite>
+
+              <MyButtonWhite className="ProductPage__btn--white">
+                <a href="" className="ProductPage__btn-title">
+                  WhatsApp
+                </a>
+              </MyButtonWhite>
+            </div>
+
+            <div className="ProductPage__option-group">
+              <OptionGroup title="Common" />
+              <div className="ProductPage__option-wr">
+                <OptionGroup title="Sizes/Weights" />
+                <OptionGroup title="Tires/Tracks" />
+              </div>
+
+              <div className="ProductPage__option-wr">
+                <OptionGroup title="Engine information" />
+                <OptionGroup title="Options" />
+              </div>
+            </div>
           </div>
-          <div className="ProductPage__options"></div>
         </div>
       </main>
 

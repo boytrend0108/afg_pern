@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import './ProductItem.scss';
 
 export const ProductItem = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="ProductItem">
+    <div className="ProductItem" onClick={() => navigate('/product/1')}>
       <div className="ProductItem__image">
         <img className="ProductItem__image-box" src="/products/product-1.png" />
         <div className="ProductItem__image-lable">NEW</div>

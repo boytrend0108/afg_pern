@@ -1,10 +1,10 @@
 @mixin on-desktop {
-  @media (max-width: $desctop) {
+  @media (max-width: $desktop) {
     @content;
   }
 }
 @mixin on-desktop-s {
-  @media (max-width: $desctop-s) {
+  @media (max-width: $desktop-s) {
     @content;
   }
 }

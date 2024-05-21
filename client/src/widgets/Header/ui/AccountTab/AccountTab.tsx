@@ -24,7 +24,10 @@ export const AccountTab = () => {
         <img src="/my-icons/arrow-down.png" alt="arrow down" />
       </div>
 
-      <div className="AccountTab__drop">
+      <div
+        className="AccountTab__drop"
+        style={{ pointerEvents: showDrop ? 'all' : 'none' }}
+      >
         <ul
           className={cn('AccountTab__links', {
             'AccountTab__links--hidden': !showDrop,

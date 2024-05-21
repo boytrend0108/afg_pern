@@ -23,12 +23,27 @@
   border: none;
   background-color: $color-secondary;
 
-  font-size: 28px;
+  font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
   font-weight: 700;
-  line-height: 28px;
+  line-height: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
   text-align: left;
 
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+%btn-white {
+  @extend %btn;
+  background-color: white;
+  width: max-content;
+  padding-inline: 20px;
+  border: 1px solid $color-secondary;
+  font-size: 20px;
+
+  @include on-desktop-s {
+    padding: 8px;
+  }
+
+  @include onHover(background-color, $color-secondary);
 }
