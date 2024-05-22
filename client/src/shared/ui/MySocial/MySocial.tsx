@@ -1,10 +1,14 @@
 /* eslint-disable max-len */
 import './MySocial.scss';
 import { SOCIAL_LINKS } from '../../consts/socialLink';
+import React from 'react';
+type Props = {
+  className?: string;
+};
 
-export const MySocial = () => {
+export const MySocial: React.FC<Props> = (props) => {
   return (
-    <div className="MySocial">
+    <div className="MySocial" {...props}>
       <a href={SOCIAL_LINKS.FB} target="blank" className="MySocial__icon">
         <svg
           width="40"

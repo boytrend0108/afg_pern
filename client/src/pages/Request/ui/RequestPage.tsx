@@ -1,3 +1,4 @@
+import { MySocial } from '../../../shared/ui';
 import { RequestForm } from '../../../widgets/Forms/RequestForm';
 import './RequestPage.scss';
 
@@ -37,6 +38,8 @@ export const RequestPage = () => {
       <main className="RequestPage__main">
         <RequestForm />
       </main>
+
+      <MySocial className="RequestPage__social" />
     </div>
   );
 };
