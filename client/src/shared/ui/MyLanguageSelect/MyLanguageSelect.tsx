@@ -6,10 +6,15 @@ import '../../../shared/ui/MyFlags/MyFlags.scss';
 import { Country } from '../../types/country';
 import { useHideDrop } from '../../hooks';
 
-export const MyLanguageSelect = () => {
+type Props = {
+  value?: string;
+  flag?: string;
+};
+
+export const MyLanguageSelect: React.FC<Props> = ({ value, flag }) => {
   const [show, setShow] = useState(false);
-  const [lang, setLang] = useState(Country.england);
-  const [fullName, setFullname] = useState('Select language*');
+  const [lang, setLang] = useState(flag || Country.england);
+  const [fullName, setFullname] = useState(value || 'Select language*');
   const select = useRef<HTMLDivElement>(null);
 
   useHideDrop(select, setShow);

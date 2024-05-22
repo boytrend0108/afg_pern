@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import './MyInput.scss';
-import { DtoValidation } from '../../../widgets/RegistrationForm/types/DtoValidation';
-import { DtoValidationLogin } from '../../../widgets/LoginForm/types/DtoValidationLogin';
 import { useNavigate } from 'react-router-dom';
+import { DtoValidation } from '../../../widgets/Forms/RegistrationForm/types/DtoValidation';
+import { DtoValidationLogin } from '../../../widgets/Forms/LoginForm/types/DtoValidationLogin';
 
 type Props = {
   title: string;

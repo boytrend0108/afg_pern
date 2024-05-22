@@ -1,0 +1,41 @@
+import { MyTabSwitcher } from '../../../shared/ui';
+import { BasicInfoForm } from '../../../widgets/Forms/BasicInfoForm';
+import { TABS } from '../consts';
+import './ProfilePage.scss';
+
+export const ProfilePage = () => {
+  return (
+    <div className="ProfilePage container">
+      <div className="ProfilePage__header">
+        <div className="ProfilePage__header--left">
+          <h1 className="ProfilePage__title">Booking Yanmar SV15VT (NEW)</h1>
+        </div>
+
+        <div className="ProfilePage__header--right">
+          <h2 className="ProfilePage__block-title">Contact Info</h2>
+
+          <ul className="ProfilePage__contacts">
+            <li className="ProfilePage__contact">
+              <img src="/my-icons/phone-black.svg" alt="phone" />
+              <a href="tel:+31402532245">+31 40 253 22 45</a>
+            </li>
+            <li className="ProfilePage__contact">
+              <img src="/my-icons/email-black.svg" alt="mail" />
+              <a href="mailto:info@bossmachinery.nl">info@bossmachinery.nl</a>
+            </li>
+            <li className="ProfilePage__contact">
+              <img src="/my-icons/whats-app-black.svg" alt="mail" />
+              <a href="http://whatsapp.com">AFGmachinery</a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="ProfilePage__header--tabs">
+          <MyTabSwitcher tabs={TABS} />
+        </div>
+      </div>
+
+      <BasicInfoForm />
+    </div>
+  );
+};

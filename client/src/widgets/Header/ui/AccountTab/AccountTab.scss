@@ -82,7 +82,7 @@
     transition: transform ease-in-out $transition-duration;
 
     &--hidden {
-      transform: translateY(-150px);
+      transform: translateY(-110%);
     }
   }
 
@@ -97,7 +97,8 @@
     justify-content: center;
 
     &--search::before,
-    &--favorite::before {
+    &--favorite::before,
+    &--user::before {
       position: absolute;
       top: 13px;
       left: 16px;
@@ -111,6 +112,10 @@
 
     &--favorite::before {
       content: url(/my-icons/star.png);
+    }
+
+    &--user::before {
+      content: url(/my-icons/user.png);
     }
 
     @include onHover(background-color, $color-primary-hover);

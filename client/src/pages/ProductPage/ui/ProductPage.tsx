@@ -11,6 +11,7 @@ import { OptionGroup } from './OptionGroup/OptionGroup';
 import './ProductPage.scss';
 import { ProductView } from './ProductView/ProductView';
 import { ProductViewMobile } from './ProductViewMobile/ProductViewMobile';
+import { Link } from 'react-router-dom';
 
 const product = {
   id: 1,
@@ -80,9 +81,11 @@ export const ProductPage = () => {
             </div>
 
             <div className="ProductPage__btn-box">
-              <MyButtonWhite className="ProductPage__btn--white">
-                Book
-              </MyButtonWhite>
+              <Link to="booking">
+                <MyButtonWhite className="ProductPage__btn--white">
+                  Book
+                </MyButtonWhite>
+              </Link>
 
               <MyButtonWhite className="ProductPage__btn--white">
                 Сompare

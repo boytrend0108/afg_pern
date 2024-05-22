@@ -7,12 +7,16 @@ import { MySearch } from './MySearch/MySearch';
 import { MyBreadcrumb } from './MyBreadcrumb/MyBreadcrumb';
 import { MyButtonWhite } from './MyButtonWhite/MyButtonWhite';
 import { MyLanguageSelect } from './MyLanguageSelect/MyLanguageSelect';
+import { MySuccess } from './MySuccess/MySuccess';
+import { MyTabSwitcher } from './MyTabSwitcher/MyTabSwitcher';
 
 export {
   MyFlags,
-  MySocial,
   MySocialBlack,
   MyLanguageSelect,
+  MySuccess,
+  MyTabSwitcher,
+  MySocial,
   MyButton,
   MyButtonWhite,
   MyInput,

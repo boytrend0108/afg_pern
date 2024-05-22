@@ -3,6 +3,7 @@ import cn from 'classnames';
 
 import './AccountTab.scss';
 import { useHideDrop } from '../../../../shared/hooks';
+import { Link } from 'react-router-dom';
 
 export const AccountTab = () => {
   const [showDrop, setShowDrop] = useState(false);
@@ -34,10 +35,15 @@ export const AccountTab = () => {
           })}
         >
           <li className="AccountTab__link AccountTab__link--search">
-            Searches
+            <Link to="profile?tab=searches">Searches</Link>
           </li>
+
           <li className="AccountTab__link AccountTab__link--favorite">
-            Favorites
+            <Link to="profile?tab=favorites">Favorites</Link>
+          </li>
+
+          <li className="AccountTab__link AccountTab__link--user">
+            <Link to="profile?tab=settings">Settings</Link>
           </li>
         </ul>
       </div>

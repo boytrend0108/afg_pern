@@ -1,11 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import './ProductItem.scss';
+import React from 'react';
 
-export const ProductItem = () => {
+type Props = {
+  className?: string;
+};
+
+export const ProductItem: React.FC<Props> = ({ className = '' }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="ProductItem" onClick={() => navigate('/product/1')}>
+    <div
+      className={`ProductItem ${className}`}
+      onClick={() => navigate('/product/1')}
+    >
       <div className="ProductItem__image">
         <img className="ProductItem__image-box" src="/products/product-1.png" />
         <div className="ProductItem__image-lable">NEW</div>

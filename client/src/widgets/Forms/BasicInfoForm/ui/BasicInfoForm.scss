@@ -1,6 +1,6 @@
 @import '../../../../shared/style/utils.scss';
 
-.RequestForm {
+.BasicInfoForm {
   padding: clamp(0rem, -0.625rem + 3.125vw, 3.125rem);
   display: flex;
   flex-direction: column;
@@ -32,11 +32,36 @@
     }
   }
 
+  &__input-box {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__input-title {
+    width: 135px;
+    font-size: 20px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &__input-tip {
+    font-size: 12px;
+  }
+
+  &__lang-wr {
+    border: 1px solid $color-border;
+    width: 100%;
+    height: fit-content;
+  }
+
   &__input {
     padding: 10px;
     width: 100%;
-    border: none;
-    border-bottom: 1px solid $color-border;
+    max-height: 58px;
+    border: 1px solid $color-border;
     outline: none;
 
     &:user-invalid {

@@ -1,9 +1,13 @@
 /* eslint-disable no-shadow */
 import './RequestForm.scss';
 import { MyButton, MyLanguageSelect } from '../../../../shared/ui';
-import { FormEvent, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 
-export const RequestForm = () => {
+type Props = {
+  onSuccess: (v: boolean) => void;
+};
+
+export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -25,7 +29,9 @@ export const RequestForm = () => {
       address,
     };
 
+    // eslint-disable-next-line no-console
     console.log(requestDto);
+    onSuccess(true);
   };
 
   return (

@@ -1,58 +1,19 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
-import { useState } from 'react';
-import cn from 'classnames';
 import './ProductViewMobile.scss';
 import { MiniSliderMobile } from '../../../../widgets/MiniSliderMobile';
-
-enum ViewType {
-  general = 'general',
-  interior = 'interior',
-  exterior = 'exterior',
-  model = 'model',
-}
+import { MyTabSwitcher } from '../../../../shared/ui';
+import { useSearchParams } from 'react-router-dom';
+import { TABS } from './consts';
+import { TabType } from './types';
 
 export const ProductViewMobile = () => {
-  const [active, setActive] = useState(ViewType.general);
+  const [searchParams] = useSearchParams();
+  const tab = searchParams.get('tab') || '';
 
   return (
     <div className="ProductViewMobile">
-      <div className="ProductViewMobile__header">
-        <button
-          onClick={() => setActive(ViewType.general)}
-          className={cn('ProductViewMobile__btn', {
-            'ProductViewMobile__btn--active': active === ViewType.general,
-          })}
-        >
-          General view
-        </button>
-        <button
-          onClick={() => setActive(ViewType.interior)}
-          className={cn('ProductViewMobile__btn', {
-            'ProductViewMobile__btn--active': active === ViewType.interior,
-          })}
-        >
-          Interior
-        </button>
-        <button
-          onClick={() => setActive(ViewType.exterior)}
-          className={cn('ProductViewMobile__btn', {
-            'ProductViewMobile__btn--active': active === ViewType.exterior,
-          })}
-        >
-          Exterior
-        </button>
-        <button
-          onClick={() => setActive(ViewType.model)}
-          className={cn('ProductViewMobile__btn', {
-            'ProductViewMobile__btn--active': active === ViewType.model,
-          })}
-        >
-          3D model
-        </button>
-      </div>
+      <MyTabSwitcher tabs={TABS} />
 
-      {active === ViewType.general && (
+      {tab === TabType.general && (
         <MiniSliderMobile
           images={[
             'excavator-1',
@@ -67,7 +28,8 @@ export const ProductViewMobile = () => {
           ]}
         />
       )}
-      {active === ViewType.interior && (
+
+      {tab === TabType.interior && (
         <MiniSliderMobile
           images={[
             'excavator-1',
@@ -79,7 +41,8 @@ export const ProductViewMobile = () => {
           ]}
         />
       )}
-      {active === ViewType.exterior && (
+
+      {tab === TabType.exterior && (
         <MiniSliderMobile
           images={[
             'excavator-1',
@@ -91,7 +54,8 @@ export const ProductViewMobile = () => {
           ]}
         />
       )}
-      {active === ViewType.model && (
+
+      {tab === TabType.model && (
         <MiniSliderMobile
           images={[
             'excavator-1',

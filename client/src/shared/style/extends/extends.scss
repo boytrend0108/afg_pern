@@ -22,6 +22,7 @@
   width: 212px;
   border: none;
   background-color: $color-secondary;
+  cursor: pointer;
 
   font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
   font-weight: 700;
@@ -31,6 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  @include onHover(background-color, $color-secondary-hover);
 }
 
 %btn-white {

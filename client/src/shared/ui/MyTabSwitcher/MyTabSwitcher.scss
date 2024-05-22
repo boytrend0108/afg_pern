@@ -1,0 +1,51 @@
+@import '../../style/utils.scss';
+
+.MyTabSwitcher {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 90vw;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  transition: transform ease-in-out $transition-duration;
+
+  &__btn {
+    width: 100%;
+    min-width: max-content;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $color-border;
+    padding: 10px;
+    color: $color-primary-hover;
+    scroll-snap-align: start;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      height: 2px;
+      background-color: $color-primary;
+      width: 0;
+      transition: width ease-in-out $transition-duration;
+    }
+
+    &--active {
+      font-weight: 600;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: 2px;
+        background-color: $color-primary;
+        width: 100%;
+      }
+    }
+  }
+}
