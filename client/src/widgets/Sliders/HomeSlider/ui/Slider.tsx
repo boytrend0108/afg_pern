@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import cn from 'classnames';
 import './Slider.scss';
-import { MyButton } from '../../../shared/ui';
+import { MyButton } from '../../../../shared/ui';
 import { changeSlide } from '../helpers/changeSlide';
 import { useObserver } from '../hooks/useObserver';
-import { useGetWidth } from '../../../shared/hooks/useGetWidth';
+import { useGetWidth } from '../../../../shared/hooks/useGetWidth';
 import { Link } from 'react-router-dom';
 
 export const Slider: React.FC = () => {

@@ -6,14 +6,16 @@ import { MyInput } from './MyInput/MyInput';
 import { MySearch } from './MySearch/MySearch';
 import { MyBreadcrumb } from './MyBreadcrumb/MyBreadcrumb';
 import { MyButtonWhite } from './MyButtonWhite/MyButtonWhite';
+import { MyLanguageSelect } from './MyLanguageSelect/MyLanguageSelect';
 
 export {
   MyFlags,
+  MySocial,
+  MySocialBlack,
+  MyLanguageSelect,
   MyButton,
   MyButtonWhite,
-  MySocial,
   MyInput,
   MySearch,
-  MySocialBlack,
   MyBreadcrumb,
 };

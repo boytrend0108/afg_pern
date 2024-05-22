@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   MyBreadcrumb,
   MyButtonWhite,
@@ -22,6 +23,10 @@ export const ProductPage = () => {
     { id: 2, name: 'Catalog  >', path: '/catalog' },
     { id: 3, name: product.title, path: `/product/${product.id}` },
   ];
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+  }, []);
 
   return (
     <section className="ProductPage container">

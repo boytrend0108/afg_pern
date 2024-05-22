@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import './LoginForm.scss';
-import { MyButton, MyInput } from '../../../shared/ui';
+import { MyButton, MyInput } from '../../../../shared/ui';
 import { validate } from '../helpers/validation';
 import { DtoValidationLogin } from '../types/DtoValidationLogin';
 import { DtoLogin } from '../types/DtoLogin';

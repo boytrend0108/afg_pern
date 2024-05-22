@@ -1,4 +1,4 @@
-import { MiniSlider } from '../../../../widgets/MiniSlider';
+import { MiniSlider } from '../../../../widgets/Sliders/MiniSlider';
 import './ProductView.scss';
 
 export const ProductView = () => {

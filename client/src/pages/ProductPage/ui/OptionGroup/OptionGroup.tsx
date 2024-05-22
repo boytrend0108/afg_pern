@@ -10,7 +10,7 @@ type Props = {
   options?: OptionType[];
 };
 
-export const OptionGroup: React.FC<Props> = ({ title, options }) => {
+export const OptionGroup: React.FC<Props> = ({ title }) => {
   return (
     <div className="OptionGroup">
       <p className="OptionGroup__title">{title}</p>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MyButton, MyInput } from '../../../shared/ui';
+import { MyButton, MyInput } from '../../../../shared/ui';
 import './RegistrationForm.scss';
 import { DtoRegistration } from '../types/DtoRegistration';
 import { Link } from 'react-router-dom';
