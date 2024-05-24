@@ -18,11 +18,12 @@
 }
 
 %btn {
-  height: 64px;
-  width: 212px;
+  height: clamp(3.125rem, 2.95rem + 0.875vw, 4rem);
+  width: max-content;
   border: none;
   background-color: $color-secondary;
   cursor: pointer;
+  padding-inline: 20px;
 
   font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
   font-weight: 700;
@@ -41,7 +42,6 @@
   width: max-content;
   padding-inline: 20px;
   border: 1px solid $color-secondary;
-  font-size: 20px;
 
   @include on-desktop-s {
     padding: 8px;

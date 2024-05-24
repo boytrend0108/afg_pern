@@ -2,7 +2,11 @@
 import { FormEvent, useState } from 'react';
 
 import './BasicInfoForm.scss';
-import { MyButton, MyLanguageSelect } from '../../../../shared/ui';
+import {
+  MyButton,
+  MyButtonWhite,
+  MyLanguageSelect,
+} from '../../../../shared/ui';
 import { InputBox } from './InputBox/InputBox';
 
 export const BasicInfoForm = () => {
@@ -48,6 +52,7 @@ export const BasicInfoForm = () => {
           <InputBox
             required={true}
             value={'Ukrainian'}
+            // eslint-disable-next-line prettier/prettier
             setValue={() => { }}
             title="Languages*"
             subtitle="Please indicate which language(s) you can communicate in"
@@ -110,8 +115,12 @@ export const BasicInfoForm = () => {
         </div>
       </div>
       <p className="BasicInfoForm__note">* Fill in the required fields</p>
-
-      <MyButton className="BasicInfoForm__btn">Send a request</MyButton>
+      <div className="BasicInfoForm__btn-box">
+        <MyButtonWhite className="BasicInfoForm__btn--white">
+          Cancel
+        </MyButtonWhite>
+        <MyButton className="BasicInfoForm__btn">Save</MyButton>
+      </div>
     </form>
   );
 };

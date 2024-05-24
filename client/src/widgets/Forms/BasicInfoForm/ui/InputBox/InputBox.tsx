@@ -14,7 +14,6 @@ type Props = {
 export const InputBox: React.FC<Props> = ({
   children,
   value,
-  setValue,
   title,
   subtitle,
   required,

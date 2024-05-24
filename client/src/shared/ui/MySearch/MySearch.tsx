@@ -5,9 +5,10 @@ import React, { ChangeEvent } from 'react';
 type Props = {
   props?: any;
   style?: any;
+  title?: string;
 };
 
-export const MySearch: React.FC<Props> = (props) => {
+export const MySearch: React.FC<Props> = ({ title = 'Search', ...props }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
 
@@ -26,7 +27,7 @@ export const MySearch: React.FC<Props> = (props) => {
 
   return (
     <div className="MySearch" {...props}>
-      Search
+      {title}
       <div className="MySearch__input">
         <input
           value={query}

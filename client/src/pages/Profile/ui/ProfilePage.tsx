@@ -1,9 +1,16 @@
+import { useSearchParams } from 'react-router-dom';
 import { MyTabSwitcher } from '../../../shared/ui';
 import { BasicInfoForm } from '../../../widgets/Forms/BasicInfoForm';
 import { TABS } from '../consts';
 import './ProfilePage.scss';
+import { FavoriteTab } from './FavoriteTab/FavoriteTab';
+import { OffersTab } from './OffersTab/OffersTab';
+import { SearchTab } from './SearchTab/SearchTab';
 
 export const ProfilePage = () => {
+  const [searchParams] = useSearchParams();
+  const tab = searchParams.get('tab');
+
   return (
     <div className="ProfilePage container">
       <div className="ProfilePage__header">
@@ -35,7 +42,10 @@ export const ProfilePage = () => {
         </div>
       </div>
 
-      <BasicInfoForm />
+      {tab === 'settings' && <BasicInfoForm />}
+      {tab === 'offers' && <OffersTab />}
+      {tab === 'searches' && <SearchTab />}
+      {tab === 'favorites' && <FavoriteTab />}
     </div>
   );
 };
