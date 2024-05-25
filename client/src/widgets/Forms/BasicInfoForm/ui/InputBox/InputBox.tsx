@@ -17,6 +17,7 @@ export const InputBox: React.FC<Props> = ({
   title,
   subtitle,
   required,
+  setValue,
   type = 'text',
 }) => {
   return (

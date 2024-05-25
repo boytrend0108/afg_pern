@@ -47,7 +47,7 @@ export const MiniSliderMobile: React.FC<Props> = ({ images }) => {
               {images.map((img, i) => (
                 <img
                   onClick={() => setImage(i)}
-                  key={img}
+                  key={i}
                   src={`/product/${img}.png`}
                   className="MiniSliderMobile__preview"
                 />

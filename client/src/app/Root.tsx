@@ -2,14 +2,15 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import App from './ui/App.tsx';
 import { HomePage } from '../pages/Home';
 import { ContactPage } from '../pages/Contact';
-import { NewsPage } from '../pages/News';
+import { NewsListPage } from '../pages/NewsListPage';
 import { RequestPage } from '../pages/Request';
 import { LoginPage } from '../pages/Login';
 import { RegistrationPage } from '../pages/Registration';
 import { CatalogPage } from '../pages/Catalog';
 import { ProductPage } from '../pages/ProductPage';
 import { BookingPage } from '../pages/Booking';
-import { ProfilePage } from '../pages/Profile/index.ts';
+import { ProfilePage } from '../pages/Profile';
+import { NewsPage } from '../pages/News';
 
 export const Root = () => {
   return (
@@ -25,7 +26,8 @@ export const Root = () => {
           </Route>
           <Route path="catalog" element={<CatalogPage />} />
           <Route path="contact" element={<ContactPage />} />
-          <Route path="news" element={<NewsPage />} />
+          <Route path="news" element={<NewsListPage />} />
+          <Route path="news/:id" element={<NewsPage />} />
           <Route path="request" element={<RequestPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="*" element={<HomePage />} />

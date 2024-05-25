@@ -96,26 +96,19 @@
     align-items: center;
     justify-content: center;
 
-    &--search::before,
-    &--favorite::before,
-    &--user::before {
-      position: absolute;
-      top: 13px;
-      left: 16px;
-      height: 30px;
-      width: 30px;
-    }
+    $links: 'search-2', 'favorite', 'catalog', 'news', 'settings', 'request',
+      'setting';
 
-    &--search::before {
-      content: url(/my-icons/search-2.png);
-    }
+    @each $link in $links {
+      &--#{$link}::before {
+        position: absolute;
+        top: 13px;
+        left: 16px;
+        height: 30px;
+        width: 30px;
 
-    &--favorite::before {
-      content: url(/my-icons/star.png);
-    }
-
-    &--user::before {
-      content: url(/my-icons/user.png);
+        content: url(/my-icons/#{$link}.svg);
+      }
     }
 
     @include onHover(background-color, $color-primary-hover);

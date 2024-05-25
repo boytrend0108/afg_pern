@@ -12,7 +12,13 @@ export const OffersTab = () => {
         {favorite.map((f) => (
           <div className="OffersTab__wr" key={f}>
             <div className="OffersTab__hover">
-              <img src="/my-icons/booking.svg" alt="booked" />
+              <img
+                src="/my-icons/booking.svg"
+                alt="booked"
+                width="200"
+                height={200}
+                className="OffersTab__img"
+              />
               <p className="OffersTab__hover-title">Already booked</p>
             </div>
             <ProductItem />

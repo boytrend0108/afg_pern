@@ -79,7 +79,7 @@ export const MiniSlider: React.FC<Props> = ({
               {images.map((img, i) => (
                 <img
                   onClick={() => setImage(i)}
-                  key={img}
+                  key={i}
                   src={`/product/${img}.png`}
                   className="MiniSlider__preview"
                 />

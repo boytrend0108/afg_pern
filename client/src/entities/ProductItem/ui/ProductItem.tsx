@@ -4,18 +4,25 @@ import React from 'react';
 
 type Props = {
   className?: string;
+  style?: { maxWidth: string; maxHeight: string };
 };
 
-export const ProductItem: React.FC<Props> = ({ className = '' }) => {
+export const ProductItem: React.FC<Props> = ({ className = '', ...props }) => {
   const navigate = useNavigate();
 
   return (
     <div
+      {...props}
       className={`ProductItem ${className}`}
       onClick={() => navigate('/product/1')}
     >
       <div className="ProductItem__image">
-        <img className="ProductItem__image-box" src="/products/product-1.png" />
+        <img
+          className="ProductItem__image-box"
+          src="/products/product-1.png"
+          width="280"
+          height="420"
+        />
         <div className="ProductItem__image-lable">NEW</div>
       </div>
 

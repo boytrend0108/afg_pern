@@ -34,7 +34,19 @@ export const AccountTab = () => {
             'AccountTab__links--hidden': !showDrop,
           })}
         >
-          <li className="AccountTab__link AccountTab__link--search">
+          <li className="AccountTab__link AccountTab__link--catalog">
+            <Link to="catalog">Catalog</Link>
+          </li>
+
+          <li className="AccountTab__link AccountTab__link--request">
+            <Link to="request">Request</Link>
+          </li>
+
+          <li className="AccountTab__link AccountTab__link--news">
+            <Link to="news">News</Link>
+          </li>
+
+          <li className="AccountTab__link AccountTab__link--search-2">
             <Link to="profile?tab=searches">Searches</Link>
           </li>
 
@@ -42,7 +54,7 @@ export const AccountTab = () => {
             <Link to="profile?tab=favorites">Favorites</Link>
           </li>
 
-          <li className="AccountTab__link AccountTab__link--user">
+          <li className="AccountTab__link AccountTab__link--settings">
             <Link to="profile?tab=settings">Settings</Link>
           </li>
         </ul>

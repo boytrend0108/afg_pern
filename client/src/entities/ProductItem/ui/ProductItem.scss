@@ -1,8 +1,8 @@
 @import '../../../shared/style/utils.scss';
 
 .ProductItem {
-  max-width: 376px;
-  max-height: 416px;
+  // max-width: 376px;
+  // max-height: 416px;
   width: inherit;
   height: 100%;
   border: 1px solid $color-border;
@@ -96,7 +96,7 @@
 
   &__article {
     color: $color-secondary;
-    padding-inline: 25px;
+    padding-inline: 20px;
     border: 1px solid $color-secondary;
     border-radius: 15px;
   }

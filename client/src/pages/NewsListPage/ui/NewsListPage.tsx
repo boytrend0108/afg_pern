@@ -1,0 +1,21 @@
+import { NewsItem } from '../../../entities/NewsItem';
+import { Link } from 'react-router-dom';
+import './NewsListPage.scss';
+
+const news = [1, 2, 3, 4, 5, 6, 7, 8];
+
+export const NewsListPage = () => {
+  return (
+    <div className="NewsListPage container">
+      <h1 className="NewsListPage__title">News</h1>
+
+      <div className="NewsListPage__list">
+        {news.map((n) => (
+          <Link to={`${n}`} key={n}>
+            <NewsItem />
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};

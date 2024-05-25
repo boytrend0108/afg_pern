@@ -7,7 +7,7 @@ import { TabType } from './types';
 
 export const ProductViewMobile = () => {
   const [searchParams] = useSearchParams();
-  const tab = searchParams.get('tab') || '';
+  const tab = searchParams.get('tab') || 'general';
 
   return (
     <div className="ProductViewMobile">
