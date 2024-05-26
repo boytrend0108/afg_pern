@@ -9,11 +9,15 @@ import { ComparisonTable } from './ComparisonTable/ComparisonTable';
 
 export const ProductPage = () => {
   const [showCompare, setShowCompare] = useState(false);
-  const [showComparisonTable, setShowComparisonTable] = useState(true);
+  const [showComparisonTable, setShowComparisonTable] = useState(false);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
   }, []);
+
+  useEffect(() => {
+    setShowCompare(false);
+  }, [showComparisonTable]);
 
   return (
     <section className="ProductPage container">

@@ -11,6 +11,10 @@
   line-height: 18.75px;
   text-align: left;
 
+  max-width: 600px;
+  width: 100%;
+  padding-inline: 20px;
+
   @include on-tablet {
     display: none;
   }
