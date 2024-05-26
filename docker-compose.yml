@@ -30,19 +30,19 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  client:
-    image: afg-client
-    restart: always
-    container_name: afg-client
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    ports:
-      - 80:5173
-    volumes:
-      - ./client:/app
-      - /app/node_modules
-    env_file: .env
+  # client:
+  #   image: afg-client
+  #   restart: always
+  #   container_name: afg-client
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 80:5173
+  #   volumes:
+  #     - ./client:/app
+  #     - /app/node_modules
+  #   env_file: .env
 
 networks:
   net:
