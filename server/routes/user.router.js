@@ -7,8 +7,10 @@ import { checkRoleMiddleware } from '../middlewares/checkRoleMiddleware.js';
 const router = new Router();
 
 router.post('/registration', catchError(userController.register));
+router.get('/activate/:activationToken', catchError(userController.activate));
 router.post('/login', catchError(userController.login));
 router.post('/logout', catchError(userController.logout));
+router.post('/update', catchError(userController.update));
 
 router.post(
   '/add-role',

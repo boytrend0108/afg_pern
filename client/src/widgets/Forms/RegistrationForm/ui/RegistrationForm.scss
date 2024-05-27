@@ -45,7 +45,7 @@
     width: 250px;
     margin-top: 25px;
     @include onHover(background-color, $color-secondary-hover);
-    margin-bottom: 45px;
+    margin-bottom: 25px;
   }
 
   &__horiz {
@@ -68,5 +68,13 @@
     color: $color-secondary;
     @include onHover(color, $color-secondary-hover);
     margin-left: 10px;
+  }
+
+  &__error-box {
+    height: 20px;
+  }
+
+  &__error {
+    color: $color-error;
   }
 }

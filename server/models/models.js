@@ -36,6 +36,13 @@ export const User = sequelize.define('user', {
   company: {
     type: DataTypes.STRING,
   },
+  lang: {
+    type: DataTypes.STRING,
+    defaultValue: 'English',
+  },
+  activationToken: {
+    type: DataTypes.STRING,
+  },
 });
 
 export const Role = sequelize.define('role', {

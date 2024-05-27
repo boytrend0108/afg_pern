@@ -14,6 +14,15 @@ class Validate {
     };
   }
 
+  updateUserTDO({ name, email, phone }) {
+    return {
+      email: validator.isEmail(email) ? false : 'Email is invalid',
+      name:
+        name.length > 3 ? false : 'Name should contain at least 4 characters',
+      phone: phone.toString().length > 7 ? false : 'Check your phone number',
+    };
+  }
+
   loginTDO({ email, password }) {
     return {
       email: validator.isEmail(email) ? false : 'Email is invalid',

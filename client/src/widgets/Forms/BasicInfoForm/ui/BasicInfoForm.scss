@@ -98,9 +98,20 @@
     min-width: max-content;
     padding-inline: 20px;
   }
+
   &__btn--white {
     @extend %btn-white;
     min-width: max-content;
     padding-inline: 20px;
+  }
+
+  &__error {
+    height: 20px;
+
+    &-msg {
+      color: $color-error;
+      background-color: $color-primary;
+      padding: 10px;
+    }
   }
 }

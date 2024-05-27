@@ -57,7 +57,7 @@
     width: 250px;
     margin-top: 25px;
     @include onHover(background-color, $color-secondary-hover);
-    margin-bottom: 45px;
+    margin-bottom: 25px;
 
     @include on-mobile {
       height: 50px;
@@ -116,6 +116,13 @@
     @include on-mobile {
       flex-direction: column;
       align-items: center;
+    }
+  }
+
+  &__error {
+    height: 20px;
+    &-msg {
+      color: $color-error;
     }
   }
 }

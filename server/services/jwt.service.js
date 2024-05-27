@@ -56,10 +56,11 @@ class JwtService {
       maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
       secure: true,
+      sameSite: 'None',
     });
 
     res.status(200);
-    res.send({ normalizedUser, accessToken });
+    res.send({ user: normalizedUser, accessToken });
   }
 }
 

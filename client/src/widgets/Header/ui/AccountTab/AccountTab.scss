@@ -12,6 +12,7 @@
   border: none;
   outline: none;
   border-left: 1px solid $color-border;
+  color: $color-font-light;
 
   @include on-tablet-s {
     min-width: 75px;
@@ -65,10 +66,6 @@
       top: 75px;
       left: -103px;
     }
-
-    @include on-mobile-m {
-      left: -110px;
-    }
   }
 
   &__links {
@@ -97,7 +94,7 @@
     justify-content: center;
 
     $links: 'search-2', 'favorite', 'catalog', 'news', 'settings', 'request',
-      'setting';
+      'setting', 'logout';
 
     @each $link in $links {
       &--#{$link}::before {

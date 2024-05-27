@@ -6,7 +6,7 @@ import axios, {
 
 export const httpClient: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
-  // withCredentials: true,
+  withCredentials: true,
 });
 
 httpClient.interceptors.request.use(onRequest);

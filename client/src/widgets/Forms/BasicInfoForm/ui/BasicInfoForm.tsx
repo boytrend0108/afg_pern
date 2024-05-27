@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 import './BasicInfoForm.scss';
 import {
@@ -8,20 +8,52 @@ import {
   MyLanguageSelect,
 } from '../../../../shared/ui';
 import { InputBox } from './InputBox/InputBox';
+// eslint-disable-next-line max-len
+import localStorageService from '../../../../shared/services/localStorageService';
+import { user } from '../../../../entities/User';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../shared/hooks/reduxHooks';
 
 export const BasicInfoForm = () => {
-  const [name, setName] = useState('Ivan');
-  const [phone, setPhone] = useState('000-00-00-00');
-  const [email, setEmail] = useState('test@gmeil.com');
-  const [company, setCompany] = useState('Afg machinery');
-  const [country, setCountry] = useState('Ukraine');
-  const [city, setCity] = useState('Кiev');
-  const [address, setAddress] = useState('Hrechatic 44');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState(0);
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
+  const [address, setAddress] = useState('');
+  const [lang, setLang] = useState('English');
+  const [flag, setFlag] = useState('gb');
+  const [error, setError] = useState<string | null>(null);
+  const dispatch = useAppDispatch();
+  const { loading, error: updateError } = useAppSelector((state) => state.user);
+
+  useEffect(() => {
+    const user = localStorageService.get('user');
+
+    if (user) {
+      const { name, phone, email, company, country, city, address, lang } =
+        user;
+
+      setName(name);
+      setPhone(phone);
+      setEmail(email);
+      setCompany(company);
+      setCity(city);
+      setCountry(country);
+      setAddress(address);
+      setLang(lang);
+      setPhone(phone);
+    }
+  }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    setError('');
 
-    const requestDto = {
+    const userDTO = {
       name,
       phone,
       email,
@@ -29,10 +61,23 @@ export const BasicInfoForm = () => {
       country,
       city,
       address,
+      lang,
     };
 
-    // eslint-disable-next-line no-console
-    console.log(requestDto);
+    if (!name.trim() || !phone || !email.trim()) {
+      setError('Name, phone and email are required');
+
+      return;
+    }
+
+    dispatch(user.update(userDTO))
+      .unwrap()
+      .catch(() => console.log(updateError));
+  };
+
+  const handleChangeLang = (v: { lang: string; fullName: string }) => {
+    setFlag(v.lang);
+    setLang(v.fullName);
   };
 
   return (
@@ -44,29 +89,34 @@ export const BasicInfoForm = () => {
           <InputBox
             required={true}
             value={name}
-            setValue={setName}
+            setValue={(v) => setName(v.toString())}
             title="Your name*"
             subtitle=" Please enter your first name"
           />
 
           <InputBox
             required={true}
-            value={'Ukrainian'}
+            value={lang}
             // eslint-disable-next-line prettier/prettier
             setValue={() => { }}
             title="Languages*"
             subtitle="Please indicate which language(s) you can communicate in"
           >
             <div className="BasicInfoForm__lang-wr">
-              <MyLanguageSelect value="Ukrainian" flag="ua" />
+              <MyLanguageSelect
+                value={lang}
+                flag={flag}
+                changeLang={(v) => handleChangeLang(v)}
+              />
             </div>
           </InputBox>
 
           <InputBox
             required={true}
+            type="number"
             value={phone}
-            setValue={setPhone}
-            title="Languages*"
+            setValue={(v) => setPhone(+v)}
+            title="Phone*"
             subtitle="Please enter your telephone number"
           />
 
@@ -74,7 +124,7 @@ export const BasicInfoForm = () => {
             required={true}
             value={email}
             type="email"
-            setValue={setEmail}
+            setValue={(v) => setEmail(v.toString())}
             title="Email*"
             subtitle="Please enter your email address"
           />
@@ -84,7 +134,7 @@ export const BasicInfoForm = () => {
           <InputBox
             required={false}
             value={company}
-            setValue={setCompany}
+            setValue={(v) => setCompany(v.toString())}
             title="Company name"
             subtitle="Please enter your company name"
           />
@@ -92,7 +142,7 @@ export const BasicInfoForm = () => {
           <InputBox
             required={false}
             value={country}
-            setValue={setCountry}
+            setValue={(v) => setCountry(v.toString())}
             title="Country"
             subtitle="Please enter your country of residence"
           />
@@ -100,7 +150,7 @@ export const BasicInfoForm = () => {
           <InputBox
             required={false}
             value={city}
-            setValue={setCity}
+            setValue={(v) => setCity(v.toString())}
             title="City"
             subtitle="Please enter your city of residence"
           />
@@ -108,7 +158,7 @@ export const BasicInfoForm = () => {
           <InputBox
             required={false}
             value={address}
-            setValue={setAddress}
+            setValue={(v) => setAddress(v.toString())}
             title="Address"
             subtitle="Please enter your address of residence"
           />
@@ -119,7 +169,13 @@ export const BasicInfoForm = () => {
         <MyButtonWhite className="BasicInfoForm__btn--white">
           Cancel
         </MyButtonWhite>
-        <MyButton className="BasicInfoForm__btn">Save</MyButton>
+        <MyButton className="BasicInfoForm__btn">
+          {loading ? 'In progress' : 'Save'}
+        </MyButton>
+      </div>
+
+      <div className="BasicInfoForm__error">
+        {error && <p className="BasicInfoForm__error-msg">{error}</p>}
       </div>
     </form>
   );

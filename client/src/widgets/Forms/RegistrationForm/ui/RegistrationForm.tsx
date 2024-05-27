@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { MyButton, MyInput } from '../../../../shared/ui';
 import './RegistrationForm.scss';
 import { DtoRegistration } from '../types/DtoRegistration';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { validate } from '../helpers/validation';
 import { DtoValidation } from '../types/DtoValidation';
+import { user } from '../../../../entities/User';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../shared/hooks/reduxHooks';
 
 export const RegistrationForm = () => {
   const [userName, setUserName] = useState('');
@@ -16,6 +21,9 @@ export const RegistrationForm = () => {
   const [address, setAddress] = useState('');
   const [company, setCompany] = useState('');
   const [errors, setErrors] = useState<DtoValidation | null>(null);
+  const dispatch = useAppDispatch();
+  const { loading, error } = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.id as keyof DtoRegistration;
@@ -65,6 +73,12 @@ export const RegistrationForm = () => {
     if (errors && Object.values(errors).includes(false)) {
       return false;
     }
+
+    dispatch(user.register(dto))
+      .unwrap()
+      .then(() => navigate('/activate/in-progress'))
+      // eslint-disable-next-line no-console
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -144,8 +158,12 @@ export const RegistrationForm = () => {
       />
 
       <MyButton className="RegistrationForm__btn" onClick={handleSubmit}>
-        Create an account
+        {loading ? 'Creating....' : 'Create an account'}
       </MyButton>
+
+      <div className="RegistrationForm__error-box">
+        {error && <p className="RegistrationForm__error">{error.message}</p>}
+      </div>
 
       <div className="RegistrationForm__horiz">
         <div className="RegistrationForm__horiz-line" />

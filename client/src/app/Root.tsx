@@ -11,6 +11,7 @@ import { ProductPage } from '../pages/ProductPage';
 import { BookingPage } from '../pages/Booking';
 import { ProfilePage } from '../pages/Profile';
 import { NewsPage } from '../pages/News';
+import { ActivationPage } from '../pages/ActivationPage';
 
 export const Root = () => {
   return (
@@ -20,6 +21,10 @@ export const Root = () => {
           <Route index element={<HomePage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="registration" element={<RegistrationPage />} />
+          <Route
+            path="activate/:activationToken"
+            element={<ActivationPage />}
+          />
           <Route path="product/:id">
             <Route index element={<ProductPage />} />
             <Route path="booking" element={<BookingPage />} />

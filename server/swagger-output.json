@@ -5,7 +5,7 @@
     "description": "AFG-Machinery api",
     "version": "1.0.0"
   },
-  "host": "afg-machinery.com:5000",
+  "host": "https://localhost:5000",
   "basePath": "/",
   "schemes": [
     "https"
@@ -35,17 +35,37 @@
             "name": "body",
             "in": "body",
             "description": "User registration data",
-            "required": true,
             "schema": {
               "type": "object",
+              "required": [
+                "name",
+                "email",
+                "password",
+                "phone"
+              ],
               "properties": {
-                "login": {
+                "name": {
                   "type": "string"
                 },
                 "email": {
                   "type": "string"
                 },
                 "password": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "address": {
                   "type": "string"
                 }
               }
@@ -58,10 +78,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "user": {
-                  "type": "object"
+                "id": {
+                  "type": "string"
                 },
-                "accessToken": {
+                "email": {
                   "type": "string"
                 }
               }

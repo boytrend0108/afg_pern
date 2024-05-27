@@ -51,6 +51,7 @@
 
   &__block-title {
     margin-bottom: 20px;
+    font-size: clamp(1.125rem, 1.05rem + 0.375vw, 1.5rem);
   }
 
   &__contacts {

@@ -5,11 +5,14 @@ import bcrypt from 'bcryptjs';
 import 'dotenv/config';
 import jwtService from '../services/jwt.service.js';
 import { normalizeFields } from '../services/normalizeField.service.js';
+import { v4 as uuidv4 } from 'uuid';
+import { emailService } from '../services/email.service.js';
 
 class UserController {
   async register(req, res) {
     let { name, email, password, phone, country, city, address, company } =
       normalizeFields(req.body);
+
     const errors = validate.registrationTDO({
       name,
       email,
@@ -32,6 +35,7 @@ class UserController {
     }
 
     const hash = await bcrypt.hash(password, 5);
+    const activationToken = uuidv4();
     const user = await userService.create({
       name,
       email,
@@ -41,21 +45,28 @@ class UserController {
       city,
       address,
       company,
+      activationToken,
     });
 
-    const accessToken = jwtService.signAccess(user);
-    const refreshToken = jwtService.signRefresh(user);
-
-    await jwtService.save(refreshToken, user.id);
-
-    res.cookie('refreshToken', refreshToken, {
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-      httpOnly: true,
-      secure: true,
-    });
+    await emailService.sendActivationEmail({ email, token: activationToken });
 
     res.status(201);
-    res.send({ user, accessToken });
+    res.send(user);
+  }
+
+  async activate(req, res) {
+    const { activationToken } = req.params;
+
+    const user = await userService.findByActivationToken(activationToken);
+
+    if (!user) {
+      throw ApiError.NOT_FOUND('User not found');
+    }
+
+    user.activationToken = null;
+    await user.save();
+
+    res.send(200);
   }
 
   async login(req, res) {
@@ -63,7 +74,7 @@ class UserController {
     const errors = validate.loginTDO({ email, password });
 
     if (errors.password || errors.email) {
-      throw ApiError.BAD_REQUEST('Bad request', errors);
+      throw ApiError.BAD_REQUEST('Emaii or password are incorrect', errors);
     }
 
     const user = await userService.findByEmail(email);
@@ -96,6 +107,41 @@ class UserController {
 
     await jwtService.remove(user.id);
     res.sendStatus(204);
+  }
+
+  async update(req, res) {
+    let { name, email, phone, country, city, address, company, lang } =
+      normalizeFields(req.body);
+
+    const errors = validate.updateUserTDO({
+      name,
+      email,
+      phone,
+    });
+
+    if (errors.name || errors.email || errors.phone) {
+      throw ApiError.BAD_REQUEST('Bad request', errors);
+    }
+
+    const user = await userService.findByEmail(email);
+
+    if (!user) {
+      throw ApiError.BAD_REQUEST('A user with this email not found');
+    }
+
+    user.name = name;
+    user.email = email;
+    user.phone = phone;
+    user.company = company;
+    user.city = city;
+    user.country = country;
+    user.address = address;
+    user.lang = lang;
+
+    await user.save();
+
+    res.status(200);
+    res.send(userService.normalize(user));
   }
 
   async getAll(req, res) {

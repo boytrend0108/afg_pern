@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { MyTabSwitcher } from '../../../shared/ui';
 import { BasicInfoForm } from '../../../widgets/Forms/BasicInfoForm';
 import { TABS } from '../consts';
@@ -6,16 +6,27 @@ import './ProfilePage.scss';
 import { FavoriteTab } from './FavoriteTab/FavoriteTab';
 import { OffersTab } from './OffersTab/OffersTab';
 import { SearchTab } from './SearchTab/SearchTab';
+import { useEffect } from 'react';
+import localStorageService from '../../../shared/services/localStorageService';
 
 export const ProfilePage = () => {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get('tab');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = localStorageService.get('user');
+
+    if (!user) {
+      navigate('/login', { state: { pathname: 'profile' }, replace: true });
+    }
+  }, []);
 
   return (
     <div className="ProfilePage container">
       <div className="ProfilePage__header">
         <div className="ProfilePage__header--left">
-          <h1 className="ProfilePage__title">Booking Yanmar SV15VT (NEW)</h1>
+          <h1 className="ProfilePage__title">My profile</h1>
         </div>
 
         <div className="ProfilePage__header--right">

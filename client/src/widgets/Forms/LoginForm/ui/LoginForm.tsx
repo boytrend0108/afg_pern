@@ -6,13 +6,20 @@ import { MyButton, MyInput } from '../../../../shared/ui';
 import { validate } from '../helpers/validation';
 import { DtoValidationLogin } from '../types/DtoValidationLogin';
 import { DtoLogin } from '../types/DtoLogin';
+import { user } from '../../../../entities/User';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../shared/hooks/reduxHooks';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [remember, setRemeber] = useState(false);
+  const [remember, setRemeber] = useState(true);
   const [errors, setErrors] = useState<DtoValidationLogin | null>(null);
+  const { loading, error: loginError } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.id as keyof DtoLogin;
@@ -38,6 +45,10 @@ export const LoginForm = () => {
     if (errors && Object.values(errors).includes(false)) {
       return false;
     }
+
+    dispatch(user.login(dto))
+      .unwrap()
+      .then(() => navigate('/'));
   };
 
   return (
@@ -87,8 +98,14 @@ export const LoginForm = () => {
         </MyButton>
 
         <MyButton className="LoginForm__btn" onClick={handleSubmit}>
-          Login
+          {loading ? 'In progress...' : 'Login'}
         </MyButton>
+      </div>
+
+      <div className="LoginForm__error">
+        {loginError && (
+          <p className="LoginForm__error-msg">{loginError.message}</p>
+        )}
       </div>
 
       <div className="LoginForm__horiz">

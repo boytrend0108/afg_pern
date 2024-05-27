@@ -3,12 +3,12 @@ import './InputBox.scss';
 
 type Props = {
   children?: React.ReactNode;
-  value: string;
-  setValue: (v: string) => void;
+  value: string | number;
+  setValue: (v: string | number) => void;
   title: string;
   subtitle: string;
   required: boolean;
-  type?: 'text' | 'email';
+  type?: 'text' | 'email' | 'number';
 };
 
 export const InputBox: React.FC<Props> = ({

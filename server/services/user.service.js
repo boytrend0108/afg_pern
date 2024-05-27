@@ -32,6 +32,14 @@ class userService {
     return user;
   }
 
+  async findByActivationToken(activationToken) {
+    const user = await User.findOne({
+      where: { activationToken },
+    });
+
+    return user;
+  }
+
   async findById(id) {
     const user = await User.findByPk(id, {
       include: [Role],
@@ -78,8 +86,30 @@ class userService {
     return { success: true, message: `Role deleted successfully` };
   }
 
-  normalize({ id, login, email, password, roles }) {
-    return { id, login, email, roles };
+  normalize({
+    id,
+    name,
+    email,
+    roles,
+    country,
+    city,
+    address,
+    company,
+    phone,
+    lang,
+  }) {
+    return {
+      id,
+      name,
+      email,
+      roles,
+      country,
+      city,
+      address,
+      company,
+      phone,
+      lang,
+    };
   }
 }
 
