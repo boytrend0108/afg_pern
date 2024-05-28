@@ -12,6 +12,8 @@ import { BookingPage } from '../pages/Booking';
 import { ProfilePage } from '../pages/Profile';
 import { NewsPage } from '../pages/News';
 import { ActivationPage } from '../pages/ActivationPage';
+import { AdminPage } from '../pages/Admin/AdminPage';
+import { AdminBrands } from '../pages/Admin/AdminBrands';
 
 export const Root = () => {
   return (
@@ -36,6 +38,10 @@ export const Root = () => {
           <Route path="request" element={<RequestPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="*" element={<HomePage />} />
+        </Route>
+
+        <Route path="admin" element={<AdminPage />}>
+          <Route path="brands" element={<AdminBrands />} />
         </Route>
       </Routes>
     </Router>

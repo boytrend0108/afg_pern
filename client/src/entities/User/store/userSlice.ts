@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { UserState } from '../types';
-import { register, login, logout, update } from './thunks';
+import { register, login, logout, update, checkAuth } from './thunks';
 import { handleResponce } from './handleResponse';
 
 const initialState: UserState = {
@@ -34,6 +34,10 @@ export const userSlice = createSlice({
     builder.addCase(update.pending, handleResponce.update);
     builder.addCase(update.fulfilled, handleResponce.update);
     builder.addCase(update.rejected, handleResponce.update);
+
+    builder.addCase(checkAuth.pending, handleResponce.checkAuth);
+    builder.addCase(checkAuth.fulfilled, handleResponce.checkAuth);
+    builder.addCase(checkAuth.rejected, handleResponce.checkAuth);
   },
 });
 

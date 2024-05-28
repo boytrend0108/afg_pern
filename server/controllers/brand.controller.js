@@ -37,7 +37,7 @@ class BrandController {
   }
 
   async remove(req, res) {
-    let { id } = normalizeFields(req.body);
+    let { id } = normalizeFields(req.params);
 
     const errors = validate.singleField(id);
 

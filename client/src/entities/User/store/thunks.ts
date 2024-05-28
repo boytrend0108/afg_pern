@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { userAPI } from '../api';
 import {
+  CHECK_AUTH_PREFIX,
   LOGIN_PREFIX,
   LOGOUT_PREFIX,
   REGISTER_PREFIX,
@@ -31,11 +32,12 @@ export const login = createAsyncThunk(
     try {
       const response = await userAPI.login(dto);
 
-      localStorageService.set('user', response.user);
       localStorageService.set('accessToken', response.accessToken);
 
       return response;
     } catch (err) {
+      localStorageService.remove('accessToken');
+
       return rejectWithValue({
         message: (err as AxiosError).response?.data,
       });
@@ -49,7 +51,7 @@ export const logout = createAsyncThunk(
     try {
       const response = await userAPI.logout();
 
-      localStorageService.remove('user');
+      localStorageService.remove('accessToken');
 
       return response;
     } catch (err) {
@@ -72,6 +74,25 @@ export const update = createAsyncThunk(
 
       return response;
     } catch (err) {
+      return rejectWithValue({
+        message: (err as AxiosError).response?.data,
+      });
+    }
+  },
+);
+
+export const checkAuth = createAsyncThunk(
+  CHECK_AUTH_PREFIX.base,
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await userAPI.checkAuth();
+
+      localStorageService.set('accessToken', response.accessToken);
+
+      return response;
+    } catch (err) {
+      localStorageService.remove('accessToken');
+
       return rejectWithValue({
         message: (err as AxiosError).response?.data,
       });

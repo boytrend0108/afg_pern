@@ -184,6 +184,12 @@ class UserController {
 
     res.send(result);
   }
+
+  async check(req, res) {
+    const { id } = req.user;
+    const user = await userService.findById(id);
+    jwtService.generateTokens(res, user);
+  }
 }
 
 export default new UserController();

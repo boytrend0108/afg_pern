@@ -1,5 +1,5 @@
 import userReducer from './store/userSlice';
-import { register, login, logout, update } from './store/thunks';
+import { register, login, logout, update, checkAuth } from './store/thunks';
 import { userAPI } from './api';
 import * as actions from './store/userSlice';
 
@@ -9,6 +9,7 @@ export const user = {
   login,
   logout,
   update,
+  checkAuth,
   userAPI,
   actions,
 };

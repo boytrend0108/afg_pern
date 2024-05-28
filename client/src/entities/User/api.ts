@@ -34,4 +34,8 @@ export const userAPI = {
   update(dto: UserUpdateType): Promise<UserUpdateType> {
     return httpClient.post('/user/update', dto);
   },
+
+  checkAuth(): Promise<UserLoginResponceType> {
+    return httpClient.post('/user/auth');
+  },
 };

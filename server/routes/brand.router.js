@@ -15,7 +15,7 @@ router.post(
 router.get('/', authMiddleware, catchError(BrandController.getAll));
 router.get('/:id', catchError(BrandController.getOne));
 router.delete(
-  '/delete',
+  '/delete/:id',
   // checkRoleMiddleware(ROLE.ADMIN),
   catchError(BrandController.remove)
 );

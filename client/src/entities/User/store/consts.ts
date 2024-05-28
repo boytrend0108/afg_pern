@@ -25,3 +25,10 @@ export const UPDATE_PREFIX = {
   fulfilled: 'user/update/fulfilled',
   rejected: 'user/update/rejected',
 };
+
+export const CHECK_AUTH_PREFIX = {
+  base: 'user/auth',
+  pending: 'user/auth/pending',
+  fulfilled: 'user/auth/fulfilled',
+  rejected: 'user/auth/rejected',
+};

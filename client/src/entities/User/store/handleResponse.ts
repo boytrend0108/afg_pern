@@ -5,6 +5,7 @@ import {
   REGISTER_PREFIX,
   LOGOUT_PREFIX,
   UPDATE_PREFIX,
+  CHECK_AUTH_PREFIX,
 } from './consts';
 
 export const handleResponce = {
@@ -78,6 +79,26 @@ export const handleResponce = {
         break;
 
       case UPDATE_PREFIX.rejected:
+        state.loading = false;
+        state.error = action.payload;
+        break;
+    }
+  },
+
+  checkAuth(state: UserState, action: PayloadAction<any | any>) {
+    switch (action.type) {
+      case CHECK_AUTH_PREFIX.pending:
+        state.loading = true;
+        state.error = null;
+        break;
+
+      case CHECK_AUTH_PREFIX.fulfilled:
+        state.loading = false;
+        state.user = action.payload.user;
+        state.accessToken = action.payload.accessToken;
+        break;
+
+      case CHECK_AUTH_PREFIX.rejected:
         state.loading = false;
         state.error = action.payload;
         break;

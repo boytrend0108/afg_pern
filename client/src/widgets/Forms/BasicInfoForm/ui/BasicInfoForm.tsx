@@ -15,7 +15,6 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../shared/hooks/reduxHooks';
-import { User } from '../../../../entities/User/types';
 
 export const BasicInfoForm = () => {
   const [name, setName] = useState('');

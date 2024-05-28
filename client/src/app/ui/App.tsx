@@ -12,10 +12,10 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const userFromStorage = localStorageService.get('user');
+    const token = localStorageService.get('accessToken');
 
-    if (userFromStorage) {
-      dispatch(user.actions.setUser(userFromStorage));
+    if (token) {
+      dispatch(user.checkAuth());
     }
   }, []);
 

@@ -13,6 +13,7 @@ router.post('/login', catchError(userController.login));
 router.post('/logout', catchError(userController.logout));
 router.post('/update', authMiddleware, catchError(userController.update));
 router.post('/refresh', catchError(userController.refresh));
+router.post('/auth', authMiddleware, catchError(userController.check));
 
 router.post(
   '/add-role',
