@@ -15,6 +15,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../shared/hooks/reduxHooks';
+import { User } from '../../../../entities/User/types';
 
 export const BasicInfoForm = () => {
   const [name, setName] = useState('');
@@ -28,7 +29,7 @@ export const BasicInfoForm = () => {
   const [flag, setFlag] = useState('gb');
   const [error, setError] = useState<string | null>(null);
   const dispatch = useAppDispatch();
-  const { loading, error: updateError } = useAppSelector((state) => state.user);
+  const { loading } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     const user = localStorageService.get('user');
@@ -53,7 +54,10 @@ export const BasicInfoForm = () => {
     e.preventDefault();
     setError('');
 
+    const { id } = localStorageService.get('user');
+
     const userDTO = {
+      id,
       name,
       phone,
       email,
@@ -72,7 +76,7 @@ export const BasicInfoForm = () => {
 
     dispatch(user.update(userDTO))
       .unwrap()
-      .catch(() => console.log(updateError));
+      .catch((err) => setError(err.message));
   };
 
   const handleChangeLang = (v: { lang: string; fullName: string }) => {

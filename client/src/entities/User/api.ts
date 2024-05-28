@@ -27,6 +27,10 @@ export const userAPI = {
     return httpClient.post('/user/logout');
   },
 
+  refresh(): Promise<UserLoginResponceType> {
+    return httpClient.post('/user/refresh');
+  },
+
   update(dto: UserUpdateType): Promise<UserUpdateType> {
     return httpClient.post('/user/update', dto);
   },

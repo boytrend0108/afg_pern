@@ -7,8 +7,8 @@ class authService {
       next();
     }
 
-    const autorization = req.headers.authorization || '';
-    const token = autorization.split(' ')[1];
+    const autorization = req.headers['authorization'] || '';
+    const [, token] = autorization.split(' ');
     const user = jwtService.verifyAccess(token);
 
     if (!autorization || !token || !user) {

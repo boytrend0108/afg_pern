@@ -3,6 +3,7 @@ import userController from '../controllers/user.controller.js';
 import catchError from '../middlewares/catchErrorMiddleware.js';
 import { ROLE } from '../constants/roles.js';
 import { checkRoleMiddleware } from '../middlewares/checkRoleMiddleware.js';
+import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 const router = new Router();
 
@@ -10,7 +11,8 @@ router.post('/registration', catchError(userController.register));
 router.get('/activate/:activationToken', catchError(userController.activate));
 router.post('/login', catchError(userController.login));
 router.post('/logout', catchError(userController.logout));
-router.post('/update', catchError(userController.update));
+router.post('/update', authMiddleware, catchError(userController.update));
+router.post('/refresh', catchError(userController.refresh));
 
 router.post(
   '/add-role',

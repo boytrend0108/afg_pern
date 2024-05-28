@@ -71,7 +71,7 @@ export const UserRole = sequelize.define('user_role', {
   },
 });
 
-export const Refrefh = sequelize.define('refresh', {
+export const Refresh = sequelize.define('refresh', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -247,8 +247,8 @@ Basket.belongsTo(User);
 User.belongsToMany(Role, { through: 'user_role', foreignKey: 'userId' });
 Role.belongsToMany(User, { through: 'user_role', foreignKey: 'roleId' });
 
-User.hasOne(Refrefh);
-Refrefh.belongsTo(User);
+User.hasOne(Refresh);
+Refresh.belongsTo(User);
 
 User.belongsToMany(Product, { through: 'order' });
 Product.belongsToMany(User, { through: 'order' });
@@ -281,7 +281,7 @@ export default {
   User,
   Role,
   UserRole,
-  Refrefh,
+  Refresh,
   Basket,
   BasketProduct,
   Product,

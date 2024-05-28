@@ -45,7 +45,7 @@ class userService {
       include: [Role],
     });
 
-    return this.normalize(user);
+    return user;
   }
 
   async addRole(userId, roleName) {

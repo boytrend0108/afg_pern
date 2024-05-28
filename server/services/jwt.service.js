@@ -1,12 +1,13 @@
 import jwt from 'jsonwebtoken';
-import 'dotenv';
+import 'dotenv/config';
 
-import { Refrefh } from '../models/models.js';
+import { Refresh } from '../models/models.js';
 import userService from './user.service.js';
 
 class JwtService {
   signAccess(user) {
-    return jwt.sign(user, process.env.JWT_KEY, { expiresIn: '24h' });
+    const { id, roles } = user;
+    return jwt.sign({ id, roles }, process.env.JWT_KEY, { expiresIn: '24h' });
   }
 
   verifyAccess(token) {
@@ -18,7 +19,8 @@ class JwtService {
   }
 
   signRefresh(user) {
-    return jwt.sign(user, process.env.JWT_REFRESH_KEY);
+    const { id, roles } = user;
+    return jwt.sign({ id, roles }, process.env.JWT_REFRESH_KEY);
   }
 
   verifyRefresh(token) {
@@ -30,10 +32,10 @@ class JwtService {
   }
 
   async save(newToken, userId) {
-    const token = await Refrefh.findOne({ where: { userId } });
+    const token = await Refresh.findOne({ where: { userId } });
 
     if (!token) {
-      await Refrefh.create({ refresh: newToken, userId });
+      await Refresh.create({ refresh: newToken, userId });
       return;
     }
 
@@ -41,8 +43,12 @@ class JwtService {
     await token.save();
   }
 
+  async getByToken(token) {
+    return Refresh.findOne({ where: { refresh: token } });
+  }
+
   async remove(userId) {
-    await Refrefh.destroy({ where: { userId } });
+    await Refresh.destroy({ where: { userId } });
   }
 
   async generateTokens(res, user) {

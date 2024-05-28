@@ -94,14 +94,9 @@ class UserController {
 
   async logout(req, res) {
     const { refreshToken } = req.cookies;
-
-    if (!refreshToken) {
-      throw ApiError.UNAUTHORIZED();
-    }
-
     const user = jwtService.verifyRefresh(refreshToken);
 
-    if (!user) {
+    if (!user || !refreshToken) {
       throw ApiError.UNAUTHORIZED();
     }
 
@@ -109,8 +104,21 @@ class UserController {
     res.sendStatus(204);
   }
 
+  async refresh(req, res) {
+    const { refreshToken } = req.cookies;
+
+    const user = jwtService.verifyRefresh(refreshToken);
+    const token = await jwtService.getByToken(refreshToken);
+
+    if (!user || !token) {
+      throw ApiError.UNAUTHORIZED();
+    }
+
+    jwtService.generateTokens(res, user);
+  }
+
   async update(req, res) {
-    let { name, email, phone, country, city, address, company, lang } =
+    let { name, email, phone, country, city, address, company, lang, id } =
       normalizeFields(req.body);
 
     const errors = validate.updateUserTDO({
@@ -123,7 +131,7 @@ class UserController {
       throw ApiError.BAD_REQUEST('Bad request', errors);
     }
 
-    const user = await userService.findByEmail(email);
+    const user = await userService.findById(id);
 
     if (!user) {
       throw ApiError.BAD_REQUEST('A user with this email not found');

@@ -66,7 +66,9 @@ export const update = createAsyncThunk(
     try {
       const response = await userAPI.update(dto);
 
-      localStorageService.set('user', response);
+      if (response) {
+        localStorageService.set('user', response);
+      }
 
       return response;
     } catch (err) {
