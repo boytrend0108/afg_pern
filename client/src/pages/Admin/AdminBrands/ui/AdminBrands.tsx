@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { CreateBrand } from '../../AdminPage/ui/modals/CreateBrand/CreateBrand';
 import './AdminBrands.scss';
 import { brandAPI } from '../../../../entities/BrandItem';
 import { BrandCreateResponce } from '../../../../entities/BrandItem/types';
 import { MyLoader } from '../../../../shared/ui/MyLoader/MyLoader';
+import { CreateBrand } from '../../../../features/CreateBrand/CreateBrand';
 
 export const AdminBrands = () => {
   const [showBrand, setShowBrand] = useState(false);

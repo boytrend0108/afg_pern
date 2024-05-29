@@ -14,6 +14,7 @@ import { NewsPage } from '../pages/News';
 import { ActivationPage } from '../pages/ActivationPage';
 import { AdminPage } from '../pages/Admin/AdminPage';
 import { AdminBrands } from '../pages/Admin/AdminBrands';
+import { AdminCategories } from '../pages/Admin/AdminCategories';
 
 export const Root = () => {
   return (
@@ -42,6 +43,7 @@ export const Root = () => {
 
         <Route path="admin" element={<AdminPage />}>
           <Route path="brands" element={<AdminBrands />} />
+          <Route path="categories" element={<AdminCategories />} />
         </Route>
       </Routes>
     </Router>

@@ -1,8 +1,10 @@
+import sharp from 'sharp';
+import 'dotenv/config';
 import ApiError from '../exeptions/apiError.js';
 import CategoryService from '../services/category.service.js';
 import { normalizeFields } from '../services/normalizeField.service.js';
 import validate from '../services/validate.service.js';
-import { v4 as uuidv4 } from 'uuid';
+import { googleService } from '../services/google.service.js';
 
 class CategoryController {
   async create(req, res) {
@@ -13,16 +15,23 @@ class CategoryController {
       throw ApiError.BAD_REQUEST('Name is required');
     }
 
-    const { image } = req.files;
+    let { image } = req.files;
 
     if (!image) {
       throw ApiError.BAD_REQUEST('Image is required');
     }
 
-    let fileName = uuidv4() + '.webp';
-    image.mv('../server/static/categories/' + fileName);
+    const fileName = image.name.split('.')[0] + '.webp';
+    image = sharp(image.data).webp();
 
-    const category = await CategoryService.create({ name, image: fileName });
+    const response = await googleService.uploadFile(
+      fileName,
+      image,
+      process.env.GOOGLE_CATEGORY_FOLDER_ID
+    );
+    const imageId = response.id;
+
+    const category = await CategoryService.create({ name, image: imageId });
 
     res.status(201);
     res.send(category);
@@ -46,7 +55,7 @@ class CategoryController {
   }
 
   async remove(req, res) {
-    let { id } = normalizeFields(req.body);
+    let { id, imageId } = normalizeFields(req.params);
 
     const errors = validate.singleField(id);
 
@@ -55,6 +64,10 @@ class CategoryController {
     }
 
     await CategoryService.remove(id);
+    await googleService.deleteFile(
+      imageId,
+      process.env.GOOGLE_CATEGORY_FOLDER_ID
+    );
 
     res.status(200);
     res.send('Category has deleted');

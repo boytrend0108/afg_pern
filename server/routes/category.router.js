@@ -15,7 +15,7 @@ router.get('/', catchError(CategoryController.getAll));
 router.get('/:id', catchError(CategoryController.getOne));
 
 router.delete(
-  '/delete',
+  '/delete/:id/:imageId',
   // checkRoleMiddleware(ROLE.ADMIN),
   catchError(CategoryController.remove)
 );

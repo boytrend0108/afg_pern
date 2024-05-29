@@ -7,7 +7,7 @@ import { userAPI } from '../../entities/User/api';
 import localStorageService from '../../shared/services/localStorageService';
 
 export const httpClient: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL + '/api',
   withCredentials: true,
 });
 

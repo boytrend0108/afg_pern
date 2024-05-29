@@ -1,6 +1,6 @@
 import { Alert, Button, Form, Modal } from 'react-bootstrap';
 import React, { useState } from 'react';
-import { brandAPI } from '../../../../../../entities/BrandItem';
+import { brandAPI } from '../../entities/BrandItem';
 
 type Props = {
   show: boolean;

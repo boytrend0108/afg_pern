@@ -1,65 +1,91 @@
+/* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './AdminCategories.scss';
 import { MyLoader } from '../../../../shared/ui/MyLoader/MyLoader';
+import {
+  CategoryCreateResponce,
+  CategoryDeleteDTO,
+} from '../../../../entities/CategoryItem/types';
+import { categoryAPI } from '../../../../entities/CategoryItem/api';
+import { CreateCategory } from '../../../../features/CreateCategory/CreateCategory';
+import { GOOGLE_DRIVE_URL } from '../../../../shared/consts/google';
 
 export const AdminCategories = () => {
-  const [showBrand, setShowBrand] = useState(false);
-  const [brands, setBrands] = useState<CategoryCreateResponce[]>([]);
+  const [showCategory, setShowCategoryd] = useState(false);
+  const [categories, setCategories] = useState<CategoryCreateResponce[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    getBrands();
-  }, [showBrand]);
+    getCategories();
+  }, [showCategory]);
 
-  const getBrands = () => {
+  const getCategories = () => {
     setLoading(true);
 
-    brandAPI
+    categoryAPI
       .getAll()
-      .then(setBrands)
+      .then(setCategories)
       .catch((er) => setError(er.message || 'Something went wrong'))
       .finally(() => setLoading(false));
   };
 
-  const deleteBrand = (id: number) => {
+  const deleteCategory = (data: CategoryDeleteDTO) => {
     setError('');
 
-    brandAPI
-      .delete(id)
+    categoryAPI
+      .delete(data)
       .then(() => {
-        setBrands((current) => current.filter((br) => br.id !== id));
+        setCategories((current) => current.filter((br) => br.id !== data.id));
       })
       .catch((err) => setError(err.message || 'Something went wrong'));
   };
 
   return (
-    <div className="AdminBrands">
+    <div className="AdminCategories">
       <div className="AdminPage__buttons">
-        <Button onClick={() => setShowBrand(true)}>Add brand</Button>
+        <Button onClick={() => setShowCategoryd(true)}>Add category</Button>
       </div>
 
-      <CreateBrand show={showBrand} onHide={() => setShowBrand(false)} />
+      <CreateCategory
+        show={showCategory}
+        onHide={() => setShowCategoryd(false)}
+      />
 
-      <table className="AdminBrands__table">
+      <table className="AdminCategories__table">
         <thead>
           <tr>
             <th scope="col">id</th>
             <th scope="col" style={{ width: '100%' }}>
               name
             </th>
+            <th scope="col">image</th>
             <th scope="col"></th>
           </tr>
         </thead>
 
         <tbody>
-          {brands.map((br) => (
-            <tr key={br.id}>
-              <td scope="row">{br.id}</td>
-              <td>{br.name}</td>
-              <td className="AdminBrands__td--last">
-                <Button variant="danger" onClick={() => deleteBrand(br.id)}>
+          {categories.map((cat) => (
+            <tr key={cat.id}>
+              <td scope="row">{cat.id}</td>
+              <td>{cat.name}</td>
+              <td>
+                <img
+                  crossOrigin="anonymous"
+                  src={GOOGLE_DRIVE_URL + cat.image}
+                  alt="image"
+                  width={70}
+                  height={70}
+                />
+              </td>
+              <td className="AdminCategories__td--last">
+                <Button
+                  variant="danger"
+                  onClick={() =>
+                    deleteCategory({ id: cat.id, fileId: cat.image })
+                  }
+                >
                   Delete
                 </Button>
               </td>
@@ -69,12 +95,12 @@ export const AdminCategories = () => {
       </table>
 
       {loading && (
-        <div className="AdminBrands__loader">
+        <div className="AdminCategories__loader">
           <MyLoader />
         </div>
       )}
 
-      {error && <p className="AdminBrands__error">{error}</p>}
+      {error && <p className="AdminCategories__error">{error}</p>}
     </div>
   );
 };
