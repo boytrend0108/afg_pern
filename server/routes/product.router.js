@@ -8,7 +8,7 @@ const router = new Router();
 
 router.post(
   '/create',
-  checkRoleMiddleware(ROLE.ADMIN),
+  // checkRoleMiddleware(ROLE.MANAGER),
   catchError(productController.create)
 );
 

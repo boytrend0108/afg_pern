@@ -1,7 +1,9 @@
 import { Product } from '../models/models.js';
+import { ProductImage } from '../models/models.js';
 
 class ProductService {
   async create(product) {
+    // const {}
     const newProduct = await Product.create(product);
 
     return newProduct;
@@ -55,6 +57,10 @@ class ProductService {
         id,
       },
     });
+  }
+
+  async saveImage({ imageId, productId }) {
+    await ProductImage.create({ image: imageId, productId });
   }
 }
 

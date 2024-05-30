@@ -8,14 +8,30 @@ import { googleService } from '../services/google.service.js';
 
 class CategoryController {
   async create(req, res) {
-    let { name, image } = normalizeFields(req.body);
+    let { name } = normalizeFields(req.body);
     const errors = validate.singleField({ name });
 
-    if (errors.name || errors.image) {
-      throw ApiError.BAD_REQUEST('Name and image aer required');
+    if (errors.name) {
+      throw ApiError.BAD_REQUEST('Name is required');
     }
 
-    const category = await CategoryService.create({ name, image });
+    let { image } = req.files;
+
+    if (!image) {
+      throw ApiError.BAD_REQUEST('Image is required');
+    }
+
+    const fileName = image.name.split('.')[0] + '.webp';
+    image = sharp(image.data).webp();
+
+    const response = await googleService.uploadFile(
+      fileName,
+      image,
+      process.env.GOOGLE_CATEGORY_FOLDER_ID
+    );
+    const imageId = response.id;
+
+    const category = await CategoryService.create({ name, image: imageId });
 
     res.status(201);
     res.send(category);
@@ -48,6 +64,10 @@ class CategoryController {
     }
 
     await CategoryService.remove(id);
+    await googleService.deleteFile(
+      imageId,
+      process.env.GOOGLE_CATEGORY_FOLDER_ID
+    );
 
     res.status(200);
     res.send('Category has deleted');

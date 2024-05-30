@@ -1,19 +1,21 @@
 import ApiError from '../exeptions/apiError.js';
-import { v4 as uuidv4 } from 'uuid';
+import 'dotenv/config';
+import sharp from 'sharp';
 
 import { normalizeFields } from '../services/normalizeField.service.js';
 import productService from '../services/product.service.js';
 import validate from '../services/validate.service.js';
 import { ProductInfo } from '../models/models.js';
+import { googleService } from '../services/google.service.js';
 
 class ProductController {
   async create(req, res) {
-    let { title, price, year, hours, brandId, categoryId, info } =
-      normalizeFields(req.body);
+    // let { title, price, year, hours, brandId, categoryId } = normalizeFields(
+    //   req.body
+    // );
 
-    const { image } = req.files;
-    let fileName = uuidv4() + '.webp';
-    image.mv('../server/static/products/' + fileName);
+    const dto = normalizeFields(req.body);
+    let { title, price, year, hours, brandId, categoryId, ...info } = dto;
 
     const product = {
       title,
@@ -22,33 +24,43 @@ class ProductController {
       hours,
       brandId,
       categoryId,
-      image: fileName,
     };
 
     const errors = validate.productDTO(product);
 
-    if (
-      errors.title ||
-      errors.price ||
-      errors.year ||
-      errors.hours ||
-      errors.image
-    ) {
+    if (errors.title || errors.price || errors.year || errors.hours) {
       throw ApiError.BAD_REQUEST('All fields are required', errors);
     }
 
     const newProduct = await productService.create(product);
 
     if (info) {
-      info = JSON.parse(info);
-      info.forEach((i) => {
+      Object.entries(info).forEach(([key, value]) => {
         ProductInfo.create({
           productId: newProduct.id,
-          title: i.title,
-          description: i.description,
+          title: key,
+          description: value,
         });
       });
     }
+
+    // upload images
+
+    const { images } = req.files;
+
+    images.forEach(async (img) => {
+      const fileName = img.name.split('.')[0] + '.webp';
+      img = sharp(img.data).webp();
+
+      const response = await googleService.uploadFile(
+        fileName,
+        img,
+        process.env.GOOGLE_PRODUCTS_FOLDER_ID
+      );
+
+      const imageId = response.id;
+      await productService.saveImage({ imageId, productId: newProduct.id });
+    });
 
     res.status(201);
     res.send(newProduct);

@@ -131,6 +131,19 @@ export const Product = sequelize.define('product', {
     allowNull: false,
   },
 
+  // image: {
+  //   type: DataTypes.STRING,
+  //   allowNull: false,
+  // },
+});
+
+export const ProductImage = sequelize.define('product_image', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+
   image: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -264,6 +277,9 @@ Product.belongsTo(Brand);
 
 Product.hasMany(ProductInfo);
 ProductInfo.belongsTo(Product);
+
+Product.hasMany(ProductImage);
+ProductImage.belongsTo(Product);
 
 User.hasMany(Reserve);
 Reserve.belongsTo(Product);

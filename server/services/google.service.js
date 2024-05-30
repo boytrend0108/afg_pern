@@ -1,5 +1,6 @@
 import { google } from 'googleapis';
 import 'dotenv/config';
+import sharp from 'sharp';
 
 const authorize = () => {
   const oauth2Client = new google.auth.OAuth2(
