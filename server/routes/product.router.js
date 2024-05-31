@@ -16,8 +16,8 @@ router.get('/', catchError(productController.getAll));
 router.get('/:id', catchError(productController.getOne));
 
 router.delete(
-  '/delete',
-  checkRoleMiddleware(ROLE.ADMIN),
+  '/delete/:id',
+  // checkRoleMiddleware(ROLE.ADMIN),
   catchError(productController.remove)
 );
 

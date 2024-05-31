@@ -1,13 +1,14 @@
+/* eslint-disable no-shadow */
 import React, { useEffect, useRef, useState } from 'react';
-import { CategoryType } from '../../../shared/types/category';
 import './CategoryItem.scss';
+import { CategoryType } from '../types';
 
 type Props = {
   category: CategoryType;
 };
 
 export const CategoryItem: React.FC<Props> = ({ category }) => {
-  const { image, title } = category;
+  const { image, name } = category;
   const [onHover, setOnhover] = useState(false);
   const item = useRef<HTMLDivElement>(null);
 
@@ -40,12 +41,15 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
         />
       ) : (
         <img
+          crossOrigin="anonymous"
           src={`/my-icons/categories/${image}.svg`}
           className="CategoryItem__img"
+          width={90}
+          height={90}
         />
       )}
 
-      <div className="CategoryItem__title">{title}</div>
+      <div className="CategoryItem__title">{name}</div>
     </div>
   );
 };

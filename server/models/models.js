@@ -130,11 +130,6 @@ export const Product = sequelize.define('product', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-
-  // image: {
-  //   type: DataTypes.STRING,
-  //   allowNull: false,
-  // },
 });
 
 export const ProductImage = sequelize.define('product_image', {
@@ -142,6 +137,31 @@ export const ProductImage = sequelize.define('product_image', {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+  },
+
+  productId: {
+    type: DataTypes.INTEGER,
+    foreignKey: true,
+    allowNull: false,
+  },
+
+  image: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
+
+export const ProductImageInter = sequelize.define('product_image_inter', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+
+  productId: {
+    type: DataTypes.INTEGER,
+    foreignKey: true,
+    allowNull: false,
   },
 
   image: {
@@ -157,13 +177,19 @@ export const ProductInfo = sequelize.define('product_info', {
     primaryKey: true,
   },
 
+  productId: {
+    type: DataTypes.INTEGER,
+    foreignKey: true,
+    allowNull: false,
+  },
+
   title: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 
   description: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
 });
@@ -275,11 +301,32 @@ Product.belongsTo(Category);
 Brand.hasMany(Product);
 Product.belongsTo(Brand);
 
-Product.hasMany(ProductInfo);
-ProductInfo.belongsTo(Product);
+Product.hasMany(ProductImage, {
+  foreignKey: 'productId',
+  onDelete: 'CASCADE',
+});
 
-Product.hasMany(ProductImage);
-ProductImage.belongsTo(Product);
+ProductImage.belongsTo(Product, {
+  foreignKey: 'productId',
+});
+
+Product.hasMany(ProductImageInter, {
+  foreignKey: 'productId',
+  onDelete: 'CASCADE',
+});
+
+ProductImageInter.belongsTo(Product, {
+  foreignKey: 'productId',
+});
+
+Product.hasMany(ProductInfo, {
+  foreignKey: 'productId',
+  onDelete: 'CASCADE',
+});
+
+ProductInfo.belongsTo(Product, {
+  foreignKey: 'productId',
+});
 
 User.hasMany(Reserve);
 Reserve.belongsTo(Product);

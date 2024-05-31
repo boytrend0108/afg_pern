@@ -1,4 +1,10 @@
-import { Product } from '../models/models.js';
+import {
+  Brand,
+  Category,
+  Product,
+  ProductImageInter,
+  ProductInfo,
+} from '../models/models.js';
 import { ProductImage } from '../models/models.js';
 
 class ProductService {
@@ -10,10 +16,38 @@ class ProductService {
   }
 
   async getAll({ brandId, categoryId, limit, offset }) {
-    let products;
+    let response;
 
     if (!brandId && !categoryId) {
-      products = await Product.findAndCountAll({ limit, offset });
+      response = await Product.findAndCountAll({
+        limit,
+        offset,
+        include: [
+          {
+            model: ProductImage,
+            attributes: ['image'],
+          },
+          {
+            model: ProductImageInter,
+            attributes: ['image'],
+          },
+          {
+            model: ProductInfo,
+            attributes: ['title', 'description'],
+          },
+          {
+            model: Brand,
+            attributes: ['name'],
+          },
+          {
+            model: Category,
+            attributes: ['name'],
+          },
+        ],
+        attributes: {
+          exclude: ['createdAt', 'updatedAt'],
+        },
+      });
     }
 
     if (brandId && !categoryId) {
@@ -21,6 +55,28 @@ class ProductService {
         where: { brandId },
         limit,
         offset,
+        include: [
+          {
+            model: ProductImage,
+            attributes: ['image'],
+          },
+          {
+            model: ProductImageInter,
+            attributes: ['image'],
+          },
+          {
+            model: ProductInfo,
+            attributes: ['title', 'description'],
+          },
+          {
+            model: Brand,
+            attributes: ['name'],
+          },
+          {
+            model: Category,
+            attributes: ['name'],
+          },
+        ],
       });
     }
 
@@ -29,6 +85,28 @@ class ProductService {
         where: { categoryId },
         limit,
         offset,
+        include: [
+          {
+            model: ProductImage,
+            attributes: ['image'],
+          },
+          {
+            model: ProductImageInter,
+            attributes: ['image'],
+          },
+          {
+            model: ProductInfo,
+            attributes: ['title', 'description'],
+          },
+          {
+            model: Brand,
+            attributes: ['name'],
+          },
+          {
+            model: Category,
+            attributes: ['name'],
+          },
+        ],
       });
     }
 
@@ -37,14 +115,69 @@ class ProductService {
         where: { categoryId, brandId },
         limit,
         offset,
+        include: [
+          {
+            model: ProductImage,
+            attributes: ['image'],
+          },
+          {
+            model: ProductImageInter,
+            attributes: ['image'],
+          },
+          {
+            model: ProductInfo,
+            attributes: ['title', 'description'],
+          },
+          {
+            model: Brand,
+            attributes: ['name'],
+          },
+          {
+            model: Category,
+            attributes: ['name'],
+          },
+        ],
       });
     }
 
-    return products;
+    response.products = this.prepareProduct(response);
+
+    return {
+      count: response.count,
+      products: response.products,
+    };
   }
 
   async getOne(id) {
-    return Product.findByPk(id);
+    let response = await Product.findByPk(id, {
+      include: [
+        {
+          model: ProductImage,
+          attributes: ['image'],
+        },
+        {
+          model: ProductImageInter,
+          attributes: ['image'],
+        },
+        {
+          model: ProductInfo,
+          attributes: ['title', 'description'],
+        },
+        {
+          model: Brand,
+          attributes: ['name'],
+        },
+        {
+          model: Category,
+          attributes: ['name'],
+        },
+      ],
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    });
+
+    return this.prepareProduct(response);
   }
 
   async remove(id) {
@@ -61,6 +194,60 @@ class ProductService {
 
   async saveImage({ imageId, productId }) {
     await ProductImage.create({ image: imageId, productId });
+  }
+
+  async saveImageInter({ imageId, productId }) {
+    await ProductImageInter.create({ image: imageId, productId });
+  }
+
+  async getImagesById(productId) {
+    const images = await ProductImage.findAll({
+      where: { productId },
+      attributes: ['image'],
+    });
+
+    const imageUrls = images.map((image) => image.image);
+    return imageUrls;
+  }
+
+  async getImagesInterById(productId) {
+    const images = await ProductImageInter.findAll({
+      where: { productId },
+      attributes: ['image'],
+    });
+
+    const imageUrls = images.map((image) => image.image);
+    return imageUrls;
+  }
+
+  prepareProduct(response) {
+    if (response.rows) {
+      return response.rows.map((product) => {
+        return {
+          ...product.dataValues,
+          product_images: product.product_images.map((image) => image.image),
+          product_image_inters: product.product_image_inters.map(
+            (image) => image.image
+          ),
+          brand: product.brand.name,
+          category: product.category.name,
+        };
+      });
+    }
+
+    const product = {
+      ...response.dataValues,
+      product_images: response.product_images.map((image) => image.image),
+      product_image_inters: response.product_image_inters.map(
+        (image) => image.image
+      ),
+      brand: response.brand.name,
+      category: response.category.name,
+    };
+
+    console.log('>>>>>', product);
+
+    return product;
   }
 }
 

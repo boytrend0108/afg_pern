@@ -39,7 +39,7 @@ class CategoryController {
   }
 
   async remove(req, res) {
-    let { id, imageId } = normalizeFields(req.params);
+    let { id } = normalizeFields(req.params);
 
     const errors = validate.singleField(id);
 

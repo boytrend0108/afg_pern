@@ -5,6 +5,11 @@
   flex-direction: column;
   gap: 50px;
 
+  &__wr {
+    overflow: hidden;
+    transition: height ease $transition-duration;
+  }
+
   &__list {
     --cell-size: 160px;
     display: grid;

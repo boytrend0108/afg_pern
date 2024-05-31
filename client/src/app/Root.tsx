@@ -15,6 +15,7 @@ import { ActivationPage } from '../pages/ActivationPage';
 import { AdminPage } from '../pages/Admin/AdminPage';
 import { AdminBrands } from '../pages/Admin/AdminBrands';
 import { AdminCategories } from '../pages/Admin/AdminCategories';
+import { AdminProducts } from '../pages/Admin/AdminProducts';
 
 export const Root = () => {
   return (
@@ -44,6 +45,7 @@ export const Root = () => {
         <Route path="admin" element={<AdminPage />}>
           <Route path="brands" element={<AdminBrands />} />
           <Route path="categories" element={<AdminCategories />} />
+          <Route path="products" element={<AdminProducts />} />
         </Route>
       </Routes>
     </Router>

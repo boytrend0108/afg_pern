@@ -3,7 +3,7 @@ export type CategoryCreateDTO = {
   image: Blob;
 };
 
-export type CategoryCreateResponce = {
+export type CategoryType = {
   id: number;
   name: string;
   image: string;

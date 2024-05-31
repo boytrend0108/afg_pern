@@ -1,48 +1,69 @@
-import { CategoryItem } from '../../../entities/CategoryItem';
+/* eslint-disable no-console */
+import {
+  CategoryType,
+  CategoryItem,
+  categoryAPI,
+} from '../../../entities/CategoryItem';
 import cn from 'classnames';
 
 import './CategoryList.scss';
-import { Fragment, useRef, useState } from 'react';
-import { CATEGORIES } from '../../../shared/consts/categories';
-import { useSetHeight } from '../hooks/useSetHeight';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import { useAdjustBtnVisibility } from '../hooks/useAdjustBtnVisibility';
+import { useAdjustWrapperHeight } from '../hooks/useAdjustWrapperHeight';
 
 export const CategoryList = () => {
   const [showAll, setShowAll] = useState(false);
-  const [listHeight, setListHeight] = useState(160);
-  const list = useRef(null);
+  const [buttonVisible, setBattonVisible] = useState(false);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const list = useRef<HTMLDivElement>(null);
+  const wrapper = useRef<HTMLDivElement>(null);
 
-  useSetHeight(list, setListHeight);
+  useAdjustBtnVisibility({
+    list,
+    wrapper,
+    setBattonVisible,
+    categories,
+  });
+
+  useAdjustWrapperHeight({ wrapper, list, showAll });
+
+  useEffect(() => {
+    categoryAPI
+      .getAll()
+      .then(setCategories)
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="CategoryList">
-      <div
-        ref={list}
-        className="CategoryList__list"
-        style={{ height: showAll ? `${listHeight}px` : '146px' }}
-      >
-        {CATEGORIES.map((c) => (
-          <Fragment key={c.id}>
-            <CategoryItem category={c} />
-          </Fragment>
-        ))}
+      <div className="CategoryList__wr" ref={wrapper}>
+        <div ref={list} className="CategoryList__list">
+          {categories.map((c) => (
+            <Fragment key={c.id}>
+              <CategoryItem category={c} />
+            </Fragment>
+          ))}
+        </div>
       </div>
 
-      <button
-        className={cn('CategoryList__btn', {
-          'CategoryList__btn---active': showAll,
-        })}
-        onClick={() => setShowAll(!showAll)}
-      >
-        {showAll ? 'Hide all categories' : 'View all categories'}
-
-        <img
-          src="/my-icons/arrow-down.png"
-          alt="view all"
-          className={cn('CategoryList__arrow', {
-            'CategoryList__arrow--active': showAll,
+      {buttonVisible && (
+        <button
+          className={cn('CategoryList__btn', {
+            'CategoryList__btn---active': showAll,
           })}
-        />
-      </button>
+          onClick={() => setShowAll(!showAll)}
+        >
+          {showAll ? 'Hide all categories' : 'View all categories'}
+
+          <img
+            src="/my-icons/arrow-down.png"
+            alt="view all"
+            className={cn('CategoryList__arrow', {
+              'CategoryList__arrow--active': showAll,
+            })}
+          />
+        </button>
+      )}
     </div>
   );
 };

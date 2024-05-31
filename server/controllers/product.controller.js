@@ -10,11 +10,8 @@ import { googleService } from '../services/google.service.js';
 
 class ProductController {
   async create(req, res) {
-    // let { title, price, year, hours, brandId, categoryId } = normalizeFields(
-    //   req.body
-    // );
-
     const dto = normalizeFields(req.body);
+
     let { title, price, year, hours, brandId, categoryId, ...info } = dto;
 
     const product = {
@@ -44,9 +41,7 @@ class ProductController {
       });
     }
 
-    // upload images
-
-    const { images } = req.files;
+    const { images, imagesInter } = req.files;
 
     images.forEach(async (img) => {
       const fileName = img.name.split('.')[0] + '.webp';
@@ -60,6 +55,23 @@ class ProductController {
 
       const imageId = response.id;
       await productService.saveImage({ imageId, productId: newProduct.id });
+    });
+
+    imagesInter.forEach(async (img) => {
+      const fileName = img.name.split('.')[0] + '.webp';
+      img = sharp(img.data).webp();
+
+      const response = await googleService.uploadFile(
+        fileName,
+        img,
+        process.env.GOOGLE_PRODUCTS_INTER_FOLDER_ID
+      );
+
+      const imageId = response.id;
+      await productService.saveImageInter({
+        imageId,
+        productId: newProduct.id,
+      });
     });
 
     res.status(201);
@@ -95,15 +107,29 @@ class ProductController {
   }
 
   async remove(req, res) {
-    let { id } = normalizeFields(req.body);
+    let { id } = req.params;
 
-    const errors = validate.singleField(id);
-
-    if (errors.id) {
+    if (!id) {
       throw ApiError.BAD_REQUEST('Product id  is required');
     }
 
+    const images = await productService.getImagesById(id);
+    const imagesInter = await productService.getImagesInterById(id);
     const product = await productService.remove(id);
+
+    images.forEach(async (img) => {
+      await googleService.deleteFile(
+        img,
+        process.env.GOOGLE_PRODUCTS_FOLDER_ID
+      );
+    });
+
+    imagesInter.forEach(async (img) => {
+      await googleService.deleteFile(
+        img,
+        process.env.GOOGLE_PRODUCTS_INTER_FOLDER_ID
+      );
+    });
 
     res.send('Product has deleted');
   }

@@ -116,6 +116,7 @@
   }
 
   &__info {
+    display: flex;
     gap: 30px;
     align-items: center;
 
@@ -140,7 +141,7 @@
     justify-content: flex-start;
     gap: 10px;
 
-    @include on-desktop-s {
+    @include on-desktop {
       flex-direction: column;
     }
 
@@ -157,7 +158,7 @@
     @extend %btn-white;
     height: 50px;
 
-    @include on-desktop-s {
+    @include on-desktop {
       width: 100%;
     }
   }

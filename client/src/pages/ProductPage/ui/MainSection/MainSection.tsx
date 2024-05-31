@@ -1,4 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../shared/hooks/reduxHooks';
 import './MainSection.scss';
 import {
   MyBreadcrumb,
@@ -9,18 +14,7 @@ import { OptionGroup } from '../OptionGroup/OptionGroup';
 import { ProductView } from '../ProductView/ProductView';
 import { ProductViewMobile } from '../ProductViewMobile/ProductViewMobile';
 import { CompareBox } from '../CompareBox/CompareBox';
-import React from 'react';
-
-const product = {
-  id: 1,
-  title: 'product name',
-};
-
-const breadcrumbs = [
-  { id: 1, name: 'Home >', path: '/' },
-  { id: 2, name: 'Catalog  >', path: '/catalog' },
-  { id: 3, name: product.title, path: `/product/${product.id}` },
-];
+import * as Product from '../../../../entities/ProductItem';
 
 type Props = {
   showCompare: boolean;
@@ -33,6 +27,27 @@ export const MainSection: React.FC<Props> = ({
   setShowCompare,
   setShowComparisonTable,
 }) => {
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+  const { product } = useAppSelector((state) => state.product);
+
+  const breadcrumbs = [
+    { id: 1, name: 'Home >', path: '/' },
+    { id: 2, name: 'Catalog  >', path: '/catalog' },
+    { id: 3, name: product?.title || '', path: `/product/${product?.id}` },
+  ];
+
+  // eslint-disable-next-line no-console
+  console.log(product);
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+
+    if (id) {
+      dispatch(Product.getOne('61'));
+    }
+  }, []);
+
   return (
     <main className="MainSection">
       <div className="MainSection__top">
@@ -63,30 +78,29 @@ export const MainSection: React.FC<Props> = ({
           <div className="MainSection__options">
             <div className="MainSection__price-box">
               <div className="MainSection__titles">
-                <p className="MainSection__brand">Liebherr</p>
-                <p className="MainSection__model">Liebherr R934C</p>
-                <p className="MainSection__subtitle">
-                  Dutch Machine / Quick Coupler
-                </p>
+                <p className="MainSection__brand">{product?.brand}</p>
+                <p className="MainSection__model">{product?.title}</p>
+                <p className="MainSection__subtitle">{product?.category}</p>
               </div>
 
               <p className="MainSection__price">
-                € 32.500 <span className="MainSection__price-span">excl</span>
+                {`€ ${product?.price}`}
+                <span className="MainSection__price-span">excl</span>
               </p>
             </div>
 
             <div className="MainSection__info">
               <div className="MainSection__info-item">
                 <p className="MainSection__info-title">Year</p>
-                <p className="MainSection__info-value">2008</p>
+                <p className="MainSection__info-value">{product?.year}</p>
               </div>
               <div className="MainSection__info-item">
                 <p className="MainSection__info-title">Hours</p>
-                <p className="MainSection__info-value">12.191</p>
+                <p className="MainSection__info-value">{product?.hours}</p>
               </div>
               <div className="MainSection__info-item">
                 <p className="MainSection__info-title">Reference numbe</p>
-                <p className="MainSection__info-value">BM005801</p>
+                <p className="MainSection__info-value">{`AFG2024${product?.id}`}</p>
               </div>
             </div>
 
@@ -105,7 +119,7 @@ export const MainSection: React.FC<Props> = ({
               </MyButtonWhite>
 
               <MyButtonWhite className="MainSection__btn--white">
-                <p className="MainSection__btn-title">Get in touch</p>
+                Get in touch
               </MyButtonWhite>
 
               <MyButtonWhite className="MainSection__btn--white">

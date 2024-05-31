@@ -1,16 +1,16 @@
 import { httpClient } from '../../app/configs/httpConfig';
-import { CategoryCreateResponce, CategoryDeleteDTO } from './types.ts';
+import { CategoryType, CategoryDeleteDTO } from './types.ts';
 
 export const categoryAPI = {
-  create(categoryDTO: FormData): Promise<CategoryCreateResponce> {
+  create(categoryDTO: FormData): Promise<CategoryType> {
     return httpClient.post('/category/create', categoryDTO);
   },
 
-  getAll(): Promise<CategoryCreateResponce[]> {
+  getAll(): Promise<CategoryType[]> {
     return httpClient.get('/category');
   },
 
   delete(data: CategoryDeleteDTO) {
-    return httpClient.delete(`/category/delete/${data.id}/${data.fileId}`);
+    return httpClient.delete(`/category/delete/${data.id}`);
   },
 };

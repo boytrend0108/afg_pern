@@ -4,16 +4,15 @@ import { Button } from 'react-bootstrap';
 import './AdminCategories.scss';
 import { MyLoader } from '../../../../shared/ui/MyLoader/MyLoader';
 import {
-  CategoryCreateResponce,
+  CategoryType,
   CategoryDeleteDTO,
 } from '../../../../entities/CategoryItem/types';
 import { categoryAPI } from '../../../../entities/CategoryItem/api';
 import { CreateCategory } from '../../../../features/CreateCategory/CreateCategory';
-import { GOOGLE_DRIVE_URL } from '../../../../shared/consts/google';
 
 export const AdminCategories = () => {
   const [showCategory, setShowCategoryd] = useState(false);
-  const [categories, setCategories] = useState<CategoryCreateResponce[]>([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -49,6 +48,7 @@ export const AdminCategories = () => {
       </div>
 
       <CreateCategory
+        existingCategories={categories}
         show={showCategory}
         onHide={() => setShowCategoryd(false)}
       />
@@ -73,7 +73,7 @@ export const AdminCategories = () => {
               <td>
                 <img
                   crossOrigin="anonymous"
-                  src={GOOGLE_DRIVE_URL + cat.image}
+                  src={`/my-icons/categories/${cat.image}.svg`}
                   alt="image"
                   width={70}
                   height={70}

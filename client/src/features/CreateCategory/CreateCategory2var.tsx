@@ -1,28 +1,21 @@
 import { Alert, Button, Form, Modal } from 'react-bootstrap';
 import React, { ChangeEvent, useState } from 'react';
 import { categoryAPI } from '../../entities/CategoryItem/api';
-import { CATEGORIES } from '../../shared/consts/categories';
-import { CategoryType } from '../../entities/CategoryItem';
 
 type Props = {
   show: boolean;
-  existingCategories: CategoryType[];
   onHide: () => void;
 };
 
-export const CreateCategory: React.FC<Props> = ({
-  show,
-  onHide,
-  existingCategories,
-}) => {
+export const CreateCategory: React.FC<Props> = ({ show, onHide }) => {
   const [category, setCategory] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState<Blob | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const addCategory = () => {
-    if (!category) {
-      setError('Celect category name');
+    if (!category.trim() || !image) {
+      setError('Add category name and image');
 
       return;
     }
@@ -44,16 +37,9 @@ export const CreateCategory: React.FC<Props> = ({
       .finally(() => setLoading(false));
   };
 
-  const preparedCategories = CATEGORIES.filter((el) => {
-    return !existingCategories.some((cat) => cat.name === el.title);
-  });
-
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const categoryItem = CATEGORIES.find((el) => el.title === e.target.value);
-
-    if (categoryItem) {
-      setCategory(categoryItem?.title);
-      setImage(categoryItem?.image);
+  const setFile = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setImage(e.target.files[0]);
     }
   };
 
@@ -72,17 +58,16 @@ export const CreateCategory: React.FC<Props> = ({
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Select
-            aria-label="Default select example"
-            onChange={handleChange}
-          >
-            <option> Select Catetory</option>
-            {preparedCategories.map((cat) => (
-              <option value={cat.title} key={cat.id}>
-                {cat.title}
-              </option>
-            ))}
-          </Form.Select>
+          <Form.Control
+            placeholder={'Enter category title'}
+            className="mb-2"
+            onChange={(e) => setCategory(e.target.value)}
+          />
+          <Form.Control
+            placeholder={'Enter category image'}
+            type="file"
+            onChange={setFile}
+          />
         </Form>
       </Modal.Body>
       <Modal.Footer>
