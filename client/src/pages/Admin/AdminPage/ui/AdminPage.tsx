@@ -9,7 +9,7 @@ export const AdminPage = () => {
   return (
     <div className="AdminPage">
       <header className="AdminPage__header">
-        <div className="container">
+        <div className="my-container">
           <div className="Header__content">
             <Link to="/" className="Header__logo">
               <img src="/logo.svg" alt="logo" className="Header__logo-img" />
@@ -37,7 +37,7 @@ export const AdminPage = () => {
         </div>
       </header>
 
-      <main className="AdminPage__main container">
+      <main className="AdminPage__main my-container">
         <Outlet />
       </main>
     </div>

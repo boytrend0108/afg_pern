@@ -5,7 +5,7 @@ type Args = (v: number) => void;
 export const useGetSliderWidth = (setSliderWidth: Args) => {
   useEffect(() => {
     const getSliderWidth = () => {
-      const container = document.querySelector('.container');
+      const container = document.querySelector('.my-container');
       const box = document.querySelector('.MainSection__box');
       let containerPadding;
       let gap;

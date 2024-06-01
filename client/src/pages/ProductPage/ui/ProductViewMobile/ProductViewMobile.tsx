@@ -1,11 +1,17 @@
 import './ProductViewMobile.scss';
-import { MiniSliderMobile } from '../../../../widgets/MiniSliderMobile';
 import { MyTabSwitcher } from '../../../../shared/ui';
 import { useSearchParams } from 'react-router-dom';
 import { TABS } from './consts';
 import { TabType } from './types';
+import { MiniSliderMobile } from '../../../../widgets/Sliders/MiniSliderMobile';
+import { ProductType } from '../../../../entities/ProductItem/types';
+import React from 'react';
 
-export const ProductViewMobile = () => {
+type Props = {
+  product: ProductType | null;
+};
+
+export const ProductViewMobile: React.FC<Props> = ({ product }) => {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get('tab') || 'general';
 
@@ -14,57 +20,24 @@ export const ProductViewMobile = () => {
       <MyTabSwitcher tabs={TABS} />
 
       {tab === TabType.general && (
-        <MiniSliderMobile
-          images={[
-            'excavator-1',
-            'excavator-2',
-            'excavator-3',
-            'excavator-4',
-            'excavator-5',
-            'excavator-6',
-            'excavator-4',
-            'excavator-5',
-            'excavator-6',
-          ]}
-        />
+        <MiniSliderMobile images={product ? product.product_images : []} />
       )}
 
       {tab === TabType.interior && (
         <MiniSliderMobile
-          images={[
-            'excavator-1',
-            'excavator-2',
-            'excavator-3',
-            'excavator-4',
-            'excavator-5',
-            'excavator-6',
-          ]}
+          images={product ? product.product_image_inters : []}
         />
       )}
 
       {tab === TabType.exterior && (
         <MiniSliderMobile
-          images={[
-            'excavator-1',
-            'excavator-2',
-            'excavator-3',
-            'excavator-4',
-            'excavator-5',
-            'excavator-6',
-          ]}
+          images={product ? product.product_image_inters : []}
         />
       )}
 
       {tab === TabType.model && (
         <MiniSliderMobile
-          images={[
-            'excavator-1',
-            'excavator-2',
-            'excavator-3',
-            'excavator-4',
-            'excavator-5',
-            'excavator-6',
-          ]}
+          images={product ? product.product_image_inters : []}
         />
       )}
     </div>

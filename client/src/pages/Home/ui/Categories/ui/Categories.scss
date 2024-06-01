@@ -5,7 +5,7 @@
   flex-direction: column;
 
   &__container {
-    @extend %container;
+    @extend %my-container;
     display: flex;
     flex-direction: column;
     gap: 44px;

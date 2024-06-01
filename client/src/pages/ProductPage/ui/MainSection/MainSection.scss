@@ -109,6 +109,7 @@
   &__price {
     font-size: clamp(1.25rem, 0.975rem + 1.375vw, 2.625rem);
     font-weight: 600;
+    width: 180px;
 
     &-span {
       font-size: 16px;

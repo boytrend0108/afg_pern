@@ -4,18 +4,28 @@ import { MySearch } from '../../../../shared/ui';
 import { CatalogFilters } from '../../../../widgets/CatalogFilters';
 import { CategoryList } from '../../../../widgets/CategoryList';
 import './CatalogPage.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CatalogList } from '../CatalogList/CatalogList';
-
-const machines = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../shared/hooks/reduxHooks';
+import * as productItem from '../../../../entities/ProductItem';
+import { MyLoader } from '../../../../shared/ui/MyLoader/MyLoader';
 
 export const CatalogPage = () => {
   const [showFilters, setShowFilters] = useState(false);
+  const { products, loading, error } = useAppSelector((state) => state.product);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(productItem.getAll());
+  }, []);
 
   return (
     <section
       className={cn('CatalogPage', {
-        container: !showFilters,
+        'my-container': !showFilters,
       })}
     >
       <header className="CatalogPage__header">
@@ -29,7 +39,15 @@ export const CatalogPage = () => {
           setShowFilters={setShowFilters}
         />
 
-        <CatalogList setShowFilters={setShowFilters} machines={machines} />
+        {loading && (
+          <div className="CatalogPage__loader">
+            <MyLoader />
+          </div>
+        )}
+        {error && <p className="CatalogPage__error">Something went wrong...</p>}
+        {!loading && !error && (
+          <CatalogList setShowFilters={setShowFilters} machines={products} />
+        )}
 
         <div
           onClick={() => setShowFilters(false)}

@@ -1,56 +1,31 @@
+import React from 'react';
 import { MiniSlider } from '../../../../widgets/Sliders/MiniSlider';
 import './ProductView.scss';
+import { ProductType } from '../../../../entities/ProductItem/types';
 
-export const ProductView = () => {
+type Props = {
+  product: ProductType | null;
+};
+
+export const ProductView: React.FC<Props> = ({ product }) => {
   return (
     <div className="ProductView">
       <MiniSlider
         title="General view"
         isShow={true}
-        images={[
-          'excavator-1',
-          'excavator-2',
-          'excavator-3',
-          'excavator-4',
-          'excavator-5',
-          'excavator-6',
-          'excavator-4',
-          'excavator-5',
-          'excavator-6',
-        ]}
+        images={product ? product.product_images : []}
       />
       <MiniSlider
         title="Exterior"
-        images={[
-          'excavator-1',
-          'excavator-2',
-          'excavator-3',
-          'excavator-4',
-          'excavator-5',
-          'excavator-6',
-        ]}
+        images={product ? product.product_image_inters : []}
       />
       <MiniSlider
         title="Interior"
-        images={[
-          'excavator-1',
-          'excavator-2',
-          'excavator-3',
-          'excavator-4',
-          'excavator-5',
-          'excavator-6',
-        ]}
+        images={product ? product.product_image_inters : []}
       />
       <MiniSlider
         title="3D model"
-        images={[
-          'excavator-1',
-          'excavator-2',
-          'excavator-3',
-          'excavator-4',
-          'excavator-5',
-          'excavator-6',
-        ]}
+        images={product ? product.product_image_inters : []}
       />
     </div>
   );

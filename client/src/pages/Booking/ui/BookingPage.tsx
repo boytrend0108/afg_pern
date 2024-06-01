@@ -8,7 +8,7 @@ export const BookingPage = () => {
   const [success, setSuccess] = useState(false);
 
   return (
-    <div className="BookingPage container">
+    <div className="BookingPage my-container">
       <div className="BookingPage__header">
         <div className="BookingPage__header--left">
           <h1 className="BookingPage__title">Booking Yanmar SV15VT (NEW)</h1>

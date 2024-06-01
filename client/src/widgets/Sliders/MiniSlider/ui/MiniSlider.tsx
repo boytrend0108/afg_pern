@@ -5,6 +5,7 @@ import './MiniSlider.scss';
 import { useGetSliderWidth } from '../hooks/useGetSliderWidth';
 import { useGetSliderHeight } from '../hooks/useGetSliderHeight';
 import { PREVIEW_WIDTH } from '../consts';
+import { GOOGLE_DRIVE_URL } from '../../../../shared/consts/google';
 
 type Props = {
   images: string[];
@@ -61,7 +62,10 @@ export const MiniSlider: React.FC<Props> = ({
           <div className="MiniSlider__image-box">
             <div className="MiniSlider__image-lable">NEW</div>
             <img
-              src={`/product/${images[image]}.png`}
+              height={570}
+              width={760}
+              crossOrigin="anonymous"
+              src={GOOGLE_DRIVE_URL + images[image]}
               className="MiniSlider__image"
             />
           </div>
@@ -80,7 +84,10 @@ export const MiniSlider: React.FC<Props> = ({
                 <img
                   onClick={() => setImage(i)}
                   key={i}
-                  src={`/product/${img}.png`}
+                  height={75}
+                  width={100}
+                  crossOrigin="anonymous"
+                  src={GOOGLE_DRIVE_URL + img}
                   className="MiniSlider__preview"
                 />
               ))}

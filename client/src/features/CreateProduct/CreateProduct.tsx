@@ -198,7 +198,7 @@ export const CreateProduct: React.FC<Props> = ({ show, onHide }) => {
             <Form.Control
               placeholder={`Enter ${el}`}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-              id={el}
+              id={`${el}`}
               key={el}
               value={(product[el] as string) || ''}
               type="text"
@@ -232,6 +232,7 @@ export const CreateProduct: React.FC<Props> = ({ show, onHide }) => {
         <Button onClick={onHide} variant="danger">
           Close
         </Button>
+
         <Button variant="success" type="submit" onClick={addProduct}>
           {loading ? 'In progress...' : 'Add product'}
         </Button>

@@ -13,6 +13,8 @@ export type ProductOptionsType = {
   hours: number;
   type: string;
   location: string;
+  certificate: string;
+  serialNumber: string;
   descriptions: string;
   height: number;
   width: number;
@@ -24,12 +26,13 @@ export type ProductOptionsType = {
   tracksChain: number;
   tracksPlate: number;
   tracksPlateWidth: number;
-  tracksSproket: number;
+  tracksSprocket: number;
   datchMachine: boolean;
   quickCoupler: boolean;
   radio: boolean;
   extraHuidraulic: boolean;
   centralGreasing: boolean;
+  hammerFunction: boolean;
 };
 
 export type ProductOptionsBooleanType = {
@@ -38,11 +41,12 @@ export type ProductOptionsBooleanType = {
   radio: boolean;
   extraHuidraulic: boolean;
   centralGreasing: boolean;
+  hammerFunction: boolean;
 };
 
 export type OptionType = {
   title: keyof ProductOptionsType;
-  description: string;
+  description: string | boolean | number;
 };
 
 export type ProductType = {
@@ -55,6 +59,8 @@ export type ProductType = {
   year: number;
   hours: number;
   product_infos: OptionType[];
+  product_images: string[];
+  product_image_inters: string[];
 };
 
 export type ResponseGetProducts = {
@@ -65,6 +71,7 @@ export type ResponseGetProducts = {
 export type ProductState = {
   product: null | ProductType;
   products: ProductType[];
+  count: number;
   loading: boolean;
   error: null | string;
 };

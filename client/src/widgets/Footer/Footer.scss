@@ -8,7 +8,7 @@
   font-size: 18px;
 
   &__container {
-    @extend %container;
+    @extend %my-container;
     padding-block: 50px;
     height: 100%;
     display: flex;

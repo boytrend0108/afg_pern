@@ -20,7 +20,7 @@ export const ProductPage = () => {
   }, [showComparisonTable]);
 
   return (
-    <section className="ProductPage container">
+    <section className="ProductPage my-container">
       <header className="ProductPage__header">
         <MySearch style={{ marginBottom: '50px' }} />
         <CategoryList />

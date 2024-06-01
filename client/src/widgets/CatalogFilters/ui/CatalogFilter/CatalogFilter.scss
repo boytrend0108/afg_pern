@@ -91,7 +91,7 @@
       height: 20px;
       width: 20px;
       background-color: $color-primary;
-      // right: 20px;
+      top: 5px;
       pointer-events: none;
     }
   }
@@ -105,7 +105,7 @@
       height: 20px;
       width: 20px;
       background-color: $color-primary;
-      // left: 20px;
+      top: 5px;
       pointer-events: none;
       z-index: 2;
     }

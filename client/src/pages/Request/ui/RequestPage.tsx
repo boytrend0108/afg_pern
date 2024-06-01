@@ -10,7 +10,7 @@ export const RequestPage = () => {
   useScrollToTop();
 
   return (
-    <div className="RequestPage container">
+    <div className="RequestPage my-container">
       <div className="RequestPage__header">
         <div className="RequestPage__header--left">
           <h1 className="RequestPage__title">Leaving a request</h1>

@@ -4,4 +4,5 @@ export const INITIAL_PRODUCT = {
   radio: true,
   extraHuidraulic: true,
   centralGreasing: true,
+  hammerFunction: true,
 };

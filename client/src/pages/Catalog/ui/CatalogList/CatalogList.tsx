@@ -6,10 +6,11 @@ import './CatalogList.scss';
 import { getSearchParams } from '../../../../shared/helpers/getSearchParams';
 import { MyButton } from '../../../../shared/ui';
 import { ProductItem } from '../../../../entities/ProductItem';
+import { ProductType } from '../../../../entities/ProductItem/types';
 
 type Props = {
   setShowFilters: (v: boolean) => void;
-  machines: number[];
+  machines: ProductType[];
 };
 
 export const CatalogList: React.FC<Props> = ({ setShowFilters, machines }) => {
@@ -101,7 +102,7 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters, machines }) => {
       </div>
 
       {machines.map((m) => {
-        return <ProductItem key={m} />;
+        return <ProductItem key={m.id} machine={m} />;
       })}
     </div>
   );

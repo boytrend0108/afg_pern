@@ -6,7 +6,7 @@
   gap: 25px;
 
   &__container {
-    @extend %container;
+    @extend %my-container;
   }
 
   &__title {

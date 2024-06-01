@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { ProductItem } from '../../../../entities/ProductItem';
 import './ProductsSlider.scss';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../shared/hooks/reduxHooks';
+import * as productItem from '../../../../entities/ProductItem';
 
-const slides = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const GAP = 20;
 const ITEM_MAX_WIDTH = 375;
 const ITEM_MIN_WIDTH = 215;
@@ -10,10 +14,16 @@ const ITEM_MIN_WIDTH = 215;
 export const ProductsSlider = () => {
   const [itemWidth, setItemWidth] = useState(375);
   const box = useRef<HTMLDivElement>(null);
+  const { products } = useAppSelector((state) => state.product);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(productItem.getAll());
+  }, []);
 
   useEffect(() => {
     const getItemWidth = () => {
-      const container = document.querySelector('.container');
+      const container = document.querySelector('.my-container');
 
       if (!container) {
         return;
@@ -23,6 +33,7 @@ export const ProductsSlider = () => {
         .getComputedStyle(container)
         .paddingInline.slice(0, -2);
       const viewport = document.body.clientWidth - 2 * +padding;
+
       let itemQuantity = Math.ceil(viewport / ITEM_MAX_WIDTH);
 
       const width = (viewport - (itemQuantity - 1) * GAP) / itemQuantity;
@@ -64,13 +75,13 @@ export const ProductsSlider = () => {
         onClick={() => slide('left')}
       />
       <div className="ProductsSlider__box" ref={box}>
-        {slides.map((sl) => (
+        {products.map((sl) => (
           <div
-            key={sl}
+            key={sl.id}
             className="ProductsSlider__item"
             style={{ width: itemWidth + 'px' }}
           >
-            <ProductItem />
+            <ProductItem machine={sl} />
           </div>
         ))}
       </div>

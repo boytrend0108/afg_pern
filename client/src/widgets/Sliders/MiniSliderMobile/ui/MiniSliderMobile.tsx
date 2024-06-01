@@ -3,6 +3,7 @@ import cn from 'classnames';
 
 import './MiniSliderMobile.scss';
 import { PREVIEW_WIDTH } from '../consts';
+import { GOOGLE_DRIVE_URL } from '../../../../shared/consts/google';
 
 type Props = {
   images: string[];
@@ -33,7 +34,10 @@ export const MiniSliderMobile: React.FC<Props> = ({ images }) => {
           <div className="MiniSliderMobile__image-box">
             <div className="MiniSliderMobile__image-lable">NEW</div>
             <img
-              src={`/product/${images[image]}.png`}
+              src={GOOGLE_DRIVE_URL + images[image]}
+              height={420}
+              width={728}
+              crossOrigin="anonymous"
               className="MiniSliderMobile__image"
             />
           </div>
@@ -48,7 +52,10 @@ export const MiniSliderMobile: React.FC<Props> = ({ images }) => {
                 <img
                   onClick={() => setImage(i)}
                   key={img}
-                  src={`/product/${img}.png`}
+                  height={75}
+                  width={100}
+                  crossOrigin="anonymous"
+                  src={GOOGLE_DRIVE_URL + images[image]}
                   className="MiniSliderMobile__preview"
                 />
               ))}

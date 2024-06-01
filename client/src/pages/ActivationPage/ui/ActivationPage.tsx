@@ -29,7 +29,7 @@ export const ActivationPage = () => {
 
   if (activationToken === 'in-progress') {
     return (
-      <div className="ActivationPage container">
+      <div className="ActivationPage my-container">
         <h3>Registration completed successfully!</h3>
         <strong>Please confirm your email.</strong>
         <strong>We have sent a link to activate your account by email.</strong>
@@ -38,7 +38,7 @@ export const ActivationPage = () => {
   }
 
   return (
-    <div className="ActivationPage container">
+    <div className="ActivationPage my-container">
       {loading && (
         <div className="ActivationPage__loader">
           <MyLoader />

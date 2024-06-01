@@ -1,20 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import './ProductItem.scss';
 import React from 'react';
+import { ProductType } from '../types';
 
 type Props = {
+  machine: ProductType;
   className?: string;
   style?: { maxWidth: string; maxHeight: string };
 };
 
-export const ProductItem: React.FC<Props> = ({ className = '', ...props }) => {
+export const ProductItem: React.FC<Props> = ({
+  className = '',
+  machine,
+  ...props
+}) => {
   const navigate = useNavigate();
 
   return (
     <div
       {...props}
       className={`ProductItem ${className}`}
-      onClick={() => navigate('/product/1')}
+      onClick={() => navigate(`/product/${machine.id}`)}
     >
       <div className="ProductItem__image">
         <img

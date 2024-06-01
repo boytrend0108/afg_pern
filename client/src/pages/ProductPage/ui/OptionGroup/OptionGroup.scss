@@ -35,10 +35,12 @@
     min-width: 130px;
     color: $color-border;
     text-align: justify;
+    text-transform: capitalize;
   }
 
   &__value {
     flex-grow: 1;
     color: $color-primary;
+    text-transform: capitalize;
   }
 }

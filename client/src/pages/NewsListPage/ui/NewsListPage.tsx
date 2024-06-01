@@ -6,7 +6,7 @@ const news = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export const NewsListPage = () => {
   return (
-    <div className="NewsListPage container">
+    <div className="NewsListPage my-container">
       <h1 className="NewsListPage__title">News</h1>
 
       <div className="NewsListPage__list">

@@ -34,7 +34,7 @@
   }
 
   &__container {
-    @extend %container;
+    @extend %my-container;
     height: inherit;
     display: flex;
     align-items: center;

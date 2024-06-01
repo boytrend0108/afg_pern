@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   useAppDispatch,
   useAppSelector,
@@ -15,11 +15,21 @@ import { ProductView } from '../ProductView/ProductView';
 import { ProductViewMobile } from '../ProductViewMobile/ProductViewMobile';
 import { CompareBox } from '../CompareBox/CompareBox';
 import * as Product from '../../../../entities/ProductItem';
+import { getOptions } from './helpers/getOptions';
+import { OptionGroupe } from './types';
 
 type Props = {
   showCompare: boolean;
   setShowCompare: (v: boolean) => void;
   setShowComparisonTable: () => void;
+};
+
+const initialOptions = {
+  common: {},
+  sizes: {},
+  engine: {},
+  tires: {},
+  other: {},
 };
 
 export const MainSection: React.FC<Props> = ({
@@ -30,6 +40,7 @@ export const MainSection: React.FC<Props> = ({
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { product } = useAppSelector((state) => state.product);
+  const [options, setOptions] = useState<OptionGroupe>(initialOptions);
 
   const breadcrumbs = [
     { id: 1, name: 'Home >', path: '/' },
@@ -44,9 +55,19 @@ export const MainSection: React.FC<Props> = ({
     document.documentElement.scrollTop = 0;
 
     if (id) {
-      dispatch(Product.getOne('61'));
+      dispatch(Product.getOne('62'));
+    }
+
+    if (product) {
+      setOptions(getOptions(product.product_infos));
     }
   }, []);
+
+  useEffect(() => {
+    if (product) {
+      setOptions(getOptions(product.product_infos));
+    }
+  }, [product]);
 
   return (
     <main className="MainSection">
@@ -61,9 +82,9 @@ export const MainSection: React.FC<Props> = ({
       </div>
 
       <div className="MainSection__box">
-        {!showCompare && <ProductView />}
+        {!showCompare && <ProductView product={product} />}
 
-        <ProductViewMobile />
+        <ProductViewMobile product={product} />
 
         {showCompare ? (
           <div className="MainSection__compare--mob">
@@ -84,7 +105,7 @@ export const MainSection: React.FC<Props> = ({
               </div>
 
               <p className="MainSection__price">
-                {`€ ${product?.price}`}
+                {`€ ${product?.price} `}
                 <span className="MainSection__price-span">excl</span>
               </p>
             </div>
@@ -130,15 +151,18 @@ export const MainSection: React.FC<Props> = ({
             </div>
 
             <div className="MainSection__option-group">
-              <OptionGroup title="Common" />
+              <OptionGroup title="Common" options={options.common} />
               <div className="MainSection__option-wr">
-                <OptionGroup title="Sizes/Weights" />
-                <OptionGroup title="Tires/Tracks" />
+                <OptionGroup title="Sizes/Weights" options={options.sizes} />
+                <OptionGroup title="Tires/Tracks" options={options.tires} />
               </div>
 
               <div className="MainSection__option-wr">
-                <OptionGroup title="Engine information" />
-                <OptionGroup title="Options" />
+                <OptionGroup
+                  title="Engine information"
+                  options={options.engine}
+                />
+                <OptionGroup title="Options" options={options.other} />
               </div>
             </div>
           </div>

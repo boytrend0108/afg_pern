@@ -11,7 +11,7 @@ export const NewsPage = () => {
   useScrollToTop();
 
   return (
-    <div className="NewsPage container">
+    <div className="NewsPage my-container">
       <main className="NewsPage__main">
         <h1 className="NewsPage__title">Long headline of the news</h1>
         <img

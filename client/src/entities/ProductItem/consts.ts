@@ -7,6 +7,8 @@ export const PRODUCT_OPTIONS: (keyof ProductOptionsType)[] = [
   'hours',
   'type',
   'location',
+  'certificate',
+  'serialNumber',
   'descriptions',
   'height',
   'width',
@@ -17,6 +19,7 @@ export const PRODUCT_OPTIONS: (keyof ProductOptionsType)[] = [
   'capacity',
   'tracksChain',
   'tracksPlate',
+  'trackSprocket',
   'tracksPlateWidth',
 ];
 
@@ -26,4 +29,5 @@ export const PRODUCT_OPTIONS_BOOLEAN: (keyof ProductOptionsBooleanType)[] = [
   'radio',
   'extraHuidraulic',
   'centralGreasing',
+  'hammerFunction',
 ];

@@ -23,7 +23,7 @@ export const ProfilePage = () => {
   }, []);
 
   return (
-    <div className="ProfilePage container">
+    <div className="ProfilePage my-container">
       <div className="ProfilePage__header">
         <div className="ProfilePage__header--left">
           <h1 className="ProfilePage__title">My profile</h1>
