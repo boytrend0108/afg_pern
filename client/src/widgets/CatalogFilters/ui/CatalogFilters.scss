@@ -6,7 +6,7 @@
   align-items: flex-end;
   gap: 20px;
 
-  @include on-tablet {
+  @include on-desktop-s {
     position: absolute;
     left: -150%;
     top: 0;

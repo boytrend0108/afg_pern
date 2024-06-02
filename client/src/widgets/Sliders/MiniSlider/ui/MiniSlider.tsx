@@ -6,17 +6,20 @@ import { useGetSliderWidth } from '../hooks/useGetSliderWidth';
 import { useGetSliderHeight } from '../hooks/useGetSliderHeight';
 import { PREVIEW_WIDTH } from '../consts';
 import { GOOGLE_DRIVE_URL } from '../../../../shared/consts/google';
+import { PromoType } from '../../../../entities/ProductItem/types';
 
 type Props = {
   images: string[];
   title: string;
   isShow?: boolean;
+  promoType: PromoType;
 };
 
 export const MiniSlider: React.FC<Props> = ({
   images,
   title,
   isShow = false,
+  promoType = 'Recomended',
 }) => {
   const [image, setImage] = useState(0);
   const [show, setShow] = useState(isShow);
@@ -60,7 +63,15 @@ export const MiniSlider: React.FC<Props> = ({
           ref={drop}
         >
           <div className="MiniSlider__image-box">
-            <div className="MiniSlider__image-lable">NEW</div>
+            <div
+              className={cn('ProductItem__image-lable', {
+                'ProductItem__image-lable--new': promoType === 'New',
+                'ProductItem__image-lable--top': promoType === 'Top',
+              })}
+            >
+              {promoType}
+            </div>
+
             <img
               height={570}
               width={760}

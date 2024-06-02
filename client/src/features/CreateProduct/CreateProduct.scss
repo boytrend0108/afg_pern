@@ -1,4 +1,8 @@
 .CreateProduct {
+  &__input {
+    max-width: inherit;
+  }
+
   &__text {
     margin: 0;
   }

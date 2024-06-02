@@ -1,7 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import './ProductItem.scss';
 import React from 'react';
-import { ProductType } from '../types';
+import { useNavigate } from 'react-router-dom';
+import cn from 'classnames';
+
+import './ProductItem.scss';
+import { ProductType, PromoType } from '../types';
+import { ARTICUL_PREFIX } from '../../../shared/consts/product';
+import { GOOGLE_DRIVE_URL } from '../../../shared/consts/google';
+// eslint-disable-next-line max-len
+import { getPromoType } from '../../../pages/ProductPage/helpers.ts/getPromoType';
 
 type Props = {
   machine: ProductType;
@@ -15,8 +21,8 @@ export const ProductItem: React.FC<Props> = ({
   ...props
 }) => {
   const navigate = useNavigate();
-
-  console.log(machine);
+  const promoType: PromoType =
+    (machine && getPromoType(machine)) || 'Recomended';
 
   return (
     <div
@@ -27,32 +33,42 @@ export const ProductItem: React.FC<Props> = ({
       <div className="ProductItem__image">
         <img
           className="ProductItem__image-box"
-          src="/products/product-1.png"
+          src={GOOGLE_DRIVE_URL + machine.product_images[0]}
+          crossOrigin="anonymous"
           width="280"
           height="420"
         />
-        <div className="ProductItem__image-lable">NEW</div>
+        <div
+          className={cn('ProductItem__image-lable', {
+            'ProductItem__image-lable--new': promoType === 'New',
+            'ProductItem__image-lable--top': promoType === 'Top',
+          })}
+        >
+          {promoType}
+        </div>
       </div>
 
       <div className="ProductItem__desc">
         <div className="ProductItem__desc-top">
-          <p className="ProductItem__subtitle">Yanmar</p>
-          <h3 className="ProductItem__title">SV15VT (NEW)</h3>
+          <p className="ProductItem__subtitle">{machine.brand}</p>
+          <h3 className="ProductItem__title">{machine.title}</h3>
 
           <p className="ProductItem__breadcrumb">
-            Expandable Undercarriage / New / Unused
+            {`${machine.category} / New / Unused`}
           </p>
         </div>
 
         <div className="ProductItem__desc-bottom">
           <div className="ProductItem__desc-bottom-l">
-            <p className="ProductItem__year">2023</p>
-            <p className="ProductItem__time">2 uren</p>
+            <p className="ProductItem__year">{machine.year}</p>
+            <p className="ProductItem__time">{machine.hours}</p>
           </div>
 
           <div className="ProductItem__desc-bottom-r">
-            <p className="ProductItem__article">BM005821</p>
-            <p className="ProductItem__price">€ 17.500</p>
+            <p className="ProductItem__article">
+              {ARTICUL_PREFIX + machine.id}
+            </p>
+            <p className="ProductItem__price">€ {machine.price}</p>
           </div>
         </div>
       </div>

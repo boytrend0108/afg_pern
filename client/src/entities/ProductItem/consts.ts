@@ -19,7 +19,7 @@ export const PRODUCT_OPTIONS: (keyof ProductOptionsType)[] = [
   'capacity',
   'tracksChain',
   'tracksPlate',
-  'trackSprocket',
+  'tracksSprocket',
   'tracksPlateWidth',
 ];
 

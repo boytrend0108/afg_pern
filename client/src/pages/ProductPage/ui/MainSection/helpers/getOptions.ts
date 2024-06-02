@@ -7,6 +7,8 @@ import { OptionGroupe } from '../types';
 export const getOptions = (data: OptionType[]): OptionGroupe => {
   const options: Partial<ProductOptionsType> = {};
 
+  console.log(data);
+
   data.forEach((el: OptionType) => {
     options[el.title] = el.description;
   });

@@ -1,12 +1,12 @@
 import { ProductItem } from '../../../../entities/ProductItem';
 import './OffersTab.scss';
 
-const favorite = [1, 2, 3, 4, 5];
+const favorite = [];
 
 export const OffersTab = () => {
   return (
     <div className="OffersTab">
-      <h2 className="OffersTab__title">Favorites</h2>
+      <h2 className="OffersTab__title">Vehicles</h2>
 
       <div className="OffersTab__list">
         {favorite.map((f) => (

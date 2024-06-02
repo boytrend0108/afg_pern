@@ -11,7 +11,7 @@ import { ProductOptionsType } from '../../entities/ProductItem/types';
 import './CreateProduct.scss';
 import { productAPI } from '../../entities/ProductItem';
 import { validateForm } from './helpers/validateForm';
-import { INITIAL_PRODUCT } from './consts';
+import { INITIAL_PRODUCT, PROMO_TYPE } from './consts';
 
 type Props = {
   show: boolean;
@@ -165,6 +165,23 @@ export const CreateProduct: React.FC<Props> = ({ show, onHide }) => {
           {categories.map((cat) => (
             <option value={cat.id} key={cat.id}>
               {cat.name}
+            </option>
+          ))}
+        </Form.Select>
+
+        <Form.Select
+          aria-label="select category"
+          onChange={handleChange}
+          id="promoType"
+          required
+          isInvalid={!product.promoType}
+          isValid={!!product.promoType}
+          className="mb-2 CreateProduct__input"
+        >
+          <option>Select Promo type</option>
+          {PROMO_TYPE.map((el) => (
+            <option value={el} key={el}>
+              {el}
             </option>
           ))}
         </Form.Select>

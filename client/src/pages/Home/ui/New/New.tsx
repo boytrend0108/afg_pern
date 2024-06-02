@@ -5,12 +5,12 @@ import { ContactUs } from '../ContactUs/ContactUs';
 import './New.scss';
 import { useGetWidth } from '../../../../shared/hooks';
 import { BREAKPOING } from '../../../../shared/consts/breakPoints';
-
-const products = [1, 2, 3];
+import { useAppSelector } from '../../../../shared/hooks/reduxHooks';
+import { Link } from 'react-router-dom';
 
 export const New = () => {
-  const [showAll, setShowAll] = useState(false);
   const [width, setWidth] = useState(0);
+  const { products } = useAppSelector((state) => state.product);
   const [currentProd, setCurrentProd] = useState(products);
 
   useGetWidth(width, setWidth);
@@ -32,7 +32,7 @@ export const New = () => {
       default:
         setCurrentProd(products);
     }
-  }, [width]);
+  }, [width, products]);
 
   return (
     <div className="New">
@@ -41,19 +41,16 @@ export const New = () => {
 
         <div className="New__row">
           {currentProd.map((item) => (
-            <ProductItem key={item} />
+            <ProductItem key={item.id} machine={item} />
           ))}
 
           <ContactUs />
         </div>
       </div>
 
-      <MyButton
-        className="MyButton New__btn"
-        onClick={() => setShowAll(!showAll)}
-      >
-        {showAll ? 'Hide' : 'See more'}
-      </MyButton>
+      <Link to="catalog?show=new">
+        <MyButton className="MyButton New__btn">'See more'</MyButton>
+      </Link>
     </div>
   );
 };

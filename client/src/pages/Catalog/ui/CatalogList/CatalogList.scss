@@ -1,11 +1,9 @@
 @import '../../../../shared/style/utils.scss';
 
 .CatalogList {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(240px, 376px));
+  display: flex;
+  flex-direction: column;
   gap: 20px;
-  justify-content: center;
-  justify-items: center;
 
   @include on-desktop-s {
     grid-template-columns: repeat(2, minmax(240px, 376px));
@@ -150,6 +148,22 @@
 
     &--asc {
       transform: rotate(0);
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(240px, 376px));
+    gap: 20px;
+    justify-content: center;
+    justify-items: center;
+
+    @include on-tablet-s {
+      grid-template-columns: repeat(2, minmax(240px, 376px));
+    }
+
+    @include on-mobile {
+      grid-template-columns: repeat(1, minmax(240px, 100%));
     }
   }
 }

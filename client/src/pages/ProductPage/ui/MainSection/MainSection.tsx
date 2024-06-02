@@ -17,6 +17,7 @@ import { CompareBox } from '../CompareBox/CompareBox';
 import * as Product from '../../../../entities/ProductItem';
 import { getOptions } from './helpers/getOptions';
 import { OptionGroupe } from './types';
+import { ARTICUL_PREFIX } from '../../../../shared/consts/product';
 
 type Props = {
   showCompare: boolean;
@@ -48,14 +49,11 @@ export const MainSection: React.FC<Props> = ({
     { id: 3, name: product?.title || '', path: `/product/${product?.id}` },
   ];
 
-  // eslint-disable-next-line no-console
-  console.log(product);
-
   useEffect(() => {
     document.documentElement.scrollTop = 0;
 
     if (id) {
-      dispatch(Product.getOne('62'));
+      dispatch(Product.getOne(id));
     }
 
     if (product) {
@@ -121,7 +119,9 @@ export const MainSection: React.FC<Props> = ({
               </div>
               <div className="MainSection__info-item">
                 <p className="MainSection__info-title">Reference numbe</p>
-                <p className="MainSection__info-value">{`AFG2024${product?.id}`}</p>
+                <p className="MainSection__info-value">
+                  {ARTICUL_PREFIX + product?.id}
+                </p>
               </div>
             </div>
 
@@ -139,9 +139,11 @@ export const MainSection: React.FC<Props> = ({
                 Сompare
               </MyButtonWhite>
 
-              <MyButtonWhite className="MainSection__btn--white">
-                Get in touch
-              </MyButtonWhite>
+              <Link to="request">
+                <MyButtonWhite className="MainSection__btn--white">
+                  Get in touch
+                </MyButtonWhite>
+              </Link>
 
               <MyButtonWhite className="MainSection__btn--white">
                 <a href="" className="MainSection__btn-title">
@@ -152,6 +154,7 @@ export const MainSection: React.FC<Props> = ({
 
             <div className="MainSection__option-group">
               <OptionGroup title="Common" options={options.common} />
+
               <div className="MainSection__option-wr">
                 <OptionGroup title="Sizes/Weights" options={options.sizes} />
                 <OptionGroup title="Tires/Tracks" options={options.tires} />

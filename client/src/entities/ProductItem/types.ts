@@ -1,6 +1,7 @@
 export type ProductOptionsType = {
   [key: string]: string | number | string[] | FileList | boolean;
   id: number;
+  promoType: 'new' | 'used' | 'recomended';
   title: string;
   images: string[] | FileList;
   imagesInter: string[] | FileList;
@@ -65,7 +66,7 @@ export type ProductType = {
 
 export type ResponseGetProducts = {
   count: number;
-  rows: ProductType[];
+  products: ProductType[];
 };
 
 export type ProductState = {
@@ -75,3 +76,5 @@ export type ProductState = {
   loading: boolean;
   error: null | string;
 };
+
+export type PromoType = 'New' | 'Recomended' | 'Top';

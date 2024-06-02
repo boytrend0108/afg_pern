@@ -2,7 +2,7 @@ import { Fragment } from 'react/jsx-runtime';
 import { ProductItem } from '../../../../entities/ProductItem';
 import './FavoriteTab.scss';
 
-const favorite = [1, 2, 3, 4, 5];
+const favorite = [];
 
 export const FavoriteTab = () => {
   return (

@@ -59,6 +59,22 @@
     &-lable {
       @include image-label;
     }
+
+    &-lable--top {
+      @include image-label;
+      background-color: $color-secondary;
+      color: $color-primary;
+      font-size: clamp(1.125rem, 1.05rem + 0.375vw, 1.5rem);
+      text-transform: uppercase;
+    }
+
+    &-lable--new {
+      @include image-label;
+      background-color: $color-font-light;
+      color: $color-primary;
+      font-size: clamp(1.125rem, 1.05rem + 0.375vw, 1.5rem);
+      text-transform: uppercase;
+    }
   }
 
   &__slider-wr {

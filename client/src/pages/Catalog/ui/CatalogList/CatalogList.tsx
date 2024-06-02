@@ -101,9 +101,11 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters, machines }) => {
         </div>
       </div>
 
-      {machines.map((m) => {
-        return <ProductItem key={m.id} machine={m} />;
-      })}
+      <div className="CatalogList__items">
+        {machines.map((m) => {
+          return <ProductItem key={m.id} machine={m} />;
+        })}
+      </div>
     </div>
   );
 };

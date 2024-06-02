@@ -29,10 +29,9 @@ export const BasicInfoForm = () => {
   const [error, setError] = useState<string | null>(null);
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state) => state.user);
+  const { user } = useAppSelector((state) => state.user);
 
   useEffect(() => {
-    const user = localStorageService.get('user');
-
     if (user) {
       const { name, phone, email, company, country, city, address, lang } =
         user;
@@ -47,7 +46,7 @@ export const BasicInfoForm = () => {
       setLang(lang);
       setPhone(phone);
     }
-  }, []);
+  }, [user]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

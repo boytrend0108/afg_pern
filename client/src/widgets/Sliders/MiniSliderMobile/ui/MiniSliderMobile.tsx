@@ -4,12 +4,14 @@ import cn from 'classnames';
 import './MiniSliderMobile.scss';
 import { PREVIEW_WIDTH } from '../consts';
 import { GOOGLE_DRIVE_URL } from '../../../../shared/consts/google';
+import { PromoType } from '../../../../entities/ProductItem/types';
 
 type Props = {
   images: string[];
+  promoType: PromoType;
 };
 
-export const MiniSliderMobile: React.FC<Props> = ({ images }) => {
+export const MiniSliderMobile: React.FC<Props> = ({ images, promoType }) => {
   const [image, setImage] = useState(0);
   const main = useRef<HTMLDivElement>(null);
   const drop = useRef<HTMLDivElement>(null);
@@ -32,7 +34,15 @@ export const MiniSliderMobile: React.FC<Props> = ({ images }) => {
       <main className="MiniSliderMobile__main" ref={main}>
         <div className={cn('MiniSliderMobile__drop')} ref={drop}>
           <div className="MiniSliderMobile__image-box">
-            <div className="MiniSliderMobile__image-lable">NEW</div>
+            <div
+              className={cn('ProductItem__image-lable', {
+                'ProductItem__image-lable--new': promoType === 'New',
+                'ProductItem__image-lable--top': promoType === 'Top',
+              })}
+            >
+              {promoType}
+            </div>
+
             <img
               src={GOOGLE_DRIVE_URL + images[image]}
               height={420}

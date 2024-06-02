@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import localStorageService from '../../shared/services/localStorageService';
 import { useAppDispatch } from '../../shared/hooks/reduxHooks';
 import { user } from '../../entities/User';
+import * as productItem from '../../entities/ProductItem';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -17,6 +18,8 @@ function App() {
     if (token) {
       dispatch(user.checkAuth());
     }
+
+    dispatch(productItem.getAll());
   }, []);
 
   return (

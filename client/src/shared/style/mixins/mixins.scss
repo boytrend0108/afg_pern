@@ -76,11 +76,12 @@
   right: 0;
   width: 100px;
   height: 100px;
-  background-color: #d8c372;
+  background-color: $color-primary;
+  color: $color-font-light;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  font-size: clamp(1.125rem, 1.05rem + 0.375vw, 1.5rem);
+  font-size: 12px;
   font-weight: 700;
   line-height: 28.13px;
   transform: rotate(45deg) translateY(-67%);

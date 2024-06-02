@@ -15,7 +15,7 @@ export const ProfilePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = localStorageService.get('user');
+    const user = localStorageService.get('accessToken');
 
     if (!user) {
       navigate('/login', { state: { pathname: 'profile' }, replace: true });
@@ -39,7 +39,7 @@ export const ProfilePage = () => {
             </li>
             <li className="ProfilePage__contact">
               <img src="/my-icons/email-black.svg" alt="mail" />
-              <a href="mailto:info@bossmachinery.nl">info@bossmachinery.nl</a>
+              <a href="mailto:afg.machin@gmail.com">afg.machin@gmail.com</a>
             </li>
             <li className="ProfilePage__contact">
               <img src="/my-icons/whats-app-black.svg" alt="mail" />

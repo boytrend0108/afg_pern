@@ -1,6 +1,6 @@
 import { ProductOptionsType } from '../../../entities/ProductItem/types';
 
-const TOTAL_PRODUCT_OPTIONS = 29;
+const TOTAL_PRODUCT_OPTIONS = 30;
 
 export const validateForm = (product: Partial<ProductOptionsType>): Boolean => {
   const formLenght = Object.keys(product).length;
