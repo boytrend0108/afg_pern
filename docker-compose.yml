@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   server:
-    image: afg-server:2.0
+    image: afg-server:3.0
     container_name: afg-server
     build:
       context: ./server
