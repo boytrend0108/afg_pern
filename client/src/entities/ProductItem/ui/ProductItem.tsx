@@ -16,6 +16,8 @@ export const ProductItem: React.FC<Props> = ({
 }) => {
   const navigate = useNavigate();
 
+  console.log(machine);
+
   return (
     <div
       {...props}
