@@ -9,10 +9,14 @@ router.post('/add', authMiddleware, catchError(favoriteController.add));
 
 router.get(
   '/:userId',
-  authMiddleware,
+  // authMiddleware,
   catchError(favoriteController.getByUserId)
 );
 
-router.delete('/delete', authMiddleware, catchError(favoriteController.remove));
+router.delete(
+  '/delete/:productId/:userId',
+  // authMiddleware,
+  catchError(favoriteController.remove)
+);
 
 export default router;

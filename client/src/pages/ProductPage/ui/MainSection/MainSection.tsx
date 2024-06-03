@@ -67,6 +67,11 @@ export const MainSection: React.FC<Props> = ({
     }
   }, [product]);
 
+  const startComparing = () => {
+    setShowCompare(true);
+    dispatch(Product.productAction.addToCompare(product));
+  };
+
   return (
     <main className="MainSection">
       <div className="MainSection__top">
@@ -134,7 +139,7 @@ export const MainSection: React.FC<Props> = ({
 
               <MyButtonWhite
                 className="MainSection__btn--white"
-                onClick={() => setShowCompare(true)}
+                onClick={() => startComparing()}
               >
                 Сompare
               </MyButtonWhite>

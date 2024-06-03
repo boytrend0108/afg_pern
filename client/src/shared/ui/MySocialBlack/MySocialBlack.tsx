@@ -1,11 +1,43 @@
 /* eslint-disable max-len */
-import { SOCIAL_LINKS } from '../../consts/socialLink';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import cn from 'classnames';
+
 import './MySocialBlack.scss';
+import { SOCIAL_LINKS } from '../../consts/socialLink';
+import localStorageService from '../../services/localStorageService';
+import { toggleFavorite } from '../../../features/AddToFaforites';
+import { useAppSelector } from '../../hooks/reduxHooks';
 
 export const MySocialBlack = () => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { id: productId } = useParams();
+  const { user } = useAppSelector((state) => state.user);
+
+  useEffect(() => {
+    const favorite: string[] = localStorageService.get('favorite') || [];
+
+    if (productId && favorite.includes(productId)) {
+      setIsFavorite(true);
+    }
+  }, []);
+
+  const handleFavorite = () => {
+    if (!productId) {
+      return;
+    }
+
+    toggleFavorite({ productId, userId: user?.id || null, setIsFavorite });
+  };
+
   return (
     <ul className="MySocialBlack">
-      <li className="MySocialBlack__item MySocialBlack__item--star-black"></li>
+      <li
+        className={cn('MySocialBlack__item MySocialBlack__item--star-black', {
+          'MySocialBlack__item--star-black--fav': isFavorite,
+        })}
+        onClick={() => handleFavorite()}
+      ></li>
       <li className="MySocialBlack__item MySocialBlack__item--pdf">
         <a
           href="https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf"

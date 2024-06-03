@@ -25,7 +25,7 @@ class FavoriteController {
   }
 
   async remove(req, res) {
-    const { productId, userId } = req.body;
+    const { productId, userId } = req.params;
 
     if (!productId || !userId) {
       throw ApiError.BAD_REQUEST('ProductId and userId are required');

@@ -1058,7 +1058,7 @@
         }
       }
     },
-    "/api/favorite/delete": {
+    "/api/favorite/delete/{productId}/{userId}": {
       "delete": {
         "tags": [
           "Favorite"
@@ -1066,21 +1066,16 @@
         "description": "Remove product from favorites",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
+            "name": "productId",
+            "in": "path",
             "description": "ID of the product to delete",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "userId": {
-                  "type": "number"
-                },
-                "productId": {
-                  "type": "number"
-                }
-              }
-            }
+            "required": true
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User id",
+            "required": true
           }
         ],
         "responses": {

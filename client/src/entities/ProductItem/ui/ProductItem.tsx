@@ -28,7 +28,7 @@ export const ProductItem: React.FC<Props> = ({
     <div
       {...props}
       className={`ProductItem ${className}`}
-      onClick={() => navigate(`/product/${machine.id}`)}
+      onClick={() => navigate(`/product/${machine.id}?tab=general`)}
     >
       <div className="ProductItem__image">
         <img

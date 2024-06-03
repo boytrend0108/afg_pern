@@ -5,14 +5,14 @@ import { MySearch } from '../../../shared/ui';
 import { CategoryList } from '../../../widgets/CategoryList';
 import { ProductsSlider } from '../../../widgets/Sliders/ProductsSlider';
 import { MainSection } from './MainSection/MainSection';
-import { ComparisonTable } from './ComparisonTable/ComparisonTable';
+import { ComparisonTable } from './ComparisonTable/ui/ComparisonTable';
 
 export const ProductPage = () => {
   const [showCompare, setShowCompare] = useState(false);
   const [showComparisonTable, setShowComparisonTable] = useState(false);
 
   useEffect(() => {
-    document.documentElement.scrollTop = 0;
+    document.documentElement.scrollTop = 400;
   }, []);
 
   useEffect(() => {

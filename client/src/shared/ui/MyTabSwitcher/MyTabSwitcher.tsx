@@ -12,7 +12,7 @@ type Props = {
 
 export const MyTabSwitcher: React.FC<Props> = ({ tabs }) => {
   const [searchParams] = useSearchParams();
-  const tab = searchParams.get('tab') || '';
+  const tab = searchParams.get('tab') || 'settings';
 
   return (
     <div className="MyTabSwitcher">

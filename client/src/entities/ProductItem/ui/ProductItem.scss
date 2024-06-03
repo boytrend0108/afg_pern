@@ -1,8 +1,6 @@
 @import '../../../shared/style/utils.scss';
 
 .ProductItem {
-  // max-width: 376px;
-  // max-height: 416px;
   width: inherit;
   height: 100%;
   border: 1px solid $color-border;
@@ -80,15 +78,20 @@
       align-items: center;
       justify-content: space-between;
 
-      &-r,
-      &-l {
+      &-r {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
         gap: 10px;
 
         font-size: 16px;
         line-height: 16px;
+      }
+
+      &-l {
+        @extend .ProductItem__desc-bottom-r;
+
+        align-items: flex-start;
       }
     }
   }
@@ -101,7 +104,7 @@
 
   &__article {
     color: $color-secondary;
-    padding-inline: 20px;
+    padding-inline: 10px;
     border: 1px solid $color-secondary;
     border-radius: 15px;
   }
@@ -112,6 +115,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
+    width: 80px;
 
     &::before {
       content: url(/my-icons/calendar.png);

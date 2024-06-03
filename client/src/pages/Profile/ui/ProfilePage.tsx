@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { MyTabSwitcher } from '../../../shared/ui';
 import { BasicInfoForm } from '../../../widgets/Forms/BasicInfoForm';
 import { TABS } from '../consts';
@@ -11,14 +11,15 @@ import localStorageService from '../../../shared/services/localStorageService';
 
 export const ProfilePage = () => {
   const [searchParams] = useSearchParams();
-  const tab = searchParams.get('tab');
+  const { pathname } = useLocation();
+  const tab = searchParams.get('tab') || 'settings';
   const navigate = useNavigate();
 
   useEffect(() => {
     const user = localStorageService.get('accessToken');
 
     if (!user) {
-      navigate('/login', { state: { pathname: 'profile' }, replace: true });
+      navigate('/login', { state: { pathname }, replace: true });
     }
   }, []);
 

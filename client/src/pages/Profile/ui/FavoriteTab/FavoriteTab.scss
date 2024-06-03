@@ -26,4 +26,14 @@
       --column-count: 1;
     }
   }
+
+  &__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__error {
+    color: $color-error;
+  }
 }

@@ -6,6 +6,8 @@ import { handleResponce } from './handleResponse';
 const initialState: ProductState = {
   product: null,
   products: [],
+  compare: [],
+  favorite: [],
   count: 0,
   loading: false,
   error: null,
@@ -14,7 +16,24 @@ const initialState: ProductState = {
 export const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    addToCompare: (state, action) => {
+      if (state.compare.length !== 1) {
+        state.compare.push(action.payload);
+      } else {
+        state.compare[1] = action.payload;
+      }
+    },
+    removeFromCompare: (state, action) => {
+      state.compare = state.compare.filter((el) => el.id !== action.payload);
+    },
+    clearCompare: (state) => {
+      state.compare = [];
+    },
+    addFavorite: (state, action) => {
+      state.favorite = action.payload || [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getOne.pending, handleResponce.getOne);
     builder.addCase(getOne.fulfilled, handleResponce.getOne);
@@ -26,6 +45,7 @@ export const productSlice = createSlice({
   },
 });
 
-// export const {  } = productSlice.actions;
+export const { addToCompare, removeFromCompare, clearCompare, addFavorite } =
+  productSlice.actions;
 
 export default productSlice.reducer;

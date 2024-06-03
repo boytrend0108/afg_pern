@@ -72,6 +72,8 @@ export type ResponseGetProducts = {
 export type ProductState = {
   product: null | ProductType;
   products: ProductType[];
+  compare: ProductType[];
+  favorite: (string | number)[];
   count: number;
   loading: boolean;
   error: null | string;

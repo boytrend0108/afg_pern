@@ -1,5 +1,6 @@
+/* eslint-disable no-shadow */
 import React, { ChangeEvent, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import './LoginForm.scss';
 import { MyButton, MyInput } from '../../../../shared/ui';
@@ -14,6 +15,7 @@ import {
 
 export const LoginForm = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemeber] = useState(true);
@@ -48,7 +50,7 @@ export const LoginForm = () => {
 
     dispatch(user.login(dto))
       .unwrap()
-      .then(() => navigate('/'));
+      .then(() => navigate(state.pathname || '/', { replace: true }));
   };
 
   return (

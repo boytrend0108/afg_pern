@@ -9,12 +9,11 @@ import {
 } from '../../../../shared/ui';
 import { InputBox } from './InputBox/InputBox';
 // eslint-disable-next-line max-len
-import localStorageService from '../../../../shared/services/localStorageService';
-import { user } from '../../../../entities/User';
 import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../shared/hooks/reduxHooks';
+import { user as User } from '../../../../entities/User';
 
 export const BasicInfoForm = () => {
   const [name, setName] = useState('');
@@ -52,10 +51,12 @@ export const BasicInfoForm = () => {
     e.preventDefault();
     setError('');
 
-    const { id } = localStorageService.get('user');
+    if (!user) {
+      return;
+    }
 
     const userDTO = {
-      id,
+      id: user.id,
       name,
       phone,
       email,
@@ -72,7 +73,7 @@ export const BasicInfoForm = () => {
       return;
     }
 
-    dispatch(user.update(userDTO))
+    dispatch(User.update(userDTO))
       .unwrap()
       .catch((err) => setError(err.message));
   };

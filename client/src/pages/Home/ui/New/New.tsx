@@ -49,7 +49,7 @@ export const New = () => {
       </div>
 
       <Link to="catalog?show=new">
-        <MyButton className="MyButton New__btn">'See more'</MyButton>
+        <MyButton className="MyButton New__btn">See more</MyButton>
       </Link>
     </div>
   );

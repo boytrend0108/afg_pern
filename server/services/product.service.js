@@ -51,7 +51,7 @@ class ProductService {
     }
 
     if (brandId && !categoryId) {
-      products = await Product.findAndCountAll({
+      response = await Product.findAndCountAll({
         where: { brandId },
         limit,
         offset,
@@ -81,7 +81,7 @@ class ProductService {
     }
 
     if (!brandId && categoryId) {
-      products = await Product.findAndCountAll({
+      response = await Product.findAndCountAll({
         where: { categoryId },
         limit,
         offset,
@@ -111,7 +111,7 @@ class ProductService {
     }
 
     if (brandId && categoryId) {
-      products = await Product.findAndCountAll({
+      response = await Product.findAndCountAll({
         where: { categoryId, brandId },
         limit,
         offset,
@@ -140,7 +140,7 @@ class ProductService {
       });
     }
 
-    response.products = this.prepareProduct(response);
+    response.products = this.prepareProduct(response.rows);
 
     return {
       count: response.count,
@@ -221,8 +221,9 @@ class ProductService {
   }
 
   prepareProduct(response) {
-    if (response.rows) {
-      return response.rows.map((product) => {
+    console.log('>>>>>>', response);
+    if (Array.isArray(response)) {
+      return response.map((product) => {
         return {
           ...product.dataValues,
           product_images: product.product_images.map((image) => image.image),
@@ -244,8 +245,6 @@ class ProductService {
       brand: response.brand.name,
       category: response.category.name,
     };
-
-    console.log('>>>>>', product);
 
     return product;
   }
