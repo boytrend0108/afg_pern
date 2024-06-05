@@ -14,6 +14,7 @@ import {
   useAppSelector,
 } from '../../../../shared/hooks/reduxHooks';
 import { user as User } from '../../../../entities/User';
+import { LANGUAGES } from '../../../../shared/consts/languages';
 
 export const BasicInfoForm = () => {
   const [name, setName] = useState('');
@@ -44,6 +45,7 @@ export const BasicInfoForm = () => {
       setAddress(address);
       setLang(lang);
       setPhone(phone);
+      setFlag(LANGUAGES[lang]);
     }
   }, [user]);
 

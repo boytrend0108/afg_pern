@@ -18,6 +18,7 @@ import * as Product from '../../../../entities/ProductItem';
 import { getOptions } from './helpers/getOptions';
 import { OptionGroupe } from './types';
 import { ARTICUL_PREFIX } from '../../../../shared/consts/product';
+import { SOCIAL_LINKS } from '../../../../shared/consts/socialLink';
 
 type Props = {
   showCompare: boolean;
@@ -48,6 +49,10 @@ export const MainSection: React.FC<Props> = ({
     { id: 2, name: 'Catalog  >', path: '/catalog' },
     { id: 3, name: product?.title || '', path: `/product/${product?.id}` },
   ];
+
+  const booking = () => {
+    dispatch(Product.productAction.setBooked(product));
+  };
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -131,7 +136,7 @@ export const MainSection: React.FC<Props> = ({
             </div>
 
             <div className="MainSection__btn-box">
-              <Link to="booking">
+              <Link to="booking" onClick={booking}>
                 <MyButtonWhite className="MainSection__btn--white">
                   Book
                 </MyButtonWhite>
@@ -144,14 +149,18 @@ export const MainSection: React.FC<Props> = ({
                 Сompare
               </MyButtonWhite>
 
-              <Link to="request">
+              <Link to="/request">
                 <MyButtonWhite className="MainSection__btn--white">
                   Get in touch
                 </MyButtonWhite>
               </Link>
 
               <MyButtonWhite className="MainSection__btn--white">
-                <a href="" className="MainSection__btn-title">
+                <a
+                  href={SOCIAL_LINKS.WHATSAPP}
+                  className="MainSection__btn-title"
+                  target="blank"
+                >
                   WhatsApp
                 </a>
               </MyButtonWhite>

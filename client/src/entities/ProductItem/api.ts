@@ -1,5 +1,11 @@
 import { httpClient } from '../../app/configs/httpConfig';
-import { ProductType, ResponseGetProducts } from './types';
+import {
+  BookProductResponse,
+  DTOBookProduct,
+  DTOSendRequest,
+  ProductType,
+  ResponseGetProducts,
+} from './types';
 
 export const productAPI = {
   create(categoryDTO: FormData): Promise<ProductType> {
@@ -16,5 +22,13 @@ export const productAPI = {
 
   delete(id: number) {
     return httpClient.delete(`/product/delete/${id}`);
+  },
+
+  book(data: DTOBookProduct): Promise<BookProductResponse> {
+    return httpClient.post('/reserve', data);
+  },
+
+  sendRequest(data: DTOSendRequest): Promise<string> {
+    return httpClient.post('/request', data);
   },
 };

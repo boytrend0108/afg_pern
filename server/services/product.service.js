@@ -9,7 +9,6 @@ import { ProductImage } from '../models/models.js';
 
 class ProductService {
   async create(product) {
-    // const {}
     const newProduct = await Product.create(product);
 
     return newProduct;
@@ -17,128 +16,38 @@ class ProductService {
 
   async getAll({ brandId, categoryId, limit, offset }) {
     let response;
+    const whereClause = {};
 
-    if (!brandId && !categoryId) {
-      response = await Product.findAndCountAll({
-        limit,
-        offset,
-        include: [
-          {
-            model: ProductImage,
-            attributes: ['image'],
-          },
-          {
-            model: ProductImageInter,
-            attributes: ['image'],
-          },
-          {
-            model: ProductInfo,
-            attributes: ['title', 'description'],
-          },
-          {
-            model: Brand,
-            attributes: ['name'],
-          },
-          {
-            model: Category,
-            attributes: ['name'],
-          },
-        ],
-        attributes: {
-          exclude: ['createdAt', 'updatedAt'],
+    if (brandId) whereClause.brandId = brandId;
+    if (categoryId) whereClause.categoryId = categoryId;
+
+    response = await Product.findAndCountAll({
+      where: whereClause,
+      limit,
+      offset,
+      include: [
+        {
+          model: ProductImage,
+          attributes: ['image'],
         },
-      });
-    }
-
-    if (brandId && !categoryId) {
-      response = await Product.findAndCountAll({
-        where: { brandId },
-        limit,
-        offset,
-        include: [
-          {
-            model: ProductImage,
-            attributes: ['image'],
-          },
-          {
-            model: ProductImageInter,
-            attributes: ['image'],
-          },
-          {
-            model: ProductInfo,
-            attributes: ['title', 'description'],
-          },
-          {
-            model: Brand,
-            attributes: ['name'],
-          },
-          {
-            model: Category,
-            attributes: ['name'],
-          },
-        ],
-      });
-    }
-
-    if (!brandId && categoryId) {
-      response = await Product.findAndCountAll({
-        where: { categoryId },
-        limit,
-        offset,
-        include: [
-          {
-            model: ProductImage,
-            attributes: ['image'],
-          },
-          {
-            model: ProductImageInter,
-            attributes: ['image'],
-          },
-          {
-            model: ProductInfo,
-            attributes: ['title', 'description'],
-          },
-          {
-            model: Brand,
-            attributes: ['name'],
-          },
-          {
-            model: Category,
-            attributes: ['name'],
-          },
-        ],
-      });
-    }
-
-    if (brandId && categoryId) {
-      response = await Product.findAndCountAll({
-        where: { categoryId, brandId },
-        limit,
-        offset,
-        include: [
-          {
-            model: ProductImage,
-            attributes: ['image'],
-          },
-          {
-            model: ProductImageInter,
-            attributes: ['image'],
-          },
-          {
-            model: ProductInfo,
-            attributes: ['title', 'description'],
-          },
-          {
-            model: Brand,
-            attributes: ['name'],
-          },
-          {
-            model: Category,
-            attributes: ['name'],
-          },
-        ],
-      });
-    }
+        {
+          model: ProductImageInter,
+          attributes: ['image'],
+        },
+        {
+          model: ProductInfo,
+          attributes: ['title', 'description'],
+        },
+        {
+          model: Brand,
+          attributes: ['name'],
+        },
+        {
+          model: Category,
+          attributes: ['name'],
+        },
+      ],
+    });
 
     response.products = this.prepareProduct(response.rows);
 
@@ -221,7 +130,6 @@ class ProductService {
   }
 
   prepareProduct(response) {
-    console.log('>>>>>>', response);
     if (Array.isArray(response)) {
       return response.map((product) => {
         return {

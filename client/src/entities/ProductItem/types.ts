@@ -74,9 +74,29 @@ export type ProductState = {
   products: ProductType[];
   compare: ProductType[];
   favorite: (string | number)[];
+  booked: ProductType | null;
   count: number;
   loading: boolean;
   error: null | string;
 };
 
 export type PromoType = 'New' | 'Recomended' | 'Top';
+
+export type DTOBookProduct = {
+  address: string;
+  city: string;
+  company: string;
+  country: string;
+  email: string;
+  name: string;
+  phone: number;
+  productId: number;
+  userId: number | null;
+};
+
+export type DTOSendRequest = Omit<DTOBookProduct, 'productId' | 'userId'>;
+
+export type BookProductResponse = {
+  result: string;
+  message: string;
+};

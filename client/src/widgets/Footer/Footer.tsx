@@ -3,15 +3,27 @@ import './Footer.scss';
 import { Link } from 'react-router-dom';
 import { MyButton } from '../../shared/ui';
 import { SOCIAL_LINKS } from '../../shared/consts/socialLink';
+import { httpClient } from '../../app/configs/httpConfig';
 
 export const Footer = () => {
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+
     // eslint-disable-next-line no-console
-    console.log(email);
-    setEmail('');
+    httpClient
+      .post('/subscribe', { email })
+      .then(() => {
+        setEmail('');
+        setSuccessMsg(true);
+      })
+      .catch((err) => setError(err.message || 'Something went wrong...'))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -28,9 +40,11 @@ export const Footer = () => {
             +31 40 253 22 45
           </a>
 
-          <MyButton className="MyButton Footer__contact-btn">
-            Contact Us
-          </MyButton>
+          <Link to="contact">
+            <MyButton className="MyButton Footer__contact-btn">
+              Contact Us
+            </MyButton>
+          </Link>
         </div>
 
         <div className="Footer__item Footer__item--social">
@@ -94,8 +108,11 @@ export const Footer = () => {
             />
 
             <button className="Footer__form-btn" type="submit">
-              Subscribe
+              {loading ? 'In progress' : 'Subscribe'}
             </button>
+
+            {error && <p className="Footer__form-err">{error}</p>}
+            {successMsg && <p>Thank you for subscribing!</p>}
           </form>
         </div>
 
@@ -106,8 +123,8 @@ export const Footer = () => {
             Home
           </Link>
 
-          <Link className="Footer__navlink" to="category">
-            Category
+          <Link className="Footer__navlink" to="catalog">
+            Catalog
           </Link>
 
           <Link className="Footer__navlink" to="news">

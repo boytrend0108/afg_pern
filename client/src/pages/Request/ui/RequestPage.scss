@@ -42,15 +42,4 @@
     gap: 10px;
     @include onHover(color, $color-secondary);
   }
-
-  &__social {
-    width: fit-content;
-    position: fixed;
-    right: 0;
-    top: 50px;
-
-    @include on-mobile {
-      top: 150px;
-    }
-  }
 }

@@ -9,7 +9,6 @@ export enum Country {
   ukraine = 'ua',
   sAravia = 'sa',
   us = 'us',
-  ru = 'ru',
   romania = 'ro',
   spaine = 'es',
   portug = 'pt',

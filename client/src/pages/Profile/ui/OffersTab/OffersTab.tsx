@@ -21,6 +21,7 @@ export const OffersTab = () => {
               />
               <p className="OffersTab__hover-title">Already booked</p>
             </div>
+
             <ProductItem />
           </div>
         ))}

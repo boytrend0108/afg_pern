@@ -12,11 +12,14 @@ import {
 } from '../../../../shared/hooks/reduxHooks';
 import * as productItem from '../../../../entities/ProductItem';
 import { MyLoader } from '../../../../shared/ui/MyLoader/MyLoader';
+import { useScrollToTop } from '../../../../shared/hooks';
 
 export const CatalogPage = () => {
   const [showFilters, setShowFilters] = useState(false);
   const { products, loading, error } = useAppSelector((state) => state.product);
   const dispatch = useAppDispatch();
+
+  useScrollToTop();
 
   useEffect(() => {
     dispatch(productItem.getAll());

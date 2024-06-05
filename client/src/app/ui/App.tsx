@@ -8,6 +8,7 @@ import localStorageService from '../../shared/services/localStorageService';
 import { useAppDispatch } from '../../shared/hooks/reduxHooks';
 import { user } from '../../entities/User';
 import * as productItem from '../../entities/ProductItem';
+import { MySocial } from '../../shared/ui';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -31,6 +32,10 @@ function App() {
       </main>
 
       <Footer />
+
+      <div className="App__social">
+        <MySocial />
+      </div>
     </div>
   );
 }

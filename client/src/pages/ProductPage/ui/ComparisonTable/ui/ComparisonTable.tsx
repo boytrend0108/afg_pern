@@ -47,12 +47,12 @@ export const ComparisonTable: React.FC<Props> = ({ onClose }) => {
       </div>
 
       <table className="ComparisonTable__table">
-        <thead>
-          <tr>
+        <thead style={{ backgroundColor: 'white' }}>
+          <tr className="ComparisonTable__row">
             <th scope="col">
               <div className="ComparisonTable__table-header">
                 <img
-                  src="/logo-black.svg"
+                  src="/logo.svg"
                   alt="logo"
                   className="ComparisonTable__logo"
                 />
@@ -74,7 +74,7 @@ export const ComparisonTable: React.FC<Props> = ({ onClose }) => {
 
         <tbody>
           {Object.entries(options).map(([key, value]) => (
-            <tr key={key}>
+            <tr key={key} className="ComparisonTable__row">
               <th scope="row">{key}</th>
               <td>{value as any[][0]}</td>
               <td>{value as any[][1]}</td>
@@ -82,7 +82,7 @@ export const ComparisonTable: React.FC<Props> = ({ onClose }) => {
             </tr>
           ))}
 
-          <tr>
+          <tr className="ComparisonTable__row">
             <th scope="row"></th>
             {compare.map((el) => (
               <td key={el.id}>

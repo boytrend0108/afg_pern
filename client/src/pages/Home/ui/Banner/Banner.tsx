@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { MyButton } from '../../../../shared/ui';
 import './Banner.scss';
 
@@ -18,7 +19,9 @@ export const Banner = () => {
             transmission method
           </p>
 
-          <MyButton className="Banner__btn MyButton">View models</MyButton>
+          <Link to="catalog">
+            <MyButton className="Banner__btn MyButton">View models</MyButton>
+          </Link>
         </main>
 
         <img

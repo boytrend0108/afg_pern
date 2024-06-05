@@ -94,7 +94,7 @@
     justify-content: center;
 
     $links: 'search-2', 'favorite', 'catalog', 'news', 'settings', 'request',
-      'setting', 'logout';
+      'setting', 'logout', 'contact';
 
     @each $link in $links {
       &--#{$link}::before {

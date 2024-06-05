@@ -280,6 +280,20 @@ export const Reserve = sequelize.define('reserve', {
   },
 });
 
+export const Subscribe = sequelize.define('subscribe', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+
+  email: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+  },
+});
+
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
@@ -355,4 +369,5 @@ export default {
   BrandCategory,
   Order,
   Reserve,
+  Subscribe,
 };

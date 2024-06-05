@@ -83,6 +83,13 @@ export const AccountTab = () => {
             News
           </Link>
 
+          <Link
+            to="contact"
+            className="AccountTab__link AccountTab__link--contact"
+          >
+            Contact
+          </Link>
+
           {user && (
             <>
               <Link

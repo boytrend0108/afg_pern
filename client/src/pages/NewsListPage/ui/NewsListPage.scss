@@ -7,6 +7,10 @@
     margin: auto;
   }
 
+  &__title {
+    margin-bottom: 25px;
+  }
+
   &__list {
     --column-count: 3;
     display: grid;

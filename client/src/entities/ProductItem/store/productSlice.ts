@@ -8,6 +8,7 @@ const initialState: ProductState = {
   products: [],
   compare: [],
   favorite: [],
+  booked: null,
   count: 0,
   loading: false,
   error: null,
@@ -33,6 +34,12 @@ export const productSlice = createSlice({
     addFavorite: (state, action) => {
       state.favorite = action.payload || [];
     },
+    setBooked: (state, action) => {
+      state.booked = action.payload;
+    },
+    removeBooked: (state) => {
+      state.booked = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getOne.pending, handleResponce.getOne);
@@ -45,7 +52,13 @@ export const productSlice = createSlice({
   },
 });
 
-export const { addToCompare, removeFromCompare, clearCompare, addFavorite } =
-  productSlice.actions;
+export const {
+  addToCompare,
+  removeFromCompare,
+  clearCompare,
+  addFavorite,
+  setBooked,
+  removeBooked,
+} = productSlice.actions;
 
 export default productSlice.reducer;

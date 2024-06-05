@@ -1,3 +1,4 @@
+import { SOCIAL_LINKS } from '../../../../shared/consts/socialLink';
 import './ContactUs.scss';
 
 export const ContactUs = () => {
@@ -12,20 +13,23 @@ export const ContactUs = () => {
 
       <div className="ContactUs__contacts">
         <a
-          href="tel:+31402562245"
           className="ContactUs__contact ContactUs__contact--phone"
+          href={`tel:${SOCIAL_LINKS.PHONE}`}
+          target="blank"
         >
-          +31402562245
+          {SOCIAL_LINKS.PHONE}
         </a>
         <a
-          href="mailto:test@gmail.com"
+          href={`mailto:${SOCIAL_LINKS.EMAIL}`}
           className="ContactUs__contact ContactUs__contact--mail"
+          target="blank"
         >
-          info@afg-machinary.com
+          {SOCIAL_LINKS.EMAIL}
         </a>
         <a
-          href="https://web.whatsapp.com/"
+          href={SOCIAL_LINKS.WHATSAPP}
           className="ContactUs__contact ContactUs__contact--whatsapp"
+          target="blank"
         >
           AFGMachinery
         </a>

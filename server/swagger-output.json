@@ -1487,7 +1487,159 @@
             }
           },
           "404": {
-            "description": "User not found."
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/request": {
+      "post": {
+        "tags": [
+          "Request"
+        ],
+        "description": "Sending a request",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User info",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "number"
+                },
+                "lang": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "phone",
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Sending request failed",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/subscribe": {
+      "post": {
+        "tags": [
+          "Subscribe"
+        ],
+        "description": "Add email to subscribers list",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User email",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Error",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/subscribe/all": {
+      "get": {
+        "tags": [
+          "Subscribe"
+        ],
+        "description": "Get all emails",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/subscribe/delete/{email}": {
+      "delete": {
+        "tags": [
+          "Subscribe"
+        ],
+        "description": "Remove email from list",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "User email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Error",
+            "schema": {
+              "type": "string"
+            }
           }
         }
       }

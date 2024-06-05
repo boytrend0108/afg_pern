@@ -47,7 +47,6 @@ export const MyFlags = () => {
       />
 
       <li className={`flag ${Country.us}`} data-country={Country.us} />
-      <li className={`flag ${Country.ru}`} data-country={Country.ru} />
 
       <li
         className={`flag ${Country.romania}`}

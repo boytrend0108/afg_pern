@@ -24,11 +24,15 @@ export const ProductItem: React.FC<Props> = ({
   const promoType: PromoType =
     (machine && getPromoType(machine)) || 'Recomended';
 
+  const handleClick = () => {
+    navigate(`/product/${machine.id}?tab=general`);
+  };
+
   return (
     <div
       {...props}
       className={`ProductItem ${className}`}
-      onClick={() => navigate(`/product/${machine.id}?tab=general`)}
+      onClick={handleClick}
     >
       <div className="ProductItem__image">
         <img

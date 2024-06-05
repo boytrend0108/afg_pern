@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { MySocial, MySuccess } from '../../../shared/ui';
+import { MySuccess } from '../../../shared/ui';
 import { RequestForm } from '../../../widgets/Forms/RequestForm';
 import './RequestPage.scss';
 import { useScrollToTop } from '../../../shared/hooks';
+import { MyContactInfo } from '../../../shared/ui/MyContactInfo/MyContactInfo';
 
 export const RequestPage = () => {
   const [success, setSuccess] = useState(false);
@@ -22,22 +23,7 @@ export const RequestPage = () => {
         </div>
 
         <div className="RequestPage__header--right">
-          <h2 className="RequestPage__block-title">Contact Info</h2>
-
-          <ul className="RequestPage__contacts">
-            <li className="RequestPage__contact">
-              <img src="/my-icons/phone-black.svg" alt="phone" />
-              <a href="tel:+31402532245">+31 40 253 22 45</a>
-            </li>
-            <li className="RequestPage__contact">
-              <img src="/my-icons/email-black.svg" alt="mail" />
-              <a href="mailto:info@bossmachinery.nl">info@bossmachinery.nl</a>
-            </li>
-            <li className="RequestPage__contact">
-              <img src="/my-icons/whats-app-black.svg" alt="mail" />
-              <a href="http://whatsapp.com">AFGmachinery</a>
-            </li>
-          </ul>
+          <MyContactInfo />
         </div>
       </div>
 
@@ -48,8 +34,6 @@ export const RequestPage = () => {
           <RequestForm onSuccess={(v) => setSuccess(v)} />
         )}
       </main>
-
-      <MySocial className="RequestPage__social" />
     </div>
   );
 };

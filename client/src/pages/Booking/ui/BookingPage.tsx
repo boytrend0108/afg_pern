@@ -3,15 +3,19 @@ import { MySuccess } from '../../../shared/ui';
 import { RequestForm } from '../../../widgets/Forms/RequestForm';
 import './BookingPage.scss';
 import { ProductItem } from '../../../entities/ProductItem';
+import { useAppSelector } from '../../../shared/hooks/reduxHooks';
 
 export const BookingPage = () => {
   const [success, setSuccess] = useState(false);
+  const { booked } = useAppSelector((state) => state.product);
 
   return (
     <div className="BookingPage my-container">
       <div className="BookingPage__header">
         <div className="BookingPage__header--left">
-          <h1 className="BookingPage__title">Booking Yanmar SV15VT (NEW)</h1>
+          <h1 className="BookingPage__title">
+            Booking {booked?.brand} {booked?.title}
+          </h1>
 
           <p className="BookingPage__text">
             After filling out the form, our manager will contact you shortly to
@@ -29,7 +33,7 @@ export const BookingPage = () => {
             </li>
             <li className="BookingPage__contact">
               <img src="/my-icons/email-black.svg" alt="mail" />
-              <a href="mailto:info@bossmachinery.nl">info@bossmachinery.nl</a>
+              <a href="mailto:afg.machin@gmail.com">afg.machin@gmail.com</a>
             </li>
             <li className="BookingPage__contact">
               <img src="/my-icons/whats-app-black.svg" alt="mail" />
@@ -40,13 +44,19 @@ export const BookingPage = () => {
       </div>
 
       <main className="BookingPage__main">
-        <ProductItem className="BookingPage__product" />
+        <div className="BookingPage__main-left">
+          {booked && (
+            <ProductItem className="BookingPage__product" machine={booked} />
+          )}
+        </div>
 
-        {success ? (
-          <MySuccess />
-        ) : (
-          <RequestForm onSuccess={(v) => setSuccess(v)} />
-        )}
+        <div className="BookingPage__main-right">
+          {success ? (
+            <MySuccess />
+          ) : (
+            <RequestForm onSuccess={(v) => setSuccess(v)} />
+          )}
+        </div>
       </main>
     </div>
   );

@@ -37,14 +37,16 @@ export const MySocialBlack = () => {
           'MySocialBlack__item--star-black--fav': isFavorite,
         })}
         onClick={() => handleFavorite()}
-      ></li>
+      />
+
       <li className="MySocialBlack__item MySocialBlack__item--pdf">
         <a
           href="https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf"
           className="MySocialBlack__link"
           target="_blank"
-        ></a>
+        />
       </li>
+
       <li className="MySocialBlack__item MySocialBlack__item--fb">
         <a
           className="MySocialBlack__link"
@@ -52,14 +54,29 @@ export const MySocialBlack = () => {
           target="blank"
         />
       </li>
+
       <li className="MySocialBlack__item MySocialBlack__item--inst">
-        <a href={SOCIAL_LINKS.INST} className="MySocialBlack__link" />
+        <a
+          href={SOCIAL_LINKS.INST}
+          className="MySocialBlack__link"
+          target="_blank"
+        />
       </li>
+
       <li className="MySocialBlack__item MySocialBlack__item--in">
-        <a href={SOCIAL_LINKS.IN} className="MySocialBlack__link" />
+        <a
+          href={SOCIAL_LINKS.IN}
+          className="MySocialBlack__link"
+          target="_blank"
+        />
       </li>
+
       <li className="MySocialBlack__item MySocialBlack__item--x">
-        <a href={SOCIAL_LINKS.X} className="MySocialBlack__link" />
+        <a
+          href={SOCIAL_LINKS.X}
+          className="MySocialBlack__link"
+          target="_blank"
+        />
       </li>
     </ul>
   );

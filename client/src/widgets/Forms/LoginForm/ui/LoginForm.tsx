@@ -50,7 +50,7 @@ export const LoginForm = () => {
 
     dispatch(user.login(dto))
       .unwrap()
-      .then(() => navigate(state.pathname || '/', { replace: true }));
+      .then(() => navigate(state?.pathname || '/', { replace: true }));
   };
 
   return (

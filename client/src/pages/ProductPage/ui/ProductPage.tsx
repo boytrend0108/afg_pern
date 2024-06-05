@@ -6,10 +6,13 @@ import { CategoryList } from '../../../widgets/CategoryList';
 import { ProductsSlider } from '../../../widgets/Sliders/ProductsSlider';
 import { MainSection } from './MainSection/MainSection';
 import { ComparisonTable } from './ComparisonTable/ui/ComparisonTable';
+import { useAppDispatch } from '../../../shared/hooks/reduxHooks';
+import { productAction } from '../../../entities/ProductItem';
 
 export const ProductPage = () => {
   const [showCompare, setShowCompare] = useState(false);
   const [showComparisonTable, setShowComparisonTable] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     document.documentElement.scrollTop = 400;
@@ -18,6 +21,13 @@ export const ProductPage = () => {
   useEffect(() => {
     setShowCompare(false);
   }, [showComparisonTable]);
+
+  const handleRecommendClick = () => {
+    document.documentElement.scrollTop = 0;
+    setShowCompare(false);
+    setShowComparisonTable(false);
+    dispatch(productAction.clearCompare());
+  };
 
   return (
     <section className="ProductPage my-container">
@@ -36,7 +46,8 @@ export const ProductPage = () => {
         />
       )}
 
-      <footer className="ProductPage__footer">
+      <footer className="ProductPage__footer" onClick={handleRecommendClick}>
+        <h2 className="ProductPage__recommend-title">We recommend</h2>
         <ProductsSlider />
       </footer>
     </section>

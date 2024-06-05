@@ -1,6 +1,5 @@
 import { google } from 'googleapis';
 import 'dotenv/config';
-import sharp from 'sharp';
 
 const authorize = () => {
   const oauth2Client = new google.auth.OAuth2(
@@ -9,7 +8,9 @@ const authorize = () => {
     process.env.GOOGLE_REDIRECT_URL
   );
 
-  oauth2Client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH });
+  oauth2Client.setCredentials({
+    refresh_token: process.env.GOOGLE_REFRESH_DRIVE,
+  });
 
   const drive = google.drive({
     version: 'v3',

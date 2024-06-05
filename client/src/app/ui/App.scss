@@ -10,4 +10,22 @@
     display: flex;
     flex-direction: column;
   }
+
+  &__social {
+    position: fixed;
+    top: 224px;
+    right: 0;
+
+    @include on-desktop-s {
+      top: 172px;
+    }
+
+    @include on-tablet-s {
+      top: 164px;
+    }
+
+    @include on-mobile-m {
+      top: 133px;
+    }
+  }
 }
