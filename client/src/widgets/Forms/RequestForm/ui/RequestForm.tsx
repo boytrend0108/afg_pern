@@ -5,6 +5,8 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import { useAppSelector } from '../../../../shared/hooks/reduxHooks';
 import { LANGUAGES } from '../../../../shared/consts/languages';
 import { productAPI } from '../../../../entities/ProductItem';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 
 type Props = {
   onSuccess: (v: boolean) => void;
@@ -12,7 +14,7 @@ type Props = {
 
 export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState(0);
+  const [phone, setPhone] = useState<number | null>(null);
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [country, setCountry] = useState('');
@@ -120,13 +122,11 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
             changeLang={(v) => handleChangeLang(v)}
           />
 
-          <input
-            type="number"
-            className="RequestForm__input"
-            placeholder="Phone number*"
-            required
+          <PhoneInput
+            placeholder="Enter phone number"
             value={phone}
-            onChange={(e) => setPhone(+e.target.value)}
+            onChange={setPhone}
+            defaultCountry="NL"
           />
 
           <input

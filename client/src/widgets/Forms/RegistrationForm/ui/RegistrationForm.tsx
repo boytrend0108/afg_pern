@@ -10,6 +10,8 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../shared/hooks/reduxHooks';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 
 export const RegistrationForm = () => {
   const [userName, setUserName] = useState('');
@@ -57,6 +59,8 @@ export const RegistrationForm = () => {
   };
 
   const handleSubmit = () => {
+    setErrors(null);
+
     const dto: DtoRegistration = {
       name: userName.trim(),
       phone,
@@ -68,9 +72,11 @@ export const RegistrationForm = () => {
       company: company.trim(),
     };
 
-    setErrors(validate(dto));
+    const validationErr = validate(dto);
 
-    if (errors && Object.values(errors).includes(false)) {
+    setErrors(validationErr);
+
+    if (validationErr && Object.values(validationErr).includes(false)) {
       return false;
     }
 
@@ -96,14 +102,12 @@ export const RegistrationForm = () => {
         onChange={handleInputChange}
         value={userName}
       />
-      <MyInput
-        title="Phone number *"
-        id="phone"
-        errors={errors}
-        type="number"
-        onChange={handleInputChange}
-        value={phone}
-      />
+
+      <div className="RegistrationForm__phone">
+        <p className="RegistrationForm__input-title">Phone number*</p>
+        <PhoneInput value={phone} onChange={setPhone} defaultCountry="NL" />
+      </div>
+
       <MyInput
         title="Email address *"
         id="email"
@@ -162,7 +166,9 @@ export const RegistrationForm = () => {
       </MyButton>
 
       <div className="RegistrationForm__error-box">
-        {error && <p className="RegistrationForm__error">{error.message}</p>}
+        {error && (
+          <p className="RegistrationForm__error">{error.message.message}</p>
+        )}
       </div>
 
       <div className="RegistrationForm__horiz">

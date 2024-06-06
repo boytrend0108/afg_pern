@@ -1,4 +1,5 @@
 import { httpClient } from '../../app/configs/httpConfig';
+import { GetFavoriteResponse } from '../../features/AddToFaforites/api';
 import {
   BookProductResponse,
   DTOBookProduct,
@@ -26,6 +27,10 @@ export const productAPI = {
 
   book(data: DTOBookProduct): Promise<BookProductResponse> {
     return httpClient.post('/reserve', data);
+  },
+
+  getBooked(userId: number): Promise<GetFavoriteResponse[]> {
+    return httpClient.get(`/reserve/${userId}`);
   },
 
   sendRequest(data: DTOSendRequest): Promise<string> {

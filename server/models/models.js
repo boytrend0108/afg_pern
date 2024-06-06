@@ -21,7 +21,7 @@ export const User = sequelize.define('user', {
     allowNull: false,
   },
   phone: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   country: {
@@ -200,6 +200,26 @@ export const Favorite = sequelize.define('favorite', {
     autoIncrement: true,
     primaryKey: true,
   },
+
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'User',
+      key: 'id',
+    },
+  },
+
+  productId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'Product',
+      key: 'id',
+    },
+
+    onDelete: 'CASCADE',
+  },
 });
 
 export const Brand = sequelize.define('brand', {
@@ -334,7 +354,7 @@ ProductImageInter.belongsTo(Product, {
 });
 
 Product.hasMany(ProductInfo, {
-  foreignKey: 'productId',
+  foreignKey: { name: 'productId', allowNull: false },
   onDelete: 'CASCADE',
 });
 
@@ -342,14 +362,38 @@ ProductInfo.belongsTo(Product, {
   foreignKey: 'productId',
 });
 
-User.hasMany(Reserve);
+User.hasMany(Reserve, {
+  foreignKey: { name: 'userId', allowNull: false },
+  onDelete: 'CASCADE',
+});
 Reserve.belongsTo(Product);
 
-User.hasMany(Order);
+User.hasMany(Order, {
+  foreignKey: { name: 'userId', allowNull: false },
+  onDelete: 'CASCADE',
+});
 Order.belongsTo(Product);
 
-User.hasMany(Favorite);
-Favorite.belongsTo(Product);
+//------------------
+User.hasMany(Favorite, {
+  foreignKey: 'userId',
+  onDelete: 'CASCADE',
+  hooks: true,
+});
+
+Product.hasMany(Favorite, {
+  foreignKey: 'productId',
+  onDelete: 'CASCADE',
+});
+
+Favorite.belongsTo(User, {
+  foreignKey: 'userId',
+});
+
+Favorite.belongsTo(Product, {
+  foreignKey: 'productId',
+});
+//------------------------
 
 Brand.belongsToMany(Category, { through: 'brand_category' });
 Category.belongsToMany(Brand, { through: 'brand_category' });

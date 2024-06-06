@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './ProductPage.scss';
 import { MySearch } from '../../../shared/ui';
@@ -22,7 +22,13 @@ export const ProductPage = () => {
     setShowCompare(false);
   }, [showComparisonTable]);
 
-  const handleRecommendClick = () => {
+  const handleRecommendClick = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+  ) => {
+    if ((e.target as HTMLElement).dataset.button) {
+      return;
+    }
+
     document.documentElement.scrollTop = 0;
     setShowCompare(false);
     setShowComparisonTable(false);
@@ -46,7 +52,10 @@ export const ProductPage = () => {
         />
       )}
 
-      <footer className="ProductPage__footer" onClick={handleRecommendClick}>
+      <footer
+        className="ProductPage__footer"
+        onClick={(e) => handleRecommendClick(e)}
+      >
         <h2 className="ProductPage__recommend-title">We recommend</h2>
         <ProductsSlider />
       </footer>

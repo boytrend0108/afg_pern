@@ -1,5 +1,14 @@
+import { sequelize } from '../db/db.js';
 import ApiError from '../exeptions/apiError.js';
-import { Basket, Role, User } from '../models/models.js';
+import {
+  Basket,
+  Favorite,
+  Order,
+  Refresh,
+  Reserve,
+  Role,
+  User,
+} from '../models/models.js';
 import basketService from './basket.service.js';
 
 class userService {
@@ -84,6 +93,25 @@ class userService {
     await user.save();
 
     return { success: true, message: `Role deleted successfully` };
+  }
+
+  async remove(id) {
+    const transaction = await sequelize.transaction();
+
+    try {
+      await Favorite.destroy({ where: { userId: id }, transaction });
+      await Order.destroy({ where: { userId: id }, transaction });
+      await Reserve.destroy({ where: { userId: id }, transaction });
+      await Basket.destroy({ where: { userId: id }, transaction });
+      await Refresh.destroy({ where: { userId: id }, transaction });
+
+      await User.destroy({ where: { id }, transaction });
+
+      await transaction.commit();
+    } catch (error) {
+      await transaction.rollback();
+      throw ApiError.FORBIDDEN('Failed transaction whet delete user');
+    }
   }
 
   normalize({

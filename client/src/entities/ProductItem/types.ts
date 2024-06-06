@@ -89,7 +89,7 @@ export type DTOBookProduct = {
   country: string;
   email: string;
   name: string;
-  phone: number;
+  phone: number | null;
   productId: number;
   userId: number | null;
 };

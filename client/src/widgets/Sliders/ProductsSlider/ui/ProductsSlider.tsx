@@ -71,6 +71,7 @@ export const ProductsSlider = () => {
   return (
     <section className="ProductsSlider">
       <button
+        data-button
         className="ProductsSlider__nav--left"
         onClick={() => slide('left')}
       />
@@ -86,6 +87,7 @@ export const ProductsSlider = () => {
         ))}
       </div>
       <button
+        data-button
         className="ProductsSlider__nav--right"
         onClick={() => slide('right')}
       />

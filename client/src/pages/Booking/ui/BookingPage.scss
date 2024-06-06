@@ -13,6 +13,10 @@
 
     &-left {
       max-width: 525px;
+
+      @include on-tablet {
+        max-width: 100%;
+      }
     }
 
     &-right {

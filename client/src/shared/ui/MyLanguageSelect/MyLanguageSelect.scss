@@ -40,6 +40,7 @@
     transition: top ease-in-out $transition-duration;
     border: 1px solid $color-secondary;
     border-top: none;
+    z-index: 1;
 
     &--hidden {
       top: -100%;

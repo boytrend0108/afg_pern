@@ -15,10 +15,12 @@ import {
 } from '../../../../shared/hooks/reduxHooks';
 import { user as User } from '../../../../entities/User';
 import { LANGUAGES } from '../../../../shared/consts/languages';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 
 export const BasicInfoForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState(0);
+  const [phone, setPhone] = useState<string | number | null>(null);
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [country, setCountry] = useState('');
@@ -37,14 +39,13 @@ export const BasicInfoForm = () => {
         user;
 
       setName(name);
-      setPhone(phone);
       setEmail(email);
       setCompany(company);
       setCity(city);
       setCountry(country);
       setAddress(address);
       setLang(lang);
-      setPhone(phone);
+      setPhone(phone.toString());
       setFlag(LANGUAGES[lang]);
     }
   }, [user]);
@@ -116,14 +117,18 @@ export const BasicInfoForm = () => {
             </div>
           </InputBox>
 
-          <InputBox
-            required={true}
-            type="number"
-            value={phone}
-            setValue={(v) => setPhone(+v)}
-            title="Phone*"
-            subtitle="Please enter your telephone number"
-          />
+          <div className="BasicInfoForm__input-box">
+            <p className="BasicInfoForm__input-title">Enter your phone</p>
+            <p className="BasicInfoForm__input-tip">
+              Please enter your telephone number
+            </p>
+            <PhoneInput
+              placeholder="Enter phone number"
+              value={phone}
+              onChange={setPhone}
+              defaultCountry="NL"
+            />
+          </div>
 
           <InputBox
             required={true}

@@ -33,7 +33,7 @@ export type UserLoginResponceType = {
 
 export type UserUpdateType = {
   name: string;
-  phone: number;
+  phone: string | number | null;
   email: string;
   country: string;
   city: string;
@@ -43,7 +43,9 @@ export type UserUpdateType = {
 };
 
 export interface RegisterErrorPayload {
-  message: string;
+  message: {
+    [key: string]: string;
+  };
   errors: {
     [key: string]: string;
   };

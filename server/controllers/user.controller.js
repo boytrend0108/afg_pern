@@ -190,6 +190,12 @@ class UserController {
     const user = await userService.findById(id);
     jwtService.generateTokens(res, user);
   }
+
+  async remove(req, res) {
+    const { id } = req.params;
+    await userService.remove(id);
+    res.sendStatus(204);
+  }
 }
 
 export default new UserController();

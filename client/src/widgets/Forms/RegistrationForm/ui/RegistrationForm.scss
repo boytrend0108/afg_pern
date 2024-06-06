@@ -77,4 +77,32 @@
   &__error {
     color: $color-error;
   }
+
+  &__phone {
+    max-width: 425px;
+    width: 100%;
+  }
+
+  &__input-title {
+    margin-bottom: 10px;
+  }
+}
+
+.PhoneInputInput {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $color-border;
+  outline: none;
+  background-color: $color-primary-hover;
+  color: $color-font-light;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: $color-font-light;
+  -webkit-box-shadow: 0 0 0px 1000px $color-primary-hover inset;
+  transition: color 5000s ease-in-out 0s;
 }

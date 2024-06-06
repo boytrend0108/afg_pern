@@ -6,6 +6,7 @@ export const ContactUs = () => {
     <div className="ContactUs">
       <div className="ContactUs__top">
         <p className="ContactUs__title">Contact Us</p>
+
         <p className="ContactUs__subtitle">
           If you are interested in a particular model or need help
         </p>
@@ -19,6 +20,7 @@ export const ContactUs = () => {
         >
           {SOCIAL_LINKS.PHONE}
         </a>
+
         <a
           href={`mailto:${SOCIAL_LINKS.EMAIL}`}
           className="ContactUs__contact ContactUs__contact--mail"
@@ -26,6 +28,7 @@ export const ContactUs = () => {
         >
           {SOCIAL_LINKS.EMAIL}
         </a>
+
         <a
           href={SOCIAL_LINKS.WHATSAPP}
           className="ContactUs__contact ContactUs__contact--whatsapp"

@@ -1,5 +1,15 @@
 import ApiError from '../exeptions/apiError.js';
-import { Reserve, Product, User } from '../models/models.js';
+import {
+  Reserve,
+  Product,
+  User,
+  Category,
+  Brand,
+  ProductInfo,
+  ProductImage,
+  ProductImageInter,
+} from '../models/models.js';
+import productService from './product.service.js';
 
 class ReserveService {
   async add({ productId, userId }) {
@@ -54,7 +64,47 @@ class ReserveService {
   }
 
   async getAll(userId) {
-    return await Reserve.findAll({ where: { userId } });
+    const response = await Reserve.findAll({
+      where: { userId },
+      attributes: {
+        exclude: ['createdAt', 'updatedAt', 'productId'],
+      },
+      include: {
+        model: Product,
+        include: [
+          {
+            model: Category,
+            attributes: ['name'],
+          },
+          {
+            model: Brand,
+            attributes: ['name'],
+          },
+          {
+            model: ProductInfo,
+          },
+          {
+            model: ProductImage,
+            attributes: ['image'],
+          },
+          {
+            model: ProductImageInter,
+            attributes: ['image'],
+          },
+        ],
+        attributes: ['id', 'title', 'price', 'year', 'hours'],
+      },
+    });
+
+    const booked = response.map((el) => {
+      return {
+        id: el.id,
+        userId: el.userId,
+        product: productService.prepareProduct(el.product),
+      };
+    });
+
+    return booked;
   }
 }
 
