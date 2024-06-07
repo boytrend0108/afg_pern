@@ -106,7 +106,7 @@ export const LoginForm = () => {
 
       <div className="LoginForm__error">
         {loginError && (
-          <p className="LoginForm__error-msg">{loginError.message}</p>
+          <p className="LoginForm__error-msg">{loginError.message.message}</p>
         )}
       </div>
 
