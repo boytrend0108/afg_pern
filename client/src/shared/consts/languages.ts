@@ -1,6 +1,6 @@
 export const LANGUAGES: { [key: string]: string } = {
   Dutch: 'nl',
-  English: 'gb',
+  English: 'en',
   French: 'fr',
   Greek: 'gr',
   German: 'de',

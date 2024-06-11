@@ -4,7 +4,6 @@
   background-color: #010001;
   height: 256px;
   overflow: hidden;
-  width: 100vw;
   max-width: $max-app-width;
 
   @include on-tablet-s {
@@ -40,10 +39,6 @@
     align-items: center;
     justify-content: space-between;
 
-    @include on-desktop-s {
-      padding-inline: 0;
-    }
-
     @include on-mobile {
       padding-left: 20px;
       padding-bottom: 20px;
@@ -70,11 +65,10 @@
   }
 
   &__img {
-    height: 100%;
-    aspect-ratio: 1/1;
+    height: 80%;
 
     &--left {
-      @include on-mobile {
+      @include on-desktop-s {
         display: none;
       }
     }
@@ -86,9 +80,9 @@
     }
 
     @include on-mobile {
-      width: 134px;
+      width: 172px;
       font-size: 16px;
-      height: 40px;
+      height: 36px;
     }
   }
 }

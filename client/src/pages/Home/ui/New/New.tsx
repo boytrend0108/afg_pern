@@ -7,11 +7,13 @@ import { useGetWidth } from '../../../../shared/hooks';
 import { BREAKPOING } from '../../../../shared/consts/breakPoints';
 import { useAppSelector } from '../../../../shared/hooks/reduxHooks';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const New = () => {
   const [width, setWidth] = useState(0);
   const { products } = useAppSelector((state) => state.product);
   const [currentProd, setCurrentProd] = useState(products);
+  const { t } = useTranslation();
 
   useGetWidth(width, setWidth);
 
@@ -37,7 +39,7 @@ export const New = () => {
   return (
     <div className="New">
       <div className="New__container">
-        <h2 className="New__title">New</h2>
+        <h2 className="New__title">{t('sectionTitle.New')}</h2>
 
         <div className="New__row">
           {currentProd.map((item) => (
@@ -49,7 +51,9 @@ export const New = () => {
       </div>
 
       <Link to="catalog?show=new">
-        <MyButton className="MyButton New__btn">See more</MyButton>
+        <MyButton className="MyButton New__btn">
+          {t('buttons.See more')}
+        </MyButton>
       </Link>
     </div>
   );

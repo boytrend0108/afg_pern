@@ -16,7 +16,12 @@ export const SelectCountry = () => {
   useHideDrop(selectRef, setShowCountry);
 
   return (
-    <button className="SelectCountry" onClick={toogleCountry} ref={selectRef}>
+    <button
+      className="SelectCountry"
+      onClick={toogleCountry}
+      ref={selectRef}
+      aria-label="select country"
+    >
       <ul className="SelectCountry__flags MyFlags" style={{ display: 'block' }}>
         <li className={`flag ${country} SelectCountry__flag`} />
       </ul>

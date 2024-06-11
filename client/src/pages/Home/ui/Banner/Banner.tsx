@@ -1,33 +1,39 @@
 import { Link } from 'react-router-dom';
 import { MyButton } from '../../../../shared/ui';
 import './Banner.scss';
+import { useTranslation } from 'react-i18next';
 
 export const Banner = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="Banner">
       <div className="Banner__container">
         <img
-          src="/home-page/pile-banner-left.png"
+          src="/home-page/pile-banner-left.webp"
           alt="pile drivers"
           className="Banner__img Banner__img--left"
+          height={170}
+          width={170}
         />
 
         <main className="Banner__main">
-          <h2 className="Banner__title">pile drivers</h2>
-          <p className="Banner__desc">
-            Machine for pile driving into the ground by static force
-            transmission method
-          </p>
+          <h2 className="Banner__title">{t('Banner.pile drivers')}</h2>
+          <p className="Banner__desc">{t(`Banner.subtitle`)}</p>
 
           <Link to="catalog">
-            <MyButton className="Banner__btn MyButton">View models</MyButton>
+            <MyButton className="Banner__btn MyButton">
+              {t('Banner.View models')}
+            </MyButton>
           </Link>
         </main>
 
         <img
-          src="/home-page/pile-banner-right.png"
+          src="/home-page/pile-banner-right.webp"
           alt="pile drivers"
           className="Banner__img"
+          height={170}
+          width={170}
         />
       </div>
     </div>

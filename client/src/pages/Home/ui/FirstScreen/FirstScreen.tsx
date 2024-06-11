@@ -1,32 +1,42 @@
 import { Link } from 'react-router-dom';
 import { MyButton } from '../../../../shared/ui';
+import { useTranslation } from 'react-i18next';
+
 import './FirstScreen.scss';
 
 export const FirstScreen = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="FirstScreen">
       <div className="FirstScreen__main">
-        <h1 className="FirstScreen__title">New Mini Excalarors</h1>
+        <h1 className="FirstScreen__title">
+          {t('FirstScreen.New Mini Excavators')}
+        </h1>
 
         <Link to="catalog?show=new" className="FirstScreen__button">
-          <MyButton>View catalog</MyButton>
+          <MyButton>{t('FirstScreen.view catalog')}</MyButton>
         </Link>
       </div>
 
       <div className="FirstScreen__side">
         <div className="FirstScreen__top">
-          <h2 className="FirstScreen__title--mini">New machinery</h2>
+          <h2 className="FirstScreen__title--mini">
+            {t('FirstScreen.New machinery')}
+          </h2>
 
           <Link to="catalog?show=new" className="FirstScreen__link">
-            See all
+            {t('FirstScreen.See all')}
           </Link>
         </div>
 
         <div className="FirstScreen__bottom">
-          <h2 className="FirstScreen__title--mini">Used machinery</h2>
+          <h2 className="FirstScreen__title--mini">
+            {t('FirstScreen.Used machinery')}
+          </h2>
 
           <Link to="catalog?show=used" className="FirstScreen__link">
-            See all
+            {t('FirstScreen.See all')}
           </Link>
         </div>
       </div>

@@ -8,7 +8,7 @@
 }
 @mixin loginBackground {
   flex-grow: 1;
-  background-image: url(/background-login.png);
+  background-image: url(/background-login.webp);
   background-color: #b59003;
   background-repeat: no-repeat;
   background-size: cover;
@@ -72,10 +72,10 @@
 
 @mixin image-label {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
+  top: -4px;
+  right: -4px;
+  width: 130px;
+  height: 130px;
   background-color: $color-primary;
   color: $color-font-light;
   display: flex;

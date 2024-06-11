@@ -1,4 +1,4 @@
-import { MyFlags } from './MyFlags/MyFlag';
+import { MyFlags } from './MyFlags/ui/MyFlag';
 import { MyButton } from './MyButton/MyButton';
 import { MySocial } from './MySocial/MySocial';
 import { MySocialBlack } from './MySocialBlack/MySocialBlack';

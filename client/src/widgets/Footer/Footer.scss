@@ -65,7 +65,7 @@
 
   &__logo {
     height: 150px;
-    width: 210px;
+    width: 200px;
 
     @include on-tablet-s {
       width: 140px;
@@ -141,7 +141,6 @@
       cursor: pointer;
       color: $color-font-light;
       height: 45px;
-      width: 110px;
       background-color: $color-primary;
       border: 1px solid $color-border;
 

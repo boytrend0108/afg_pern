@@ -60,15 +60,17 @@
   }
 
   &__btn {
-    position: absolute;
-    top: 50%;
-    left: 34%;
+    @extend %btn;
 
-    @include on-tablet-s {
-      position: static;
-      width: fit-content;
-      margin: 0 auto;
-      margin-top: 40px;
+    // @include on-tablet-s {
+    //   position: static;
+    //   width: fit-content;
+    //   margin: 0 auto;
+    //   margin-top: 40px;
+    // }
+
+    @include on-mobile-m {
+      font-size: 13px;
     }
   }
 }

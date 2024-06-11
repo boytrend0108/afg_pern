@@ -7,10 +7,12 @@ import { changeSlide } from '../helpers/changeSlide';
 import { useObserver } from '../hooks/useObserver';
 import { useGetWidth } from '../../../../shared/hooks/useGetWidth';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const Slider: React.FC = () => {
   const [slide, setSlide] = useState('1');
   const [currentWidth, setCurrentWidth] = useState(0);
+  const { t } = useTranslation();
 
   useObserver(setSlide);
   useGetWidth(currentWidth, setCurrentWidth);
@@ -34,10 +36,12 @@ export const Slider: React.FC = () => {
           }}
           data-slidenum="1"
         >
-          <h1 className="Slider__title">New Mini Excalarors</h1>
+          <h1 className="Slider__title">
+            {t('FirstScreen.New Mini Excavators')}
+          </h1>
           <Link to="catalog?show=new">
             <MyButton style={{ height: '48px', fontSize: '16px' }}>
-              View catalog
+              {t('FirstScreen.view catalog')}
             </MyButton>
           </Link>
         </div>
@@ -47,10 +51,10 @@ export const Slider: React.FC = () => {
           style={{ minWidth: currentWidth }}
           data-slidenum="2"
         >
-          <h1 className="Slider__title">Used machinery</h1>
+          <h1 className="Slider__title">{t('FirstScreen.Used machinery')}</h1>
           <Link to="catalog?show=used">
             <MyButton style={{ height: '48px', fontSize: '16px' }}>
-              View catalog
+              {t('FirstScreen.view catalog')}
             </MyButton>
           </Link>
         </div>
@@ -60,10 +64,10 @@ export const Slider: React.FC = () => {
           style={{ minWidth: currentWidth }}
           data-slidenum="3"
         >
-          <h1 className="Slider__title">New machinery</h1>
+          <h1 className="Slider__title">{t('FirstScreen.New machinery')}</h1>
           <Link to="catalog?show=new">
             <MyButton style={{ height: '48px', fontSize: '16px' }}>
-              View catalog
+              {t('FirstScreen.view catalog')}
             </MyButton>
           </Link>
         </div>

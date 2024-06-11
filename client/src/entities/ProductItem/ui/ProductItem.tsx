@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -8,6 +8,8 @@ import { ARTICUL_PREFIX } from '../../../shared/consts/product';
 import { GOOGLE_DRIVE_URL } from '../../../shared/consts/google';
 // eslint-disable-next-line max-len
 import { getPromoType } from '../../../pages/ProductPage/helpers.ts/getPromoType';
+import { useTranslation } from 'react-i18next';
+import { useGetPrice } from '../../../shared/hooks';
 
 type Props = {
   machine: ProductType;
@@ -20,9 +22,14 @@ export const ProductItem: React.FC<Props> = ({
   machine,
   ...props
 }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
+  const [preparedPrice, setPreparedPrice] = useState('$ 0');
+
+  useGetPrice(machine, setPreparedPrice);
+
   const promoType: PromoType =
-    (machine && getPromoType(machine)) || 'Recomended';
+    (machine && getPromoType(machine)) || 'Recommended';
 
   const handleClick = () => {
     navigate(`/product/${machine.id}?tab=general`);
@@ -58,7 +65,8 @@ export const ProductItem: React.FC<Props> = ({
           <h3 className="ProductItem__title">{machine.title}</h3>
 
           <p className="ProductItem__breadcrumb">
-            {`${machine.category} / New / Unused`}
+            {t(`Categories.${machine.category}`)} /{' '}
+            {t(`ProductItem.${promoType}`)}
           </p>
         </div>
 
@@ -72,7 +80,7 @@ export const ProductItem: React.FC<Props> = ({
             <p className="ProductItem__article">
               {ARTICUL_PREFIX + machine.id}
             </p>
-            <p className="ProductItem__price">€ {machine.price}</p>
+            <p className="ProductItem__price">{preparedPrice}</p>
           </div>
         </div>
       </div>

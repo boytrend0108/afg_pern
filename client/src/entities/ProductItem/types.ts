@@ -28,7 +28,6 @@ export type ProductOptionsType = {
   tracksPlate: number;
   tracksPlateWidth: number;
   tracksSprocket: number;
-  datchMachine: boolean;
   quickCoupler: boolean;
   radio: boolean;
   extraHuidraulic: boolean;
@@ -37,7 +36,6 @@ export type ProductOptionsType = {
 };
 
 export type ProductOptionsBooleanType = {
-  datchMachine: boolean;
   quickCoupler: boolean;
   radio: boolean;
   extraHuidraulic: boolean;
@@ -80,7 +78,7 @@ export type ProductState = {
   error: null | string;
 };
 
-export type PromoType = 'New' | 'Recomended' | 'Top';
+export type PromoType = 'New' | 'Recommended' | 'Top';
 
 export type DTOBookProduct = {
   address: string;

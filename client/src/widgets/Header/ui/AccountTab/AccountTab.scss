@@ -54,17 +54,17 @@
     overflow: hidden;
 
     @include on-desktop-s {
-      width: 177px;
-      left: -44px;
+      width: 216px;
+      left: -83px;
     }
 
     @include on-tablet {
-      left: -78px;
+      left: -117px;
     }
 
     @include on-tablet-s {
       top: 75px;
-      left: -103px;
+      left: -142px;
     }
   }
 
@@ -91,7 +91,8 @@
     padding: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 68px;
 
     $links: 'search-2', 'favorite', 'catalog', 'news', 'settings', 'request',
       'setting', 'logout', 'contact';

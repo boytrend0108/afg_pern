@@ -36,11 +36,13 @@
 
   &__filter {
     height: 50px;
-    width: 80px;
+    min-width: fit-content;
     padding: 15px 20px;
     color: $color-primary-hover;
     transition: all ease-in-out;
     text-transform: uppercase;
+    flex-grow: 1;
+    text-align: center;
 
     @include on-mobile {
       width: min-content;
@@ -49,7 +51,7 @@
     }
 
     &--top {
-      width: 160px;
+      // width: 160px;
 
       @include on-mobile {
         width: max-content;
@@ -119,7 +121,7 @@
     gap: 10px;
     display: none;
 
-    @include on-tablet {
+    @include on-desktop-s {
       display: flex;
     }
 

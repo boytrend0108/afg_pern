@@ -34,6 +34,8 @@ export const SelectCurrency = () => {
         src="/my-icons/arrow-down.png"
         alt="arrow down"
         className="SelectCurrency__icon--arrow"
+        width={25}
+        height={25}
       />
 
       <div

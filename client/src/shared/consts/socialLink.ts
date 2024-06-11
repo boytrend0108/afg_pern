@@ -5,6 +5,6 @@ export const SOCIAL_LINKS = {
   YOUTUBE: 'https://www.youtube.com/channel/UC6m2AAFJzmbUbcJYsCENbgA',
   X: 'https://twitter.com/AFGmachinery',
   WHATSAPP: 'https://web.whatsapp.com/',
-  PHONE: '000-000-000',
+  PHONE: '+40 729 497 265',
   EMAIL: 'afg.machin@gmail.com',
 };

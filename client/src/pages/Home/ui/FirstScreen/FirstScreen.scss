@@ -26,15 +26,15 @@
 }
 
 .FirstScreen {
-  padding-block: 26px;
+  padding-block: 16px;
   height: 420px;
   display: flex;
-  gap: 25px;
+  gap: 16px;
 
   @include on-desktop-s {
     padding-block: 20px;
     height: 334px;
-    gap: 20px;
+    gap: 16px;
   }
 
   @include on-tablet {
@@ -51,12 +51,12 @@
     text-align: left;
     color: $color-font-light;
     margin: 0;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 
     @include on-desktop {
       font-size: 64px;
       line-height: 64px;
-      margin-bottom: 15px;
+      margin-bottom: 40px;
     }
 
     &--mini {
@@ -100,7 +100,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     max-width: 645px;
     width: 100%;
     flex-shrink: 2;

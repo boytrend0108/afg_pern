@@ -1,10 +1,21 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './AdminPage.scss';
 
 import { Button } from 'react-bootstrap';
+import React from 'react';
+import { useAppDispatch } from '../../../../shared/hooks/reduxHooks';
+import { user } from '../../../../entities/User';
+type Props = {
+  children: React.ReactNode;
+};
 
-export const AdminPage = () => {
+export const AdminPage: React.FC<Props> = ({ children }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(user.logout());
+  };
 
   return (
     <div className="AdminPage">
@@ -30,16 +41,14 @@ export const AdminPage = () => {
               </Button>
             </div>
 
-            <Button variant="warning" onClick={() => navigate('products')}>
+            <Button variant="warning" onClick={handleLogout}>
               Logout
             </Button>
           </div>
         </div>
       </header>
 
-      <main className="AdminPage__main my-container">
-        <Outlet />
-      </main>
+      <main className="AdminPage__main my-container">{children}</main>
     </div>
   );
 };

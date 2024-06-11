@@ -9,7 +9,12 @@ type Props = {
 export const MySocial: React.FC<Props> = (props) => {
   return (
     <div className="MySocial" {...props}>
-      <a href={SOCIAL_LINKS.FB} target="blank" className="MySocial__icon">
+      <a
+        href={SOCIAL_LINKS.FB}
+        target="blank"
+        className="MySocial__icon"
+        aria-label="facebook"
+      >
         <svg
           width="40"
           height="40"
@@ -26,7 +31,12 @@ export const MySocial: React.FC<Props> = (props) => {
         </svg>
       </a>
 
-      <a href={SOCIAL_LINKS.INST} target="blank" className="MySocial__icon">
+      <a
+        href={SOCIAL_LINKS.INST}
+        target="blank"
+        className="MySocial__icon"
+        aria-label="instagram"
+      >
         <svg
           width="40"
           height="40"
@@ -42,7 +52,12 @@ export const MySocial: React.FC<Props> = (props) => {
         </svg>
       </a>
 
-      <a href={SOCIAL_LINKS.YOUTUBE} target="blank" className="MySocial__icon">
+      <a
+        href={SOCIAL_LINKS.YOUTUBE}
+        target="blank"
+        className="MySocial__icon"
+        aria-label="youtube"
+      >
         <svg
           width="40"
           height="40"
@@ -58,7 +73,12 @@ export const MySocial: React.FC<Props> = (props) => {
         </svg>
       </a>
 
-      <a href={SOCIAL_LINKS.X} target="blank" className="MySocial__icon">
+      <a
+        href={SOCIAL_LINKS.X}
+        target="blank"
+        className="MySocial__icon"
+        aria-label="twitter"
+      >
         <svg
           width="40"
           height="40"

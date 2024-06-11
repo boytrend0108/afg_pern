@@ -12,16 +12,18 @@ import { BookingPage } from '../pages/Booking';
 import { ProfilePage } from '../pages/Profile';
 import { NewsPage } from '../pages/News';
 import { ActivationPage } from '../pages/ActivationPage';
-import { AdminPage } from '../pages/Admin/AdminPage';
 import { AdminBrands } from '../pages/Admin/AdminBrands';
 import { AdminCategories } from '../pages/Admin/AdminCategories';
 import { AdminProducts } from '../pages/Admin/AdminProducts';
+import { RequiredManagerRole } from '../features/RequiredManagerRole';
+import { NotFoundPage } from '../pages/NotFound';
 
 export const Root = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<App />}>
+          <Route path="*" element={<NotFoundPage />} />
           <Route index element={<HomePage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="registration" element={<RegistrationPage />} />
@@ -42,7 +44,7 @@ export const Root = () => {
           <Route path="*" element={<HomePage />} />
         </Route>
 
-        <Route path="admin" element={<AdminPage />}>
+        <Route path="admin" element={<RequiredManagerRole />}>
           <Route path="brands" element={<AdminBrands />} />
           <Route path="categories" element={<AdminCategories />} />
           <Route path="products" element={<AdminProducts />} />

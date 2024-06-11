@@ -4,9 +4,11 @@ import { RequestForm } from '../../../widgets/Forms/RequestForm';
 import './RequestPage.scss';
 import { useScrollToTop } from '../../../shared/hooks';
 import { MyContactInfo } from '../../../shared/ui/MyContactInfo/MyContactInfo';
+import { useTranslation } from 'react-i18next';
 
 export const RequestPage = () => {
   const [success, setSuccess] = useState(false);
+  const { t } = useTranslation();
 
   useScrollToTop();
 
@@ -14,12 +16,11 @@ export const RequestPage = () => {
     <div className="RequestPage my-container">
       <div className="RequestPage__header">
         <div className="RequestPage__header--left">
-          <h1 className="RequestPage__title">Leaving a request</h1>
+          <h1 className="RequestPage__title">
+            {t('sectionTitle.Leaving a request')}
+          </h1>
 
-          <p className="RequestPage__text">
-            After filling out the form, our manager will contact you shortly to
-            agree on all the details and discuss the purchase
-          </p>
+          <p className="RequestPage__text">{t('RequestPage.subtitle')}</p>
         </div>
 
         <div className="RequestPage__header--right">

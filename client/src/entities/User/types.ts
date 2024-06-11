@@ -1,3 +1,18 @@
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-shadow
+export enum USER_ROLE {
+  USER = 'USER',
+  MANAGER = 'MANAGER',
+}
+
+export type ROLE = {
+  id: number;
+  role: USER_ROLE;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type User = {
   id: number;
   name: string;
@@ -9,6 +24,7 @@ export type User = {
   address: string;
   company: string;
   lang: string;
+  roles: ROLE[];
 };
 
 export type UserCreateResponceType = {
@@ -27,6 +43,7 @@ export type UserLoginResponceType = {
     lang: string;
     phone: number;
     address: string;
+    roles: string[];
   };
   accessToken: string;
 };

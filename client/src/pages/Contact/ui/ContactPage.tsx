@@ -3,13 +3,16 @@ import { SOCIAL_LINKS } from '../../../shared/consts/socialLink';
 import { useScrollToTop } from '../../../shared/hooks';
 import { MyContactInfo } from '../../../shared/ui/MyContactInfo/MyContactInfo';
 import './ContactPage.scss';
+import { useTranslation } from 'react-i18next';
 
 export const ContactPage = () => {
   useScrollToTop();
 
+  const { t } = useTranslation();
+
   return (
     <div className="ContactPage my-container">
-      <h1 className="ContactPage__title">Contact</h1>
+      <h1 className="ContactPage__title">{t('sectionTitle.Contacts')}</h1>
 
       <div className="ContactPage__info">
         <MyContactInfo />
@@ -30,27 +33,29 @@ export const ContactPage = () => {
 
         <ul className="ContactPage__contacts">
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">Street</p>
+            <p className="ContactPage__key">{t('ContactPage.Street')}</p>
             <p className="ContactPage__value">Some street</p>
           </li>
 
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">Zipcode</p>
+            <p className="ContactPage__key">{t('ContactPage.Zipcode')}</p>
             <p className="ContactPage__value">30800 Kiev Ukraine</p>
           </li>
 
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">Country</p>
+            <p className="ContactPage__key">{t('ContactPage.Country')}</p>
             <p className="ContactPage__value"> add country</p>
           </li>
 
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">Nearest airport</p>
+            <p className="ContactPage__key">
+              {t('ContactPage.Nearest airport')}
+            </p>
             <p className="ContactPage__value"> add Airport</p>
           </li>
 
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">phone</p>
+            <p className="ContactPage__key">{t('ContactPage.Phone')}</p>
             <a
               className="ContactPage__value"
               href={`tel:${SOCIAL_LINKS.PHONE}`}
@@ -73,30 +78,25 @@ export const ContactPage = () => {
           </li>
 
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">VAT number</p>
+            <p className="ContactPage__key">{t('ContactPage.VAT number')}</p>
             <p className="ContactPage__value">add vat number</p>
-          </li>
-
-          <li className="ContactPage__contact">
-            <p className="ContactPage__key">Chamber of Commerce no.</p>
-            <p className="ContactPage__value">
-              5290041, located in Ukraine, The Netherlands
-            </p>
           </li>
         </ul>
       </div>
 
       <div className="ContactPage__bank">
-        <h2 className="ContactPage__list-title">Bank details</h2>
+        <h2 className="ContactPage__list-title">
+          {t('sectionTitle.Bank details')}
+        </h2>
 
         <ul className="ContactPage__contacts">
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">Bank Name:</p>
+            <p className="ContactPage__key">{t('ContactPage.Bank name')}</p>
             <p className="ContactPage__value">Universal</p>
           </li>
 
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">Bank Address:</p>
+            <p className="ContactPage__key">{t('ContactPage.Bank address')}</p>
             <p className="ContactPage__value">
               Horst 18 5501 DN Veldhoven The Netherlands
             </p>
@@ -108,7 +108,7 @@ export const ContactPage = () => {
           </li>
 
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">Swiftcode:</p>
+            <p className="ContactPage__key">{t('ContactPage.Swiftcode')}</p>
             <p className="ContactPage__value"> add code</p>
           </li>
 
@@ -118,7 +118,7 @@ export const ContactPage = () => {
           </li>
 
           <li className="ContactPage__contact">
-            <p className="ContactPage__key">Swiftcode:</p>
+            <p className="ContactPage__key">{t('ContactPage.Swiftcode')}</p>
             <p className="ContactPage__value"> add code</p>
           </li>
         </ul>

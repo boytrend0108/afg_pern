@@ -1,5 +1,14 @@
 @import '../../../shared/style/utils.scss';
 
+@mixin productItem_lable {
+  @extend .ProductItem__image-lable;
+  background-color: $color-font-light;
+  color: $color-primary;
+  font-size: clamp(1rem, 0.6875rem + 1vw, 1.25rem);
+  text-transform: uppercase;
+  padding-bottom: 6px;
+}
+
 .ProductItem {
   width: inherit;
   height: 100%;
@@ -25,19 +34,12 @@
       @include image-label;
 
       &--new {
-        @extend .ProductItem__image-lable;
-        background-color: $color-font-light;
-        color: $color-primary;
-        font-size: clamp(1rem, 0.6875rem + 1vw, 1.25rem);
-        text-transform: uppercase;
+        @include productItem_lable;
       }
 
       &--top {
-        @extend .ProductItem__image-lable;
+        @include productItem_lable;
         background-color: $color-secondary;
-        color: $color-primary;
-        font-size: clamp(1rem, 0.6875rem + 1vw, 1.25rem);
-        text-transform: uppercase;
       }
     }
   }

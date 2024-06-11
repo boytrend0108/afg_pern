@@ -26,12 +26,8 @@ export const CatalogPage = () => {
   }, []);
 
   return (
-    <section
-      className={cn('CatalogPage', {
-        'my-container': !showFilters,
-      })}
-    >
-      <header className="CatalogPage__header">
+    <section className={cn('CatalogPage', {})}>
+      <header className="CatalogPage__header  my-container">
         <MySearch style={{ marginBottom: '50px' }} />
         <CategoryList />
       </header>

@@ -24,7 +24,6 @@ export const PRODUCT_OPTIONS: (keyof ProductOptionsType)[] = [
 ];
 
 export const PRODUCT_OPTIONS_BOOLEAN: (keyof ProductOptionsBooleanType)[] = [
-  'datchMachine',
   'quickCoupler',
   'radio',
   'extraHuidraulic',

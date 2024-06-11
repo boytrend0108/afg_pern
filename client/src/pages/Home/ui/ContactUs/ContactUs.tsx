@@ -1,15 +1,16 @@
 import { SOCIAL_LINKS } from '../../../../shared/consts/socialLink';
 import './ContactUs.scss';
+import { useTranslation } from 'react-i18next';
 
 export const ContactUs = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="ContactUs">
       <div className="ContactUs__top">
-        <p className="ContactUs__title">Contact Us</p>
+        <p className="ContactUs__title">{t('ContactUs.title')}</p>
 
-        <p className="ContactUs__subtitle">
-          If you are interested in a particular model or need help
-        </p>
+        <p className="ContactUs__subtitle">{t('ContactUs.subtitle')}</p>
       </div>
 
       <div className="ContactUs__contacts">

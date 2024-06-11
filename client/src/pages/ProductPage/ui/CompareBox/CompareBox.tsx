@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import cn from 'classnames';
 
 import { ProductItem, productAction } from '../../../../entities/ProductItem';
@@ -9,6 +9,7 @@ import {
   useAppSelector,
 } from '../../../../shared/hooks/reduxHooks';
 import { ProductType } from '../../../../entities/ProductItem/types';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   onClose: () => void;
@@ -21,6 +22,8 @@ export const CompareBox: React.FC<Props> = ({
 }) => {
   const { products, compare } = useAppSelector((state) => state.product);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const prepareList = products.filter((el) => el.id !== compare[0].id);
 
@@ -34,6 +37,10 @@ export const CompareBox: React.FC<Props> = ({
     } else {
       dispatch(productAction.addToCompare(m));
     }
+
+    if (headerRef) {
+      headerRef.current?.scrollIntoView();
+    }
   };
 
   const closeTab = () => {
@@ -43,10 +50,20 @@ export const CompareBox: React.FC<Props> = ({
 
   return (
     <div className="CompareBox">
-      <div className="CompareBox__header">
-        <h2 className="CompareBox__title">
-          Select the model you want to compare with
-        </h2>
+      <div className="CompareBox__header" ref={headerRef}>
+        {/* <h2 className="CompareBox__title">{t('CompareBox.title')}</h2> */}
+        <div>
+          {compare.length > 1 ? (
+            <MyButton onClick={setShowComparisonTable}>Compare</MyButton>
+          ) : (
+            <MyButton
+              style={{ backgroundColor: '#ADADAC' }}
+              className="CompareBox__btn"
+            >
+              {t('buttons.Select model to compare')}
+            </MyButton>
+          )}
+        </div>
 
         <img
           src="/my-icons/close-btn.svg"
@@ -68,16 +85,6 @@ export const CompareBox: React.FC<Props> = ({
             <ProductItem machine={m} />
           </div>
         ))}
-      </div>
-
-      <div className="CompareBox__btn">
-        {compare.length > 1 ? (
-          <MyButton onClick={setShowComparisonTable}>Compare</MyButton>
-        ) : (
-          <MyButton style={{ backgroundColor: '#ADADAC' }}>
-            Select model to compare
-          </MyButton>
-        )}
       </div>
     </div>
   );

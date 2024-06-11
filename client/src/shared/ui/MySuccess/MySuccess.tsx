@@ -1,6 +1,9 @@
 import './MySuccess.scss';
+import { useTranslation } from 'react-i18next';
 
 export const MySuccess = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="MySuccess">
       <img
@@ -8,8 +11,8 @@ export const MySuccess = () => {
         alt="success"
         className="MySuccess__img"
       />
-      <p className="MySuccess__title">Thank you for your application</p>
-      <p className="MySuccess__msg">Our manager will contact you shortly!</p>
+      <p className="MySuccess__title">{t('form.thanksMsg1')}</p>
+      <p className="MySuccess__msg"> {t('form.thanksMsg2')}</p>
     </div>
   );
 };

@@ -16,7 +16,7 @@ export const ProductViewMobile: React.FC<Props> = ({ product }) => {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get('tab') || 'general';
   const promoType: PromoType =
-    (product && getPromoType(product)) || 'Recomended';
+    (product && getPromoType(product)) || 'Recommended';
 
   return (
     <div className="ProductViewMobile">

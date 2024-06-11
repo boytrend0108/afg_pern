@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './CategoryItem.scss';
 import { CategoryType } from '../types';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   category: CategoryType;
@@ -11,6 +12,7 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
   const { image, name } = category;
   const [onHover, setOnhover] = useState(false);
   const item = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const onMouseOver = () => {
@@ -32,7 +34,7 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
 
   return (
     <div className="CategoryItem" ref={item}>
-      <div className="CategoryItem__counter">14</div>
+      <div className="CategoryItem__counter">1</div>
 
       {onHover ? (
         <img
@@ -49,7 +51,7 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
         />
       )}
 
-      <div className="CategoryItem__title">{name}</div>
+      <div className="CategoryItem__title">{t(`Categories.${name}`)}</div>
     </div>
   );
 };

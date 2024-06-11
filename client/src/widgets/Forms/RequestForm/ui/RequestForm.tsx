@@ -7,6 +7,7 @@ import { LANGUAGES } from '../../../../shared/consts/languages';
 import { productAPI } from '../../../../entities/ProductItem';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   onSuccess: (v: boolean) => void;
@@ -21,11 +22,12 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
   const [lang, setLang] = useState('English');
-  const [flag, setFlag] = useState('gb');
+  const [flag, setFlag] = useState('en');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { user } = useAppSelector((state) => state.user);
   const { booked } = useAppSelector((state) => state.product);
+  const { t } = useTranslation();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -103,7 +105,7 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
 
   return (
     <form className="RequestForm" onSubmit={handleSubmit}>
-      <h2 className="RequestForm__title">Your data:</h2>
+      <h2 className="RequestForm__title">{t('sectionTitle.Your data')}</h2>
 
       <div className="RequestForm__fields">
         <div className="RequestForm__box">
@@ -112,7 +114,7 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
             onChange={(e) => setName(e.target.value)}
             type="text"
             className="RequestForm__input"
-            placeholder="Name*"
+            placeholder={t('form.Name') + '*'}
             required
           />
 
@@ -123,7 +125,7 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
           />
 
           <PhoneInput
-            placeholder="Enter phone number"
+            placeholder={t('form.phonePlaceholder') + '*'}
             value={phone}
             onChange={setPhone}
             defaultCountry="NL"
@@ -132,7 +134,7 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
           <input
             type="email"
             className="RequestForm__input"
-            placeholder="E-mail address*"
+            placeholder={t('form.emailPlaceholder') + '*'}
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -143,7 +145,7 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
           <input
             type="text"
             className="RequestForm__input"
-            placeholder="Company name"
+            placeholder={t('form.Company name')}
             value={company}
             onChange={(e) => setCompany(e.target.value)}
           />
@@ -151,7 +153,7 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
           <input
             type="text"
             className="RequestForm__input"
-            placeholder="Country"
+            placeholder={t('form.Coutry')}
             value={country}
             onChange={(e) => setCountry(e.target.value)}
           />
@@ -159,7 +161,7 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
           <input
             type="text"
             className="RequestForm__input"
-            placeholder="City"
+            placeholder={t('form.City')}
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
@@ -167,16 +169,18 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
           <input
             type="text"
             className="RequestForm__input"
-            placeholder="Address"
+            placeholder={t('form.Address')}
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
       </div>
-      <p className="RequestForm__note">* Fill in the required fields</p>
+      <p className="RequestForm__note">
+        {t('form.* Fill in the required fields')}
+      </p>
 
       <MyButton className="RequestForm__btn">
-        {loading ? 'In progress..' : 'Send a request'}
+        {loading ? 'In progress..' : t('buttons.Send a request')}
       </MyButton>
 
       {error && <p className="RequestForm__error">{error}</p>}

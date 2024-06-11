@@ -6,12 +6,8 @@ export const useGetTitle = (setBtnTitle: (v: string) => void) => {
       const width = window.innerWidth;
 
       switch (true) {
-        case width <= 425:
-          setBtnTitle('☆');
-          break;
-
         case width <= 600:
-          setBtnTitle('Add to ☆');
+          setBtnTitle('☆');
           break;
 
         default:

@@ -5,5 +5,5 @@ export const getPromoType = (product: ProductType): PromoType => {
 
   const promoType = productInfos.find((item) => item.title === 'promoType');
 
-  return (promoType?.description as PromoType) || 'Recomended';
+  return (promoType?.description as PromoType) || 'Recommended';
 };

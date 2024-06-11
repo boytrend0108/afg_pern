@@ -4,23 +4,21 @@ import './App.scss';
 import { Header } from '../../widgets/Header';
 import { Footer } from '../../widgets/Footer/Footer';
 import { useEffect } from 'react';
-import localStorageService from '../../shared/services/localStorageService';
 import { useAppDispatch } from '../../shared/hooks/reduxHooks';
-import { user } from '../../entities/User';
 import * as productItem from '../../entities/ProductItem';
 import { MySocial } from '../../shared/ui';
+import { getCurrencyRate } from '../services/getCurrencyRate';
+import { checkAuth } from '../services/checkAuth';
 
 function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const token = localStorageService.get('accessToken');
-
-    if (token) {
-      dispatch(user.checkAuth());
-    }
+    checkAuth(dispatch);
 
     dispatch(productItem.getAll());
+
+    getCurrencyRate(dispatch);
   }, []);
 
   return (

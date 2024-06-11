@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import cn from 'classnames';
 
 import './MyLanguageSelect.scss';
-import '../../../shared/ui/MyFlags/MyFlags.scss';
+import '../../../shared/ui/MyFlags/ui/MyFlags.scss';
 import { Country } from '../../types/country';
 import { useHideDrop } from '../../hooks';
 import { countries } from './consts';

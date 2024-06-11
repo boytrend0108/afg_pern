@@ -7,6 +7,10 @@
   flex-direction: column;
   margin-bottom: 20px;
 
+  @include on-mobile {
+    display: none;
+  }
+
   @include on-tablet-s {
     padding: 0;
     box-shadow: none;
@@ -71,6 +75,14 @@
       @include on-mobile {
         display: block;
       }
+    }
+  }
+
+  &__btn {
+    @extend %btn;
+    font-size: clamp(1rem, 0.5rem + 0.5vw, 1.3rem);
+    @include on-mobile-m {
+      font-size: 13px;
     }
   }
 }

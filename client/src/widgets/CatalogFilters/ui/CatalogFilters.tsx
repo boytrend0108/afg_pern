@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 
 import { CatalogFilter } from './CatalogFilter/CatalogFilter';
 import { FITERS } from '../consts';
-import { BRANDS } from '../../../shared/consts/brands';
 import { Fragment } from 'react/jsx-runtime';
 import './CatalogFilters.scss';
 import { MyCheckbox } from '../../../shared/ui/MyCheckbox/MyCheckbox';
+import { useTranslation } from 'react-i18next';
+import { Brand } from '../../../entities/BrandItem/types';
+import { brandAPI } from '../../../entities/BrandItem';
 
 type Props = {
   showFilters: boolean;
@@ -17,6 +19,17 @@ export const CatalogFilters: React.FC<Props> = ({
   showFilters,
   setShowFilters,
 }) => {
+  const { t } = useTranslation();
+  const [brands, setBrands] = useState<Brand[]>([]);
+
+  useEffect(() => {
+    brandAPI
+      .getAll()
+      .then(setBrands)
+      // eslint-disable-next-line no-console
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <aside
       className={cn('CatalogFilters', {
@@ -29,7 +42,7 @@ export const CatalogFilters: React.FC<Props> = ({
         className="CatalogFilters__close"
         onClick={() => setShowFilters(false)}
       />
-      <p className="CatalogFilters__title">Filters</p>
+      <p className="CatalogFilters__title">{t(`CatalogPage.Filters`)}</p>
 
       {FITERS.map((f) => (
         <Fragment key={f.id}>
@@ -45,9 +58,9 @@ export const CatalogFilters: React.FC<Props> = ({
 
       <div className="CatalogFilters__brands">
         <p className="CatalogFilters__title">Brands</p>
-        {BRANDS.map((b) => (
+        {brands.map((b) => (
           <div key={b.id} className="CatalogFilters__brand">
-            <MyCheckbox label={b.brand} id={b.id} />
+            <MyCheckbox label={b.name} id={b.id} />
           </div>
         ))}
       </div>

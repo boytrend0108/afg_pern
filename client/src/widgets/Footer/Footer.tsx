@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { MyButton } from '../../shared/ui';
 import { SOCIAL_LINKS } from '../../shared/consts/socialLink';
 import { httpClient } from '../../app/configs/httpConfig';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState(false);
   const [error, setError] = useState('');
+  const { t } = useTranslation();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,25 +32,25 @@ export const Footer = () => {
     <div className="Footer">
       <div className="Footer__container">
         <div className="Footer__item">
-          <h3 className="Footer__item-title">Contact</h3>
+          <h3 className="Footer__item-title">{t('Header.Contact')}</h3>
           <p className="Footer__text">AFG-Machinery</p>
           <p className="Footer__text">Eindhovensebaan 3</p>
           <a
             href="tel:+31 40 253 22 45"
             className="Footer__text Footer__text--phone"
           >
-            +31 40 253 22 45
+            {SOCIAL_LINKS.PHONE}
           </a>
 
           <Link to="contact">
             <MyButton className="MyButton Footer__contact-btn">
-              Contact Us
+              {t('buttons.Contact us')}
             </MyButton>
           </Link>
         </div>
 
         <div className="Footer__item Footer__item--social">
-          <h3 className="Footer__item-title">Social networks</h3>
+          <h3 className="Footer__item-title">{t('Footer.Social networks')}</h3>
           <a
             href={SOCIAL_LINKS.FB}
             className="Footer__social Footer__social--fb"
@@ -91,8 +93,8 @@ export const Footer = () => {
         </div>
 
         <div className="Footer__item">
-          <h3 className="Footer__item-title">Machinery alert</h3>
-          <p className="Footer__text">Stay informed with our latest deals!</p>
+          <h3 className="Footer__item-title">{t('Footer.Machinery alert')}</h3>
+          <p className="Footer__text">{t('Footer.alertDescr')}</p>
 
           <form
             action="#"
@@ -104,11 +106,11 @@ export const Footer = () => {
               className="Footer__form-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Your email adress"
+              placeholder={t('form.emailPlaceholder')}
             />
 
             <button className="Footer__form-btn" type="submit">
-              {loading ? 'In progress' : 'Subscribe'}
+              {loading ? 'In progress' : t('buttons.Subscribe')}
             </button>
 
             {error && <p className="Footer__form-err">{error}</p>}
@@ -120,19 +122,19 @@ export const Footer = () => {
           <h3 className="Footer__item-title">Menu</h3>
 
           <Link className="Footer__navlink" to="/">
-            Home
+            {t('Header.Home')}
           </Link>
 
           <Link className="Footer__navlink" to="catalog">
-            Catalog
+            {t('Header.Catalog')}
           </Link>
 
           <Link className="Footer__navlink" to="news">
-            News
+            {t('Header.News')}
           </Link>
 
           <Link className="Footer__navlink" to="contact">
-            Contact
+            {t('Header.Contact')}
           </Link>
         </div>
 

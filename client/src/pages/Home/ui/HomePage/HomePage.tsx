@@ -22,7 +22,10 @@ export const HomePage = () => {
       </div>
 
       <New />
-      <About />
+
+      <div className="HomePage__about">
+        <About />
+      </div>
 
       <a href={SOCIAL_LINKS.WHATSAPP} target="blank">
         <img

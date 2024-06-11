@@ -8,12 +8,15 @@ import { OffersTab } from './OffersTab/OffersTab';
 import { SearchTab } from './SearchTab/SearchTab';
 import { useEffect } from 'react';
 import localStorageService from '../../../shared/services/localStorageService';
+import { MyContactInfo } from '../../../shared/ui/MyContactInfo/MyContactInfo';
+import { useTranslation } from 'react-i18next';
 
 export const ProfilePage = () => {
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const tab = searchParams.get('tab') || 'settings';
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const user = localStorageService.get('accessToken');
@@ -27,26 +30,11 @@ export const ProfilePage = () => {
     <div className="ProfilePage my-container">
       <div className="ProfilePage__header">
         <div className="ProfilePage__header--left">
-          <h1 className="ProfilePage__title">My profile</h1>
+          <h1 className="ProfilePage__title">{t('sectionTitle.My profile')}</h1>
         </div>
 
         <div className="ProfilePage__header--right">
-          <h2 className="ProfilePage__block-title">Contact Info</h2>
-
-          <ul className="ProfilePage__contacts">
-            <li className="ProfilePage__contact">
-              <img src="/my-icons/phone-black.svg" alt="phone" />
-              <a href="tel:+31402532245">+31 40 253 22 45</a>
-            </li>
-            <li className="ProfilePage__contact">
-              <img src="/my-icons/email-black.svg" alt="mail" />
-              <a href="mailto:afg.machin@gmail.com">afg.machin@gmail.com</a>
-            </li>
-            <li className="ProfilePage__contact">
-              <img src="/my-icons/whats-app-black.svg" alt="mail" />
-              <a href="http://whatsapp.com">AFGmachinery</a>
-            </li>
-          </ul>
+          <MyContactInfo />
         </div>
 
         <div className="ProfilePage__header--tabs">

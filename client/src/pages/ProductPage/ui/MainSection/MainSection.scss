@@ -158,6 +158,7 @@
   &__btn--white {
     @extend %btn-white;
     height: 50px;
+    font-size: 18px;
 
     @include on-desktop {
       width: 100%;

@@ -48,6 +48,8 @@
     font-size: 20px;
     line-height: 20px;
     text-align: left;
+    display: flex;
+    gap: 10px;
 
     &::before {
       content: url(/my-icons/phone.png);
@@ -56,6 +58,10 @@
       left: -51px;
       height: 40px;
       width: 40px;
+
+      @include on-mobile {
+        top: 6px;
+      }
     }
 
     @include on-desktop-s {
@@ -69,8 +75,9 @@
       line-height: 20px;
     }
 
-    @include on-mobile-m {
+    @include on-mobile {
       transform: translateX(22px);
+      flex-direction: column;
     }
   }
 }

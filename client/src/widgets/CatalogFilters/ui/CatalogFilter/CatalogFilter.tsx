@@ -5,6 +5,7 @@ import './CatalogFilter.scss';
 import { useSearchParams } from 'react-router-dom';
 import { RANGE_WIDTH, SHIFT_SETS } from './consts';
 import { setQueryParams } from './helpers';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   minValue: string;
@@ -27,6 +28,7 @@ export const CatalogFilter: React.FC<Props> = ({
   const [shiftRight, setShiftRight] = useState(0);
   const [show, setShow] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   const handleSetMin = (e: ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
@@ -81,7 +83,7 @@ export const CatalogFilter: React.FC<Props> = ({
     <>
       <div className="CatalogFilter">
         <div className="CatalogFilter__header">
-          <p className="CatalogFilter__title">{title}</p>
+          <p className="CatalogFilter__title">{t(`CatalogPage.${title}`)}</p>
           <img
             src="/my-icons/arrow-up.svg"
             className={cn('CatalogFilter__arrow', {

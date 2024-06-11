@@ -14,7 +14,6 @@ export const getOptions = (data: OptionType[]): OptionGroupe => {
   const common = {
     Type: options.type || '',
     Location: options.location || '',
-    'Dutch Machine': options.datchMachine || '',
     Certificate: options.certificate || '',
     'Serial Number': options.serialNumber || '',
     Description: options.descriptions || '',

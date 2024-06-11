@@ -6,7 +6,7 @@ export const useGetWidth = (
 ) => {
   useEffect(() => {
     const getWidth = () => {
-      setCurrentWidth(window.innerWidth);
+      setCurrentWidth(document.body.clientWidth);
     };
 
     getWidth();

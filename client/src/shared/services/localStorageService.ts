@@ -1,3 +1,5 @@
+import { I18N } from '../consts/i18n';
+
 /* eslint-disable no-console */
 class LocalStorageService {
   set(key: string, value: any) {
@@ -10,7 +12,11 @@ class LocalStorageService {
 
   get(key: string) {
     try {
-      const value = localStorage.getItem(key);
+      let value = localStorage.getItem(key);
+
+      if (key === I18N.LOCAL_STORAGE_KEY) {
+        value = JSON.stringify(value);
+      }
 
       return value ? JSON.parse(value) : null;
     } catch (e) {

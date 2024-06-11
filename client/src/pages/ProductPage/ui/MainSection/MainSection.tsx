@@ -19,6 +19,8 @@ import { getOptions } from './helpers/getOptions';
 import { OptionGroupe } from './types';
 import { ARTICUL_PREFIX } from '../../../../shared/consts/product';
 import { SOCIAL_LINKS } from '../../../../shared/consts/socialLink';
+import { useTranslation } from 'react-i18next';
+import { useGetPrice } from '../../../../shared/hooks';
 
 type Props = {
   showCompare: boolean;
@@ -43,12 +45,16 @@ export const MainSection: React.FC<Props> = ({
   const dispatch = useAppDispatch();
   const { product } = useAppSelector((state) => state.product);
   const [options, setOptions] = useState<OptionGroupe>(initialOptions);
+  const [preparedPrice, setPreparedPrice] = useState('$ 0');
+  const { t } = useTranslation();
 
   const breadcrumbs = [
-    { id: 1, name: 'Home >', path: '/' },
-    { id: 2, name: 'Catalog  >', path: '/catalog' },
+    { id: 1, name: t('ProductPage.Home') + ' >', path: '/' },
+    { id: 2, name: t('ProductPage.catalog') + ' >', path: '/catalog' },
     { id: 3, name: product?.title || '', path: `/product/${product?.id}` },
   ];
+
+  useGetPrice(product, setPreparedPrice);
 
   const booking = () => {
     dispatch(Product.productAction.setBooked(product));
@@ -109,26 +115,34 @@ export const MainSection: React.FC<Props> = ({
               <div className="MainSection__titles">
                 <p className="MainSection__brand">{product?.brand}</p>
                 <p className="MainSection__model">{product?.title}</p>
-                <p className="MainSection__subtitle">{product?.category}</p>
+                <p className="MainSection__subtitle">
+                  {t(`Categories.${product?.category}`)}
+                </p>
               </div>
 
               <p className="MainSection__price">
-                {`€ ${product?.price} `}
+                {preparedPrice}
                 <span className="MainSection__price-span">excl</span>
               </p>
             </div>
 
             <div className="MainSection__info">
               <div className="MainSection__info-item">
-                <p className="MainSection__info-title">Year</p>
+                <p className="MainSection__info-title">
+                  {t('ProductPage.Year')}
+                </p>
                 <p className="MainSection__info-value">{product?.year}</p>
               </div>
               <div className="MainSection__info-item">
-                <p className="MainSection__info-title">Hours</p>
+                <p className="MainSection__info-title">
+                  {t('ProductPage.Hours')}
+                </p>
                 <p className="MainSection__info-value">{product?.hours}</p>
               </div>
               <div className="MainSection__info-item">
-                <p className="MainSection__info-title">Reference numbe</p>
+                <p className="MainSection__info-title">
+                  {t('ProductPage.Reference number')}
+                </p>
                 <p className="MainSection__info-value">
                   {ARTICUL_PREFIX + product?.id}
                 </p>
@@ -138,7 +152,7 @@ export const MainSection: React.FC<Props> = ({
             <div className="MainSection__btn-box">
               <Link to="booking" onClick={booking}>
                 <MyButtonWhite className="MainSection__btn--white">
-                  Book
+                  {t('buttons.Book')}
                 </MyButtonWhite>
               </Link>
 
@@ -146,12 +160,12 @@ export const MainSection: React.FC<Props> = ({
                 className="MainSection__btn--white"
                 onClick={() => startComparing()}
               >
-                Сompare
+                {t('buttons.Compare')}
               </MyButtonWhite>
 
               <Link to="/request">
                 <MyButtonWhite className="MainSection__btn--white">
-                  Get in touch
+                  {t('buttons.Get in touch')}
                 </MyButtonWhite>
               </Link>
 

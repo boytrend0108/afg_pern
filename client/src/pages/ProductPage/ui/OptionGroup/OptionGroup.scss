@@ -25,15 +25,15 @@
     justify-content: flex-start;
     gap: 10px;
 
-    &--desctiption {
-      @include on-mobile {
+    &--description {
+      @include on-tablet {
         flex-direction: column;
       }
     }
   }
 
   &__key {
-    min-width: 130px;
+    min-width: 200px;
     color: $color-border;
     text-align: justify;
     text-transform: capitalize;

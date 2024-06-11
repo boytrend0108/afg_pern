@@ -2,11 +2,12 @@
   $flags-images-path: '.' !default;
 
   .flag {
-    background: url(/#{$flags-images-path}/flags32.png) no-repeat;
+    background: url(/#{$flags-images-path}/flags32.webp) no-repeat;
     width: 32px;
     height: 32px;
     padding: 10px;
   }
+  // import basicSsl from '@vitejs/plugin-basic-ssl';
 
   ._African_Union {
     background-position: 0 -32px;
@@ -514,14 +515,14 @@
   .gab {
     @extend .ga;
   }
-  .gb {
+  .en {
     background-position: 0 -2912px;
   }
   .sh {
     background-position: 0 -2912px;
   }
   .gbr {
-    @extend .gb;
+    @extend .en;
   }
   .shn {
     @extend .sh;

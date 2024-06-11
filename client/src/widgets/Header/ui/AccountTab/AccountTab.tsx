@@ -9,6 +9,8 @@ import {
   useAppSelector,
 } from '../../../../shared/hooks/reduxHooks';
 import { user as User } from '../../../../entities/User';
+import { isManagerCheck } from '../../../../entities/User/helper/isManager';
+import { useTranslation } from 'react-i18next';
 
 export const AccountTab = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +18,8 @@ export const AccountTab = () => {
   const dropRef = useRef<HTMLButtonElement>(null);
   const { user } = useAppSelector((state) => state.user);
   const login = user?.email.split('@')[0];
+  const isManager = isManagerCheck(user);
+  const { t } = useTranslation();
 
   useHideDrop(dropRef, setShowDrop);
 
@@ -54,14 +58,14 @@ export const AccountTab = () => {
               className="AccountTab__link AccountTab__link--logout"
               onClick={handleLogout}
             >
-              Logout
+              {t('Header.Logout')}
             </Link>
           ) : (
             <Link
               to="login"
               className="AccountTab__link AccountTab__link--logout"
             >
-              Login
+              {t('Header.Login')}
             </Link>
           )}
 
@@ -69,25 +73,25 @@ export const AccountTab = () => {
             to="catalog"
             className="AccountTab__link AccountTab__link--catalog"
           >
-            Catalog
+            {t('Header.Catalog')}
           </Link>
 
           <Link
             to="request"
             className="AccountTab__link AccountTab__link--request"
           >
-            Request
+            {t('Header.Request')}
           </Link>
 
           <Link to="news" className="AccountTab__link AccountTab__link--news">
-            News
+            {t('Header.News')}
           </Link>
 
           <Link
             to="contact"
             className="AccountTab__link AccountTab__link--contact"
           >
-            Contact
+            {t('Header.Contact')}
           </Link>
 
           {user && (
@@ -96,23 +100,32 @@ export const AccountTab = () => {
                 to="profile?tab=searches"
                 className="AccountTab__link AccountTab__link--search-2"
               >
-                Searches
+                {t('Header.Searches')}
               </Link>
 
               <Link
                 to="profile?tab=favorites"
                 className="AccountTab__link AccountTab__link--favorite"
               >
-                Favorites
+                {t('Header.Favorites')}
               </Link>
 
               <Link
                 to="profile?tab=settings"
                 className="AccountTab__link AccountTab__link--settings"
               >
-                Settings
+                {t('Header.Settings')}
               </Link>
             </>
+          )}
+
+          {isManager && (
+            <Link
+              to="admin"
+              className="AccountTab__link AccountTab__link--contact"
+            >
+              Admin
+            </Link>
           )}
         </nav>
       </div>

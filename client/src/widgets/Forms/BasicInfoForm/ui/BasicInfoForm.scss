@@ -128,10 +128,11 @@
   }
 }
 
-.PhoneInputInput {
+.BasicInfoForm .PhoneInputInput {
   padding: 10px;
   width: 100%;
+  border: 1px solid $color-border;
   outline: none;
-  background-color: $color-primary-hover;
-  color: $color-font-light;
+  background-color: transparent;
+  color: $color-primary;
 }

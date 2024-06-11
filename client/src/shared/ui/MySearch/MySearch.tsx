@@ -1,6 +1,7 @@
+import React, { ChangeEvent } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import './MySearch.scss';
-import React, { ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   props?: any;
@@ -11,6 +12,7 @@ type Props = {
 export const MySearch: React.FC<Props> = ({ title = 'Search', ...props }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
+  const { t } = useTranslation();
 
   const changeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const params = new URLSearchParams(searchParams);
@@ -27,19 +29,21 @@ export const MySearch: React.FC<Props> = ({ title = 'Search', ...props }) => {
 
   return (
     <div className="MySearch" {...props}>
-      {title}
+      {t(`Categories.${title}`)}
+
       <div className="MySearch__input">
         <input
           value={query}
           onChange={changeSearch}
           type="text"
           className="MySearch__input-field"
-          placeholder="Machines, type, setting..."
+          placeholder={t('Categories.Machines, type, setting...')}
         />
 
         <Link
           to={{ pathname: '/catalog', search: searchParams.toString() }}
           className="MySearch__input-btn"
+          aria-label="search"
         />
       </div>
     </div>

@@ -14,6 +14,7 @@ import localStorageService from '../../../../../shared/services/localStorageServ
 import { prepareOptions } from '../services/prepareOptions';
 import { closeTab } from '../services/closeTab';
 import { addToFavorite } from '../services/addToFavorite';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   onClose: () => void;
@@ -26,6 +27,7 @@ export const ComparisonTable: React.FC<Props> = ({ onClose }) => {
   const { user } = useAppSelector((state) => state.user);
   const [favoriteWatcher, setFavoriteWatcher] = useState(false);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   useGetTitle(setBtnTitle);
 
@@ -88,6 +90,7 @@ export const ComparisonTable: React.FC<Props> = ({ onClose }) => {
               <td key={el.id}>
                 <MyButton
                   style={{ margin: '0 auto' }}
+                  className="ComparisonTable__btn"
                   onClick={() =>
                     addToFavorite({
                       productId: el.id,
@@ -99,9 +102,9 @@ export const ComparisonTable: React.FC<Props> = ({ onClose }) => {
                 >
                   {localStorageService
                     .get('favorite')
-                    .includes(el.id.toString())
+                    ?.includes(el.id.toString())
                     ? 'Remove'
-                    : btnTitle}
+                    : t(`buttons.${btnTitle}`)}
                 </MyButton>
               </td>
             ))}

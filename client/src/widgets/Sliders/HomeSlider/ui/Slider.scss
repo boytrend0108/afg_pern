@@ -50,7 +50,7 @@
     line-height: 86px;
     text-align: left;
     color: $color-font-light;
-    max-width: 404px;
+    max-width: 440px;
 
     @include on-tablet {
       margin-bottom: 20px;
@@ -59,7 +59,7 @@
     @include on-tablet-s {
       font-size: 63px;
       line-height: 63px;
-      max-width: 300px;
+      max-width: 360px;
     }
 
     @include on-mobile-m {
@@ -72,34 +72,26 @@
   &__item {
     scroll-snap-align: start;
 
-    &--1 {
-      background: linear-gradient(
-          90deg,
-          rgba(29, 29, 27, 0.95) 25%,
-          rgba(29, 29, 27, 0) 100%
-        ),
-        url(/home-page/tablet/slide-1.webp);
+    @for $i from 1 through 3 {
       @include slider-item;
-    }
 
-    &--2 {
-      background: linear-gradient(
-          90deg,
-          rgba(29, 29, 27, 0.95) 25%,
-          rgba(29, 29, 27, 0) 100%
-        ),
-        url(/home-page/tablet/slide-2.webp);
-      @include slider-item;
-    }
+      &--#{$i} {
+        background: linear-gradient(
+            90deg,
+            rgba(29, 29, 27, 0.95) 25%,
+            rgba(29, 29, 27, 0) 100%
+          ),
+          url(/home-page/tablet/slide-#{$i}.webp);
 
-    &--3 {
-      background: linear-gradient(
-          90deg,
-          rgba(29, 29, 27, 0.95) 25%,
-          rgba(29, 29, 27, 0) 100%
-        ),
-        url(/home-page/tablet/slide-3.webp);
-      @include slider-item;
+        @include on-mobile {
+          background: linear-gradient(
+              90deg,
+              rgba(29, 29, 27, 0.95) 25%,
+              rgba(29, 29, 27, 0) 100%
+            ),
+            url(/home-page/mobile/slide-#{$i}.webp);
+        }
+      }
     }
   }
 
