@@ -22,13 +22,13 @@ export const CatalogFilter: React.FC<Props> = ({
   title,
   id,
 }) => {
-  const [min, setMin] = useState(minValue);
-  const [max, setMax] = useState(maxValue);
   const [shiftLeft, setShiftLeft] = useState(0);
   const [shiftRight, setShiftRight] = useState(0);
   const [show, setShow] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
+  const max = searchParams.get(`${id}-max`) || maxValue;
+  const min = searchParams.get(`${id}-min`) || minValue;
 
   const handleSetMin = (e: ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
@@ -41,15 +41,21 @@ export const CatalogFilter: React.FC<Props> = ({
       value = min;
     }
 
-    setMin(value);
     setQueryParams(`${id}-min`, value, searchParams, setSearchParams);
   };
 
   const handleSetMax = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
-    setMax(value);
-    setQueryParams(`${id}-max`, value, searchParams, setSearchParams);
+    const reversedValue = (+maxValue + +middleValue - +value).toString();
+
+    setQueryParams(`${id}-max`, reversedValue, searchParams, setSearchParams);
+  };
+
+  const resetFilter = () => {
+    searchParams.delete(`${id}-min`);
+    searchParams.delete(`${id}-max`);
+    setSearchParams(searchParams);
   };
 
   useEffect(() => {
@@ -61,7 +67,7 @@ export const CatalogFilter: React.FC<Props> = ({
 
   useEffect(() => {
     const value =
-      +max / ((+middleValue - +minValue) / RANGE_WIDTH) - 2 * RANGE_WIDTH - 5;
+      +max / ((+middleValue - +minValue) / RANGE_WIDTH) - 2 * RANGE_WIDTH - 20;
 
     switch (id) {
       case 'price':
@@ -106,22 +112,14 @@ export const CatalogFilter: React.FC<Props> = ({
           >
             <div className="CatalogFilter__inputs">
               <div className="CatalogFilter__inputs-wr">
-                <input
-                  type="text"
-                  className="CatalogFilter__input"
-                  value={+min}
-                  onChange={handleSetMin}
-                />
+                <p className="CatalogFilter__input">{min}</p>
                 {' - '}
-                <input
-                  type="number"
-                  className="CatalogFilter__input"
-                  value={+middleValue + +maxValue - +max}
-                  onChange={handleSetMax}
-                />
+                <p className="CatalogFilter__input">{max}</p>
               </div>
 
-              <button className="CatalogFilter__btn">Accept</button>
+              <button className="CatalogFilter__btn" onClick={resetFilter}>
+                Reset
+              </button>
             </div>
 
             <div className="CatalogFilter__range">
@@ -141,7 +139,7 @@ export const CatalogFilter: React.FC<Props> = ({
                   type="range"
                   min={middleValue}
                   max={maxValue}
-                  value={max}
+                  value={+maxValue + +middleValue - +max}
                   onChange={handleSetMax}
                   className="CatalogFilter__range-item--right"
                 />
@@ -156,7 +154,7 @@ export const CatalogFilter: React.FC<Props> = ({
       </style>
 
       <style>
-        {`#${id}.CatalogFilter__thumb--right::after {left: ${shiftRight}px`}
+        {`#${id}.CatalogFilter__thumb--right::after {right: ${shiftRight}px`}
       </style>
     </>
   );

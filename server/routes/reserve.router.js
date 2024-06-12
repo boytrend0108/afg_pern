@@ -5,8 +5,8 @@ import reserveController from '../controllers/reserve.controller.js';
 
 const router = new Router();
 
-router.post('/', authMiddleware, catchError(reserveController.add));
-router.get('/:userId', authMiddleware, catchError(reserveController.getAll));
-router.delete('/delete', authMiddleware, catchError(reserveController.delete));
+router.post('/', catchError(reserveController.add));
+router.get('/:userId', catchError(reserveController.getAll));
+router.delete('/delete', catchError(reserveController.delete));
 
 export default router;

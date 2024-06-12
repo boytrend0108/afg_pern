@@ -1,4 +1,4 @@
-export const FITERS = [
+export const FILTERS = [
   {
     id: 'price',
     title: 'Price',
@@ -6,13 +6,13 @@ export const FITERS = [
     middleValue: '10000',
     maxValue: '20000',
   },
-  {
-    id: 'mileage',
-    title: 'Mileage',
-    minValue: '500',
-    middleValue: '10000',
-    maxValue: '20000',
-  },
+  // {
+  //   id: 'mileage',
+  //   title: 'Mileage',
+  //   minValue: '500',
+  //   middleValue: '10000',
+  //   maxValue: '20000',
+  // },
   {
     id: 'hours',
     minValue: '100',

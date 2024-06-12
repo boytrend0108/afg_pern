@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import './Footer.scss';
 import { Link } from 'react-router-dom';
 import { MyButton } from '../../shared/ui';
@@ -7,22 +7,32 @@ import { httpClient } from '../../app/configs/httpConfig';
 import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
-  const [email, setEmail] = useState('');
+  const emailRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState(false);
   const [error, setError] = useState('');
   const { t } = useTranslation();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    setError('');
+    setSuccessMsg(false);
+
+    if (!emailRef || !emailRef.current) {
+      return;
+    }
     e.preventDefault();
     setLoading(true);
 
-    // eslint-disable-next-line no-console
+    const email = emailRef.current.value;
+
     httpClient
       .post('/subscribe', { email })
       .then(() => {
-        setEmail('');
         setSuccessMsg(true);
+
+        if (emailRef.current) {
+          emailRef.current.value = '';
+        }
       })
       .catch((err) => setError(err.message || 'Something went wrong...'))
       .finally(() => setLoading(false));
@@ -104,8 +114,8 @@ export const Footer = () => {
             <input
               type="email"
               className="Footer__form-input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              ref={emailRef}
+              // onChange={(e) => setEmail(e.target.value)}
               placeholder={t('form.emailPlaceholder')}
             />
 

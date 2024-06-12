@@ -111,7 +111,7 @@ class UserController {
     const token = await jwtService.getByToken(refreshToken);
 
     if (!user || !token) {
-      throw ApiError.UNAUTHORIZED();
+      throw ApiError.BAD_REQUEST('Session expired');
     }
 
     jwtService.generateTokens(res, user);

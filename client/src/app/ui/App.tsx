@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     checkAuth(dispatch);
 
-    dispatch(productItem.getAll());
+    dispatch(productItem.getAll(''));
 
     getCurrencyRate(dispatch);
   }, []);

@@ -8,7 +8,6 @@ class SubscribeService {
 
   async delete(email) {
     const isEmail = Subscribe.findOne({ where: { email } });
-    console.log();
 
     if (!isEmail) {
       throw ApiError.NOT_FOUND('Email not found');

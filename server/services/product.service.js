@@ -40,11 +40,11 @@ class ProductService {
         },
         {
           model: Brand,
-          attributes: ['name'],
+          attributes: ['name', 'id'],
         },
         {
           model: Category,
-          attributes: ['name'],
+          attributes: ['name', 'id'],
         },
       ],
     });

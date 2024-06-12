@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -16,9 +16,18 @@ type Props = {
 
 export const CatalogList: React.FC<Props> = ({ setShowFilters, machines }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const show = searchParams.get('show') || 'all';
-  const orderByPrice = searchParams.get('order-by-price') || '';
   const { t } = useTranslation();
+
+  const show = searchParams.get('show') || 'all';
+  const brandIds = searchParams.getAll('brandId');
+  const categoriesIds = searchParams.getAll('categoryId');
+  const priceMin = searchParams.get('price-min');
+  const priceMax = searchParams.get('price-max');
+  const hoursMin = searchParams.get('hours-min');
+  const hoursMax = searchParams.get('hours-max');
+  const yearMin = searchParams.get('year-min');
+  const yearMax = searchParams.get('year-max');
+  const orderByPrice = searchParams.get('order-by-price') || '';
 
   const handleOrderByPrice = () => {
     switch (orderByPrice) {
@@ -36,6 +45,69 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters, machines }) => {
         setSearchParams(getSearchParams('order-by-price', 'asc', searchParams));
     }
   };
+
+  const filteredMachines = useMemo(() => {
+    let result = machines;
+
+    if (show !== 'all') {
+      result = result.filter((el) => {
+        return el.product_infos.some((item) => {
+          return (
+            item.title === 'promoType' &&
+            (item.description as string).toLowerCase() === show
+          );
+        });
+      });
+    }
+
+    if (brandIds.length) {
+      result = result.filter((el) => brandIds.includes(el.brandId.toString()));
+    }
+
+    if (categoriesIds.length) {
+      result = result.filter((el) => {
+        return categoriesIds.includes(el.categoryId.toString());
+      });
+    }
+
+    if (priceMin) {
+      result = result.filter((el) => {
+        return +el.price >= +priceMin;
+      });
+    }
+
+    if (priceMax) {
+      result = result.filter((el) => {
+        return +el.price <= +priceMax;
+      });
+    }
+
+    if (hoursMin) {
+      result = result.filter((el) => {
+        return +el.hours >= +hoursMin;
+      });
+    }
+
+    if (hoursMax) {
+      result = result.filter((el) => {
+        return +el.hours <= +hoursMax;
+      });
+    }
+
+    if (yearMin) {
+      result = result.filter((el) => {
+        return +el.hours >= +yearMin;
+      });
+    }
+
+    if (yearMax) {
+      result = result.filter((el) => {
+        return +el.hours <= +yearMax;
+      });
+    }
+
+    return result;
+  }, [machines, searchParams]);
 
   return (
     <div className="CatalogList">
@@ -104,7 +176,7 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters, machines }) => {
       </div>
 
       <div className="CatalogList__items my-container">
-        {machines.map((m) => {
+        {filteredMachines.map((m) => {
           return <ProductItem key={m.id} machine={m} />;
         })}
       </div>

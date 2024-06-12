@@ -7,7 +7,7 @@ import { ROLE } from '../constants/roles.js';
 const router = new Router();
 router.post(
   '/create',
-  // checkRoleMiddleware(ROLE.MANAGER),
+  checkRoleMiddleware(ROLE.MANAGER),
   catchError(CategoryController.create)
 );
 
@@ -16,7 +16,7 @@ router.get('/:id', catchError(CategoryController.getOne));
 
 router.delete(
   '/delete/:id',
-  // checkRoleMiddleware(ROLE.ADMIN),
+  checkRoleMiddleware(ROLE.MANAGER),
   catchError(CategoryController.remove)
 );
 

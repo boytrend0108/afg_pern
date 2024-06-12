@@ -16,7 +16,7 @@ import { fileURLToPath } from 'url';
 
 const PORT = process.env.PORT || 5000;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
+const mode = process.env.MODE;
 const app = express();
 
 app.use(
@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 
 app.use(errorMiddleware);
 
-const start = async () => {
+const startProd = async () => {
   try {
     await sequelize.authenticate();
     // await sequelize.sync({ force: true });
@@ -53,11 +53,29 @@ const start = async () => {
     );
 
     httpsServer.listen(PORT, () => {
-      console.log(`Server run on port: ${PORT}`);
+      console.log(`Server run on port: ${PORT}, https protocol`);
     });
   } catch (e) {
     console.log(e);
   }
 };
 
-start();
+const startDev = async () => {
+  try {
+    await sequelize.authenticate();
+    // await sequelize.sync({ force: true });
+    await sequelize.sync();
+
+    app.listen(PORT, () => {
+      console.log(`Server run on http://localhost:${PORT}`);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+if (mode === 'development') {
+  startDev();
+} else {
+  startProd();
+}

@@ -1,33 +1,41 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import './MyCheckbox.scss';
 import { useSearchParams } from 'react-router-dom';
 
 type Props = {
   label: string;
   id: number;
+  searchItem: string;
 };
 
-export const MyCheckbox: React.FC<Props> = ({ label, id }) => {
+export const MyCheckbox: React.FC<Props> = ({ label, id, searchItem }) => {
   const [value, setValue] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const brandId = id.toString();
+
   const hanldeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.checked);
 
     const query = new URLSearchParams(searchParams);
 
     if (!value) {
-      query.append('brand', brandId);
+      query.append(searchItem, brandId);
       setSearchParams(query);
     } else {
-      let brands = query.getAll('brand');
+      let brands = query.getAll(searchItem);
 
       brands = brands.filter((b) => b !== brandId);
-      query.delete('brand');
-      brands.forEach((br) => query.append('brand', br));
+      query.delete(searchItem);
+      brands.forEach((br) => query.append(searchItem, br));
       setSearchParams(query);
     }
   };
+
+  useEffect(() => {
+    if (searchParams.toString().includes(`${searchItem}=${id}`)) {
+      setValue(true);
+    }
+  }, []);
 
   return (
     <div className="MyCheckbox">

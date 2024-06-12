@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "cross-env MODE=development nodemon index.js",
     "swagger": "node ./swagger.js"
   },
   "author": "",
