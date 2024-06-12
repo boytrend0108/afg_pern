@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   server:
-    image: boytrend/afg-server:4.0
+    image: boytrend/afg-server:latest
     container_name: afg-server
     build:
       context: ./server
