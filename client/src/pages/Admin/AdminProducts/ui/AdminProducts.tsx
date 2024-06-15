@@ -76,7 +76,6 @@ export const AdminProducts = () => {
                   'loading..'
                 ) : (
                   <img
-                    crossOrigin="anonymous"
                     src={GOOGLE_DRIVE_URL + pr.product_images[0]}
                     alt="product image"
                     width={70}

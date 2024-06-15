@@ -45,7 +45,6 @@ export const ProductItem: React.FC<Props> = ({
         <img
           className="ProductItem__image-box"
           src={GOOGLE_DRIVE_URL + machine.product_images[0]}
-          crossOrigin="anonymous"
           width="280"
           height="420"
         />

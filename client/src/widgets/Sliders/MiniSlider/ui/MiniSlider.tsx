@@ -75,7 +75,6 @@ export const MiniSlider: React.FC<Props> = ({
             <img
               height={570}
               width={760}
-              crossOrigin="anonymous"
               src={GOOGLE_DRIVE_URL + images[image]}
               className="MiniSlider__image"
             />
@@ -97,7 +96,6 @@ export const MiniSlider: React.FC<Props> = ({
                   key={i}
                   height={75}
                   width={100}
-                  crossOrigin="anonymous"
                   src={GOOGLE_DRIVE_URL + img}
                   className="MiniSlider__preview"
                 />

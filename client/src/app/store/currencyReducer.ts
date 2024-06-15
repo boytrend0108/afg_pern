@@ -32,8 +32,10 @@ export const currencySlice = createSlice({
       state.currencySign = CurrencySign[action.payload];
     },
     setRates: (state, action) => {
-      state.rate[Currency.euro] = action.payload.data.EUR.value;
-      state.rate[Currency.pound] = action.payload.data.GBP.value;
+      const { data } = action.payload;
+
+      state.rate[Currency.euro] = data ? data.EUR.value : 1;
+      state.rate[Currency.pound] = data ? data.GBP.value : 1;
     },
   },
 });

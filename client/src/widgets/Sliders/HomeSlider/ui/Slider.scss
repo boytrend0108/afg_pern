@@ -71,10 +71,9 @@
 
   &__item {
     scroll-snap-align: start;
+    @include slider-item;
 
     @for $i from 1 through 3 {
-      @include slider-item;
-
       &--#{$i} {
         background: linear-gradient(
             90deg,
@@ -91,6 +90,8 @@
             ),
             url(/home-page/mobile/slide-#{$i}.webp);
         }
+
+        @include slider-item;
       }
     }
   }

@@ -47,7 +47,6 @@ export const MiniSliderMobile: React.FC<Props> = ({ images, promoType }) => {
               src={GOOGLE_DRIVE_URL + images[image]}
               height={420}
               width={728}
-              crossOrigin="anonymous"
               className="MiniSliderMobile__image"
             />
           </div>
@@ -64,7 +63,6 @@ export const MiniSliderMobile: React.FC<Props> = ({ images, promoType }) => {
                   key={img}
                   height={75}
                   width={100}
-                  crossOrigin="anonymous"
                   src={GOOGLE_DRIVE_URL + images[image]}
                   className="MiniSliderMobile__preview"
                 />
