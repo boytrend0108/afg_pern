@@ -44,7 +44,7 @@ export const MiniSliderMobile: React.FC<Props> = ({ images, promoType }) => {
             </div>
 
             <img
-              src={GOOGLE_DRIVE_URL + images[image]}
+              src={GOOGLE_DRIVE_URL + images[image] + '&sz=w760&sz=h570'}
               height={420}
               width={728}
               className="MiniSliderMobile__image"
@@ -60,10 +60,10 @@ export const MiniSliderMobile: React.FC<Props> = ({ images, promoType }) => {
               {images.map((img, i) => (
                 <img
                   onClick={() => setImage(i)}
-                  key={img}
+                  key={i}
                   height={75}
                   width={100}
-                  src={GOOGLE_DRIVE_URL + images[image]}
+                  src={GOOGLE_DRIVE_URL + img}
                   className="MiniSliderMobile__preview"
                 />
               ))}

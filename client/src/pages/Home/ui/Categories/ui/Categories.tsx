@@ -16,6 +16,7 @@ export const Categories = () => {
           <p>{t('Categories.Call us')}</p>
           <p> {SOCIAL_LINKS.PHONE}</p>
         </a>
+
         <Link to="request">
           <MyButton style={{ height: '40px', fontSize: '20px' }}>
             {t('Categories.Leave a request')}

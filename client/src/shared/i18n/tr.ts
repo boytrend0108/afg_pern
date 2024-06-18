@@ -167,7 +167,9 @@ export const tr = {
     Categories: {
       'Call us': 'Bizi Arayın',
       'Leave a request': 'Talep Bırakın',
+      'Backhoe Loaders': 'Kazıcı Yükleyiciler',
       Generators: 'Jeneratörler',
+      Excavators: 'Ekskavatörler',
       Drills: 'Matkaplar',
       Bulldozers: 'Buldozerler',
       Graders: 'Greyderler',

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import cn from 'classnames';
 
 import './ProductPage.scss';
@@ -7,21 +8,35 @@ import { CategoryList } from '../../../widgets/CategoryList';
 import { ProductsSlider } from '../../../widgets/Sliders/ProductsSlider';
 import { MainSection } from './MainSection/MainSection';
 import { ComparisonTable } from './ComparisonTable/ui/ComparisonTable';
-import { useAppDispatch } from '../../../shared/hooks/reduxHooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../shared/hooks/reduxHooks';
 import { productAction } from '../../../entities/ProductItem';
 import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line max-len
 import { ComparisonTableMobile } from './ComparisonTableMobile/ui/ComparisonTableMobile';
+import { MyLoader } from '../../../shared/ui/MyLoader/MyLoader';
+import * as Product from '../../../entities/ProductItem';
 
 export const ProductPage = () => {
+  const { t } = useTranslation();
+  const { id } = useParams();
   const [showCompare, setShowCompare] = useState(false);
   const [showComparisonTable, setShowComparisonTable] = useState(false);
   const [width, setWidth] = useState(600);
+  const main = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  const { loading } = useAppSelector((state) => state.product);
 
   useEffect(() => {
-    document.documentElement.scrollTop = 400;
+    if (id) {
+      dispatch(Product.getOne(id)).then(() => {
+        if (main.current) {
+          main.current.scrollIntoView();
+        }
+      });
+    }
 
     const setViewPortWidth = () => {
       setWidth(window.innerWidth);
@@ -34,7 +49,7 @@ export const ProductPage = () => {
     return () => {
       window.removeEventListener('resize', setViewPortWidth);
     };
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     setShowCompare(false);
@@ -47,9 +62,9 @@ export const ProductPage = () => {
       return;
     }
 
-    document.documentElement.scrollTop = 0;
     setShowCompare(false);
     setShowComparisonTable(false);
+
     dispatch(productAction.clearCompare());
   };
 
@@ -61,23 +76,27 @@ export const ProductPage = () => {
     >
       <header className="ProductPage__header">
         <MySearch style={{ marginBottom: '50px' }} />
+
         <CategoryList />
       </header>
 
-      {showComparisonTable ? (
-        <>
-          <ComparisonTable onClose={() => setShowComparisonTable(false)} />
-          <ComparisonTableMobile
-            onClose={() => setShowComparisonTable(false)}
+      <main ref={main}>
+        {showComparisonTable ? (
+          <>
+            <ComparisonTable onClose={() => setShowComparisonTable(false)} />
+
+            <ComparisonTableMobile
+              onClose={() => setShowComparisonTable(false)}
+            />
+          </>
+        ) : (
+          <MainSection
+            showCompare={showCompare}
+            setShowCompare={setShowCompare}
+            setShowComparisonTable={() => setShowComparisonTable(true)}
           />
-        </>
-      ) : (
-        <MainSection
-          showCompare={showCompare}
-          setShowCompare={setShowCompare}
-          setShowComparisonTable={() => setShowComparisonTable(true)}
-        />
-      )}
+        )}
+      </main>
 
       <footer
         className="ProductPage__footer"
@@ -88,6 +107,12 @@ export const ProductPage = () => {
         </h2>
         <ProductsSlider />
       </footer>
+
+      {loading && (
+        <div className="ProductPage__loader">
+          <MyLoader />
+        </div>
+      )}
     </section>
   );
 };

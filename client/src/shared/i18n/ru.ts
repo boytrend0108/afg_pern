@@ -167,7 +167,9 @@ export const ru = {
     Categories: {
       'Call us': 'Позвоните нам',
       'Leave a request': 'Оставьте заявку',
+      'Backhoe Loaders': 'Экскаваторы погрузчики',
       Generators: 'Генераторы',
+      Excavators: 'Экскаваторы',
       Drills: 'Дрели',
       Bulldozers: 'Бульдозеры',
       Graders: 'Тралы',

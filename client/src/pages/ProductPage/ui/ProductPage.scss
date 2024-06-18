@@ -16,4 +16,8 @@
   &__recommend-title {
     margin-bottom: 24px;
   }
+
+  &__loader {
+    @include fullScreenLoader;
+  }
 }

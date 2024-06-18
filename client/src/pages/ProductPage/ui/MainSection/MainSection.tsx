@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import {
   useAppDispatch,
@@ -41,7 +41,6 @@ export const MainSection: React.FC<Props> = ({
   setShowCompare,
   setShowComparisonTable,
 }) => {
-  const { id } = useParams();
   const dispatch = useAppDispatch();
   const { product } = useAppSelector((state) => state.product);
   const [options, setOptions] = useState<OptionGroupe>(initialOptions);
@@ -61,18 +60,8 @@ export const MainSection: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    document.documentElement.scrollTop = 0;
+    // document.documentElement.scrollTop = 0;
 
-    if (id) {
-      dispatch(Product.getOne(id));
-    }
-
-    if (product) {
-      setOptions(getOptions(product.product_infos));
-    }
-  }, []);
-
-  useEffect(() => {
     if (product) {
       setOptions(getOptions(product.product_infos));
     }
@@ -80,6 +69,7 @@ export const MainSection: React.FC<Props> = ({
 
   const startComparing = () => {
     setShowCompare(true);
+
     dispatch(Product.productAction.addToCompare(product));
   };
 
@@ -121,8 +111,8 @@ export const MainSection: React.FC<Props> = ({
               </div>
 
               <p className="MainSection__price">
-                {preparedPrice}
-                <span className="MainSection__price-span">excl</span>
+                {preparedPrice + ' '}
+                <span className="MainSection__price-span"> excl.</span>
               </p>
             </div>
 

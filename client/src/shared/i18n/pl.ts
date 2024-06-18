@@ -167,8 +167,10 @@ export const pl = {
     Categories: {
       'Call us': 'Zadzwoń do nas',
       'Leave a request': 'Zostaw zgłoszenie',
+      'Backhoe Loaders': 'Koparko-ładowarki',
       Generators: 'Generatory',
       Drills: 'Wiertarki',
+      Excavators: 'Koparki',
       Bulldozers: 'Buldożery',
       Graders: 'Poziomice',
       Search: 'Szukaj',

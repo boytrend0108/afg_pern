@@ -12,7 +12,8 @@ class ProductController {
   async create(req, res) {
     const dto = normalizeFields(req.body);
 
-    let { title, price, year, hours, brandId, categoryId, ...info } = dto;
+    let { title, price, year, hours, brandId, categoryId, image, ...info } =
+      dto;
 
     const product = {
       title,
@@ -21,6 +22,7 @@ class ProductController {
       hours,
       brandId,
       categoryId,
+      image,
     };
 
     const errors = validate.productDTO(product);
@@ -43,7 +45,7 @@ class ProductController {
 
     const { images, imagesInter } = req.files;
 
-    images.forEach(async (img) => {
+    images.forEach(async (img, i) => {
       const fileName = img.name.split('.')[0] + '.webp';
       img = sharp(img.data).webp();
 
@@ -55,6 +57,12 @@ class ProductController {
 
       const imageId = response.id;
       await productService.saveImage({ imageId, productId: newProduct.id });
+
+      if (i === 0) {
+        newProduct.image = imageId;
+
+        await newProduct.save();
+      }
     });
 
     imagesInter.forEach(async (img) => {

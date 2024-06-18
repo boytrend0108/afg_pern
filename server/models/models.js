@@ -130,6 +130,10 @@ export const Product = sequelize.define('product', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+
+  image: {
+    type: DataTypes.STRING,
+  },
 });
 
 export const ProductImage = sequelize.define('product_image', {

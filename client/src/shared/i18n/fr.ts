@@ -167,7 +167,9 @@ export const fr = {
     Categories: {
       'Call us': 'Appelez-nous',
       'Leave a request': 'Laissez une demande',
+      'Backhoe Loaders': 'Chargeuses-pelleteuses',
       Generators: 'Générateurs',
+      Excavators: 'Excavateurs',
       Drills: 'Perceuses',
       Bulldozers: 'Bulldozers',
       Graders: 'Niveleuses',

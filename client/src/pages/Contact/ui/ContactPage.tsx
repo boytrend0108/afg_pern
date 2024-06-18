@@ -34,24 +34,26 @@ export const ContactPage = () => {
         <ul className="ContactPage__contacts">
           <li className="ContactPage__contact">
             <p className="ContactPage__key">{t('ContactPage.Street')}</p>
-            <p className="ContactPage__value">Some street</p>
+            <p className="ContactPage__value">
+              Kesklinna linnaosa Narvamt 7-636
+            </p>
           </li>
 
           <li className="ContactPage__contact">
             <p className="ContactPage__key">{t('ContactPage.Zipcode')}</p>
-            <p className="ContactPage__value">30800 Kiev Ukraine</p>
+            <p className="ContactPage__value">1011 Tallin</p>
           </li>
 
           <li className="ContactPage__contact">
             <p className="ContactPage__key">{t('ContactPage.Country')}</p>
-            <p className="ContactPage__value"> add country</p>
+            <p className="ContactPage__value">Estonia</p>
           </li>
 
           <li className="ContactPage__contact">
             <p className="ContactPage__key">
               {t('ContactPage.Nearest airport')}
             </p>
-            <p className="ContactPage__value"> add Airport</p>
+            <p className="ContactPage__value">Tallinn Airport</p>
           </li>
 
           <li className="ContactPage__contact">
@@ -77,10 +79,10 @@ export const ContactPage = () => {
             </a>
           </li>
 
-          <li className="ContactPage__contact">
+          {/* <li className="ContactPage__contact">
             <p className="ContactPage__key">{t('ContactPage.VAT number')}</p>
             <p className="ContactPage__value">add vat number</p>
-          </li>
+          </li> */}
         </ul>
       </div>
 
@@ -92,34 +94,26 @@ export const ContactPage = () => {
         <ul className="ContactPage__contacts">
           <li className="ContactPage__contact">
             <p className="ContactPage__key">{t('ContactPage.Bank name')}</p>
-            <p className="ContactPage__value">Universal</p>
+            <p className="ContactPage__value">PKO BANK</p>
           </li>
 
           <li className="ContactPage__contact">
             <p className="ContactPage__key">{t('ContactPage.Bank address')}</p>
             <p className="ContactPage__value">
-              Horst 18 5501 DN Veldhoven The Netherlands
+              Poland Warszawa ul. Pulawska 15
             </p>
           </li>
 
           <li className="ContactPage__contact">
             <p className="ContactPage__key">IBAN EURO:</p>
-            <p className="ContactPage__value"> NL65ABNA0417047495</p>
+            <p className="ContactPage__value">
+              PL50 1020 2892 0000 5302 0907 3661
+            </p>
           </li>
 
           <li className="ContactPage__contact">
             <p className="ContactPage__key">{t('ContactPage.Swiftcode')}</p>
-            <p className="ContactPage__value"> add code</p>
-          </li>
-
-          <li className="ContactPage__contact">
-            <p className="ContactPage__key">IBAN USD:</p>
-            <p className="ContactPage__value">NL13ABNA0886560926</p>
-          </li>
-
-          <li className="ContactPage__contact">
-            <p className="ContactPage__key">{t('ContactPage.Swiftcode')}</p>
-            <p className="ContactPage__value"> add code</p>
+            <p className="ContactPage__value">BPKOPLPW</p>
           </li>
         </ul>
       </div>

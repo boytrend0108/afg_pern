@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cn from 'classnames';
 
 import './MiniSlider.scss';
@@ -7,16 +7,17 @@ import { useGetSliderHeight } from '../hooks/useGetSliderHeight';
 import { PREVIEW_WIDTH } from '../consts';
 import { GOOGLE_DRIVE_URL } from '../../../../shared/consts/google';
 import { PromoType } from '../../../../entities/ProductItem/types';
+import { useAppSelector } from '../../../../shared/hooks/reduxHooks';
 
 type Props = {
-  images: string[];
+  // images: string[];
   title: string;
   isShow?: boolean;
   promoType: PromoType;
 };
 
 export const MiniSlider: React.FC<Props> = ({
-  images,
+  // images,
   title,
   isShow = false,
   promoType = 'Recomended',
@@ -27,6 +28,8 @@ export const MiniSlider: React.FC<Props> = ({
   const main = useRef<HTMLDivElement>(null);
   const drop = useRef<HTMLDivElement>(null);
   const slider = useRef<HTMLDivElement>(null);
+  const machine = useAppSelector((state) => state.product.product);
+  const [preparedImages, setPreparedImages] = useState<string[]>([]);
 
   useGetSliderWidth(setSliderWidth);
   useGetSliderHeight({ main, drop, show });
@@ -36,17 +39,35 @@ export const MiniSlider: React.FC<Props> = ({
       return;
     }
 
-    if (dir === 'left') {
+    if (dir === 'right') {
       slider.current.scrollLeft += PREVIEW_WIDTH;
+      setImage((current) => (current + 1) % preparedImages.length);
     } else {
       slider.current.scrollLeft -= PREVIEW_WIDTH;
+
+      setImage(
+        (current) =>
+          (current - 1 + preparedImages.length) % preparedImages.length,
+      );
     }
   };
+
+  useEffect(() => {
+    if (machine) {
+      const images = machine.product_images;
+      const mainImage = images.find((el) => el === machine.image);
+      const set = new Set([mainImage, ...images]);
+
+      // eslint-disable-next-line no-unused-expressions
+      mainImage && setPreparedImages([...set] as string[]);
+    }
+  }, [machine]);
 
   return (
     <div className="MiniSlider">
       <header className="MiniSlider__header" onClick={() => setShow(!show)}>
         <p className="MiniSlider__title">{title}</p>
+
         <img
           src="/my-icons/arrow-up.svg"
           className={cn('MiniSlider__arrow', {
@@ -75,7 +96,9 @@ export const MiniSlider: React.FC<Props> = ({
             <img
               height={570}
               width={760}
-              src={GOOGLE_DRIVE_URL + images[image]}
+              src={
+                GOOGLE_DRIVE_URL + preparedImages[image] + '&sz=w760&sz=h570'
+              }
               className="MiniSlider__image"
             />
           </div>
@@ -87,21 +110,31 @@ export const MiniSlider: React.FC<Props> = ({
               style={{ width: sliderWidth + 'px' }}
             >
               <button
-                className="MiniSlider__btn MiniSlider__btn--left"
+                className={cn('MiniSlider__btn MiniSlider__btn--left', {
+                  'MiniSlider__btn--hidden': image === 0,
+                })}
                 onClick={() => slide('left')}
               />
-              {images.map((img, i) => (
+
+              {preparedImages.map((img, i) => (
                 <img
                   onClick={() => setImage(i)}
+                  onMouseOver={() => setImage(i)}
                   key={i}
                   height={75}
                   width={100}
                   src={GOOGLE_DRIVE_URL + img}
-                  className="MiniSlider__preview"
+                  className={cn('MiniSlider__preview', {
+                    'MiniSlider__preview--active': i === image,
+                  })}
                 />
               ))}
               <button
-                className="MiniSlider__btn MiniSlider__btn--right"
+                className={cn('MiniSlider__btn MiniSlider__btn--right', {
+                  'MiniSlider__btn--hidden':
+                    image === preparedImages.length - 1,
+                })}
+                disabled={image === preparedImages.length - 1}
                 onClick={() => slide('right')}
               />
             </div>

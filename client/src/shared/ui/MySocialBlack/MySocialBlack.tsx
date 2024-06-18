@@ -39,13 +39,13 @@ export const MySocialBlack = () => {
         onClick={() => handleFavorite()}
       />
 
-      <li className="MySocialBlack__item MySocialBlack__item--pdf">
+      {/* <li className="MySocialBlack__item MySocialBlack__item--pdf">
         <a
           href="https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf"
           className="MySocialBlack__link"
           target="_blank"
         />
-      </li>
+      </li> */}
 
       <li className="MySocialBlack__item MySocialBlack__item--fb">
         <a

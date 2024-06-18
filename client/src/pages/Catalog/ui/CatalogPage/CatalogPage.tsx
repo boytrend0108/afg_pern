@@ -29,6 +29,7 @@ export const CatalogPage = () => {
     <section className={cn('CatalogPage', {})}>
       <header className="CatalogPage__header  my-container">
         <MySearch style={{ marginBottom: '50px' }} />
+
         <CategoryList />
       </header>
 
@@ -43,7 +44,9 @@ export const CatalogPage = () => {
             <MyLoader />
           </div>
         )}
+
         {error && <p className="CatalogPage__error">Something went wrong...</p>}
+
         {!loading && !error && (
           <CatalogList setShowFilters={setShowFilters} machines={products} />
         )}

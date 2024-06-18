@@ -25,22 +25,32 @@ export const productSlice = createSlice({
         state.compare[1] = action.payload;
       }
     },
+
     removeFromCompare: (state, action) => {
       state.compare = state.compare.filter((el) => el.id !== action.payload);
     },
+
     clearCompare: (state) => {
       state.compare = [];
     },
+
     addFavorite: (state, action) => {
       state.favorite = action.payload || [];
     },
+
     setBooked: (state, action) => {
       state.booked = action.payload;
     },
+
     removeBooked: (state) => {
       state.booked = null;
     },
+
+    setCurrentProduct: (state, action) => {
+      state.product = action.payload;
+    },
   },
+
   extraReducers: (builder) => {
     builder.addCase(getOne.pending, handleResponce.getOne);
     builder.addCase(getOne.fulfilled, handleResponce.getOne);
@@ -59,6 +69,7 @@ export const {
   addFavorite,
   setBooked,
   removeBooked,
+  setCurrentProduct,
 } = productSlice.actions;
 
 export default productSlice.reducer;

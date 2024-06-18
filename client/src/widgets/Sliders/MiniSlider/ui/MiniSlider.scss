@@ -1,5 +1,16 @@
 @import '../../../../shared/style/utils.scss';
 
+@mixin btn-arrow {
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+}
+
 .MiniSlider {
   display: flex;
   flex-direction: column;
@@ -91,6 +102,12 @@
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     transition: transform ease-in-out $transition-duration;
+
+    &:hover {
+      .MiniSlider__btn {
+        opacity: 1;
+      }
+    }
   }
 
   &__btn {
@@ -101,38 +118,35 @@
     background-color: $color-secondary;
     border: 1px solid;
     cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity ease $transition-duration;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &--left {
-      position: absolute;
       left: 0;
 
+      @include btn-arrow;
+
       &::after {
-        content: '';
-        display: block;
-        width: 0;
-        height: 0;
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
         border-right: 20px solid black;
       }
     }
 
     &--right {
-      position: absolute;
-
       right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+      @include btn-arrow;
+
       &::after {
-        content: '';
-        display: block;
-        width: 0;
-        height: 0;
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
         border-left: 20px solid black;
       }
+    }
+
+    &:disabled {
+      opacity: 0.5;
     }
   }
 
@@ -141,5 +155,11 @@
     height: 75px;
     scroll-snap-align: start;
     cursor: pointer;
+    transition: transform ease $transition-duration;
+
+    &--active {
+      border: 2px solid $color-secondary;
+      transform: scale(0.8);
+    }
   }
 }

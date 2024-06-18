@@ -14,6 +14,8 @@ export const useGetSliderWidth = (setSliderWidth: Args) => {
         containerPadding = window
           .getComputedStyle(container)
           .paddingInline.slice(0, -2);
+      } else {
+        containerPadding = 30;
       }
 
       if (box) {
@@ -21,7 +23,9 @@ export const useGetSliderWidth = (setSliderWidth: Args) => {
       }
 
       if (containerPadding && gap) {
-        setSliderWidth((window.innerWidth - +gap - +containerPadding) / 2);
+        setSliderWidth(
+          (document.body.clientWidth - +gap - +containerPadding) / 2,
+        );
       }
     };
 

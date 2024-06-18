@@ -33,13 +33,7 @@
   }
 
   &__loader {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #d8c3726e;
-    z-index: 10;
+    @include fullScreenLoader;
   }
 
   &__error {

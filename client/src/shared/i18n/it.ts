@@ -167,7 +167,9 @@ export const it = {
     Categories: {
       'Call us': 'Chiamaci',
       'Leave a request': 'Lascia una richiesta',
+      'Backhoe Loaders': 'Terne',
       Generators: 'Generatori',
+      Excavators: 'Escavatori',
       Drills: 'Trapani',
       Bulldozers: 'Bulldozer',
       Graders: 'Livellatrici',

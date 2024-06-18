@@ -167,7 +167,9 @@ export const de = {
     Categories: {
       'Call us': 'Ruf uns an',
       'Leave a request': 'Eine Anfrage hinterlassen',
+      'Backhoe Loaders': 'Baggerlader',
       Generators: 'Generatoren',
+      Excavators: 'Bagger',
       Drills: 'Bohrer',
       Bulldozers: 'Bulldozer',
       Graders: 'Grader',

@@ -20,10 +20,9 @@ export const ProductView: React.FC<Props> = ({ product }) => {
         promoType={promoType}
         title={t('ProductPage.General view')}
         isShow={true}
-        images={product ? product.product_images : []}
       />
 
-      <MiniSlider
+      {/* <MiniSlider
         promoType={promoType}
         title={t('ProductPage.Exterior')}
         images={product ? product.product_image_inters : []}
@@ -39,7 +38,7 @@ export const ProductView: React.FC<Props> = ({ product }) => {
         promoType={promoType}
         title={t('ProductPage.3D model')}
         images={product ? product.product_image_inters : []}
-      />
+      /> */}
     </div>
   );
 };

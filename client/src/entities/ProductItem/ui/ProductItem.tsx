@@ -10,6 +10,8 @@ import { GOOGLE_DRIVE_URL } from '../../../shared/consts/google';
 import { getPromoType } from '../../../pages/ProductPage/helpers.ts/getPromoType';
 import { useTranslation } from 'react-i18next';
 import { useGetPrice } from '../../../shared/hooks';
+import { productAction } from '..';
+import { useAppDispatch } from '../../../shared/hooks/reduxHooks';
 
 type Props = {
   machine: ProductType;
@@ -25,6 +27,7 @@ export const ProductItem: React.FC<Props> = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [preparedPrice, setPreparedPrice] = useState('$ 0');
+  const dispatch = useAppDispatch();
 
   useGetPrice(machine, setPreparedPrice);
 
@@ -33,6 +36,7 @@ export const ProductItem: React.FC<Props> = ({
 
   const handleClick = () => {
     navigate(`/product/${machine.id}?tab=general`);
+    dispatch(productAction.setCurrentProduct(machine));
   };
 
   return (
@@ -44,10 +48,11 @@ export const ProductItem: React.FC<Props> = ({
       <div className="ProductItem__image">
         <img
           className="ProductItem__image-box"
-          src={GOOGLE_DRIVE_URL + machine.product_images[0]}
+          src={GOOGLE_DRIVE_URL + machine.image + '&sz=w400&sz=h280'}
           width="280"
           height="420"
         />
+
         <div
           className={cn('ProductItem__image-lable', {
             'ProductItem__image-lable--new': promoType === 'New',

@@ -14,6 +14,7 @@ dist-ssr
 .env
 .env.production
 google-api.json
+product_items
 
 # Editor directories and files
 .vscode/*
