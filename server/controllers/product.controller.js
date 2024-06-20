@@ -46,6 +46,10 @@ class ProductController {
     const { images, imagesInter } = req.files;
 
     images.forEach(async (img, i) => {
+      if (!img.mimetype.includes('image')) {
+        return;
+      }
+
       const fileName = img.name.split('.')[0] + '.webp';
       img = sharp(img.data).webp();
 
@@ -66,6 +70,10 @@ class ProductController {
     });
 
     imagesInter.forEach(async (img) => {
+      if (!img.mimetype.includes('image')) {
+        return;
+      }
+
       const fileName = img.name.split('.')[0] + '.webp';
       img = sharp(img.data).webp();
 

@@ -5,19 +5,17 @@ import './MiniSlider.scss';
 import { useGetSliderWidth } from '../hooks/useGetSliderWidth';
 import { useGetSliderHeight } from '../hooks/useGetSliderHeight';
 import { PREVIEW_WIDTH } from '../consts';
-import { GOOGLE_DRIVE_URL } from '../../../../shared/consts/google';
 import { PromoType } from '../../../../entities/ProductItem/types';
 import { useAppSelector } from '../../../../shared/hooks/reduxHooks';
+import { useLoadImage } from '../../../../shared/hooks';
 
 type Props = {
-  // images: string[];
   title: string;
   isShow?: boolean;
   promoType: PromoType;
 };
 
 export const MiniSlider: React.FC<Props> = ({
-  // images,
   title,
   isShow = false,
   promoType = 'Recomended',
@@ -25,14 +23,17 @@ export const MiniSlider: React.FC<Props> = ({
   const [image, setImage] = useState(0);
   const [show, setShow] = useState(isShow);
   const [sliderWidth, setSliderWidth] = useState(600);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const main = useRef<HTMLDivElement>(null);
   const drop = useRef<HTMLDivElement>(null);
   const slider = useRef<HTMLDivElement>(null);
   const machine = useAppSelector((state) => state.product.product);
   const [preparedImages, setPreparedImages] = useState<string[]>([]);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   useGetSliderWidth(setSliderWidth);
   useGetSliderHeight({ main, drop, show });
+  useLoadImage(imageRef, setIsImageLoaded);
 
   const slide = (dir: 'left' | 'right') => {
     if (!slider.current) {
@@ -93,14 +94,18 @@ export const MiniSlider: React.FC<Props> = ({
               {promoType}
             </div>
 
-            <img
-              height={570}
-              width={760}
-              src={
-                GOOGLE_DRIVE_URL + preparedImages[image] + '&sz=w760&sz=h570'
-              }
-              className="MiniSlider__image"
-            />
+            <div className="MiniSlider__image-blur">
+              <img
+                loading="lazy"
+                ref={imageRef}
+                height={570}
+                width={760}
+                src={`${import.meta.env.VITE_API_BASE_URL}/api/thumbnail?id=${preparedImages[image]}`}
+                className={cn('MiniSlider__image', {
+                  'MiniSlider__image--loaded': isImageLoaded,
+                })}
+              />
+            </div>
           </div>
 
           <div className="MiniSlider__slider-wr">
@@ -123,7 +128,7 @@ export const MiniSlider: React.FC<Props> = ({
                   key={i}
                   height={75}
                   width={100}
-                  src={GOOGLE_DRIVE_URL + img}
+                  src={`${import.meta.env.VITE_API_BASE_URL}/api/thumbnail?id=${img}`}
                   className={cn('MiniSlider__preview', {
                     'MiniSlider__preview--active': i === image,
                   })}

@@ -9,6 +9,7 @@ import { MyButtonWhite } from './MyButtonWhite/MyButtonWhite';
 import { MyLanguageSelect } from './MyLanguageSelect/MyLanguageSelect';
 import { MySuccess } from './MySuccess/MySuccess';
 import { MyTabSwitcher } from './MyTabSwitcher/MyTabSwitcher';
+import { MyPagination } from './MyPagination/MyPagination';
 
 export {
   MyFlags,
@@ -22,4 +23,5 @@ export {
   MyInput,
   MySearch,
   MyBreadcrumb,
+  MyPagination,
 };

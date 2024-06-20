@@ -13,6 +13,7 @@
 
     &-left {
       max-width: 525px;
+      width: 100%;
 
       @include on-tablet {
         max-width: 100%;

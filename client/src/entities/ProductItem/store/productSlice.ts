@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { ProductState } from '../types';
 import { getOne, getAll } from './thunks';
 import { handleResponce } from './handleResponse';
@@ -10,6 +10,8 @@ const initialState: ProductState = {
   favorite: [],
   booked: null,
   count: 0,
+  page: 1,
+  limit: 8,
   loading: false,
   error: null,
 };
@@ -49,6 +51,14 @@ export const productSlice = createSlice({
     setCurrentProduct: (state, action) => {
       state.product = action.payload;
     },
+
+    setPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    },
+
+    setLimit: (state, action: PayloadAction<number>) => {
+      state.limit = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -70,6 +80,8 @@ export const {
   setBooked,
   removeBooked,
   setCurrentProduct,
+  setLimit,
+  setPage,
 } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -21,7 +21,9 @@ class ProductService {
     if (brandId) whereClause.brandId = brandId;
     if (categoryId) whereClause.categoryId = categoryId;
 
-    response = await Product.findAndCountAll({
+    const count = await Product.count({ where: whereClause });
+
+    response = await Product.findAll({
       where: whereClause,
       limit,
       offset,
@@ -49,10 +51,10 @@ class ProductService {
       ],
     });
 
-    response.products = this.prepareProduct(response.rows);
+    response.products = this.prepareProduct(response);
 
     return {
-      count: response.count,
+      count,
       products: response.products,
     };
   }

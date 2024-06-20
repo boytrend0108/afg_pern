@@ -10,6 +10,7 @@ import roleRouter from './role.router.js';
 import userRouter from './user.router.js';
 import requestRouter from './request.router.js';
 import subscribeRouter from './subscribe.router.js';
+import imageRouter from './image.router.js';
 
 const router = new Router();
 
@@ -24,5 +25,6 @@ router.use('/role', roleRouter);
 router.use('/user', userRouter);
 router.use('/request', requestRouter);
 router.use('/subscribe', subscribeRouter);
+router.use('/thumbnail', imageRouter);
 
 export default router;

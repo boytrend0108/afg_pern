@@ -18,9 +18,9 @@ export const getOne = createAsyncThunk(
 
 export const getAll = createAsyncThunk(
   GET_ALL_PREFIX.base,
-  async (_, { rejectWithValue }) => {
+  async (params: { [key: string]: string }, { rejectWithValue }) => {
     try {
-      return await productAPI.getAll();
+      return await productAPI.getAll(params);
     } catch (err) {
       return rejectWithValue({
         message: (err as AxiosError).response?.data,

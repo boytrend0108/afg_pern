@@ -11,7 +11,7 @@
   }
 
   @include on-mobile {
-    height: 160px;
+    height: fit-content;
   }
 
   &__title {
@@ -40,6 +40,8 @@
     justify-content: space-between;
 
     @include on-mobile {
+      flex-direction: column-reverse;
+      gap: 10px;
       padding-left: 20px;
       padding-bottom: 20px;
     }

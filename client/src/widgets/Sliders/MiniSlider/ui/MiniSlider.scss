@@ -66,9 +66,42 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+
+    &--loaded {
+      transition: opacity ease 1s;
+      opacity: 1;
+
+      @include onHover(transform, scale(1.05));
+    }
 
     &-lable {
       @include image-label;
+    }
+
+    &-blur {
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('/product/excavator-1.png');
+        background-size: cover;
+        filter: blur(20px);
+        z-index: -1;
+        animation: blur infinite 2s;
+      }
+
+      @keyframes blur {
+        0% {
+          filter: blur(10px);
+        }
+        50% {
+          filter: blur(30px);
+        }
+        100% {
+          filter: blur(10px);
+        }
+      }
     }
 
     &-lable--top {

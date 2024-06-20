@@ -3,10 +3,10 @@ import { Link, useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
 
 import './CatalogList.scss';
-import { getSearchParams } from '../../../../shared/helpers/getSearchParams';
-import { MyButton } from '../../../../shared/ui';
-import { ProductItem } from '../../../../entities/ProductItem';
-import { ProductType } from '../../../../entities/ProductItem/types';
+import { getSearchParams } from '../../../../../shared/helpers/getSearchParams';
+import { MyButton, MyPagination } from '../../../../../shared/ui';
+import { ProductItem } from '../../../../../entities/ProductItem';
+import { ProductType } from '../../../../../entities/ProductItem/types';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -180,6 +180,8 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters, machines }) => {
           return <ProductItem key={m.id} machine={m} />;
         })}
       </div>
+
+      <MyPagination />
     </div>
   );
 };

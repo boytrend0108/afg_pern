@@ -5,7 +5,7 @@ import { CatalogFilters } from '../../../../widgets/CatalogFilters';
 import { CategoryList } from '../../../../widgets/CategoryList';
 import './CatalogPage.scss';
 import { useEffect, useState } from 'react';
-import { CatalogList } from '../CatalogList/CatalogList';
+import { CatalogList } from '../CatalogList/ui/CatalogList';
 import {
   useAppDispatch,
   useAppSelector,
@@ -16,14 +16,16 @@ import { useScrollToTop } from '../../../../shared/hooks';
 
 export const CatalogPage = () => {
   const [showFilters, setShowFilters] = useState(false);
-  const { products, loading, error } = useAppSelector((state) => state.product);
+  const { products, loading, error, page } = useAppSelector(
+    (state) => state.product,
+  );
   const dispatch = useAppDispatch();
 
   useScrollToTop();
 
   useEffect(() => {
-    dispatch(productItem.getAll());
-  }, []);
+    dispatch(productItem.getAll({ page: page.toString() }));
+  }, [page]);
 
   return (
     <section className={cn('CatalogPage', {})}>

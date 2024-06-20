@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
 import './ProductItem.scss';
 import { ProductType, PromoType } from '../types';
 import { ARTICUL_PREFIX } from '../../../shared/consts/product';
-import { GOOGLE_DRIVE_URL } from '../../../shared/consts/google';
 // eslint-disable-next-line max-len
 import { getPromoType } from '../../../pages/ProductPage/helpers.ts/getPromoType';
 import { useTranslation } from 'react-i18next';
-import { useGetPrice } from '../../../shared/hooks';
+import { useGetPrice, useLoadImage } from '../../../shared/hooks';
 import { productAction } from '..';
 import { useAppDispatch } from '../../../shared/hooks/reduxHooks';
 
@@ -28,8 +27,11 @@ export const ProductItem: React.FC<Props> = ({
   const navigate = useNavigate();
   const [preparedPrice, setPreparedPrice] = useState('$ 0');
   const dispatch = useAppDispatch();
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   useGetPrice(machine, setPreparedPrice);
+  useLoadImage(imageRef, setIsImageLoaded);
 
   const promoType: PromoType =
     (machine && getPromoType(machine)) || 'Recommended';
@@ -46,12 +48,18 @@ export const ProductItem: React.FC<Props> = ({
       onClick={handleClick}
     >
       <div className="ProductItem__image">
-        <img
-          className="ProductItem__image-box"
-          src={GOOGLE_DRIVE_URL + machine.image + '&sz=w400&sz=h280'}
-          width="280"
-          height="420"
-        />
+        <div className="ProductItem__image-blur">
+          <img
+            ref={imageRef}
+            loading="lazy"
+            className={cn('ProductItem__image-box', {
+              'ProductItem__image-box--loaded': isImageLoaded,
+            })}
+            src={`${import.meta.env.VITE_API_BASE_URL}/api/thumbnail?id=${machine.image}`}
+            width="400"
+            height="280"
+          />
+        </div>
 
         <div
           className={cn('ProductItem__image-lable', {

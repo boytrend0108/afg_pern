@@ -12,6 +12,8 @@ import {
 } from '../../../../shared/hooks/reduxHooks';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
+import { KeyCode } from '../../../../shared/types/keyboard';
+import { useTab } from '../hooks/useTab';
 
 export const RegistrationForm = () => {
   const [userName, setUserName] = useState('');
@@ -26,6 +28,17 @@ export const RegistrationForm = () => {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
+
+  const inputRefs = useTab();
+  const [
+    nameRef,
+    emailRef,
+    passwordRef,
+    countryRef,
+    cityRef,
+    addressRef,
+    companyRef,
+  ] = inputRefs.current;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.id as keyof DtoRegistration;
@@ -87,6 +100,20 @@ export const RegistrationForm = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const currentInputIndex = inputRefs.current.findIndex(
+      (el) => el.current === target,
+    );
+
+    if (
+      e.code === KeyCode.Enter &&
+      target !== inputRefs.current.at(-1)?.current
+    ) {
+      inputRefs.current[currentInputIndex + 1].current?.focus();
+    }
+  };
+
   return (
     <div className="RegistrationForm">
       <img src="/logo.svg" alt="logo" className="RegistrationForm__logo" />
@@ -95,11 +122,13 @@ export const RegistrationForm = () => {
       </h1>
 
       <MyInput
+        ref={nameRef}
+        onKeyUp={handleEnterPress}
+        onChange={handleInputChange}
         type="text"
         title="Name *"
         id="name"
         errors={errors}
-        onChange={handleInputChange}
         value={userName}
       />
 
@@ -109,55 +138,68 @@ export const RegistrationForm = () => {
       </div>
 
       <MyInput
+        ref={emailRef}
+        onKeyUp={handleEnterPress}
+        onChange={handleInputChange}
         title="Email address *"
         id="email"
         errors={errors}
         type="email"
-        onChange={handleInputChange}
         value={email}
       />
+
       <MyInput
+        ref={passwordRef}
+        onKeyUp={handleEnterPress}
+        onChange={handleInputChange}
         title="Password *"
         id="password"
         errors={errors}
         type="password"
-        onChange={handleInputChange}
         value={password}
       />
 
       <div className="RegistrationForm__wr">
         <MyInput
+          ref={countryRef}
+          onKeyUp={handleEnterPress}
+          onChange={handleInputChange}
           type="text"
           title="Country"
           id="country"
           errors={errors}
-          onChange={handleInputChange}
           value={country}
         />
         <MyInput
+          ref={cityRef}
+          onKeyUp={handleEnterPress}
+          onChange={handleInputChange}
           type="text"
           title="City"
           id="city"
           errors={errors}
-          onChange={handleInputChange}
           value={city}
         />
       </div>
 
       <MyInput
+        ref={addressRef}
+        onKeyUp={handleEnterPress}
+        onChange={handleInputChange}
         type="text"
         title="Address"
         id="address"
         errors={errors}
-        onChange={handleInputChange}
         value={address}
       />
       <MyInput
+        ref={companyRef}
+        onKeyUp={handleEnterPress}
+        onChange={handleInputChange}
         type="text"
         title="Company name"
         id="company"
         errors={errors}
-        onChange={handleInputChange}
         value={company}
       />
 

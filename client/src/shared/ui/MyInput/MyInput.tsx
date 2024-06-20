@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import './MyInput.scss';
 import { useNavigate } from 'react-router-dom';
 import { DtoValidation } from '../../../widgets/Forms/RegistrationForm/types/DtoValidation';
@@ -8,19 +8,16 @@ import { DtoValidationLogin } from '../../../widgets/Forms/LoginForm/types/DtoVa
 type Props = {
   title: string;
   onChange: (e: any) => void;
+  onKeyUp: (e: any) => void;
   value: string | number;
   type: string;
   id: string;
   errors: DtoValidation | DtoValidationLogin | null;
+  ref: { current: any } | null;
 };
 
-export const MyInput: React.FC<Props> = ({
-  title,
-  type = 'text',
-  errors,
-  id,
-  ...props
-}) => {
+export const MyInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
+  const { title, type = 'text', errors, id, ...otherProps } = props;
   const [inputType, setInputType] = useState<string>(type);
   const navigate = useNavigate();
 
@@ -46,7 +43,13 @@ export const MyInput: React.FC<Props> = ({
         )}
       </div>
 
-      <input type={inputType} className="MyInput__field" {...props} id={id} />
+      <input
+        type={inputType}
+        className="MyInput__field"
+        {...otherProps}
+        id={id}
+        ref={ref}
+      />
 
       {type === 'password' && (
         <p className="MyInput__show-psw-fgt" onClick={() => navigate('/login')}>
@@ -55,4 +58,4 @@ export const MyInput: React.FC<Props> = ({
       )}
     </div>
   );
-};
+});

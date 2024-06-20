@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import express from 'express';
+import express, { query } from 'express';
 import https from 'https';
 import cors from 'cors';
 import models from './models/models.js'; // don't delete!!!
@@ -32,9 +32,6 @@ app.use(fileUpload({}));
 app.use(cookieParser());
 app.use('/api', router);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.get('/', (req, res) => {
-  res.send('Hello!!!');
-});
 
 app.use(errorMiddleware);
 

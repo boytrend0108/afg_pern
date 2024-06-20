@@ -76,6 +76,8 @@ export type ProductState = {
   favorite: (string | number)[];
   booked: ProductType | null;
   count: number;
+  page: number;
+  limit: number;
   loading: boolean;
   error: null | string;
 };

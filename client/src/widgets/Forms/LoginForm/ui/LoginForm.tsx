@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import './LoginForm.scss';
@@ -12,6 +12,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../shared/hooks/reduxHooks';
+import { KeyCode } from '../../../../shared/types/keyboard';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -22,6 +23,8 @@ export const LoginForm = () => {
   const [errors, setErrors] = useState<DtoValidationLogin | null>(null);
   const { loading, error: loginError } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.id as keyof DtoLogin;
@@ -53,24 +56,47 @@ export const LoginForm = () => {
       .then(() => navigate(state?.pathname || '/', { replace: true }));
   };
 
+  const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!passwordRef.current) {
+      return;
+    }
+
+    const target = e.target as HTMLInputElement;
+
+    if (e.code === KeyCode.Enter && target.id === 'email') {
+      passwordRef.current.focus();
+    }
+  };
+
+  useEffect(() => {
+    if (emailRef.current) {
+      emailRef.current.focus();
+    }
+  }, []);
+
   return (
     <div className="LoginForm">
       <img src="/logo.svg" alt="logo" className="LoginForm__logo" />
       <h1 className="LoginForm__title">Login to AFG Machinery account</h1>
 
       <MyInput
+        ref={emailRef}
         title="Email address *"
         id="email"
         errors={errors}
         type="email"
         onChange={handleInputChange}
+        onKeyUp={handleEnterPress}
         value={email}
       />
+
       <MyInput
+        ref={passwordRef}
         title="Password *"
         id="password"
         errors={errors}
         type="password"
+        onKeyUp={(e) => handleEnterPress(e)}
         onChange={handleInputChange}
         value={password}
       />
