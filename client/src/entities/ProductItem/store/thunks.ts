@@ -18,7 +18,7 @@ export const getOne = createAsyncThunk(
 
 export const getAll = createAsyncThunk(
   GET_ALL_PREFIX.base,
-  async (params: { [key: string]: string }, { rejectWithValue }) => {
+  async (params: URLSearchParams, { rejectWithValue }) => {
     try {
       return await productAPI.getAll(params);
     } catch (err) {

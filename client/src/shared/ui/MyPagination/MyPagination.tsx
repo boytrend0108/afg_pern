@@ -1,28 +1,39 @@
 import { Pagination } from 'react-bootstrap';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { productAction } from '../../../entities/ProductItem';
+import './MyPagination.scss';
+import { useAppSelector } from '../../hooks/reduxHooks';
+import { useSearchParams } from 'react-router-dom';
 
 export const MyPagination = () => {
-  const { count, limit, page } = useAppSelector((state) => state.product);
-  const dispatch = useAppDispatch();
+  const { count, limit } = useAppSelector((state) => state.product);
+  const [searchParams, setSearchParams] = useSearchParams();
   const pageCount = Math.ceil(count / limit);
   const pages = [];
+  const page = searchParams.get('page') || '1';
 
   for (let i = 1; i <= pageCount; i++) {
     pages.push(i);
   }
 
   const setPage = (pageNumber: number) => {
-    dispatch(productAction.setPage(pageNumber));
+    const params = new URLSearchParams(searchParams);
+
+    params.set('page', pageNumber.toString());
+
+    setSearchParams(params);
   };
+
+  if (pages.length <= 1) {
+    return;
+  }
 
   return (
     <div className="MyPagination">
-      <Pagination>
+      <Pagination size="lg">
         {pages.map((el) => (
           <Pagination.Item
+            linkClassName="MyPagination__item"
             key={el}
-            active={page === el}
+            active={page === el.toString()}
             onClick={() => setPage(el)}
           >
             {el}

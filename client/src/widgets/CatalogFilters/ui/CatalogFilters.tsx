@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 
+import './CatalogFilters.scss';
 import { CatalogFilter } from './CatalogFilter/CatalogFilter';
 import { FILTERS } from '../consts';
 import { Fragment } from 'react/jsx-runtime';
-import './CatalogFilters.scss';
 import { MyCheckbox } from '../../../shared/ui/MyCheckbox/MyCheckbox';
 import { useTranslation } from 'react-i18next';
 import { Brand } from '../../../entities/BrandItem/types';
 import { brandAPI } from '../../../entities/BrandItem';
 import { CategoryType, categoryAPI } from '../../../entities/CategoryItem';
+import { MyButton } from '../../../shared/ui';
+import { useAppDispatch } from '../../../shared/hooks/reduxHooks';
+import { useSearchParams } from 'react-router-dom';
+import * as productItem from '../../../entities/ProductItem';
 
 type Props = {
   showFilters: boolean;
@@ -23,6 +27,8 @@ export const CatalogFilters: React.FC<Props> = ({
   const { t } = useTranslation();
   const [brands, setBrands] = useState<Brand[]>([]);
   const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     brandAPI
@@ -37,6 +43,20 @@ export const CatalogFilters: React.FC<Props> = ({
       // eslint-disable-next-line no-console
       .catch((err) => console.log(err));
   }, []);
+
+  const applyFilters = () => {
+    searchParams.set('page', '1');
+    dispatch(productItem.getAll(searchParams));
+    setShowFilters(false);
+  };
+
+  const resetFilters = () => {
+    const params = new URLSearchParams();
+
+    setSearchParams(params);
+    dispatch(productItem.getAll(params));
+    setShowFilters(false);
+  };
 
   return (
     <aside
@@ -56,10 +76,10 @@ export const CatalogFilters: React.FC<Props> = ({
         <Fragment key={f.id}>
           <CatalogFilter
             minValue={f.minValue}
-            middleValue={f.middleValue}
             maxValue={f.maxValue}
             title={f.title}
             id={f.id}
+            minDistance={f.minDistance}
           />
         </Fragment>
       ))}
@@ -80,6 +100,11 @@ export const CatalogFilters: React.FC<Props> = ({
             <MyCheckbox label={b.name} id={b.id} searchItem="categoryId" />
           </div>
         ))}
+      </div>
+
+      <div className="CatalogFilters__btn-box">
+        <MyButton onClick={applyFilters}>Apply</MyButton>
+        <MyButton onClick={resetFilters}>Reset</MyButton>
       </div>
     </aside>
   );

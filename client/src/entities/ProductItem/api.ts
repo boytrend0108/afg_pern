@@ -13,7 +13,7 @@ export const productAPI = {
     return httpClient.post('/product/create', categoryDTO);
   },
 
-  getAll(params: { [key: string]: string }): Promise<ResponseGetProducts> {
+  getAll(params: URLSearchParams): Promise<ResponseGetProducts> {
     return httpClient.get(`/product`, {
       params,
     });

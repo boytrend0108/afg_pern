@@ -95,14 +95,13 @@ class ProductController {
   }
 
   async getAll(req, res) {
-    let { brandId, categoryId, page, limit } = req.query;
+    let { page, limit, ...otherQuery } = req.query;
     limit = limit || 8;
     page = page || 1;
     let offset = page * limit - limit;
 
     const products = await productService.getAll({
-      brandId,
-      categoryId,
+      otherQuery,
       limit,
       offset,
     });

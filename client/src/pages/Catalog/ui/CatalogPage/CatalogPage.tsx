@@ -6,25 +6,21 @@ import { CategoryList } from '../../../../widgets/CategoryList';
 import './CatalogPage.scss';
 import { useEffect, useState } from 'react';
 import { CatalogList } from '../CatalogList/ui/CatalogList';
-import {
-  useAppDispatch,
-  useAppSelector,
-} from '../../../../shared/hooks/reduxHooks';
 import * as productItem from '../../../../entities/ProductItem';
-import { MyLoader } from '../../../../shared/ui/MyLoader/MyLoader';
 import { useScrollToTop } from '../../../../shared/hooks';
+import { useSearchParams } from 'react-router-dom';
+import { useAppDispatch } from '../../../../shared/hooks/reduxHooks';
 
 export const CatalogPage = () => {
   const [showFilters, setShowFilters] = useState(false);
-  const { products, loading, error, page } = useAppSelector(
-    (state) => state.product,
-  );
+  const [searchParams] = useSearchParams();
+  const page = searchParams.get('page');
   const dispatch = useAppDispatch();
 
   useScrollToTop();
 
   useEffect(() => {
-    dispatch(productItem.getAll({ page: page.toString() }));
+    dispatch(productItem.getAll(searchParams));
   }, [page]);
 
   return (
@@ -41,17 +37,7 @@ export const CatalogPage = () => {
           setShowFilters={setShowFilters}
         />
 
-        {loading && (
-          <div className="CatalogPage__loader">
-            <MyLoader />
-          </div>
-        )}
-
-        {error && <p className="CatalogPage__error">Something went wrong...</p>}
-
-        {!loading && !error && (
-          <CatalogList setShowFilters={setShowFilters} machines={products} />
-        )}
+        <CatalogList setShowFilters={setShowFilters} />
 
         <div
           onClick={() => setShowFilters(false)}

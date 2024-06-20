@@ -8,7 +8,7 @@
   &__main {
     overflow: hidden;
     position: relative;
-    height: 80px;
+    height: 100px;
     transition: height ease-in-out $transition-duration;
 
     &--closed {
@@ -17,6 +17,7 @@
   }
 
   &__drop {
+    width: 100%;
     position: absolute;
     top: 0;
     right: 0;
@@ -84,93 +85,8 @@
     align-items: center;
   }
 
-  &__thumb--right {
-    width: 153px;
-    position: relative;
-
-    &::after {
-      position: absolute;
-      content: '';
-      height: 20px;
-      width: 20px;
-      background-color: $color-primary;
-      top: 5px;
-      pointer-events: none;
-    }
+  &__slider {
+    width: 90% !important;
+    margin: 0 auto !important;
   }
-  &__thumb--left {
-    width: 153px;
-    position: relative;
-
-    &::after {
-      position: absolute;
-      content: '';
-      height: 20px;
-      width: 20px;
-      background-color: $color-primary;
-      top: 5px;
-      pointer-events: none;
-      z-index: 2;
-    }
-  }
-
-  &__range {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-  }
-
-  &__range-item {
-    width: 153px;
-
-    &--right {
-      width: 153px;
-      transform: rotate(180deg);
-      position: relative;
-    }
-  }
-}
-
-/* Chrome */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  input[type='range'] {
-    overflow: hidden;
-    width: 153px;
-    -webkit-appearance: none;
-    background-color: $color-secondary;
-    border: 1px solid;
-    border-right: none;
-    height: 10px; /* Ensure this matches the track height */
-  }
-
-  input[type='range']::-webkit-slider-runnable-track {
-    height: 10px;
-    -webkit-appearance: none;
-    width: 153px;
-  }
-
-  input[type='range']::-webkit-slider-thumb {
-    width: 10px;
-    -webkit-appearance: none;
-    height: 10px;
-    cursor: ew-resize;
-    background: #434343;
-    box-shadow: -80px 0 0 80px $color-font-light;
-  }
-}
-
-/** FF*/
-input[type='range']::-moz-range-progress {
-  background-color: $color-font-light;
-}
-input[type='range']::-moz-range-track {
-  background-color: $color-secondary;
-}
-/* IE*/
-input[type='range']::-ms-fill-lower {
-  background-color: $color-font-light;
-}
-input[type='range']::-ms-fill-upper {
-  background-color: $color-secondary;
 }

@@ -33,7 +33,7 @@
   }
 
   &__loader {
-    @include fullScreenLoader;
+    @include blockScreenLoader;
   }
 
   &__error {

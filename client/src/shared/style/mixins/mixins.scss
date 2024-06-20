@@ -80,6 +80,15 @@
   z-index: 10;
 }
 
+@mixin blockScreenLoader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
 @mixin image-label {
   position: absolute;
   top: -4px;

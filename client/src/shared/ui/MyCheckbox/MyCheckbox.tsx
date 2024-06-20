@@ -34,8 +34,12 @@ export const MyCheckbox: React.FC<Props> = ({ label, id, searchItem }) => {
   useEffect(() => {
     if (searchParams.toString().includes(`${searchItem}=${id}`)) {
       setValue(true);
+
+      return;
     }
-  }, []);
+
+    setValue(false);
+  }, [searchParams]);
 
   return (
     <div className="MyCheckbox">

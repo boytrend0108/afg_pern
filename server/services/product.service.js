@@ -6,6 +6,8 @@ import {
   ProductInfo,
 } from '../models/models.js';
 import { ProductImage } from '../models/models.js';
+import { Op } from 'sequelize';
+const MAX_FILTER_VALUE = 300000;
 
 class ProductService {
   async create(product) {
@@ -14,12 +16,59 @@ class ProductService {
     return newProduct;
   }
 
-  async getAll({ brandId, categoryId, limit, offset }) {
+  async getAll({ otherQuery, limit, offset }) {
     let response;
+    const {
+      brandId,
+      categoryId,
+      'price-min': priceMin,
+      'price-max': priceMax,
+      'year-max': yearMax,
+      'year-min': yearMin,
+      'hours-max': hoursMax,
+      'hours-min': hoursMin,
+    } = otherQuery;
+
     const whereClause = {};
 
     if (brandId) whereClause.brandId = brandId;
     if (categoryId) whereClause.categoryId = categoryId;
+
+    if (priceMax && priceMin) {
+      whereClause.price = { [Op.between]: [priceMin, priceMax] };
+    }
+
+    if (priceMax && !priceMin) {
+      whereClause.price = { [Op.between]: [0, priceMax] };
+    }
+
+    if (!priceMax && priceMin) {
+      whereClause.price = { [Op.between]: [priceMin, MAX_FILTER_VALUE] };
+    }
+
+    if (yearMax && yearMin) {
+      whereClause.price = { [Op.between]: [yearMin, yearMax] };
+    }
+
+    if (yearMax && !yearMin) {
+      whereClause.price = { [Op.between]: [0, yearMax] };
+    }
+
+    if (!yearMax && yearMin) {
+      whereClause.price = { [Op.between]: [yearMin, MAX_FILTER_VALUE] };
+    }
+
+    if (hoursMax && hoursMin) {
+      whereClause.price = { [Op.between]: [hoursMin, hoursMax] };
+    }
+
+    if (hoursMax && !hoursMin) {
+      whereClause.price = { [Op.between]: [0, hoursMax] };
+    }
+
+    if (!hoursMax && hoursMin) {
+      whereClause.price = { [Op.between]: [hoursMin, MAX_FILTER_VALUE] };
+    }
 
     const count = await Product.count({ where: whereClause });
 
