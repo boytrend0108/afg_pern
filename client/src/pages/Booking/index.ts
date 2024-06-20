@@ -1,3 +1,3 @@
-import { BookingPage } from './ui/BookingPage.tsx';
+import BookingPage from './ui/BookingPage.tsx';
 
-export { BookingPage };
+export default BookingPage;

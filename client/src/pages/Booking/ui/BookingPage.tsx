@@ -8,7 +8,7 @@ import { useScrollToTop } from '../../../shared/hooks';
 import { MyContactInfo } from '../../../shared/ui/MyContactInfo/MyContactInfo';
 import { useTranslation } from 'react-i18next';
 
-export const BookingPage = () => {
+const BookingPage = () => {
   const [success, setSuccess] = useState(false);
   const { booked } = useAppSelector((state) => state.product);
   const { t } = useTranslation();
@@ -49,3 +49,5 @@ export const BookingPage = () => {
     </div>
   );
 };
+
+export default BookingPage;

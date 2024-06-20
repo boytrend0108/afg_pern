@@ -1,3 +1,3 @@
-import { ContactPage } from './ui/ContactPage';
+import ContactPage from './ui/ContactPage';
 
-export { ContactPage };
+export default ContactPage;

@@ -1,3 +1,3 @@
-import { CatalogPage } from './ui/CatalogPage/CatalogPage';
+import CatalogPage from './ui/CatalogPage/CatalogPage';
 
-export { CatalogPage };
+export default CatalogPage;

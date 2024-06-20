@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { setQueryParams } from './helpers';
 import { useTranslation } from 'react-i18next';
 import { Slider } from '@mui/material';
-import max from 'react-phone-number-input/max';
+import COLOR from '../../../../shared/consts/colors';
 
 type Props = {
   minValue: string;
@@ -132,7 +132,7 @@ export const CatalogFilter: React.FC<Props> = ({
                 color: '#d8c372',
                 '& .MuiSlider-thumb': {
                   borderRadius: '1px',
-                  color: '#1d1d1b',
+                  color: COLOR.FILTER_THUBM_COLOR,
                 },
               }}
             />

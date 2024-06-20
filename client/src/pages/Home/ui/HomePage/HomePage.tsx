@@ -8,7 +8,7 @@ import { FirstScreen } from '../FirstScreen/FirstScreen';
 import { New } from '../New/New';
 import './HomePage.scss';
 
-export const HomePage = () => {
+const HomePage = () => {
   useScrollToTop();
 
   return (
@@ -37,3 +37,5 @@ export const HomePage = () => {
     </div>
   );
 };
+
+export default HomePage;

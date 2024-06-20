@@ -6,7 +6,7 @@ import { useScrollToTop } from '../../../shared/hooks';
 import { MyContactInfo } from '../../../shared/ui/MyContactInfo/MyContactInfo';
 import { useTranslation } from 'react-i18next';
 
-export const RequestPage = () => {
+const RequestPage = () => {
   const [success, setSuccess] = useState(false);
   const { t } = useTranslation();
 
@@ -38,3 +38,5 @@ export const RequestPage = () => {
     </div>
   );
 };
+
+export default RequestPage;

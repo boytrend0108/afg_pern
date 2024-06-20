@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { RefObject, useEffect, useState } from 'react';
 import cn from 'classnames';
 
 import './CatalogFilters.scss';
@@ -18,11 +18,13 @@ import * as productItem from '../../../entities/ProductItem';
 type Props = {
   showFilters: boolean;
   setShowFilters: (v: boolean) => void;
+  catalogListRef: RefObject<HTMLDivElement>;
 };
 
 export const CatalogFilters: React.FC<Props> = ({
   showFilters,
   setShowFilters,
+  catalogListRef,
 }) => {
   const { t } = useTranslation();
   const [brands, setBrands] = useState<Brand[]>([]);
@@ -48,6 +50,10 @@ export const CatalogFilters: React.FC<Props> = ({
     searchParams.set('page', '1');
     dispatch(productItem.getAll(searchParams));
     setShowFilters(false);
+
+    if (catalogListRef.current) {
+      catalogListRef.current.scrollIntoView();
+    }
   };
 
   const resetFilters = () => {
@@ -56,6 +62,10 @@ export const CatalogFilters: React.FC<Props> = ({
     setSearchParams(params);
     dispatch(productItem.getAll(params));
     setShowFilters(false);
+
+    if (catalogListRef.current) {
+      catalogListRef.current.scrollIntoView();
+    }
   };
 
   return (

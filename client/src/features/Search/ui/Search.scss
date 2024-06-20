@@ -23,6 +23,10 @@
     z-index: 10;
     top: 100px;
     right: -245px;
+
+    &--hidden {
+      pointer-events: none;
+    }
   }
 
   &__box {

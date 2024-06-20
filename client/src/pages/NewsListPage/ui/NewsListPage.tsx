@@ -5,7 +5,7 @@ import { useScrollToTop } from '../../../shared/hooks';
 
 const news = [1, 2, 3, 4, 5, 6, 7, 8];
 
-export const NewsListPage = () => {
+const NewsListPage = () => {
   useScrollToTop();
 
   return (
@@ -22,3 +22,5 @@ export const NewsListPage = () => {
     </div>
   );
 };
+
+export default NewsListPage;

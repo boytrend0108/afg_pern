@@ -21,7 +21,12 @@ export const Search = () => {
     >
       <img src="/my-icons/search.png" alt="search" />
 
-      <div className="Search__drop" onClick={(e) => e.stopPropagation()}>
+      <div
+        className={cn('Search__drop', {
+          'Search__drop--hidden': !showSearch,
+        })}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div
           className={cn('Search__box', {
             'Search__box--hidden': !showSearch,

@@ -1,3 +1,3 @@
-import { NewsListPage } from './ui/NewsListPage';
+import NewsListPage from './ui/NewsListPage';
 
-export { NewsListPage };
+export default NewsListPage;

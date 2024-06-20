@@ -1,22 +1,25 @@
+import { lazy } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import App from './ui/App.tsx';
-import { HomePage } from '../pages/Home';
-import { ContactPage } from '../pages/Contact';
-import { NewsListPage } from '../pages/NewsListPage';
-import { RequestPage } from '../pages/Request';
-import { LoginPage } from '../pages/Login';
-import { RegistrationPage } from '../pages/Registration';
-import { CatalogPage } from '../pages/Catalog';
-import { ProductPage } from '../pages/ProductPage';
-import { BookingPage } from '../pages/Booking';
-import { ProfilePage } from '../pages/Profile';
-import { NewsPage } from '../pages/News';
+
 import { ActivationPage } from '../pages/ActivationPage';
 import { AdminBrands } from '../pages/Admin/AdminBrands';
 import { AdminCategories } from '../pages/Admin/AdminCategories';
 import { AdminProducts } from '../pages/Admin/AdminProducts';
 import { RequiredManagerRole } from '../features/RequiredManagerRole';
-import { NotFoundPage } from '../pages/NotFound';
+
+const ProfilePage = lazy(() => import('../pages/Profile'));
+const BookingPage = lazy(() => import('../pages/Booking'));
+const ProductPage = lazy(() => import('../pages/ProductPage'));
+const CatalogPage = lazy(() => import('../pages/Catalog'));
+const RegistrationPage = lazy(() => import('../pages/Registration'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const RequestPage = lazy(() => import('../pages/Request'));
+const NewsListPage = lazy(() => import('../pages/NewsListPage'));
+const HomePage = lazy(() => import('../pages/Home'));
+const ContactPage = lazy(() => import('../pages/Contact'));
+const NotFoundPage = lazy(() => import('../pages/NotFound'));
+const NewsPage = lazy(() => import('../pages/News'));
 
 export const Root = () => {
   return (

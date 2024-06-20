@@ -11,7 +11,7 @@ import localStorageService from '../../../shared/services/localStorageService';
 import { MyContactInfo } from '../../../shared/ui/MyContactInfo/MyContactInfo';
 import { useTranslation } from 'react-i18next';
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const tab = searchParams.get('tab') || 'settings';
@@ -49,3 +49,5 @@ export const ProfilePage = () => {
     </div>
   );
 };
+
+export default ProfilePage;

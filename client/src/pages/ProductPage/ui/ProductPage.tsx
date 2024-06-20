@@ -19,7 +19,7 @@ import { ComparisonTableMobile } from './ComparisonTableMobile/ui/ComparisonTabl
 import { MyLoader } from '../../../shared/ui/MyLoader/MyLoader';
 import * as Product from '../../../entities/ProductItem';
 
-export const ProductPage = () => {
+const ProductPage = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const [showCompare, setShowCompare] = useState(false);
@@ -116,3 +116,5 @@ export const ProductPage = () => {
     </section>
   );
 };
+
+export default ProductPage;

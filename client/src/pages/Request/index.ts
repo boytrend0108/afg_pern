@@ -1,3 +1,3 @@
-import { RequestPage } from './ui/RequestPage';
+import RequestPage from './ui/RequestPage';
 
-export { RequestPage };
+export default RequestPage;

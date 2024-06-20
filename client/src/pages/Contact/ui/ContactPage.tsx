@@ -5,7 +5,7 @@ import { MyContactInfo } from '../../../shared/ui/MyContactInfo/MyContactInfo';
 import './ContactPage.scss';
 import { useTranslation } from 'react-i18next';
 
-export const ContactPage = () => {
+const ContactPage = () => {
   useScrollToTop();
 
   const { t } = useTranslation();
@@ -120,3 +120,5 @@ export const ContactPage = () => {
     </div>
   );
 };
+
+export default ContactPage;
