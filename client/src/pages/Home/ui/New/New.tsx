@@ -5,17 +5,29 @@ import { ContactUs } from '../ContactUs/ContactUs';
 import './New.scss';
 import { useGetWidth } from '../../../../shared/hooks';
 import { BREAKPOING } from '../../../../shared/consts/breakPoints';
-import { useAppSelector } from '../../../../shared/hooks/reduxHooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../shared/hooks/reduxHooks';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import * as productItem from '../../../../entities/ProductItem';
 
 export const New = () => {
+  const dispatch = useAppDispatch();
   const [width, setWidth] = useState(0);
   const { products } = useAppSelector((state) => state.product);
   const [currentProd, setCurrentProd] = useState(products);
   const { t } = useTranslation();
 
   useGetWidth(width, setWidth);
+
+  useEffect(() => {
+    const search = new URLSearchParams();
+
+    search.set('show', 'new');
+    dispatch(productItem.getAll(search));
+  }, []);
 
   useEffect(() => {
     if (width === 0) {

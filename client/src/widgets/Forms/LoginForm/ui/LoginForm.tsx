@@ -26,7 +26,7 @@ export const LoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const id = e.target.id as keyof DtoLogin;
 
     switch (id) {
@@ -37,9 +37,9 @@ export const LoginForm = () => {
         setPassword(e.target.value);
         break;
     }
-  };
+  }
 
-  const handleSubmit = () => {
+  function handleSubmit() {
     const dto: DtoLogin = {
       email: email.trim(),
       password: password.trim(),
@@ -54,9 +54,9 @@ export const LoginForm = () => {
     dispatch(user.login(dto))
       .unwrap()
       .then(() => navigate(state?.pathname || '/', { replace: true }));
-  };
+  }
 
-  const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  function handleEnterPress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (!passwordRef.current) {
       return;
     }
@@ -66,7 +66,7 @@ export const LoginForm = () => {
     if (e.code === KeyCode.Enter && target.id === 'email') {
       passwordRef.current.focus();
     }
-  };
+  }
 
   useEffect(() => {
     if (emailRef.current) {

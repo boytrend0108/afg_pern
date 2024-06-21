@@ -167,6 +167,8 @@ export const es = {
       'Call us': 'Llámanos',
       'Leave a request': 'Dejar una solicitud',
       'Backhoe Loaders': 'Retroexcavadoras',
+      Rollers: 'Rollers',
+      Skidsteers: 'Minicargadora',
       Generators: 'Generadores',
       Excavators: 'Excavadoras',
       Drills: 'Taladros',

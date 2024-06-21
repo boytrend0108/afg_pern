@@ -168,6 +168,8 @@ export const fr = {
       'Call us': 'Appelez-nous',
       'Leave a request': 'Laissez une demande',
       'Backhoe Loaders': 'Chargeuses-pelleteuses',
+      Rollers: 'Rouleaux',
+      Skidsteers: 'Chargeuse compacte',
       Generators: 'Générateurs',
       Excavators: 'Excavateurs',
       Drills: 'Perceuses',

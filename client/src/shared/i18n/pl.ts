@@ -168,6 +168,8 @@ export const pl = {
       'Call us': 'Zadzwoń do nas',
       'Leave a request': 'Zostaw zgłoszenie',
       'Backhoe Loaders': 'Koparko-ładowarki',
+      Rollers: 'Walce',
+      Skidsteers: 'Miniładowarka',
       Generators: 'Generatory',
       Drills: 'Wiertarki',
       Excavators: 'Koparki',

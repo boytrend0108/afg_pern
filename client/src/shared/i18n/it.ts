@@ -168,6 +168,8 @@ export const it = {
       'Call us': 'Chiamaci',
       'Leave a request': 'Lascia una richiesta',
       'Backhoe Loaders': 'Terne',
+      Rollers: 'Rulli',
+      Skidsteers: 'Minipala',
       Generators: 'Generatori',
       Excavators: 'Escavatori',
       Drills: 'Trapani',

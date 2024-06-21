@@ -7,11 +7,13 @@ import {
 import cn from 'classnames';
 
 import './CategoryList.scss';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAdjustBtnVisibility } from '../hooks/useAdjustBtnVisibility';
 import { useAdjustWrapperHeight } from '../hooks/useAdjustWrapperHeight';
+import { useNavigate } from 'react-router-dom';
 
 export const CategoryList = () => {
+  const navigate = useNavigate();
   const [showAll, setShowAll] = useState(false);
   const [buttonVisible, setBattonVisible] = useState(false);
   const [categories, setCategories] = useState<CategoryType[]>([]);
@@ -34,14 +36,18 @@ export const CategoryList = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  function goToCatalog(categoryId: number) {
+    navigate(`catalog?categoryId=${categoryId}`);
+  }
+
   return (
     <div className="CategoryList">
       <div className="CategoryList__wr" ref={wrapper}>
         <div ref={list} className="CategoryList__list">
           {categories.map((c) => (
-            <Fragment key={c.id}>
+            <div key={c.id} onClick={() => goToCatalog(c.id)}>
               <CategoryItem category={c} />
-            </Fragment>
+            </div>
           ))}
         </div>
       </div>

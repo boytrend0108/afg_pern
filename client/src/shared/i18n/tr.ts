@@ -168,6 +168,8 @@ export const tr = {
       'Call us': 'Bizi Arayın',
       'Leave a request': 'Talep Bırakın',
       'Backhoe Loaders': 'Kazıcı Yükleyiciler',
+      Rollers: 'Silindirler',
+      Skidsteers: 'Yükleyici',
       Generators: 'Jeneratörler',
       Excavators: 'Ekskavatörler',
       Drills: 'Matkaplar',

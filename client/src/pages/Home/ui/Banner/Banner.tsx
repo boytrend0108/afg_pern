@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { MyButton } from '../../../../shared/ui';
 import './Banner.scss';
 import { useTranslation } from 'react-i18next';
+import { TURCHI_BRAND_ID } from '../../../../shared/consts/brands';
 
 export const Banner = () => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ export const Banner = () => {
           <h2 className="Banner__title">{t('Banner.pile drivers')}</h2>
           <p className="Banner__desc">{t(`Banner.subtitle`)}</p>
 
-          <Link to="catalog">
+          <Link to={`catalog?brandId=${TURCHI_BRAND_ID}`}>
             <MyButton className="Banner__btn MyButton">
               {t('Banner.View models')}
             </MyButton>

@@ -167,6 +167,8 @@ export const ua = {
       'Call us': 'Зателефонуйте нам',
       'Leave a request': 'Залишити заявку',
       'Backhoe Loaders': 'Екскаватори навантажувачі',
+      Rollers: 'Вальці',
+      Skidsteers: 'Міні-навантажувачі',
       Generators: 'Генератори',
       Excavators: 'Екскаватори',
       Drills: 'Свердла',
