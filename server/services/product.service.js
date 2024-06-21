@@ -1,3 +1,4 @@
+import Sequelize from 'sequelize';
 import {
   Brand,
   Category,
@@ -20,6 +21,7 @@ class ProductService {
     const {
       brandId,
       categoryId,
+      query,
       'price-min': priceMin,
       'price-max': priceMax,
       'year-max': yearMax,
@@ -43,6 +45,8 @@ class ProductService {
 
     if (brandId) whereClause.brandId = brandId;
     if (categoryId) whereClause.categoryId = categoryId;
+
+    if (query) whereClause.title = { [Op.iLike]: `%${query}%` };
 
     if (show) {
       whereClauseForInfos.title = 'promoType';
@@ -68,7 +72,9 @@ class ProductService {
 
     count = await Product.count({
       where: whereClause,
-      include: show ? [{ model: ProductInfo, where: whereClauseForInfos }] : [],
+      include: show
+        ? [{ model: ProductInfo, where: whereClauseForInfos, required: true }]
+        : [],
     });
 
     const response = await Product.findAll({

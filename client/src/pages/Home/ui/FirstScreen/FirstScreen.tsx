@@ -20,25 +20,25 @@ export const FirstScreen = () => {
       </div>
 
       <div className="FirstScreen__side">
-        <div className="FirstScreen__top">
-          <h2 className="FirstScreen__title--mini">
-            {t('FirstScreen.New machinery')}
-          </h2>
+        <Link to="catalog?show=new">
+          <div className="FirstScreen__top">
+            <h2 className="FirstScreen__title--mini">
+              {t('FirstScreen.New machinery')}
+            </h2>
 
-          <Link to="catalog?show=new" className="FirstScreen__link">
-            {t('FirstScreen.See all')}
-          </Link>
-        </div>
+            <p className="FirstScreen__link">{t('FirstScreen.See all')}</p>
+          </div>
+        </Link>
 
-        <div className="FirstScreen__bottom">
-          <h2 className="FirstScreen__title--mini">
-            {t('FirstScreen.Used machinery')}
-          </h2>
+        <Link to="catalog?show=used">
+          <div className="FirstScreen__bottom">
+            <h2 className="FirstScreen__title--mini">
+              {t('FirstScreen.Used machinery')}
+            </h2>
 
-          <Link to="catalog?show=used" className="FirstScreen__link">
-            {t('FirstScreen.See all')}
-          </Link>
-        </div>
+            <p className="FirstScreen__link">{t('FirstScreen.See all')}</p>
+          </div>
+        </Link>
       </div>
     </section>
   );

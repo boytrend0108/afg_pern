@@ -2,6 +2,9 @@ import React, { ChangeEvent } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import './MySearch.scss';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import * as productItem from '../../../entities/ProductItem';
+import localStorageService from '../../services/localStorageService';
 
 type Props = {
   props?: any;
@@ -10,11 +13,12 @@ type Props = {
 };
 
 export const MySearch: React.FC<Props> = ({ title = 'Search', ...props }) => {
+  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
   const { t } = useTranslation();
 
-  const changeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  function changeSearch(e: ChangeEvent<HTMLInputElement>) {
     const params = new URLSearchParams(searchParams);
     const currentQuery = e.target.value;
 
@@ -25,7 +29,23 @@ export const MySearch: React.FC<Props> = ({ title = 'Search', ...props }) => {
     }
 
     setSearchParams(params);
-  };
+  }
+
+  function getProducts() {
+    if (!query) {
+      return;
+    }
+
+    let searches = [];
+
+    dispatch(productItem.getAll(searchParams));
+    searches = (localStorageService.get('searches') as string[]) || [];
+
+    if (!searches.includes(query)) {
+      searches.push(query);
+      localStorageService.set('searches', searches);
+    }
+  }
 
   return (
     <div className="MySearch" {...props}>
@@ -44,6 +64,7 @@ export const MySearch: React.FC<Props> = ({ title = 'Search', ...props }) => {
           to={{ pathname: '/catalog', search: searchParams.toString() }}
           className="MySearch__input-btn"
           aria-label="search"
+          onClick={getProducts}
         />
       </div>
     </div>

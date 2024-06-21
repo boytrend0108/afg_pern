@@ -29,6 +29,7 @@
     padding: 20px;
     font-size: clamp(1rem, 0.7rem + 1.5vw, 2.5rem);
     font-weight: 600;
+    cursor: pointer;
   }
 
   &__value {
@@ -41,6 +42,8 @@
     color: $color-primary-hover;
     cursor: pointer;
     font-size: 16px;
+
+    @include onHover(transform, scale(1.2));
   }
 
   &__icon-search {
