@@ -1,16 +1,16 @@
 /* eslint-disable no-console */
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import cn from 'classnames';
+
+import './CategoryList.scss';
 import {
   CategoryType,
   CategoryItem,
   categoryAPI,
 } from '../../../entities/CategoryItem';
-import cn from 'classnames';
-
-import './CategoryList.scss';
-import { useEffect, useRef, useState } from 'react';
 import { useAdjustBtnVisibility } from '../hooks/useAdjustBtnVisibility';
 import { useAdjustWrapperHeight } from '../hooks/useAdjustWrapperHeight';
-import { useNavigate } from 'react-router-dom';
 
 export const CategoryList = () => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ export const CategoryList = () => {
   }, []);
 
   function goToCatalog(categoryId: number) {
-    navigate(`catalog?categoryId=${categoryId}`);
+    navigate(`/catalog?categoryId=${categoryId}`);
   }
 
   return (

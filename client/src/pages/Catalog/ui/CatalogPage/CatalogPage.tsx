@@ -12,10 +12,13 @@ import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../../shared/hooks/reduxHooks';
 
 const CatalogPage = () => {
+  const dispatch = useAppDispatch();
+  const [counter, setCounter] = useState(0);
   const [showFilters, setShowFilters] = useState(false);
   const [searchParams] = useSearchParams();
   const page = searchParams.get('page');
-  const dispatch = useAppDispatch();
+  const show = searchParams.get('show');
+  const orderByPrice = searchParams.get('order-by-price');
   const catalogListRef = useRef<HTMLDivElement>(null);
 
   useScrollToTop();
@@ -26,14 +29,20 @@ const CatalogPage = () => {
     if (catalogListRef.current) {
       catalogListRef.current.scrollIntoView();
     }
-  }, [page]);
+  }, [page, counter, show, orderByPrice]);
+
+  function refreshPage() {
+    setCounter((prev) => prev + 1);
+  }
 
   return (
     <section className={cn('CatalogPage', {})}>
       <header className="CatalogPage__header  my-container">
         <MySearch style={{ marginBottom: '50px' }} />
 
-        <CategoryList />
+        <div onClick={refreshPage}>
+          <CategoryList />
+        </div>
       </header>
 
       <main className="CatalogPage__main">

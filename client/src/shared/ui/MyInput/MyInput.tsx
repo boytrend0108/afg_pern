@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { forwardRef, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import './MyInput.scss';
 import { useNavigate } from 'react-router-dom';
 import { DtoValidation } from '../../../widgets/Forms/RegistrationForm/types/DtoValidation';
@@ -21,11 +21,11 @@ export const MyInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
   const [inputType, setInputType] = useState<string>(type);
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  function handleClick() {
     const value = inputType === 'text' ? 'password' : 'text';
 
     setInputType(value);
-  };
+  }
 
   return (
     <div className="MyInput">

@@ -21,8 +21,10 @@ export const AdminProducts = () => {
   const getProducts = () => {
     setLoading(true);
 
+    const params = new URLSearchParams();
+
     productAPI
-      .getAll()
+      .getAll(params)
       .then((res) => setProducts(res.products))
       .catch((er) => setError(er.message || 'Something went wrong'))
       .finally(() => setLoading(false));

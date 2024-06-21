@@ -5,6 +5,10 @@ export const getSearchParams = (
 ) => {
   const newParams = new URLSearchParams(params);
 
+  if (key === 'show') {
+    newParams.delete('page');
+  }
+
   if (!value) {
     newParams.delete(key);
   } else {

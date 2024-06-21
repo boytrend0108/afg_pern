@@ -22,7 +22,7 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters }) => {
   const show = searchParams.get('show') || 'all';
   const orderByPrice = searchParams.get('order-by-price') || '';
 
-  const handleOrderByPrice = () => {
+  function handleOrderByPrice() {
     switch (orderByPrice) {
       case 'asc':
         setSearchParams(
@@ -37,7 +37,7 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters }) => {
       default:
         setSearchParams(getSearchParams('order-by-price', 'asc', searchParams));
     }
-  };
+  }
 
   return (
     <div className="CatalogList">
@@ -114,7 +114,7 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters }) => {
       </div>
 
       <div className="CatalogList__items my-container">
-        {!products.length && (
+        {!products.length && !loading && (
           <h3 className="CatalogList__error">
             There are no cars with such parameters
           </h3>

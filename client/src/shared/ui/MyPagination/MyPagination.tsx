@@ -4,7 +4,7 @@ import { useAppSelector } from '../../hooks/reduxHooks';
 import { useSearchParams } from 'react-router-dom';
 
 export const MyPagination = () => {
-  const { count, limit } = useAppSelector((state) => state.product);
+  const { count, limit, products } = useAppSelector((state) => state.product);
   const [searchParams, setSearchParams] = useSearchParams();
   const pageCount = Math.ceil(count / limit);
   const pages = [];
@@ -22,7 +22,7 @@ export const MyPagination = () => {
     setSearchParams(params);
   };
 
-  if (pages.length <= 1) {
+  if (pages.length <= 1 || !products.length) {
     return;
   }
 

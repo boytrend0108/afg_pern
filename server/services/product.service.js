@@ -17,7 +17,6 @@ class ProductService {
   }
 
   async getAll({ otherQuery, limit, offset }) {
-    let response;
     const {
       brandId,
       categoryId,
@@ -27,52 +26,52 @@ class ProductService {
       'year-min': yearMin,
       'hours-max': hoursMax,
       'hours-min': hoursMin,
+      'order-by-price': orderByPrice,
     } = otherQuery;
 
+    let { show } = otherQuery;
+    let count;
     const whereClause = {};
+    const whereClauseForInfos = {};
+    const orderCriteria = [];
+
+    if (show === 'all' || !show) {
+      show = null;
+    } else {
+      show = show[0].toUpperCase() + show.slice(1);
+    }
 
     if (brandId) whereClause.brandId = brandId;
     if (categoryId) whereClause.categoryId = categoryId;
 
-    if (priceMax && priceMin) {
-      whereClause.price = { [Op.between]: [priceMin, priceMax] };
+    if (show) {
+      whereClauseForInfos.title = 'promoType';
+      whereClauseForInfos.description = show;
     }
 
-    if (priceMax && !priceMin) {
-      whereClause.price = { [Op.between]: [0, priceMax] };
+    if (priceMin || priceMax)
+      whereClause.price = {
+        [Op.between]: [priceMin || 0, priceMax || MAX_FILTER_VALUE],
+      };
+    if (yearMin || yearMax)
+      whereClause.year = {
+        [Op.between]: [yearMin || 0, yearMax || MAX_FILTER_VALUE],
+      };
+    if (hoursMin || hoursMax)
+      whereClause.hours = {
+        [Op.between]: [hoursMin || 0, hoursMax || MAX_FILTER_VALUE],
+      };
+
+    if (orderByPrice) {
+      orderCriteria.push(['price', orderByPrice.toUpperCase()]);
     }
 
-    if (!priceMax && priceMin) {
-      whereClause.price = { [Op.between]: [priceMin, MAX_FILTER_VALUE] };
-    }
+    count = await Product.count({
+      where: whereClause,
+      include: show ? [{ model: ProductInfo, where: whereClauseForInfos }] : [],
+    });
 
-    if (yearMax && yearMin) {
-      whereClause.price = { [Op.between]: [yearMin, yearMax] };
-    }
-
-    if (yearMax && !yearMin) {
-      whereClause.price = { [Op.between]: [0, yearMax] };
-    }
-
-    if (!yearMax && yearMin) {
-      whereClause.price = { [Op.between]: [yearMin, MAX_FILTER_VALUE] };
-    }
-
-    if (hoursMax && hoursMin) {
-      whereClause.price = { [Op.between]: [hoursMin, hoursMax] };
-    }
-
-    if (hoursMax && !hoursMin) {
-      whereClause.price = { [Op.between]: [0, hoursMax] };
-    }
-
-    if (!hoursMax && hoursMin) {
-      whereClause.price = { [Op.between]: [hoursMin, MAX_FILTER_VALUE] };
-    }
-
-    const count = await Product.count({ where: whereClause });
-
-    response = await Product.findAll({
+    const response = await Product.findAll({
       where: whereClause,
       limit,
       offset,
@@ -88,6 +87,7 @@ class ProductService {
         {
           model: ProductInfo,
           attributes: ['title', 'description'],
+          where: whereClauseForInfos,
         },
         {
           model: Brand,
@@ -98,13 +98,14 @@ class ProductService {
           attributes: ['name', 'id'],
         },
       ],
+      order: orderCriteria,
     });
 
-    response.products = this.prepareProduct(response);
+    const products = this.prepareProduct(response);
 
     return {
       count,
-      products: response.products,
+      products,
     };
   }
 

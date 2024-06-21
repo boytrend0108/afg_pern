@@ -34,6 +34,8 @@
 
   &__loader {
     @include blockScreenLoader;
+    align-items: flex-start;
+    top: 200px;
   }
 
   &__error {

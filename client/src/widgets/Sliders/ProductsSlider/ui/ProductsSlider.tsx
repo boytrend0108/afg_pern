@@ -18,7 +18,9 @@ export const ProductsSlider = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(productItem.getAll());
+    const params = new URLSearchParams();
+
+    dispatch(productItem.getAll(params));
   }, []);
 
   useEffect(() => {
