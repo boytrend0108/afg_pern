@@ -5,7 +5,7 @@ import './Slider.scss';
 import { MyButton } from '../../../../shared/ui';
 import { changeSlide } from '../helpers/changeSlide';
 import { useObserver } from '../hooks/useObserver';
-import { useGetWidth } from '../../../../shared/hooks/useGetWidth';
+import { useGetAppWidth } from '../../../../shared/hooks/useGetAppWidth';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +15,7 @@ export const Slider: React.FC = () => {
   const { t } = useTranslation();
 
   useObserver(setSlide);
-  useGetWidth(currentWidth, setCurrentWidth);
+  useGetAppWidth(currentWidth, setCurrentWidth);
 
   useEffect(() => {
     changeSlide(slide);

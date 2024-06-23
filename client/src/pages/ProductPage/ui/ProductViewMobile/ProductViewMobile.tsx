@@ -6,7 +6,7 @@ import { TabType } from './types';
 import { MiniSliderMobile } from '../../../../widgets/Sliders/MiniSliderMobile';
 import { ProductType, PromoType } from '../../../../entities/ProductItem/types';
 import React from 'react';
-import { getPromoType } from '../../helpers.ts/getPromoType';
+import { getPromoType } from '../../helpers/getPromoType';
 
 type Props = {
   product: ProductType | null;

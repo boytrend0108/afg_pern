@@ -12,6 +12,12 @@
     grid-template-columns: 1fr 3fr;
     column-gap: 20px;
     margin-bottom: 100px;
+    min-height: 300px;
+    transition: min-height ease $transition-duration;
+
+    &--filter {
+      min-height: 1550px;
+    }
 
     @include on-desktop-s {
       display: block;

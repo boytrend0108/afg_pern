@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-export const useGetWidth = (
+export const useGetAppWidth = (
   currentWidth: number,
   setCurrentWidth: React.Dispatch<React.SetStateAction<number>>,
 ) => {

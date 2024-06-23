@@ -286,6 +286,26 @@ export const Reserve = sequelize.define('reserve', {
     primaryKey: true,
   },
 
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'User',
+      key: 'id',
+    },
+  },
+
+  productId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'Product',
+      key: 'id',
+    },
+
+    onDelete: 'CASCADE',
+  },
+
   quantity: {
     type: DataTypes.INTEGER,
     defaultValue: 1,
@@ -366,12 +386,6 @@ ProductInfo.belongsTo(Product, {
   foreignKey: 'productId',
 });
 
-User.hasMany(Reserve, {
-  foreignKey: { name: 'userId', allowNull: false },
-  onDelete: 'CASCADE',
-});
-Reserve.belongsTo(Product);
-
 User.hasMany(Order, {
   foreignKey: { name: 'userId', allowNull: false },
   onDelete: 'CASCADE',
@@ -395,6 +409,27 @@ Favorite.belongsTo(User, {
 });
 
 Favorite.belongsTo(Product, {
+  foreignKey: 'productId',
+});
+//------------------------
+
+//------------------
+User.hasMany(Reserve, {
+  foreignKey: 'userId',
+  onDelete: 'CASCADE',
+  hooks: true,
+});
+
+Product.hasMany(Reserve, {
+  foreignKey: 'productId',
+  onDelete: 'CASCADE',
+});
+
+Reserve.belongsTo(User, {
+  foreignKey: 'userId',
+});
+
+Reserve.belongsTo(Product, {
   foreignKey: 'productId',
 });
 //------------------------

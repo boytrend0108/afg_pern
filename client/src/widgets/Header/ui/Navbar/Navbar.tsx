@@ -15,9 +15,11 @@ export const Navbar = () => {
         {t('Header.Catalog')}
       </Link>
 
+      {/* Temporarily hidden
       <Link className="Navbar__link" to="news">
         {t('Header.News')}
-      </Link>
+      </Link> 
+      */}
 
       <Link className="Navbar__link" to="contact">
         {t('Header.Contact')}

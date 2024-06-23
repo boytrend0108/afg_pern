@@ -17,6 +17,7 @@ export const ru = {
       'Add to favorite': 'Добавить в избранное',
       'Add to ☆': 'Добавить к ☆',
       '☆': '☆',
+      remove: 'удалить',
     },
 
     buttons: {

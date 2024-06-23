@@ -59,7 +59,7 @@ class FavoriteService {
             attributes: ['image'],
           },
         ],
-        attributes: ['id', 'title', 'price', 'year', 'hours'],
+        attributes: ['id', 'title', 'price', 'year', 'hours', 'image'],
       },
     });
 

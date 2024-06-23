@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import './MySearch.scss';
 import { useTranslation } from 'react-i18next';
+
+import './MySearch.scss';
 import { useAppDispatch } from '../../hooks/reduxHooks';
-import * as productItem from '../../../entities/ProductItem';
-import localStorageService from '../../services/localStorageService';
+import { getProductsBySearch } from '../../helpers/getProductsBySearch';
 
 type Props = {
   props?: any;
@@ -32,19 +32,7 @@ export const MySearch: React.FC<Props> = ({ title = 'Search', ...props }) => {
   }
 
   function getProducts() {
-    if (!query) {
-      return;
-    }
-
-    let searches = [];
-
-    dispatch(productItem.getAll(searchParams));
-    searches = (localStorageService.get('searches') as string[]) || [];
-
-    if (!searches.includes(query)) {
-      searches.push(query);
-      localStorageService.set('searches', searches);
-    }
+    getProductsBySearch(query, dispatch, searchParams);
   }
 
   return (

@@ -6,7 +6,7 @@ import './ProductItem.scss';
 import { ProductType, PromoType } from '../types';
 import { ARTICUL_PREFIX } from '../../../shared/consts/product';
 // eslint-disable-next-line max-len
-import { getPromoType } from '../../../pages/ProductPage/helpers.ts/getPromoType';
+import { getPromoType } from '../../../pages/ProductPage/helpers/getPromoType';
 import { useTranslation } from 'react-i18next';
 import { useGetPrice, useLoadImage } from '../../../shared/hooks';
 import { productAction } from '..';

@@ -15,6 +15,7 @@
     position: fixed;
     top: 224px;
     right: 0;
+    z-index: 2;
 
     @include on-desktop-s {
       top: 172px;

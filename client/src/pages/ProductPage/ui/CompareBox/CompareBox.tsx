@@ -54,7 +54,9 @@ export const CompareBox: React.FC<Props> = ({
         {/* <h2 className="CompareBox__title">{t('CompareBox.title')}</h2> */}
         <div>
           {compare.length > 1 ? (
-            <MyButton onClick={setShowComparisonTable}>Compare</MyButton>
+            <MyButton onClick={setShowComparisonTable}>
+              {t('buttons.Compare')}
+            </MyButton>
           ) : (
             <MyButton
               style={{ backgroundColor: '#ADADAC' }}

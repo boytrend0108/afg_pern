@@ -28,6 +28,7 @@ export const de = {
       'Get in touch': 'In Kontakt kommen',
       'Select model to compare': 'Modell zum Vergleichen auswählen',
       'Send a request': 'Eine Anfrage senden',
+      remove: 'entfernen',
     },
 
     form: {

@@ -21,12 +21,9 @@ export type GetFavoriteResponse = {
     price: number;
     year: number;
     hours: number;
-    category: {
-      name: string;
-    };
-    brand: {
-      name: string;
-    };
+    image: string;
+    category: string;
+    brand: string;
     product_infos: OptionType[];
     product_images: string[];
     product_image_inters: string[];

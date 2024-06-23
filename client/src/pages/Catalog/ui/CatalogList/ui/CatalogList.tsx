@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
@@ -5,16 +6,25 @@ import { useTranslation } from 'react-i18next';
 
 import './CatalogList.scss';
 import { getSearchParams } from '../../../../../shared/helpers/getSearchParams';
-import { MyButton, MyPagination } from '../../../../../shared/ui';
+import {
+  MyButton,
+  MyButtonWhite,
+  MyPagination,
+} from '../../../../../shared/ui';
 import { ProductItem } from '../../../../../entities/ProductItem';
 import { MyLoader } from '../../../../../shared/ui/MyLoader/MyLoader';
-import { useAppSelector } from '../../../../../shared/hooks/reduxHooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../shared/hooks/reduxHooks';
+import { resetFilters } from '../../../../../features/ResetFilters/resetFilters';
 
 type Props = {
   setShowFilters: (v: boolean) => void;
 };
 
 export const CatalogList: React.FC<Props> = ({ setShowFilters }) => {
+  const dispatch = useAppDispatch();
   const { products, loading, error } = useAppSelector((state) => state.product);
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
@@ -37,6 +47,10 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters }) => {
       default:
         setSearchParams(getSearchParams('order-by-price', 'asc', searchParams));
     }
+  }
+
+  function handleReset() {
+    resetFilters(setSearchParams, dispatch);
   }
 
   return (
@@ -95,6 +109,12 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters }) => {
           >
             {t('CatalogPage.Filters')}
           </MyButton>
+
+          {!!searchParams.size && (
+            <MyButtonWhite className="CatalogList__reset" onClick={handleReset}>
+              Reset Filters
+            </MyButtonWhite>
+          )}
 
           <button
             className="CatalogList__filter-price"

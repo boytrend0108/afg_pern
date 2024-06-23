@@ -7,24 +7,8 @@
   }
 
   &__list {
-    --column-count: 4;
     display: grid;
-    grid-template-columns: repeat(var(--column-count), 1fr);
-    gap: 28px;
-
-    @include on-tablet {
-      gap: 20px;
-      --column-count: 3;
-    }
-
-    @include on-tablet-s {
-      --column-count: 2;
-    }
-
-    @include on-mobile {
-      justify-items: center;
-      --column-count: 1;
-    }
+    gap: 20px;
   }
 
   &__loader {

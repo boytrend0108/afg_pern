@@ -83,9 +83,10 @@ export const AccountTab = () => {
             {t('Header.Request')}
           </Link>
 
+          {/* Temporarily hidden
           <Link to="news" className="AccountTab__link AccountTab__link--news">
             {t('Header.News')}
-          </Link>
+          </Link> */}
 
           <Link
             to="contact"

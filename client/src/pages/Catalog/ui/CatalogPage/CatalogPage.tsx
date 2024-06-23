@@ -26,7 +26,10 @@ const CatalogPage = () => {
   useEffect(() => {
     dispatch(productItem.getAll(searchParams));
 
-    if (catalogListRef.current) {
+    if (
+      (catalogListRef.current && counter !== 0) ||
+      (catalogListRef.current && page)
+    ) {
       catalogListRef.current.scrollIntoView();
     }
   }, [page, counter, show, orderByPrice]);
@@ -45,7 +48,11 @@ const CatalogPage = () => {
         </div>
       </header>
 
-      <main className="CatalogPage__main">
+      <main
+        className={cn('CatalogPage__main', {
+          'CatalogPage__main--filter': showFilters,
+        })}
+      >
         <CatalogFilters
           catalogListRef={catalogListRef}
           showFilters={showFilters}

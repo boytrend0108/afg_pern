@@ -27,6 +27,7 @@ export const es = {
       'Add to favorite': 'Añadir a favoritos',
       'Add to ☆': 'Añadir a ☆',
       '☆': '☆',
+      remove: 'eliminar',
     },
 
     form: {

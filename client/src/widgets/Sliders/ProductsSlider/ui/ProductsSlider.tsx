@@ -6,16 +6,16 @@ import {
   useAppSelector,
 } from '../../../../shared/hooks/reduxHooks';
 import * as productItem from '../../../../entities/ProductItem';
-
-const GAP = 20;
-const ITEM_MAX_WIDTH = 375;
-const ITEM_MIN_WIDTH = 215;
+import { PRODUT_ITEM } from '../../../../shared/consts/product';
+import { useGetProductWidth } from '../../../../shared/hooks';
 
 export const ProductsSlider = () => {
-  const [itemWidth, setItemWidth] = useState(375);
-  const box = useRef<HTMLDivElement>(null);
-  const { products } = useAppSelector((state) => state.product);
   const dispatch = useAppDispatch();
+  const { products } = useAppSelector((state) => state.product);
+  const [itemWidth, setItemWidth] = useState(PRODUT_ITEM.WIDTH_MAX);
+  const box = useRef<HTMLDivElement>(null);
+
+  useGetProductWidth(setItemWidth);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -23,40 +23,7 @@ export const ProductsSlider = () => {
     dispatch(productItem.getAll(params));
   }, []);
 
-  useEffect(() => {
-    const getItemWidth = () => {
-      const container = document.querySelector('.my-container');
-
-      if (!container) {
-        return;
-      }
-
-      const padding = window
-        .getComputedStyle(container)
-        .paddingInline.slice(0, -2);
-      const viewport = document.body.clientWidth - 2 * +padding;
-
-      let itemQuantity = Math.ceil(viewport / ITEM_MAX_WIDTH);
-
-      const width = (viewport - (itemQuantity - 1) * GAP) / itemQuantity;
-
-      if (width < ITEM_MIN_WIDTH) {
-        itemQuantity--;
-      }
-
-      setItemWidth((viewport - (itemQuantity - 1) * GAP) / itemQuantity);
-    };
-
-    getItemWidth();
-
-    window.addEventListener('resize', getItemWidth);
-
-    return () => {
-      window.removeEventListener('resize', getItemWidth);
-    };
-  }, []);
-
-  const slide = (dir: 'left' | 'right') => {
+  function slide(dir: 'left' | 'right') {
     if (!box.current) {
       return;
     }
@@ -68,7 +35,7 @@ export const ProductsSlider = () => {
     } else {
       box.current.scrollLeft += width;
     }
-  };
+  }
 
   return (
     <section className="ProductsSlider">

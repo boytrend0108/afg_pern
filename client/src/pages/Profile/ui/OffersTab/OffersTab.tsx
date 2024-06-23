@@ -7,12 +7,17 @@ import { useAppSelector } from '../../../../shared/hooks/reduxHooks';
 // eslint-disable-next-line max-len
 import { getPreparedFavorites } from '../FavoriteTab/helpers/getPreparedFavorites';
 import { MyLoader } from '../../../../shared/ui/MyLoader/MyLoader';
+import { PRODUT_ITEM } from '../../../../shared/consts/product';
+import { useGetProductWidth } from '../../../../shared/hooks';
 
 export const OffersTab = () => {
   const [booked, setBooked] = useState<Partial<ProductType>[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { user } = useAppSelector((state) => state.user);
+  const [itemWidth, setItemWidth] = useState(PRODUT_ITEM.WIDTH_MAX);
+
+  useGetProductWidth(setItemWidth);
 
   useEffect(() => {
     if (!user) {
@@ -44,7 +49,10 @@ export const OffersTab = () => {
 
       {error && <p className="FavoriteTab__error">{error}</p>}
 
-      <div className="OffersTab__list">
+      <div
+        className="OffersTab__list"
+        style={{ gridTemplateColumns: `repeat(auto-fit, ${itemWidth}px)` }}
+      >
         {booked.map((b) => (
           <div className="OffersTab__wr" key={b.id}>
             <div className="OffersTab__hover">

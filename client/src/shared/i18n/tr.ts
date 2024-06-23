@@ -17,6 +17,7 @@ export const tr = {
       'Add to favorite': 'Favorilere ekle',
       'Add to ☆': '☆’ya ekle',
       '☆': '☆',
+      remove: 'kaldır',
     },
 
     buttons: {

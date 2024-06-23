@@ -40,7 +40,7 @@ class ReserveController {
       throw ApiError.BAD_REQUEST('User id is required');
     }
 
-    const result = await reserveService.getAll(userId);
+    const result = await reserveService.getByUserId(userId);
 
     res.send(result);
   }

@@ -11,6 +11,7 @@ export const getPreparedFavorites: Callback = (favorites) => {
       id,
       title,
       price,
+      image,
       year,
       hours,
       category,
@@ -27,8 +28,9 @@ export const getPreparedFavorites: Callback = (favorites) => {
       hours,
       product_infos,
       product_images,
-      category: category.name,
-      brand: brand.name,
+      category,
+      brand,
+      image,
     };
 
     return product;

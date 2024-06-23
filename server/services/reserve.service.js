@@ -38,32 +38,13 @@ class ReserveService {
     return { result: true, message: 'Product reserved' };
   }
 
-  async delete({ productId, userId }) {
-    const reserve = await Reserve.findOne({ where: { productId, userId } });
+  async getByUserId(userId) {
+    const user = await User.findByPk(userId);
 
-    if (!reserve) {
-      throw ApiError.NOT_FOUND(
-        'Reserve for the specified product and user not found'
-      );
+    if (!user) {
+      throw ApiError.NOT_FOUND('User not found');
     }
 
-    if (reserve.quantity > 1) {
-      reserve.quantity -= 1;
-      await reserve.save();
-      return {
-        result: true,
-        message: 'The quantity of goods has been reduced',
-      };
-    }
-
-    await reserve.destroy();
-    return {
-      result: true,
-      message: 'Reserve deleted',
-    };
-  }
-
-  async getAll(userId) {
     const response = await Reserve.findAll({
       where: { userId },
       attributes: {
@@ -92,7 +73,7 @@ class ReserveService {
             attributes: ['image'],
           },
         ],
-        attributes: ['id', 'title', 'price', 'year', 'hours'],
+        attributes: ['id', 'title', 'price', 'year', 'hours', 'image'],
       },
     });
 
@@ -105,6 +86,31 @@ class ReserveService {
     });
 
     return booked;
+  }
+
+  async delete({ productId, userId }) {
+    const reserve = await Reserve.findOne({ where: { productId, userId } });
+
+    if (!reserve) {
+      throw ApiError.NOT_FOUND(
+        'Reserve for the specified product and user not found'
+      );
+    }
+
+    if (reserve.quantity > 1) {
+      reserve.quantity -= 1;
+      await reserve.save();
+      return {
+        result: true,
+        message: 'The quantity of goods has been reduced',
+      };
+    }
+
+    await reserve.destroy();
+    return {
+      result: true,
+      message: 'Reserve deleted',
+    };
   }
 }
 

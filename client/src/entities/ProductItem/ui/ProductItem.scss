@@ -10,7 +10,7 @@
 }
 
 .ProductItem {
-  width: 100%;
+  width: inherit;
   height: 100%;
   border: 1px solid $color-border;
   display: flex;

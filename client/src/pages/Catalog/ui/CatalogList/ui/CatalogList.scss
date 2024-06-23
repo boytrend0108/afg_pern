@@ -114,13 +114,11 @@
   }
 
   &__btn {
-    @extend %btn;
-    height: 50px;
+    @extend %btn-white;
+    height: 42px;
     font-size: 16px;
     display: flex;
-    align-items: center;
     gap: 10px;
-    display: none;
 
     @include on-desktop-s {
       display: flex;
@@ -176,5 +174,11 @@
 
   &__error {
     position: absolute;
+  }
+
+  &__reset {
+    @extend %btn-white;
+    height: 100%;
+    font-size: 16px;
   }
 }

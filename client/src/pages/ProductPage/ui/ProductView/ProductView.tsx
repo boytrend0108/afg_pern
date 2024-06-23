@@ -2,7 +2,7 @@ import React from 'react';
 import { MiniSlider } from '../../../../widgets/Sliders/MiniSlider';
 import './ProductView.scss';
 import { ProductType, PromoType } from '../../../../entities/ProductItem/types';
-import { getPromoType } from '../../helpers.ts/getPromoType';
+import { getPromoType } from '../../helpers/getPromoType';
 import { useTranslation } from 'react-i18next';
 
 type Props = {

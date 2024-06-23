@@ -5,7 +5,7 @@ import { About } from '../About/About';
 import { Banner } from '../Banner/Banner';
 import { Categories } from '../Categories/ui/Categories';
 import { FirstScreen } from '../FirstScreen/FirstScreen';
-import { New } from '../New/New';
+import { New } from '../New/ui/New';
 import './HomePage.scss';
 
 const HomePage = () => {

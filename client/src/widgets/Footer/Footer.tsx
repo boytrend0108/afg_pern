@@ -139,9 +139,10 @@ export const Footer = () => {
             {t('Header.Catalog')}
           </Link>
 
+          {/* Temporarily hidden
           <Link className="Footer__navlink" to="news">
             {t('Header.News')}
-          </Link>
+          </Link> */}
 
           <Link className="Footer__navlink" to="contact">
             {t('Header.Contact')}

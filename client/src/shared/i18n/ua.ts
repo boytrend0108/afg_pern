@@ -27,6 +27,7 @@ export const ua = {
       'Add to favorite': 'Додати до обраних',
       'Add to ☆': 'Додати до ☆',
       '☆': '☆',
+      remove: 'видалити',
     },
 
     form: {
@@ -93,7 +94,7 @@ export const ua = {
       'Top sellers': 'Найпопулярніші',
       New: 'Нові',
       Used: 'Вживані',
-      'Price (high - low)': 'Ціна (від високої до низької)',
+      'Price (high - low)': 'По ціні',
       Filters: 'Фільтри',
       Price: 'Ціна',
       Mileage: 'Пробіг',

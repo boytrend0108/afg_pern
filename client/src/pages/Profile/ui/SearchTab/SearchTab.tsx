@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MySearch } from '../../../../shared/ui';
 import './SearchTab.scss';
 // eslint-disable-next-line max-len
@@ -15,7 +15,7 @@ export const SearchTab = () => {
     setSearches(s);
   }, []);
 
-  function removeSearchItem(ev: MouseEvent, searchItem: string) {
+  function removeSearchItem(ev: React.MouseEvent, searchItem: string) {
     ev.stopPropagation();
 
     const s = (localStorageService.get('searches') as string[]) || [];
@@ -45,7 +45,9 @@ export const SearchTab = () => {
               alt="search history"
               className="SearchTab__icon-search"
             />
+
             <p className="SearchTab__value">{s}</p>
+
             <button
               className="SearchTab__delete"
               onClick={(e) => removeSearchItem(e, s)}

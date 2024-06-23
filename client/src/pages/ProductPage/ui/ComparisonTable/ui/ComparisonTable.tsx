@@ -38,7 +38,7 @@ export const ComparisonTable: React.FC<Props> = ({ onClose }) => {
   return (
     <div className="ComparisonTable">
       <div className="ComparisonTable__header">
-        <h2 className="ComparisonTable__title">Comparison</h2>
+        <h2 className="ComparisonTable__title">{t('buttons.Compare')}</h2>
 
         <img
           src="/my-icons/close-btn.svg"
@@ -103,7 +103,7 @@ export const ComparisonTable: React.FC<Props> = ({ onClose }) => {
                   {localStorageService
                     .get('favorite')
                     ?.includes(el.id.toString())
-                    ? 'Remove'
+                    ? t('buttons.remove')
                     : t(`buttons.${btnTitle}`)}
                 </MyButton>
               </td>

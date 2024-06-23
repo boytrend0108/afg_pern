@@ -1,15 +1,20 @@
 import './Control.scss';
-import { SelectCurrency } from '../../../../features/SelectCurrency';
+// import { SelectCurrency } from '../../../../features/SelectCurrency';
 import { SelectCountry } from '../../../../features/SelectCountry';
 import { Search } from '../../../../features/Search';
 import { AccountTab } from '../AccountTab/AccountTab';
+import { useLocation } from 'react-router-dom';
 
 export const Control = () => {
+  const { pathname } = useLocation();
+
   return (
     <div className="Control">
-      <Search />
+      {pathname !== '/catalog' && <Search />}
 
-      <SelectCurrency />
+      {/* Temporarily hidden
+      <SelectCurrency /> 
+      */}
 
       <SelectCountry />
 

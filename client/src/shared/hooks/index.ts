@@ -1,15 +1,17 @@
 import { useHideDrop } from './useHideDrop';
-import { useGetWidth } from './useGetWidth';
+import { useGetAppWidth } from './useGetAppWidth';
 import { useScrollToTop } from './useSctollToTop';
 import { useFetching } from './useFetching';
 import { useGetPrice } from './useGetPrice';
 import { useLoadImage } from './useLoadImage';
+import { useGetProductWidth } from './useGetProductWidth';
 
 export {
   useHideDrop,
-  useGetWidth,
+  useGetAppWidth,
   useScrollToTop,
   useFetching,
   useGetPrice,
   useLoadImage,
+  useGetProductWidth,
 };

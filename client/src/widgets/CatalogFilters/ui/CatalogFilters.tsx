@@ -14,6 +14,7 @@ import { MyButton } from '../../../shared/ui';
 import { useAppDispatch } from '../../../shared/hooks/reduxHooks';
 import { useSearchParams } from 'react-router-dom';
 import * as productItem from '../../../entities/ProductItem';
+import { resetFilters } from '../../../features/ResetFilters/resetFilters';
 
 type Props = {
   showFilters: boolean;
@@ -56,17 +57,9 @@ export const CatalogFilters: React.FC<Props> = ({
     }
   };
 
-  const resetFilters = () => {
-    const params = new URLSearchParams();
-
-    setSearchParams(params);
-    dispatch(productItem.getAll(params));
-    setShowFilters(false);
-
-    if (catalogListRef.current) {
-      catalogListRef.current.scrollIntoView();
-    }
-  };
+  function handleReset() {
+    resetFilters(setSearchParams, dispatch, setShowFilters, catalogListRef);
+  }
 
   return (
     <aside
@@ -114,7 +107,7 @@ export const CatalogFilters: React.FC<Props> = ({
 
       <div className="CatalogFilters__btn-box">
         <MyButton onClick={applyFilters}>Apply</MyButton>
-        <MyButton onClick={resetFilters}>Reset</MyButton>
+        <MyButton onClick={handleReset}>Reset</MyButton>
       </div>
     </aside>
   );
