@@ -44,9 +44,6 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
         address,
       };
 
-      // eslint-disable-next-line no-console
-      console.log(requestDto);
-
       productAPI
         .sendRequest(requestDto)
         .then(() => {
@@ -66,9 +63,6 @@ export const RequestForm: React.FC<Props> = ({ onSuccess }) => {
         productId: booked.id,
         userId: user ? user.id : null,
       };
-
-      // eslint-disable-next-line no-console
-      console.log(requestDto);
 
       productAPI
         .book(requestDto)

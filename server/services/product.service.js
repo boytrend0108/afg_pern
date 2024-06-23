@@ -188,8 +188,6 @@ class ProductService {
   }
 
   prepareProduct(response) {
-    console.log('>>>>>>>>>>>>>>>>', response);
-
     if (Array.isArray(response)) {
       return response.map((product) => {
         return {
