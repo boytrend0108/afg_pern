@@ -15,9 +15,9 @@
 
 ![App Screenshot](https://github.com/boytrend0108/afg_pern/blob/main/screenshots/home.png?raw=true)
 
-![App Screenshot](https://raw.githubusercontent.com/boytrend0108/delegat/master/public/dellegat-2.png)
+![App Screenshot](https://github.com/boytrend0108/afg_pern/blob/main/screenshots/swagger.png?raw=true)
 
-![App Screenshot](https://raw.githubusercontent.com/boytrend0108/delegat/master/public/delegat-3.png)
+![App Screenshot](https://github.com/boytrend0108/afg_pern/blob/main/screenshots/pg.png?raw=true)
 
 ## Demo
 
