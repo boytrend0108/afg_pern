@@ -13,7 +13,7 @@
 - Front-end: REACT, REDUX, SCSS, AXIOS, MUI, BOOTSTRAP.
 - Back-end: nodejs, express, postgres, sequilize, googleapis.
 
-![App Screenshot](https://raw.githubusercontent.com/boytrend0108/delegat/master/public/delegat-home.png)
+![App Screenshot](https://github.com/boytrend0108/afg_pern/blob/main/screenshots/home.png?raw=true)
 
 ![App Screenshot](https://raw.githubusercontent.com/boytrend0108/delegat/master/public/dellegat-2.png)
 
