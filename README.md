@@ -30,7 +30,7 @@
 1.Clone the repository:
 
 ```bash
-  https://github.com/boytrend0108/delegat
+ https://github.com/boytrend0108/afg_pern
 ```
 
 2.Install the required dependencies for client and server:
