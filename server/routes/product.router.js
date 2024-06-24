@@ -8,7 +8,7 @@ const router = new Router();
 
 router.post(
   '/create',
-  checkRoleMiddleware(ROLE.MANAGER),
+  checkRoleMiddleware([ROLE.MANAGER]),
   catchError(productController.create)
 );
 
@@ -17,13 +17,13 @@ router.get('/:id', catchError(productController.getOne));
 
 router.delete(
   '/delete/:id',
-  checkRoleMiddleware(ROLE.MANAGER),
+  checkRoleMiddleware([ROLE.MANAGER]),
   catchError(productController.remove)
 );
 
 router.patch(
   '/update',
-  checkRoleMiddleware(ROLE.MANAGER),
+  checkRoleMiddleware([ROLE.MANAGER]),
   catchError(productController.update)
 );
 

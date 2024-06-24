@@ -9,14 +9,14 @@ const router = new Router();
 
 router.post(
   '/create',
-  checkRoleMiddleware(ROLE.MANAGER),
+  checkRoleMiddleware([ROLE.MANAGER]),
   catchError(BrandController.create)
 );
 router.get('/', catchError(BrandController.getAll));
 router.get('/:id', catchError(BrandController.getOne));
 router.delete(
   '/delete/:id',
-  checkRoleMiddleware(ROLE.MANAGER),
+  checkRoleMiddleware([ROLE.MANAGER]),
   catchError(BrandController.remove)
 );
 

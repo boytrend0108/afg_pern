@@ -18,12 +18,12 @@ router.delete('/:id', catchError(userController.remove));
 
 router.post(
   '/add-role',
-  checkRoleMiddleware(ROLE.ADMIN),
+  checkRoleMiddleware([ROLE.ADMIN]),
   catchError(userController.addRole)
 );
 router.delete(
   '/delete-role',
-  checkRoleMiddleware(ROLE.ADMIN),
+  checkRoleMiddleware([ROLE.ADMIN]),
   catchError(userController.deleteRole)
 );
 

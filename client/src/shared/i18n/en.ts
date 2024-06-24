@@ -29,6 +29,7 @@ export const en = {
       'Select model to compare': 'Select model to compare',
       'Send a request': 'Send a request',
       'Add to favorite': 'Add to favorite',
+      '☆': '☆',
       remove: 'remove',
     },
 

@@ -8,7 +8,7 @@ const router = new Router();
 
 router.post(
   '/create',
-  checkRoleMiddleware(ROLE.MANAGER),
+  checkRoleMiddleware([ROLE.MANAGER]),
   catchError(roleController.create)
 );
 
@@ -17,7 +17,7 @@ router.get('/:id', catchError(roleController.getOne));
 
 router.delete(
   '/delete',
-  checkRoleMiddleware(ROLE.MANAGER),
+  checkRoleMiddleware([ROLE.MANAGER]),
   catchError(roleController.remove)
 );
 
