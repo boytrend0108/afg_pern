@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const CategoryItem: React.FC<Props> = ({ category }) => {
-  const { image, name } = category;
+  const { image, name, productCount } = category;
   const [onHover, setOnhover] = useState(false);
   const item = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
 
   return (
     <div className="CategoryItem" ref={item}>
-      <div className="CategoryItem__counter">1</div>
+      <div className="CategoryItem__counter">{productCount}</div>
 
       {onHover ? (
         <img

@@ -1,9 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import './ActivationPage.scss';
-import { useEffect, useState } from 'react';
-import { user } from '../../../entities/User';
+import { useState } from 'react';
 import { MyLoader } from '../../../shared/ui/MyLoader/MyLoader';
 import { MyButtonWhite } from '../../../shared/ui';
+import { useScrollToTop } from '../../../shared/hooks';
+import { useCheckActivation } from '../hooks/useCheckActivation';
 
 export const ActivationPage = () => {
   const { activationToken } = useParams();
@@ -12,27 +13,16 @@ export const ActivationPage = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!activationToken) {
-      return;
-    }
-    setLoading(true);
+  useScrollToTop();
 
-    user.userAPI
-      .activate(activationToken)
-      .then(() => setActive(true))
-      .catch((err) => {
-        setError(err.response.data.message);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  useCheckActivation(setActive, setLoading, setError, activationToken);
 
   if (activationToken === 'in-progress') {
     return (
       <div className="ActivationPage my-container">
         <h3>Registration completed successfully!</h3>
         <strong>Please confirm your email.</strong>
-        <strong>We have sent a link to activate your account by email.</strong>
+        <strong>We sent a link to activate your account by email.</strong>
       </div>
     );
   }

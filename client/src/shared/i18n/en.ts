@@ -169,7 +169,7 @@ export const en = {
     Categories: {
       'Call us': 'Call us',
       'Leave a request': 'Leave a request',
-      Rollers: 'Rodillos',
+      Rollers: 'Rollers',
       Skidsteers: 'Skidsteers',
       Generators: 'Generators',
       Drills: 'Drills',

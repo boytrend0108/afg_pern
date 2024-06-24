@@ -7,6 +7,7 @@ export type CategoryType = {
   id: number;
   name: string;
   image: string;
+  productCount: string;
 };
 
 export type CategoryDeleteDTO = {

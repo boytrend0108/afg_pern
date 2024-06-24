@@ -1,4 +1,5 @@
-import { Category } from '../models/models.js';
+import { Category, Product } from '../models/models.js';
+import { sequelize } from '../db/db.js';
 
 class CategoryService {
   async create({ name, image }) {
@@ -8,7 +9,20 @@ class CategoryService {
   }
 
   async getAll() {
-    return Category.findAll();
+    const categories = await Category.findAll({
+      attributes: {
+        include: [
+          [
+            sequelize.literal(
+              `(SELECT COUNT(*) FROM "products" WHERE "products"."categoryId" = "category"."id")`
+            ),
+            'productCount',
+          ],
+        ],
+      },
+    });
+
+    return categories;
   }
 
   async getOne(id) {

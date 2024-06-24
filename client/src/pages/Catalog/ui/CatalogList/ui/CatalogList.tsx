@@ -111,7 +111,7 @@ export const CatalogList: React.FC<Props> = ({ setShowFilters }) => {
           </MyButton>
 
           {!!searchParams.size && (
-            <MyButtonWhite className="CatalogList__reset" onClick={handleReset}>
+            <MyButtonWhite className="CatalogList__btn" onClick={handleReset}>
               Reset Filters
             </MyButtonWhite>
           )}
