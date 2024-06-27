@@ -4,6 +4,7 @@ import './ProductView.scss';
 import { ProductType, PromoType } from '../../../../entities/ProductItem/types';
 import { getPromoType } from '../../helpers/getPromoType';
 import { useTranslation } from 'react-i18next';
+import Model3D from '../../../../widgets/3DModel/intex';
 
 type Props = {
   product: ProductType | null;
@@ -39,6 +40,7 @@ export const ProductView: React.FC<Props> = ({ product }) => {
         title={t('ProductPage.3D model')}
         images={product ? product.product_image_inters : []}
       /> */}
+      {/* <Model3D title={t('ProductPage.3D model')} isShow={true} /> */}
     </div>
   );
 };

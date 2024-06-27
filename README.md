@@ -7,11 +7,12 @@
 - Administrator: can set roles.
 - All data is saved in the postgres database.
 - API documentation has been implemented.
+- Used docker to build all parts and run application on VPS server.
 
 ## Tech Stack
 
-- Front-end: REACT, REDUX, TYPESCRIPT, SCSS, AXIOS, MUI, BOOTSTRAP.
-- Back-end: nodejs, express, postgres, sequilize, googleapis.
+- Front-end: REACT, REDUX, TYPESCRIPT, SCSS, AXIOS, MUI, BOOTSTRAP,
+- Back-end: nodejs, express, postgres, sequilize, docker, googleapis
 
 ![App Screenshot](https://github.com/boytrend0108/afg_pern/blob/main/screenshots/home.png?raw=true)
 
@@ -45,7 +46,7 @@
   npm run dev
 ```
 
-4.Open `http://localhost:5173` in your browser, server will run on http://localhost:5000;
+4.Open `http://localhost:5173` in your browser, server will run on `http://localhost:5000`;
 
 ### Contributing
 

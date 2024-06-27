@@ -169,4 +169,12 @@
   &__navlink {
     @include onHover(color, $color-secondary);
   }
+
+  &__aleanda {
+    line-height: 18px;
+    display: block;
+    padding-bottom: 3px;
+    border-bottom: 1px solid;
+    width: fit-content;
+  }
 }

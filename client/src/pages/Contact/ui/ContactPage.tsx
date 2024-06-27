@@ -32,12 +32,12 @@ const ContactPage = () => {
         <h2 className="ContactPage__list-title">AFG Machinery</h2>
 
         <ul className="ContactPage__contacts">
-          <li className="ContactPage__contact">
+          {/* <li className="ContactPage__contact">
             <p className="ContactPage__key">{t('ContactPage.Street')}</p>
             <p className="ContactPage__value">
               Kesklinna linnaosa Narvamt 7-636
             </p>
-          </li>
+          </li> */}
 
           <li className="ContactPage__contact">
             <p className="ContactPage__key">{t('ContactPage.Zipcode')}</p>

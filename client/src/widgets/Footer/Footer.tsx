@@ -151,6 +151,7 @@ export const Footer = () => {
 
         <Link to="/" className="Footer__item Footer__item--logo">
           <img src="/logo.svg" alt="logo" className="Footer__logo" />
+          <p className="Footer__aleanda">by Aleanda</p>
         </Link>
       </div>
     </div>

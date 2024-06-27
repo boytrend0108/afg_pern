@@ -16,12 +16,21 @@ export const MyContactInfo = () => {
             {SOCIAL_LINKS.PHONE}
           </a>
         </li>
+
+        <li className="MyContactInfo__contact">
+          <img src="/my-icons/phone-black.svg" alt="phone" />
+          <a href={`tel:${SOCIAL_LINKS.PHONE}`} target="blank">
+            {SOCIAL_LINKS.PHONE_2}
+          </a>
+        </li>
+
         <li className="MyContactInfo__contact">
           <img src="/my-icons/email-black.svg" alt="mail" />
           <a href={`mailto:${SOCIAL_LINKS.EMAIL}`} target="blank">
             {SOCIAL_LINKS.EMAIL}
           </a>
         </li>
+
         <li className="MyContactInfo__contact">
           <img src="/my-icons/whats-app-black.svg" alt="mail" />
           <a href={SOCIAL_LINKS.WHATSAPP} target="blank">
