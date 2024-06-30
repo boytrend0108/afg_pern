@@ -4,7 +4,7 @@ import './ProductView.scss';
 import { ProductType, PromoType } from '../../../../entities/ProductItem/types';
 import { getPromoType } from '../../helpers/getPromoType';
 import { useTranslation } from 'react-i18next';
-import Model3D from '../../../../widgets/3DModel/intex';
+// import Model3D from '../../../../widgets/3DModel/intex';
 
 type Props = {
   product: ProductType | null;

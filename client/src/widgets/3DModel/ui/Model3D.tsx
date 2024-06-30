@@ -44,12 +44,12 @@ const Model3D: React.FC<Props> = ({ title, isShow = false }) => {
         >
           <div className="MiniSlider__image-box">
             {/* <div className="MiniSlider__image-blur"> */}
-            <model-viewer
+            {/* <model-viewer
               src="/models3D/1.glb"
               alt="A 3D model"
               auto-rotate
               camera-controls
-            ></model-viewer>
+            ></model-viewer> */}
             {/* </div> */}
           </div>
         </div>
