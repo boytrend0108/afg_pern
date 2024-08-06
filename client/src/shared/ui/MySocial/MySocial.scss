@@ -1,0 +1,28 @@
+@import '../../../shared/style/utils.scss';
+
+.MySocial {
+  background-color: $color-primary;
+  width: fit-content;
+
+  &__icon {
+    display: block;
+    cursor: pointer;
+    background-color: $color-primary;
+    transition: all ease-in-out $transition-duration;
+  }
+
+  &__icon:hover {
+    background-color: $color-secondary;
+    transition: all ease-in-out $transition-duration;
+
+    .MySocial__path {
+      transition: all ease-in-out $transition-duration;
+      fill: $color-primary;
+    }
+
+    .MySocial__path--fb {
+      transition: all ease-in-out $transition-duration;
+      stroke: $color-primary;
+    }
+  }
+}

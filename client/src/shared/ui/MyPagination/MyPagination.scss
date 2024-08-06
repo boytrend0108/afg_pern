@@ -1,0 +1,13 @@
+@import '../../../shared/style/utils.scss';
+
+.MyPagination {
+  &__item {
+    color: $color-primary !important;
+  }
+}
+
+span.page-link {
+  background-color: $color-secondary !important;
+  border: 2px solid $color-secondary !important;
+  color: white !important;
+}

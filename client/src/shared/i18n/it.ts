@@ -1,0 +1,248 @@
+/* eslint-disable max-len */
+export const it = {
+  translation: {
+    sectionTitle: {
+      'A technique that gives': 'Una tecnica che dà',
+      'great opportunities': 'grandi opportunità',
+      New: 'Nuovo',
+      Recommended: 'Consigliato',
+      'My profile': 'Il mio profilo',
+      'Contact Info': 'Informazioni di contatto',
+      'Contact us': 'Contattaci',
+      Vehicles: 'Veicoli',
+      Favorites: 'Preferiti',
+      'Leaving a request': 'Lascia una richiesta',
+      'Your data': 'I tuoi dati',
+      Contacts: 'Contatti',
+      'Bank details': 'Dati bancari',
+      'We recommend': 'Ti consigliamo',
+      'Add to favorite': 'Aggiungi ai preferiti',
+      'Add to ☆': 'Aggiungi a ☆',
+      '☆': '☆',
+      remove: 'rimuovere',
+    },
+
+    buttons: {
+      'See more': 'Vedi di più',
+      'Contact us': 'Contattaci',
+      Subscribe: 'Iscriviti',
+      Book: 'Prenota',
+      Compare: 'Confronta',
+      'Get in touch': 'Entrare in contatto',
+      'Select model to compare': 'Seleziona modello da confrontare',
+      'Send a request': 'Invia una richiesta',
+    },
+
+    form: {
+      emailPlaceholder: 'Il tuo indirizzo email',
+      phonePlaceholder: 'Il tuo numero di telefono',
+      namePlaceholder: 'Il tuo nome',
+      '* Fill in the required fields': '* Compila i campi obbligatori',
+      Name: 'Nome',
+      'Company name': 'Nome azienda',
+      City: 'Città',
+      Address: 'Indirizzo',
+      thanksMsg1: 'Grazie per la tua richiesta',
+      thanksMsg2: 'Il nostro responsabile ti contatterà a breve!',
+    },
+
+    FirstScreen: {
+      'New Mini Excavators': 'Nuovi Mini Escavatori',
+      'view catalog': 'Visualizza catalogo',
+      'Used machinery': 'Macchinari usati',
+      'New machinery': 'Nuovi macchinari',
+      'See all': 'Vedi tutto',
+    },
+
+    ProductPage: {
+      'General view': 'Vista generale',
+      Exterior: 'Esterno',
+      Interior: 'Interno',
+      '3D model': 'Modello 3D',
+      Home: 'Casa',
+      catalog: 'catalogo',
+      Year: 'Anno',
+      Hours: 'Ore',
+      'Reference number': 'Numero di riferimento',
+      Common: 'Comune',
+      'Sizes/Weights': 'Dimensioni/Pesi',
+      'Tires/Tracks': 'Pneumatici/Cingoli',
+      'Engine information': 'Informazioni del motore',
+      Options: 'Opzioni',
+      Type: 'Tipo',
+      Location: 'Posizione',
+      'Dutch Machine': 'Macchina olandese',
+      Certificate: 'Certificato',
+      'Serial Number': 'Numero seriale',
+      Description: 'Descrizione',
+      Length: 'Lunghezza',
+      width: 'Larghezza',
+      height: 'Altezza',
+      weight: 'Peso',
+      chain: 'Catena',
+      plate: 'Piastra',
+      sprocket: 'Pignone',
+      'Plate Width': 'Larghezza piastra',
+      brand: 'Marca',
+      model: 'Modello',
+      capacity: 'Capacità',
+      'Quick Coupler': 'Rapido aggancio',
+      radio: 'Radio',
+      'Extra Huidraulic': 'Idraulica aggiuntiva',
+      'Hummer Function': 'Funzione martello',
+    },
+
+    CatalogPage: {
+      All: 'Tutti',
+      'Top sellers': 'Migliori venditori',
+      New: 'Nuovo',
+      Used: 'Usato',
+      'Price (high - low)': 'Prezzo (alto - basso)',
+      Filters: 'Filtri',
+      Price: 'Prezzo',
+      Mileage: 'Chilometraggio',
+      Hours: 'Ore',
+      'Construction year': 'Anno di costruzione',
+      Brands: 'Marche',
+    },
+
+    ContactPage: {
+      Street: 'Strada',
+      Zipcode: 'CAP',
+      Country: 'Paese',
+      'Nearest airport': 'Aeroporto più vicino',
+      Phone: 'Telefono',
+      'VAT number': 'Numero partita IVA',
+      'Bank name': 'Nome della banca',
+      'Bank address': 'Indirizzo della banca',
+      Swiftcode: 'Codice SWIFT',
+    },
+
+    BookingPage: {
+      Booking: 'Prenotazione',
+      subtitle:
+        "Dopo aver compilato il modulo, il nostro responsabile ti contatterà a breve per concordare tutti i dettagli e discutere l'acquisto",
+    },
+
+    CompareBox: {
+      title: 'Seleziona il modello da confrontare',
+    },
+
+    ComparisonTable: {
+      referenceNumber: 'Numero di riferimento',
+      type: 'Tipo',
+      location: 'Posizione',
+      dutchMachine: 'Macchina olandese',
+      certificate: 'Certificato',
+      serialNumber: 'Numero seriale',
+      descriptions: 'Descrizione',
+      length: 'Lunghezza',
+      width: 'Larghezza',
+      height: 'Altezza',
+      weight: 'Peso',
+      chain: 'Catena',
+      plate: 'Piastra',
+      sprocket: 'Pignone',
+      plateWidth: 'Larghezza piastra',
+      brand: 'Marca',
+      model: 'Modello',
+      capacity: 'Capacità',
+      quickCoupler: 'Rapido aggancio',
+      radio: 'Radio',
+      extraHuidraulic: 'Idraulica aggiuntiva',
+      hammerFunction: 'Funzione martello',
+      centralGreasing: 'Grafitare centrale',
+      promoType: 'Tipo',
+      engineBrand: 'Marca motore',
+      engineModel: 'Modello motore',
+      engineCapacity: 'Potenza motore',
+      tracksChain: 'Catena di etichette',
+      tracksPlate: 'Piastra di etichette',
+      tracksPlateWidth: 'Larghezza piastra di etichette',
+      tracksSprocket: 'Pignone di etichette',
+    },
+
+    RequestPage: {
+      subtitle:
+        "Dopo aver compilato il modulo, il nostro responsabile ti contatterà a breve per concordare tutti i dettagli e discutere l'acquisto",
+    },
+
+    Categories: {
+      'Call us': 'Chiamaci',
+      'Leave a request': 'Lascia una richiesta',
+      'Backhoe Loaders': 'Terne',
+      Rollers: 'Rulli',
+      Skidsteers: 'Minipala',
+      Generators: 'Generatori',
+      Excavators: 'Escavatori',
+      Drills: 'Trapani',
+      Bulldozers: 'Bulldozer',
+      Graders: 'Livellatrici',
+      Search: 'Ricerca',
+      'Save this search': 'Salva questa ricerca',
+      'Machines, type, setting...': 'Macchine, tipo, impostazione...',
+    },
+
+    ProductItem: {
+      New: 'nuovo',
+      Recommended: 'raccomandato',
+      Used: 'usato',
+      Top: 'in alto',
+      description: {
+        65: "Questo Reachstacker Hyster RS46-29XD del 2023 ha una potenza di 240 kW e conta 673 ore operative. Ha sempre lavorato nei Paesi Bassi. Acquistato dal primo proprietario. Il peso totale di questo Hyster RS46-29XD è di 66740 kg e le dimensioni sono -. Inoltre, questo RS46-29XD è dotato di aria condizionata, telecamera, funzione idraulica aggiuntiva, ingrassatore centrale. Il Reachstacker Hyster ha anche la marcatura CE. Vuoi ulteriori informazioni o vuoi provare l'Hyster RS46-29XD nel nostro piazzale? Per favore faccelo sapere.",
+      },
+    },
+
+    Header: {
+      Home: 'Casa',
+      Catalog: 'Catalogo',
+      News: 'Notizie',
+      Contact: 'Contatto',
+      'Leave a request': 'Lascia una richiesta',
+      Logout: 'Logout',
+      Request: 'Richiesta',
+      Favorites: 'Preferiti',
+      Searches: 'Ricerche',
+      Settings: 'Impostazioni',
+      Login: 'Accesso',
+    },
+
+    Footer: {
+      'Machinery alert': 'Allerta macchinari',
+      alertDescr: 'Resta informato sulle nostre ultime offerte!',
+      'Social networks': 'Social networks',
+    },
+
+    Banner: {
+      'pile drivers': 'martelli perforatori',
+      subtitle:
+        'Macchina per la battitura di pali nel terreno mediante il metodo di trasmissione della forza statica',
+      'View models': 'Vedi modelli',
+    },
+
+    ContactUs: {
+      title: 'Contattaci',
+      subtitle:
+        'Se sei interessato a un modello specifico o hai bisogno di aiuto',
+    },
+
+    About: {
+      title: 'Macchinari pesanti ed attrezzature da cantiere da AFG Machinery',
+      description:
+        "AFG Machinery è il tuo principale fornitore di macchinari pesanti e attrezzature da cantiere nuove e usate. Vendiamo attrezzature di alta qualità per l'industria movimento terra e demolizione di marche leader come Caterpillar, Komatsu, Volvo, Hyundai e Liebherr. Presso la nostra sede a Veldhoven, nei Paesi Bassi, disponiamo di oltre 400 macchine nuove e usate in stock provenienti dalla nostra rete internazionale.",
+      description1:
+        'I macchinari disponibili coprono una vasta gamma di tipi, configurazioni, ore di utilizzo e prezzi. Pertanto, AFG Machinery può sempre fornirti le macchine più adatte per svolgere il lavoro! I nostri macchinari pesanti e attrezzature da cantiere vengono consegnati in tutto il mondo e siamo lieti di aiutarti con la documentazione e il trasporto.',
+    },
+
+    MyTabSwitcher: {
+      'General view': 'Vista generale',
+      Exterior: 'Esterno',
+      Interior: 'Interno',
+      '3D model': 'Modello 3D',
+      'Profile & settings': 'Profilo e impostazioni',
+      'My offers': 'Le mie offerte',
+      Searches: 'Ricerche',
+      Favorites: 'Preferiti',
+    },
+  },
+};

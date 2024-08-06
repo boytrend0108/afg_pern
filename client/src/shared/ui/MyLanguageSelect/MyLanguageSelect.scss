@@ -1,0 +1,76 @@
+@import '../../style/utils.scss';
+
+.MyLanguageSelect {
+  position: relative;
+
+  &__select {
+    color: $color-border;
+    border: none;
+    border-bottom: 1px solid $color-border;
+    padding: 10px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &__main {
+    position: absolute;
+    overflow: auto;
+    height: 216px;
+    top: 40px;
+    left: 0;
+    right: 0;
+    transition: height ease-in-out $transition-duration;
+    border: 1px solid $color-secondary;
+    border-top: none;
+
+    &--hidden {
+      height: 0;
+      border: 0;
+    }
+
+    @include scrollBar;
+  }
+
+  &__drop {
+    position: absolute;
+    background-color: white;
+    top: 0px;
+    left: 0;
+    right: 0;
+    transition: top ease-in-out $transition-duration;
+    border: 1px solid $color-secondary;
+    border-top: none;
+    z-index: 1;
+
+    &--hidden {
+      top: -100%;
+    }
+  }
+
+  &__header {
+    padding: 3px;
+    border-bottom: 1px solid $color-border;
+    cursor: pointer;
+    color: $color-border;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__option {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include onHover(background-color, $color-secondary);
+  }
+
+  &__flag {
+    height: 26px;
+    width: 26px;
+  }
+
+  @include flags;
+}

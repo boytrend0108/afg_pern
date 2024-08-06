@@ -1,0 +1,77 @@
+@import '../../../shared/style/utils.scss';
+
+.CatalogFilters {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+  padding: 20px;
+
+  @include on-desktop-s {
+    position: absolute;
+    left: -150%;
+    top: 0;
+    background: white;
+    z-index: 1;
+    padding: 20px;
+    transition: all ease-in-out $transition-duration;
+
+    @include on-mobile-s {
+      padding: 10px;
+    }
+
+    &--show {
+      left: 0px;
+      top: 50px;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    right: 30px;
+    top: 27px;
+    cursor: pointer;
+    display: none;
+
+    @include on-tablet {
+      display: block;
+    }
+
+    @include on-mobile-s {
+      top: 16px;
+    }
+  }
+
+  &__title {
+    color: $color-primary;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-bottom: 40px;
+    width: 306px;
+    font-size: 24px;
+  }
+
+  &__brands {
+    width: 306px;
+    padding-top: 20px;
+    border-top: 1px solid $color-border;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  &__brand {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &__btn-box {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}

@@ -1,0 +1,51 @@
+@import '../../../../shared/style/utils.scss';
+
+.CatalogPage {
+  &__header {
+    margin: 50px auto 30px;
+  }
+
+  &__main {
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 20px;
+    margin-bottom: 100px;
+    min-height: 300px;
+    transition: min-height ease $transition-duration;
+
+    &--filter {
+      min-height: 1550px;
+    }
+
+    @include on-desktop-s {
+      display: block;
+    }
+  }
+
+  &__background {
+    position: absolute;
+    inset: 0;
+    background-color: $color-primary;
+    opacity: 0%;
+    pointer-events: none;
+    transition: opacity ease-in-out $transition-duration;
+
+    &--show {
+      pointer-events: all;
+      opacity: 70%;
+    }
+  }
+
+  &__loader {
+    @include blockScreenLoader;
+    align-items: flex-start;
+    top: 200px;
+  }
+
+  &__error {
+    color: $color-error;
+    text-align: center;
+  }
+}

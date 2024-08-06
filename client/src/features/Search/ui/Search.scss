@@ -1,0 +1,77 @@
+@import '../../../shared/style/utils.scss';
+
+.Search {
+  cursor: pointer;
+  min-width: 100px;
+  background-color: $color-primary;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  border-left: 1px solid $color-border;
+  position: relative;
+
+  @include on-tablet {
+    display: none;
+  }
+
+  &__drop {
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+    top: 100px;
+    right: -234px;
+
+    &--hidden {
+      pointer-events: none;
+    }
+  }
+
+  &__box {
+    width: 612px;
+    padding: 15px 42px;
+    display: flex;
+    background-color: $color-primary;
+    transition: transform ease-in-out $transition-duration;
+
+    &--hidden {
+      transform: translateY(-100px);
+    }
+  }
+
+  &__input {
+    padding: 18px;
+    height: 60px;
+    width: 100%;
+    border: 1px solid $color-border;
+    border-right: none;
+    background-color: $color-primary;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.09px;
+    text-align: left;
+    color: $color-font-light;
+    outline: none;
+
+    &:focus {
+      border-color: $color-secondary;
+    }
+  }
+
+  &__btn {
+    width: 70px;
+    height: 60px;
+    background-color: $color-secondary;
+    border: 1px solid $color-border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -1,0 +1,80 @@
+@import '../../../shared/style/utils.scss';
+
+.SelectCountry {
+  position: relative;
+  cursor: pointer;
+  min-width: 100px;
+  background-color: $color-primary;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  border-left: 1px solid $color-border;
+
+  @include on-tablet-s {
+    min-width: 65px;
+  }
+
+  @include onHover(background-color, $color-primary-hover);
+
+  &:hover .SelectCountry__flags {
+    background-color: $color-primary-hover;
+  }
+
+  &__drop {
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+
+    width: 179px;
+    height: 150px;
+    top: 100px;
+    left: 0;
+
+    &--flags {
+      width: 332px;
+      left: -100px;
+
+      @include on-tablet {
+        left: -133px;
+      }
+
+      @include on-tablet-s {
+        left: -193px;
+        top: 74px;
+      }
+
+      @include on-mobile-m {
+        width: 300px;
+      }
+    }
+  }
+
+  &__country {
+    max-width: 332px;
+    display: block;
+    background-color: $color-primary;
+    transform: translateY(0);
+    transition: transform ease $transition-duration;
+
+    &--hide {
+      transform: translateY(-150px);
+      transition: transform ease $transition-duration;
+    }
+  }
+
+  &__flags {
+    display: block;
+    padding: 0;
+
+    @include onHover(background-color, $color-primary-hover);
+  }
+
+  &__icon--arrow {
+    @include on-tablet-s {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@import '../../../shared/style/utils.scss';
+
+.Header {
+  padding-block: 10px;
+  height: 110px;
+  background-color: $color-primary;
+
+  @include on-desktop-s {
+    padding-block: 0;
+    height: 100px;
+  }
+
+  @include on-tablet-s {
+    height: 75px;
+  }
+
+  &__container {
+    @extend %my-container;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    cursor: pointer;
+    width: 124px;
+    height: 90px;
+
+    &-img {
+      height: 100%;
+    }
+
+    @include on-desktop-s {
+      width: 100px;
+      height: 73px;
+    }
+
+    @include on-tablet-s {
+      height: 55px;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import '../../../shared/style/utils.scss';
+
+.ProductPage {
+  &__header {
+    margin: 50px auto 30px;
+
+    @include on-tablet-s {
+      display: none;
+    }
+  }
+
+  &__footer {
+    margin-bottom: 50px;
+  }
+
+  &__recommend-title {
+    margin-bottom: 24px;
+  }
+
+  &__loader {
+    @include fullScreenLoader;
+  }
+}

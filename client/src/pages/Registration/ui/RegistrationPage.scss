@@ -1,0 +1,5 @@
+@import '../../../shared/style/utils.scss';
+
+.RegistrationPage {
+  @include loginBackground;
+}

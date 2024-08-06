@@ -1,0 +1,87 @@
+@import '../../../shared/style/utils.scss';
+
+.BookingPage {
+  padding-block: 50px;
+
+  &__title {
+    margin-top: 0;
+    font-size: clamp(1.25rem, 1.05rem + 1vw, 2.25rem);
+  }
+
+  &__main {
+    display: flex;
+
+    &-left {
+      max-width: 525px;
+      width: 100%;
+
+      @include on-tablet {
+        max-width: 100%;
+      }
+    }
+
+    &-right {
+      width: 100%;
+    }
+
+    @include on-tablet {
+      flex-direction: column-reverse;
+      gap: 40px;
+    }
+  }
+
+  &__product {
+    @include on-tablet {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: clamp(0.625rem, 0.125rem + 2.5vw, 3.125rem);
+    gap: 50px;
+
+    @include on-mobile {
+      margin-bottom: 25px;
+    }
+
+    &--right {
+      width: 550px;
+
+      @include on-mobile {
+        display: none;
+      }
+    }
+  }
+
+  &__block-title {
+    margin-bottom: 20px;
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @include onHover(color, $color-secondary);
+  }
+
+  &__social {
+    width: fit-content;
+    position: fixed;
+    right: 0;
+    top: 50px;
+
+    @include on-mobile {
+      top: 150px;
+    }
+  }
+}

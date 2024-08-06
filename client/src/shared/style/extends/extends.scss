@@ -1,0 +1,52 @@
+%my-container {
+  width: 100%;
+  max-width: 1920px;
+  padding-inline: 50px;
+  margin: 0 auto;
+
+  @include on-tablet {
+    padding-inline: 30px;
+  }
+
+  @include on-tablet-s {
+    padding-inline: 20px;
+  }
+
+  @include on-mobile-m {
+    padding-inline: 20px;
+  }
+}
+
+%btn {
+  height: clamp(3.125rem, 2.95rem + 0.875vw, 4rem);
+  width: max-content;
+  border: none;
+  background-color: $color-secondary;
+  cursor: pointer;
+  padding-inline: 20px;
+
+  font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
+  font-weight: 700;
+  line-height: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
+  text-align: left;
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include onHover(background-color, $color-secondary-hover);
+}
+
+%btn-white {
+  @extend %btn;
+  background-color: white;
+  width: max-content;
+  padding-inline: 20px;
+  border: 2px solid $color-secondary;
+
+  @include on-desktop-s {
+    padding: 8px;
+  }
+
+  @include onHover(background-color, $color-secondary);
+}

@@ -1,0 +1,108 @@
+@import '../../../../shared/style/utils.scss';
+
+.RegistrationForm {
+  max-width: 665px;
+  width: 100%;
+  background-color: $color-primary;
+  color: $color-font-light;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 50px;
+
+  @include on-mobile {
+    padding: 20px;
+  }
+
+  &__logo {
+    height: 90px;
+    width: 124px;
+    margin-bottom: 15px;
+
+    @include on-mobile {
+      display: none;
+    }
+  }
+
+  &__title {
+    font-size: 28px;
+    color: $color-font-light;
+    text-align: center;
+  }
+
+  &__wr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  &__btn {
+    @extend %btn;
+    font-size: 16px;
+    height: 55px;
+    width: 250px;
+    margin-top: 25px;
+    @include onHover(background-color, $color-secondary-hover);
+    margin-bottom: 25px;
+  }
+
+  &__horiz {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    gap: 10px;
+    color: $color-font-light;
+    margin-bottom: 40px;
+
+    &-line {
+      background-color: $color-font-light;
+      height: 1px;
+      width: 100%;
+    }
+  }
+
+  &__span {
+    color: $color-secondary;
+    @include onHover(color, $color-secondary-hover);
+    margin-left: 10px;
+  }
+
+  &__error-box {
+    height: 20px;
+  }
+
+  &__error {
+    color: $color-error;
+  }
+
+  &__phone {
+    max-width: 425px;
+    width: 100%;
+  }
+
+  &__input-title {
+    margin-bottom: 10px;
+  }
+}
+
+.PhoneInputInput {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $color-border;
+  outline: none;
+  background-color: $color-primary-hover;
+  color: $color-font-light;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: $color-font-light;
+  -webkit-box-shadow: 0 0 0px 1000px $color-primary-hover inset;
+  transition: color 5000s ease-in-out 0s;
+}

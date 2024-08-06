@@ -1,0 +1,30 @@
+@import '../../../shared/style/utils.scss';
+
+.MySuccess {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+
+  &__img {
+    width: 40%;
+    max-width: 400px;
+
+    @include on-tablet-s {
+      max-width: 225px;
+    }
+  }
+
+  &__title {
+    font-size: clamp(1.5rem, 1.05rem + 2.25vw, 3.75rem);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__msg {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+    text-align: center;
+  }
+}

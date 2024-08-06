@@ -1,0 +1,76 @@
+@import '../../../../shared/style/utils.scss';
+
+.CompareBox {
+  min-height: fit-content;
+  max-height: inherit;
+  background-color: white;
+  padding: 50px;
+  overflow: auto;
+  @include scrollBar;
+
+  @include box-shadow;
+
+  @include on-tablet-s {
+    box-shadow: none;
+    padding: 0;
+  }
+
+  &__title {
+    font-size: clamp(1.125rem, 1.05rem + 0.375vw, 1.5rem);
+  }
+
+  &__header {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__close {
+    width: 6%;
+  }
+
+  &__list {
+    --column-count: 4;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    grid-template-columns: repeat(var(--column-count), 1fr);
+
+    @include on-desktop-s {
+      --column-count: 3;
+    }
+
+    @media (max-width: 930px) {
+      --column-count: 2;
+    }
+
+    @include on-mobile {
+      --column-count: 1;
+    }
+  }
+
+  &__wr {
+    border: 3px solid transparent;
+    max-width: fit-content;
+
+    &--selected {
+      border: 3px solid $color-secondary;
+    }
+  }
+
+  &__btn {
+    @extend %btn;
+
+    // @include on-tablet-s {
+    //   position: static;
+    //   width: fit-content;
+    //   margin: 0 auto;
+    //   margin-top: 40px;
+    // }
+
+    @include on-mobile-m {
+      font-size: 13px;
+    }
+  }
+}

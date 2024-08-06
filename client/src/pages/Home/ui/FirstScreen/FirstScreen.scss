@@ -1,0 +1,135 @@
+@import '../../../../shared/style/utils.scss';
+
+@mixin hover($_img-url, $_right-shift) {
+  position: relative;
+  background-image: url(#{$_img-url});
+  background-position: center;
+  background-size: cover;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      270deg,
+      rgba(29, 29, 27, 0) 0%,
+      rgba(29, 29, 27, 0.95) 80%
+    );
+    transition: right $transition-duration ease-in-out;
+  }
+
+  &:hover {
+    &:before {
+      right: #{$_right-shift};
+    }
+  }
+}
+
+.FirstScreen {
+  height: 700px;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+
+  @include on-desktop-s {
+    height: 600px;
+  }
+
+  @include on-mobile {
+    height: 400px;
+  }
+
+  &__text-box {
+    position: absolute;
+    width: 70%;
+    left: 17%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 96px;
+    font-weight: 500;
+    line-height: 96px;
+    color: $color-font-light;
+    margin: 0;
+    margin-bottom: 40px;
+
+    & span {
+      color: $color-secondary;
+    }
+
+    @include on-desktop {
+      font-size: 64px;
+      line-height: 64px;
+      margin-bottom: 40px;
+    }
+
+    @include on-mobile {
+      font-size: 36px;
+      line-height: 36px;
+    }
+  }
+
+  &__main {
+    width: 100%;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  &__video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__video {
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__video-cover {
+    position: absolute;
+    inset: 0;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  &__link {
+    position: relative;
+    z-index: 1;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    color: $color-secondary;
+
+    @include on-desktop {
+      font-size: 16px;
+    }
+
+    @include onHover(color, $color-secondary-hover);
+  }
+
+  &__social {
+    position: absolute;
+    top: 150px;
+    right: 0;
+  }
+}

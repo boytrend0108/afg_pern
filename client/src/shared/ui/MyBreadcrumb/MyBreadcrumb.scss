@@ -1,0 +1,11 @@
+@import '../../../shared/style/utils.scss';
+
+.MyBreadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+  color: $color-primary-hover;
+  text-transform: capitalize;
+}

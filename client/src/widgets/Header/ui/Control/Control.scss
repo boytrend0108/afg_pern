@@ -1,0 +1,15 @@
+@import '../../../../shared/style/utils.scss';
+
+.Control {
+  display: flex;
+  align-items: center;
+  height: 90px;
+
+  @include on-desktop-s {
+    height: 100px;
+  }
+
+  @include on-tablet-s {
+    height: 75px;
+  }
+}

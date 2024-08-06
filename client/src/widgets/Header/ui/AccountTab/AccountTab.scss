@@ -1,0 +1,129 @@
+@import '../../../../shared/style/utils.scss';
+
+.AccountTab {
+  position: relative;
+  cursor: pointer;
+  min-width: 100px;
+  background-color: $color-primary;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  border-left: 1px solid $color-border;
+  color: $color-font-light;
+
+  @include on-tablet-s {
+    min-width: 75px;
+  }
+
+  @include onHover(background-color, $color-primary-hover);
+
+  &__account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding-inline: 31px;
+
+    @include on-tablet {
+      display: none;
+    }
+  }
+
+  &__user {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18.75px;
+    text-align: left;
+    text-transform: uppercase;
+    color: $color-font-light;
+
+    @include on-desktop-s {
+      display: none;
+    }
+  }
+
+  &__drop {
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+    top: 100px;
+    left: 0px;
+    overflow: hidden;
+
+    @include on-desktop-s {
+      width: 216px;
+      left: -83px;
+    }
+
+    @include on-tablet {
+      left: -117px;
+    }
+
+    @include on-tablet-s {
+      top: 75px;
+      left: -142px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18.75px;
+    text-align: left;
+    color: $color-font-light;
+    transition: transform ease-in-out $transition-duration;
+
+    &--hidden {
+      transform: translateY(-110%);
+    }
+  }
+
+  &__link {
+    position: relative;
+    height: 60px;
+    width: 100%;
+    background-color: $color-primary;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 68px;
+
+    $links: 'search-2', 'favorite', 'catalog', 'news', 'settings', 'request',
+      'setting', 'logout', 'contact';
+
+    @each $link in $links {
+      &--#{$link}::before {
+        position: absolute;
+        top: 13px;
+        left: 16px;
+        height: 30px;
+        width: 30px;
+
+        content: url(/my-icons/#{$link}.svg);
+      }
+    }
+
+    @include onHover(background-color, $color-primary-hover);
+  }
+
+  &__menu {
+    width: 40px;
+    height: 40px;
+    background-image: url(/my-icons/burger.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+
+    @include on-tablet {
+      display: block;
+    }
+
+    @include onHover(background-image, url(/my-icons/burger-hover.png));
+  }
+}

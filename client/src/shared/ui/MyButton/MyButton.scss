@@ -1,0 +1,6 @@
+@import '../../../shared/style/utils.scss';
+
+.MyButton {
+  @extend %btn;
+  @include onHover(background-color, $color-secondary-hover);
+}

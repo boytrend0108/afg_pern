@@ -1,0 +1,45 @@
+@import '../../../shared/style/utils.scss';
+.RequestPage {
+  padding-block: 50px;
+
+  &__title {
+    margin-top: 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 75px;
+    gap: 50px;
+
+    @include on-mobile {
+      margin-bottom: 25px;
+    }
+
+    &--right {
+      width: 550px;
+
+      @include on-mobile {
+        display: none;
+      }
+    }
+  }
+
+  &__block-title {
+    margin-bottom: 20px;
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @include onHover(color, $color-secondary);
+  }
+}

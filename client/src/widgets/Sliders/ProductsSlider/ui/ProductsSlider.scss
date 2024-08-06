@@ -1,0 +1,64 @@
+@import '../../../../shared/style/utils.scss';
+
+.ProductsSlider {
+  position: relative;
+
+  &:hover .ProductsSlider__nav--right {
+    opacity: 1;
+  }
+
+  &:hover .ProductsSlider__nav--left {
+    opacity: 1;
+  }
+
+  &__box {
+    width: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
+    display: flex;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    transition: transform ease-in-out $transition-duration;
+  }
+
+  &__item {
+    scroll-snap-align: start;
+  }
+
+  &__nav--left {
+    position: absolute;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $color-secondary;
+    left: 30px;
+    top: calc(50% - 25px);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    @include onHover(transform, scale(1.1));
+    @include onHover(opacity, 1);
+    transition: opacity ease $transition-duration;
+
+    &::after {
+      content: url(/my-icons/arrow-left.svg);
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__nav--right {
+    @extend .ProductsSlider__nav--left;
+    left: initial;
+    right: 30px;
+    transform: rotate(180deg);
+    &:hover {
+      transform: rotate(180deg) scale(1.1);
+    }
+  }
+}

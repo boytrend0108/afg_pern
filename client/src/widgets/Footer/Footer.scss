@@ -1,0 +1,180 @@
+@import '../../shared/style/utils.scss';
+
+.Footer {
+  // height: 284px;
+  width: 100%;
+  background-color: $color-primary;
+  color: $color-font-light;
+  font-size: 18px;
+
+  &__container {
+    @extend %my-container;
+    padding-block: 50px;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+
+    @include on-mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    @include on-mobile-m {
+      width: 100%;
+    }
+
+    &-title {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 28.13px;
+      color: $color-font-light;
+      margin-bottom: 10px;
+    }
+
+    &--menu {
+      @include on-desktop-s {
+        display: none;
+      }
+    }
+
+    &--social {
+      @include on-tablet {
+        display: none;
+      }
+    }
+
+    &--logo {
+      @include on-tablet-s {
+        display: none;
+      }
+    }
+  }
+
+  &__text {
+    &--phone {
+      @include onHover(color, $color-secondary);
+    }
+  }
+
+  &__logo {
+    height: 150px;
+    width: 190px;
+
+    @include on-tablet-s {
+      width: 140px;
+    }
+
+    @include on-mobile {
+      display: none;
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    @include onHover(color, $color-secondary);
+  }
+
+  $icons: 'fb', 'insta', 'x', 'youtube', 'link';
+
+  @each $icon in $icons {
+    &__social--#{$icon}::before {
+      content: url(/my-icons/social/#{$icon}.svg);
+      height: 30px;
+      width: 30px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__form {
+    width: 300px;
+    background-color: $color-primary;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @include on-mobile-m {
+      flex-direction: row;
+      gap: 0;
+      align-items: center;
+      width: 100%;
+    }
+
+    @include on-mobile-s {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    &-input {
+      height: 45px;
+      background-color: $color-primary;
+      border: 1px solid $color-border;
+      padding: 10px;
+      outline: none;
+      color: $color-font-light;
+      margin-block: 10px;
+
+      @include on-mobile-m {
+        width: 100%;
+      }
+
+      &:focus {
+        border-color: $color-secondary;
+      }
+    }
+
+    &-btn {
+      cursor: pointer;
+      color: $color-font-light;
+      height: 45px;
+      background-color: $color-primary;
+      border: 1px solid $color-border;
+
+      @include onHover(border-color, $color-secondary);
+      @include onHover(color, $color-secondary);
+
+      @include on-mobile-m {
+        width: 100%;
+      }
+    }
+
+    &-err {
+      color: $color-error;
+    }
+  }
+
+  &__contact-btn {
+    height: 45px;
+    width: 190px;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 43px;
+  }
+
+  &__navlink {
+    @include onHover(color, $color-secondary);
+  }
+
+  &__aleanda {
+    line-height: 18px;
+    display: block;
+    padding-bottom: 3px;
+    border-bottom: 1px solid;
+    width: fit-content;
+  }
+}

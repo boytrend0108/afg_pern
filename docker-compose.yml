@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  server:
+    image: boytrend/afg-server:1.0
+    container_name: afg-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile.server
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      - PORT=5000
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres
+    restart: always
+    container_name: afg-db
+    ports:
+      - '5433:5432' # !!! 5433 for  docker db
+    env_file: .env
+    environment:
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+  pgdata:

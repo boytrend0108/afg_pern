@@ -1,0 +1,62 @@
+@import '../../../shared/style/utils.scss';
+
+.NewsPage {
+  padding-block: 60px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(1.25rem, 0.875rem + 1.875vw, 3.125rem);
+
+  @include on-tablet-s {
+    grid-template-columns: 1fr;
+    padding-block: 20px;
+  }
+
+  &__title {
+    margin-top: 0;
+  }
+
+  &__main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 50px;
+  }
+
+  &__aside {
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @include on-tablet-s {
+      width: 100%;
+      max-width: none;
+    }
+  }
+
+  &__other-list {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    @include on-tablet-s {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    @include on-mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}

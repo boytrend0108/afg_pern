@@ -1,0 +1,11 @@
+@import '../../../../shared/style/utils.scss';
+
+.ProductView {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+
+  @include on-tablet-s {
+    display: none;
+  }
+}

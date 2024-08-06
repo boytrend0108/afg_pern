@@ -1,0 +1,28 @@
+@import '../shared/style/utils.scss';
+@import '../../node_modules/normalize.css/normalize.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  scroll-behavior: smooth;
+
+  &__content {
+    @include scrollBar;
+  }
+
+  &__content {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+  }
+}
+
+.my-container {
+  @extend %my-container;
+}
+
+@include autofill;
+@include inputNumber;

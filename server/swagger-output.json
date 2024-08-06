@@ -1,0 +1,1685 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "AFG API",
+    "description": "AFG-Machinery api",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "JWTAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Enter your JWT token with the 'Bearer' keyword"
+    }
+  },
+  "security": [
+    {
+      "JWTAuth": []
+    }
+  ],
+  "paths": {
+    "/api/user/registration": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint for user registration.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User registration data",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "email",
+                "password",
+                "phone"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User registered successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint for user login.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User login data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged in.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object"
+                },
+                "accessToken": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/logout": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint for user logout.",
+        "responses": {
+          "204": {
+            "description": "User logged out"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/user/refresh": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Refresh access token",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get all users",
+        "responses": {
+          "200": {
+            "description": "Users sent",
+            "schema": {
+              "type": "array",
+              "items": {
+                "user": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/user/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Get user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged out",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/user/add-role": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Add role for user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User id",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role added",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/user/delete-role": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "Delete role from user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "DTO for deletion",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/role/create": {
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "description": "Endpoint for role",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Role creation data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Role has created successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/role": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "description": "Get all roles",
+        "responses": {
+          "200": {
+            "description": "ОК",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/role/{id}": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "description": "Endpoint to get a single role by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the role to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Role not found."
+          }
+        }
+      }
+    },
+    "/api/role/delete": {
+      "delete": {
+        "tags": [
+          "Role"
+        ],
+        "description": "Endpoint to delete a single role by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "description": "ID of the role to delete",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role has deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Role not found."
+          }
+        }
+      }
+    },
+    "/api/brand/create": {
+      "post": {
+        "tags": [
+          "Brand"
+        ],
+        "description": "Endpoint for brand.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Brand creation data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Brand has created successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "brand": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/brand": {
+      "get": {
+        "tags": [
+          "Brand"
+        ],
+        "description": "Get all brands",
+        "responses": {
+          "200": {
+            "description": "ОК",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/brand/{id}": {
+      "get": {
+        "tags": [
+          "Brand"
+        ],
+        "description": "Endpoint to get a single brand by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the brand to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Brand not found."
+          }
+        }
+      }
+    },
+    "/api/brand/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Brand"
+        ],
+        "description": "Endpoint to delete a single brand by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the brand to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Brand deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Brand not found."
+          }
+        }
+      }
+    },
+    "/api/category/create": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "description": "Endpoint for category.",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Category name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Category image",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Category has created successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/category": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "description": "Get all categories",
+        "responses": {
+          "200": {
+            "description": "ОК",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/category/{id}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "description": "Endpoint to get a single category by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the brand to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Category not found."
+          }
+        }
+      }
+    },
+    "/api/category/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Category"
+        ],
+        "description": "Endpoint to delete a single category by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the category to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category has deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Category not found."
+          }
+        }
+      }
+    },
+    "/api/product/create": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Create new product",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title of the product",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "Price of the product",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "year",
+            "in": "formData",
+            "description": "Year of the product",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "hours",
+            "in": "formData",
+            "description": "Hours of usage of the product",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "brandId",
+            "in": "formData",
+            "description": "ID of the product's brand",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "categoryId",
+            "in": "formData",
+            "description": "ID of the product's category",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Image of the product",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New product created successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "product": {
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/product": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Get all products",
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "query",
+            "description": "Filter by Brand ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "categoryId",
+            "in": "query",
+            "description": "Filter by Category ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "integer",
+            "default": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "type": "integer",
+            "default": 8
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ОК",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/product/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to get a single product by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the product to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Category not found."
+          }
+        }
+      }
+    },
+    "/api/product/delete": {
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to delete a single product by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "description": "ID of the product to delete",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Product not found."
+          }
+        }
+      }
+    },
+    "/api/favorite/add": {
+      "post": {
+        "tags": [
+          "Favorite"
+        ],
+        "description": "Add product to favorite",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add product to favorite",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "number"
+                },
+                "userId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product added to favorites",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/favorite/{id}": {
+      "get": {
+        "tags": [
+          "Favorite"
+        ],
+        "description": "Get add favorite product by user ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/favorite/delete/{productId}/{userId}": {
+      "delete": {
+        "tags": [
+          "Favorite"
+        ],
+        "description": "Remove product from favorites",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "ID of the product to delete",
+            "required": true
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted from favorites",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
+    "/api/basket": {
+      "post": {
+        "tags": [
+          "Basket"
+        ],
+        "description": "Add product to basket",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add product to basket",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "number"
+                },
+                "userId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product added to basket",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/basket/{userId}": {
+      "get": {
+        "tags": [
+          "Basket"
+        ],
+        "description": "Get user basket.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/basket/delete": {
+      "delete": {
+        "tags": [
+          "Basket"
+        ],
+        "description": "Remove product from basket",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "ID of the product to delete",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "productId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted from favorites",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
+    "/api/order": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Order a product",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add product to orders",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "number"
+                },
+                "userId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product added to basket",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/order/{userId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Get all users orders",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/order/delete": {
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "description": "Remove product from basket",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "ID of the product to delete",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "productId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted from favorites",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
+    "/api/reserve": {
+      "post": {
+        "tags": [
+          "Reserve"
+        ],
+        "description": "Reserve a product",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add product to reserve",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "number"
+                },
+                "userId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product added to reserve",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reserve/{userId}": {
+      "get": {
+        "tags": [
+          "Reserve"
+        ],
+        "description": "Get all users reserve",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/reserve/delete": {
+      "delete": {
+        "tags": [
+          "Reserve"
+        ],
+        "description": "Remove product from reserve",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "DTO to delete from reserve",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "number"
+                },
+                "productId": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted from reserved",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/request": {
+      "post": {
+        "tags": [
+          "Request"
+        ],
+        "description": "Sending a request",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User info",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "number"
+                },
+                "lang": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "phone",
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Sending request failed",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/subscribe": {
+      "post": {
+        "tags": [
+          "Subscribe"
+        ],
+        "description": "Add email to subscribers list",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User email",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Error",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/subscribe/all": {
+      "get": {
+        "tags": [
+          "Subscribe"
+        ],
+        "description": "Get all emails",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/subscribe/delete/{email}": {
+      "delete": {
+        "tags": [
+          "Subscribe"
+        ],
+        "description": "Remove email from list",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "User email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Error",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "brandId": {
+            "type": "string"
+          },
+          "categoryId": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "year": {
+            "type": "number"
+          },
+          "hours": {
+            "type": "number"
+          },
+          "image": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "brandId",
+          "categoryId",
+          "price",
+          "year",
+          "hours",
+          "image"
+        ]
+      }
+    }
+  }
+}

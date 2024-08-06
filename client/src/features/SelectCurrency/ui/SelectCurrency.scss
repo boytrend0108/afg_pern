@@ -1,0 +1,71 @@
+@import '../../../shared/style/utils.scss';
+
+.SelectCurrency {
+  position: relative;
+  cursor: pointer;
+  min-width: 100px;
+  background-color: $color-primary;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  border-left: 1px solid $color-border;
+
+  @include on-tablet-s {
+    min-width: 65px;
+  }
+
+  @include onHover(background-color, $color-primary-hover);
+
+  &__drop {
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+
+    width: 179px;
+    height: 150px;
+    top: 100px;
+    left: 0;
+
+    @include on-tablet-s {
+      top: 74px;
+    }
+  }
+
+  &__currency-list {
+    position: absolute;
+    background-color: $color-primary;
+    color: $color-font-light;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: all ease $transition-duration;
+
+    &--hidden {
+      top: -150px;
+      opacity: 0;
+    }
+  }
+
+  &__currency {
+    width: 100%;
+    min-width: max-content;
+    display: flex;
+    gap: 8px;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 24.61px;
+    text-align: left;
+
+    padding: 10px 20px;
+    @include onHover(background-color, $color-primary-hover);
+  }
+
+  &__icon--arrow {
+    @include on-tablet-s {
+      display: none;
+    }
+  }
+}

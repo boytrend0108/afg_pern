@@ -1,0 +1,37 @@
+@import '../../../../shared/style/utils.scss';
+
+.About {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  &__container {
+    @extend %my-container;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 36px;
+    margin-bottom: 25px;
+
+    @include on-mobile {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 20.81px;
+    }
+  }
+
+  &__desc {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    margin-bottom: 20px;
+
+    @include on-mobile {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
+}

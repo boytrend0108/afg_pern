@@ -1,0 +1,54 @@
+@import '../../../../shared/style/utils.scss';
+
+.HomePage {
+  max-width: $max-app-width;
+  margin: 0 auto;
+
+  &__banner {
+    margin-block: 50px;
+  }
+
+  &__social {
+    position: fixed;
+    top: 224px;
+    right: 0;
+
+    @include on-desktop-s {
+      top: 172px;
+    }
+
+    @include on-tablet-s {
+      top: 164px;
+    }
+
+    @include on-mobile-m {
+      top: 133px;
+    }
+  }
+
+  &__whatsapp {
+    height: 80px;
+    width: 80px;
+    position: fixed;
+    top: 530px;
+    right: 0;
+    cursor: pointer;
+    z-index: 1;
+
+    @include onHover(transform, scale(1.05));
+
+    @include on-desktop-s {
+      top: 436px;
+    }
+
+    @include on-tablet-s {
+      top: 460px;
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  &__about {
+    margin-bottom: 40px;
+  }
+}

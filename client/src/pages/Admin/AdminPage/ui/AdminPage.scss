@@ -1,0 +1,21 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '../../../../shared/style/utils.scss';
+
+.AdminPage {
+  &__header {
+    display: flex;
+    align-items: center;
+    background-color: $color-primary;
+    padding-block: 10px;
+  }
+  &__main {
+    padding-block: 40px;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

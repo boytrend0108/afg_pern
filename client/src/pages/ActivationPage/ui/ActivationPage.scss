@@ -1,0 +1,15 @@
+@import '../../../shared/style/utils.scss';
+
+.ActivationPage {
+  @include loginBackground;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center;
+
+  &__loader {
+    margin: 0 auto;
+  }
+}

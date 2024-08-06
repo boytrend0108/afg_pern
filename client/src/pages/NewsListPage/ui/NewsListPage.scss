@@ -1,0 +1,27 @@
+@import '../../../shared/style/utils.scss';
+
+.NewsListPage {
+  margin: 25px auto 50px;
+
+  @include on-mobile {
+    margin: auto;
+  }
+
+  &__title {
+    margin-bottom: 25px;
+  }
+
+  &__list {
+    --column-count: 3;
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(var(--column-count), 1fr);
+
+    @include on-tablet-s {
+      --column-count: 2;
+    }
+    @include on-mobile {
+      --column-count: 1;
+    }
+  }
+}

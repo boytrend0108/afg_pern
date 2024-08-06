@@ -1,0 +1,35 @@
+@import '../../../../shared/style/utils.scss';
+
+.Navbar {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $color-font-light;
+  text-transform: uppercase;
+
+  line-height: 18.75px;
+  text-align: left;
+  font-size: 13px;
+
+  max-width: 600px;
+  width: 100%;
+  padding-inline: 20px;
+
+  @include on-tablet {
+    display: none;
+  }
+
+  &__link {
+    padding-inline: 20px;
+    height: 100%;
+    line-height: 90px;
+    min-width: fit-content;
+
+    @include on-desktop {
+      padding-inline: 6px;
+    }
+
+    @include onHover(background-color, $color-primary-hover);
+  }
+}

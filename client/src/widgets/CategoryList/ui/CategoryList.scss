@@ -1,0 +1,64 @@
+@import '../../../shared/style/utils.scss';
+
+.CategoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  &__wr {
+    overflow: hidden;
+    transition: height ease $transition-duration;
+  }
+
+  &__list {
+    --cell-size: 160px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, var(--cell-size));
+    grid-auto-rows: max-content;
+    gap: 20px;
+    justify-content: center;
+    justify-items: center;
+    overflow: hidden;
+    transition: height ease-in-out $transition-duration;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 360px;
+    height: 80px;
+    border: 1px solid $color-secondary;
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    text-align: left;
+    margin: 0 auto;
+
+    @include on-tablet {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @include onHover(background-color, $color-secondary);
+
+    @include on-tablet-s {
+      height: 60px;
+    }
+
+    @include on-mobile-m {
+      width: 280px;
+    }
+  }
+
+  &__arrow {
+    transform: translateY(4px);
+
+    &--active {
+      transform: rotate(180deg);
+    }
+  }
+}

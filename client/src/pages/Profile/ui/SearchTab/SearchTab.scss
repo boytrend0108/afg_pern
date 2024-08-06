@@ -1,0 +1,53 @@
+@import '../../../../shared/style/utils.scss';
+
+.SearchTab {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  padding-top: 25px;
+
+  &__list {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include on-mobile {
+      width: 100%;
+    }
+  }
+
+  &__item {
+    height: clamp(3.125rem, 2.3125rem + 4.0625vw, 7.1875rem);
+    width: 100%;
+    border: 1px solid $color-border;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: clamp(1rem, 0.7rem + 1.5vw, 2.5rem);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__value {
+    flex-grow: 1;
+  }
+
+  &__delete {
+    border: none;
+    background: none;
+    color: $color-primary-hover;
+    cursor: pointer;
+    font-size: 16px;
+
+    @include onHover(transform, scale(1.2));
+  }
+
+  &__icon-search {
+    width: clamp(1.5625rem, 1.4375rem + 0.625vw, 2.1875rem);
+    height: clamp(1.5625rem, 1.4375rem + 0.625vw, 2.1875rem);
+  }
+}

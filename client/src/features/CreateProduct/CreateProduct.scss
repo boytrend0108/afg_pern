@@ -1,0 +1,18 @@
+.CreateProduct {
+  &__input {
+    max-width: inherit;
+  }
+
+  &__text {
+    margin: 0;
+  }
+
+  &__checkbox {
+    cursor: pointer;
+  }
+}
+
+.form-check-label,
+.form-check-input {
+  cursor: pointer;
+}

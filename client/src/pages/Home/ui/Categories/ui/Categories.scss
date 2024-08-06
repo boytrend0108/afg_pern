@@ -1,0 +1,83 @@
+@import '../../../../../shared/style/utils.scss';
+
+.Categories {
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    @extend %my-container;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+
+    @include on-tablet-s {
+      gap: 20px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 236px;
+    height: 80px;
+    background-color: $color-primary;
+    margin-bottom: 46px;
+
+    @include on-desktop-s {
+      padding-inline: 116px;
+    }
+
+    @include on-tablet {
+      flex-direction: column;
+      height: 200px;
+      justify-content: center;
+      gap: 20px;
+      padding-inline: 0;
+      margin-bottom: 25px;
+    }
+
+    @include on-tablet-s {
+      height: 150px;
+    }
+  }
+
+  &__phone {
+    position: relative;
+    color: $color-font-light;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: left;
+    display: flex;
+    gap: 10px;
+
+    &::before {
+      content: url(/my-icons/phone.png);
+      position: absolute;
+      top: -10px;
+      left: -51px;
+      height: 40px;
+      width: 40px;
+
+      @include on-mobile {
+        top: 6px;
+      }
+    }
+
+    @include on-desktop-s {
+      font-size: 26px;
+      line-height: 26px;
+    }
+
+    @include on-tablet-s {
+      transform: translateX(11px);
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    @include on-mobile {
+      transform: translateX(22px);
+      flex-direction: column;
+    }
+  }
+}

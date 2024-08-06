@@ -1,0 +1,25 @@
+@import '../../../shared/style/utils.scss';
+
+.MyCheckbox {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+
+  &__box {
+    display: flex;
+    background-color: $color-font-light;
+    height: 20px;
+    width: 20px;
+    border: 3px solid $color-secondary;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  &__label {
+    cursor: pointer;
+    color: $color-primary-hover;
+    @include onHover(color, $color-secondary);
+  }
+}

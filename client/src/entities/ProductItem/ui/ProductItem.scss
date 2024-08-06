@@ -1,0 +1,177 @@
+@import '../../../shared/style/utils.scss';
+
+@mixin productItem_lable {
+  @extend .ProductItem__image-lable;
+  background-color: $color-font-light;
+  color: $color-primary;
+  font-size: clamp(1rem, 0.6875rem + 1vw, 1.25rem);
+  text-transform: uppercase;
+  padding-bottom: 6px;
+}
+
+.ProductItem {
+  width: inherit;
+  height: 100%;
+  border: 1px solid $color-border;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all ease $transition-duration;
+
+  &:hover {
+    filter: grayscale(0) !important;
+    opacity: 1 !important;
+  }
+
+  &__image {
+    overflow: hidden;
+    position: relative;
+    flex-grow: 1;
+
+    &-box {
+      height: 100%;
+      min-height: 250px;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1);
+
+      &--loaded {
+        transition: opacity ease 1s;
+        opacity: 1;
+
+        @include onHover(transform, scale(1.05));
+      }
+    }
+
+    &-lable {
+      @include image-label;
+
+      &--new {
+        @include productItem_lable;
+      }
+
+      &--top {
+        @include productItem_lable;
+        background-color: $color-secondary;
+      }
+    }
+
+    &-blur {
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('/product/excavator-1.png');
+        background-size: cover;
+        filter: blur(20px);
+        z-index: -1;
+        animation: blur infinite 2s;
+      }
+
+      @keyframes blur {
+        0% {
+          filter: blur(10px);
+        }
+        50% {
+          filter: blur(30px);
+        }
+        100% {
+          filter: blur(10px);
+        }
+      }
+    }
+  }
+
+  &__subtitle {
+    font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1.125rem);
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  &__title {
+    font-size: clamp(1.125rem, 1.05rem + 0.375vw, 1.5rem);
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  &__breadcrumbs {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  &__desc {
+    padding: 15px;
+
+    &-top {
+      border-bottom: 1px solid $color-border;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      padding-bottom: 15px;
+      max-height: 110px;
+    }
+
+    &-bottom {
+      padding-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &-r {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+
+        font-size: 16px;
+        line-height: 16px;
+      }
+
+      &-l {
+        @extend .ProductItem__desc-bottom-r;
+
+        align-items: flex-start;
+      }
+    }
+  }
+
+  &__price {
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+
+  &__article {
+    color: $color-secondary;
+    padding-inline: 10px;
+    border: 1px solid $color-secondary;
+    border-radius: 15px;
+  }
+
+  &__year,
+  &__time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 80px;
+
+    &::before {
+      content: url(/my-icons/calendar.png);
+    }
+  }
+
+  &__year {
+    &::before {
+      content: url(/my-icons/calendar.png);
+    }
+  }
+
+  &__time {
+    &::before {
+      content: url(/my-icons/time.png);
+    }
+  }
+}

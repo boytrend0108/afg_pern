@@ -1,0 +1,99 @@
+@import '../../../shared/style/utils.scss';
+
+.ContactPage {
+  padding-block: 50px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  column-gap: 25px;
+  row-gap: 50px;
+
+  @include on-desktop-s {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include on-mobile {
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+    padding-block: 24px;
+  }
+
+  &__info {
+    grid-column: -1 /2;
+
+    @include on-mobile {
+      display: none;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+  }
+
+  &__list-title {
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  &__main {
+    display: flex;
+    gap: 50px;
+
+    @include on-desktop-s {
+      gap: 30px;
+    }
+
+    @include on-tablet {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+  }
+
+  &__cart {
+    max-width: 680px;
+    width: 100%;
+    height: clamp(21.875rem, 15.179vw + 18.839rem, 32.5rem);
+
+    @include on-desktop-s {
+      max-width: none;
+      grid-row: 3;
+      grid-column: 1/-1;
+    }
+
+    @include on-desktop-s {
+      grid-row: 4;
+    }
+  }
+
+  &__key {
+    font-weight: 700;
+    min-width: 140px;
+
+    @include on-mobile {
+      min-width: 120px;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 18px;
+
+    @include on-desktop-s {
+      gap: 20px;
+    }
+
+    @include on-desktop-s {
+      gap: 12px;
+      font-size: 14px;
+    }
+    @include on-mobile {
+      font-size: 12px;
+    }
+  }
+
+  &__contact {
+    display: flex;
+    gap: 20px;
+  }
+}

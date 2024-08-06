@@ -1,0 +1,24 @@
+@import '../../../../shared/style/utils.scss';
+
+.FavoriteTab {
+  &__title {
+    margin-bottom: 25px;
+    font-size: clamp(1.5rem, 1.35rem + 0.75vw, 2.25rem);
+  }
+
+  &__list {
+    display: grid;
+    gap: 20px;
+    min-height: 460px;
+  }
+
+  &__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__error {
+    color: $color-error;
+  }
+}
