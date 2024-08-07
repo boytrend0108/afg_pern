@@ -12,7 +12,7 @@
 ## Tech Stack
 
 - Front-end: REACT, REDUX, TYPESCRIPT, SCSS, AXIOS, MUI, BOOTSTRAP,
-- Back-end: nodejs, express, postgres, sequilize, docker, googleapis
+- Back-end: nodejs, express, postgres, sequelize, docker, googleapis
 
 ![App Screenshot](https://github.com/boytrend0108/afg_pern/blob/main/screenshots/home.png?raw=true)
 
