@@ -1,3 +1,3 @@
 import { RequiredManagerRole } from './ui/RequiredManagerRole';
 
-export { RequiredManagerRole };
+export default RequiredManagerRole;

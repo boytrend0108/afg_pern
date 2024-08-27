@@ -37,8 +37,8 @@ export const en = {
 
     form: {
       emailPlaceholder: 'Your email address',
-      phonePlaceholder: 'Your email phone',
-      namePlaceholder: 'Your email name',
+      phonePlaceholder: 'Your phone',
+      namePlaceholder: 'Your name',
       '* Fill in the required fields': '* Fill in the required fields',
       Name: 'Name',
       'Company name': 'Company Name',

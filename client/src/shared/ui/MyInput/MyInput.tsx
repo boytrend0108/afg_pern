@@ -14,6 +14,7 @@ type Props = {
   id: string;
   errors: DtoValidation | DtoValidationLogin | null;
   ref: { current: any } | null;
+  autoComplete?: string;
 };
 
 export const MyInput = forwardRef<HTMLInputElement, Props>((props, ref) => {

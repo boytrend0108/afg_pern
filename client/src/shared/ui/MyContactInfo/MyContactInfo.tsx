@@ -11,28 +11,48 @@ export const MyContactInfo = () => {
 
       <ul className="MyContactInfo__contacts">
         <li className="MyContactInfo__contact">
-          <img src="/my-icons/phone-black.svg" alt="phone" />
+          <img
+            src="/my-icons/phone-black.svg"
+            alt="phone"
+            width={20}
+            height={20}
+          />
           <a href={`tel:${SOCIAL_LINKS.PHONE}`} target="blank">
             {SOCIAL_LINKS.PHONE}
           </a>
         </li>
 
         <li className="MyContactInfo__contact">
-          <img src="/my-icons/phone-black.svg" alt="phone" />
+          <img
+            src="/my-icons/phone-black.svg"
+            alt="phone"
+            width={20}
+            height={20}
+          />
           <a href={`tel:${SOCIAL_LINKS.PHONE}`} target="blank">
             {SOCIAL_LINKS.PHONE_2}
           </a>
         </li>
 
         <li className="MyContactInfo__contact">
-          <img src="/my-icons/email-black.svg" alt="mail" />
+          <img
+            src="/my-icons/email-black.svg"
+            alt="mail"
+            width={20}
+            height={20}
+          />
           <a href={`mailto:${SOCIAL_LINKS.EMAIL}`} target="blank">
             {SOCIAL_LINKS.EMAIL}
           </a>
         </li>
 
         <li className="MyContactInfo__contact">
-          <img src="/my-icons/whats-app-black.svg" alt="mail" />
+          <img
+            src="/my-icons/whats-app-black.svg"
+            alt="mail"
+            width={20}
+            height={20}
+          />
           <a href={SOCIAL_LINKS.WHATSAPP} target="blank">
             AFGmachinery
           </a>

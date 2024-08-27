@@ -115,7 +115,7 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <div className="RegistrationForm">
+    <form className="RegistrationForm">
       <img src="/logo.svg" alt="logo" className="RegistrationForm__logo" />
       <h1 className="RegistrationForm__title">
         Register for AFG Machinery account
@@ -146,6 +146,7 @@ export const RegistrationForm = () => {
         errors={errors}
         type="email"
         value={email}
+        autoComplete="email"
       />
 
       <MyInput
@@ -157,6 +158,7 @@ export const RegistrationForm = () => {
         errors={errors}
         type="password"
         value={password}
+        autoComplete="current-password"
       />
 
       <div className="RegistrationForm__wr">
@@ -225,6 +227,6 @@ export const RegistrationForm = () => {
           Log in here
         </Link>
       </p>
-    </div>
+    </form>
   );
 };

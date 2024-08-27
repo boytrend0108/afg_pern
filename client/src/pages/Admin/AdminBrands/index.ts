@@ -1,3 +1,3 @@
 import { AdminBrands } from './ui/AdminBrands';
 
-export { AdminBrands };
+export default AdminBrands;

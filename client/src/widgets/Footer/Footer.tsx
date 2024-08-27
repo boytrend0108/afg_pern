@@ -150,7 +150,12 @@ export const Footer = () => {
         </div>
 
         <Link to="/" className="Footer__item Footer__item--logo">
-          <img src="/logo.svg" alt="logo" className="Footer__logo" />
+          <img
+            src="/logo.svg"
+            alt="logo"
+            className="Footer__logo"
+            loading="lazy"
+          />
           <p className="Footer__aleanda">by Aleanda</p>
         </Link>
       </div>

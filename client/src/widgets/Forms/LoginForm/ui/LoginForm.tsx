@@ -75,7 +75,7 @@ export const LoginForm = () => {
   }, []);
 
   return (
-    <div className="LoginForm">
+    <form className="LoginForm">
       <img src="/logo.svg" alt="logo" className="LoginForm__logo" />
       <h1 className="LoginForm__title">Login to AFG Machinery account</h1>
 
@@ -88,6 +88,7 @@ export const LoginForm = () => {
         onChange={handleInputChange}
         onKeyUp={handleEnterPress}
         value={email}
+        autoComplete="email"
       />
 
       <MyInput
@@ -99,12 +100,20 @@ export const LoginForm = () => {
         onKeyUp={(e) => handleEnterPress(e)}
         onChange={handleInputChange}
         value={password}
+        autoComplete="current-password"
       />
 
       <div className="LoginForm__remember">
         <p>Remember</p>
         <label htmlFor="remember" className="LoginForm__checkbox">
-          {remember && <img src="/my-icons/check.svg" alt="remember me" />}
+          {remember && (
+            <img
+              src="/my-icons/check.svg"
+              alt="remember me"
+              height={16}
+              width={16}
+            />
+          )}
         </label>
         <input
           id="remember"
@@ -148,6 +157,6 @@ export const LoginForm = () => {
           Create an account
         </Link>
       </p>
-    </div>
+    </form>
   );
 };

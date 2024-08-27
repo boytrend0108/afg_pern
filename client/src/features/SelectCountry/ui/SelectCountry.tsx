@@ -30,6 +30,8 @@ export const SelectCountry = () => {
         src="/my-icons/arrow-down.png"
         alt="arrow down"
         className="SelectCountry__icon--arrow"
+        height={25}
+        width={25}
       />
 
       <div

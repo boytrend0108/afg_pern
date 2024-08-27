@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "react-phone-number-input": "^3.4.3"
+  },
+  "devDependencies": {
+    "cypress": "^13.13.3"
   }
 }

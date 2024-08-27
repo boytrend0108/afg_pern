@@ -6,7 +6,7 @@ import { Footer } from '../../widgets/Footer/Footer';
 import { Suspense, useEffect } from 'react';
 import { useAppDispatch } from '../../shared/hooks/reduxHooks';
 import { MySocial } from '../../shared/ui';
-import { getCurrencyRate } from '../services/getCurrencyRate';
+// import { getCurrencyRate } from '../services/getCurrencyRate';
 import { checkAuth } from '../services/checkAuth';
 import { MyLoader } from '../../shared/ui/MyLoader/MyLoader';
 
@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     checkAuth(dispatch);
-    getCurrencyRate(dispatch);
+    // getCurrencyRate(dispatch); // need to buy subscription
   }, []);
 
   return (

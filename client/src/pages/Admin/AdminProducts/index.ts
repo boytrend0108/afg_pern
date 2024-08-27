@@ -1,3 +1,3 @@
 import { AdminProducts } from './ui/AdminProducts';
 
-export { AdminProducts };
+export default AdminProducts;
