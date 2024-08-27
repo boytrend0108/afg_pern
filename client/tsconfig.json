@@ -2,9 +2,10 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable", "ES2022.Array"],
-    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "ES2022.Array", "esnext"],
+    "module": "ES2020",
     "skipLibCheck": true,
+    "esModuleInterop": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",

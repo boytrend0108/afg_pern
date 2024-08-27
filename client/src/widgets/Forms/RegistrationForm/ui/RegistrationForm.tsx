@@ -17,7 +17,7 @@ import { useTab } from '../hooks/useTab';
 
 export const RegistrationForm = () => {
   const [userName, setUserName] = useState('');
-  const [phone, setPhone] = useState<number | string>('');
+  const [phone, setPhone] = useState<string | number>('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [country, setCountry] = useState('');
@@ -115,7 +115,7 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <form className="RegistrationForm">
+    <form className="RegistrationForm" onSubmit={(e) => e.preventDefault()}>
       <img src="/logo.svg" alt="logo" className="RegistrationForm__logo" />
       <h1 className="RegistrationForm__title">
         Register for AFG Machinery account

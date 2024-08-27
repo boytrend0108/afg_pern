@@ -75,7 +75,7 @@ export const LoginForm = () => {
   }, []);
 
   return (
-    <form className="LoginForm">
+    <form className="LoginForm" onSubmit={(e) => e.preventDefault()}>
       <img src="/logo.svg" alt="logo" className="LoginForm__logo" />
       <h1 className="LoginForm__title">Login to AFG Machinery account</h1>
 
